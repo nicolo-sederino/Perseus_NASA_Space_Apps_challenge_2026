@@ -676,41 +676,28 @@
                 <button class="btn" onclick="switchSection('ml')">Next: ML &amp; Code Pipeline &rarr;</button>
             </div>
         </section>
-
         <!-- ==================== SEZIONE 4: ML & ARCHITECTURE ==================== -->
         <section id="section-ml" class="page-section">
             <span class="badge">MATLAB Engine &bull; Unsupervised Learning</span>
             <h1>Data-Driven Machine Learning Architecture</h1>
-            <p>The computational core of the <strong>Planetary Analogue Discovery System</strong> is engineered in MATLAB with zero hardcoded feature matrices.</p>
+            <p>The computational core of the <strong>Planetary Analogue Discovery System</strong> is engineered entirely in MATLAB with zero hardcoded feature matrices. The software dynamically ingests raw planetary and terrestrial CSV catalogs, harmonizes geophysical metrics, and maps multi-dimensional similarities.</p>
 
-            <h2>7-Stage Computational Pipeline</h2>
-            <div class="step-card">
-                <h3>1. Environment Initialization &amp; Metadata Isolation</h3>
-                <p>Cleans the workspace (<code>clear; clc; close all;</code>) and isolates qualitative descriptors so only numerical metrics enter the pipeline.</p>
-            </div>
-            <div class="step-card">
-                <h3>2. Automated Data-Driven Feature Harmonization</h3>
-                <p>Uses set intersection (<code>intersect(..., 'stable')</code>) between planetary and Earth tables to automatically align shared numerical features (24 for Moon, 15 for Mars).</p>
-            </div>
-            <div class="step-card">
-                <h3>3. Robust Z-Score Standardization</h3>
-                <p>Normalizes physical variables with vastly different units and scales to zero mean and unit variance.</p>
-            </div>
-            <div class="step-card">
-                <h3>4. Dimensionality Reduction via SVD-PCA</h3>
-                <p>Applies <strong>Singular Value Decomposition (SVD)</strong> to perform Principal Component Analysis (PCA) projecting vectors into a 3D latent space.</p>
-            </div>
-            <div class="step-card">
-                <h3>5. Unsupervised K-Means Clustering</h3>
-                <p>Groups terrestrial analogue candidates into distinct geological families using <strong>K-Means clustering</strong>.</p>
-            </div>
-            <div class="step-card">
-                <h3>6. Bidirectional Spatial &amp; Cosine Matching</h3>
-                <p>Computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> bidirectionally.</p>
-            </div>
-            <div class="step-card">
-                <h3>7. Multi-View Interactive Visualization Dashboard</h3>
-                <p>Generates an interactive multi-panel dashboard combining 3D PCA scatter plots, NASA photogrammetric basemaps, and dynamic Radar Charts.</p>
+            <h2>Program Overview &amp; How It Works</h2>
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3>Automated Planetary Analogue Matching Pipeline</h3>
+                <p>Designed to eliminate manual data curation, our MATLAB program operates through a fully automated, data-driven workflow:</p>
+                <p style="margin-top: 0.75rem;">
+                    <strong>1. Data Ingestion &amp; Harmonization:</strong> The script reads raw CSV datasets containing physical, thermal, and geological parameters for both planetary targets (Moon/Mars) and Earth analogues. It automatically intersects feature columns to align datasets without modifying source files.
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    <strong>2. Mathematical Normalization &amp; Dimensionality Reduction:</strong> Variables with diverse scales (such as slope angles, thermal inertia, and regolith density) are standardized via <strong>Z-Score</strong>. The system then applies <strong>SVD-PCA (Singular Value Decomposition &amp; Principal Component Analysis)</strong> to project high-dimensional geophysical data into an interpretable 3D latent space while preserving maximum variance.
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    <strong>3. Clustering &amp; Bidirectional Spatial Matching:</strong> Using unsupervised <strong>K-Means clustering</strong>, the program groups terrestrial sites into distinct geological families. It then computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> bidirectionally to rank the best Earth analogues for any given lunar or Martian landing site.
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    <strong>4. Interactive Multi-View Dashboard:</strong> Finally, the software compiles the results into an interactive visual environment featuring 3D latent scatter plots, NASA photogrammetric basemaps, and dynamic Radar Charts with custom DataTips for side-by-side comparison.
+                </p>
             </div>
 
             <div class="btn-group" style="margin-top: 2.5rem;">
@@ -718,8 +705,6 @@
                 <button class="btn" onclick="switchSection('home')">Back to Overview &rarr;</button>
             </div>
         </section>
-    </main>
-
     <footer>
         <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project. Hosted on GitHub Pages.</p>
     </footer>
