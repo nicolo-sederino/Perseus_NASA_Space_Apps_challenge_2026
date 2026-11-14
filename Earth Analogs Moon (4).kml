@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:ex="http://earth.google.com/kml/ext">
+<Document id="1DsQszjspXXG4ZXTwXqa_EM_18nI1BKvX">
+	<ex:extension>base64;Co4BCoEBCn8KAggBEnkKdwokCiAKAwjQDxoHCNLtZRD_ASEAAAAAAADwPykAAAAAAAAAABgAEg8KCAitgO8HEP8BEKAfGAAaGgoHCP___wcQQBIICK2A7wcQ_wEYoB8gACgAIgkIARIFCP___wcqFwgBEggI____BxD_ARkAAAAAAADwPyAAEgQIARAAGgIIAA</ex:extension>
+	<name>Earth Analogs Moon</name>
+	<visibility>0</visibility>
+	<gx:CascadingStyle kml:id="__managed_style_00EF578749430FEBBCC0_highlight">
+		<ex:extension>base64;Eq4BGAEiqQEKpgEKT2h0dHBzOi8vZWFydGguZ29vZ2xlLmNvbS9iYWxsb29uX2NvbXBvbmVudHMvYmFzZS8xLjEuMC4wL2NhcmRfdGVtcGxhdGUua21sI21haW4SUwpPaHR0cHM6Ly9lYXJ0aC5nb29nbGUuY29tL2JhbGxvb25fY29tcG9uZW50cy9iYXNlL2N1cnJlbnQvY2FyZF90ZW1wbGF0ZS5rbWwjbWFpbhgA</ex:extension>
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>2.4</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=ab47bc&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4.8</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_00EF578749430FEBBCC0_normal">
+		<ex:extension>base64;Eq4BGAEiqQEKpgEKT2h0dHBzOi8vZWFydGguZ29vZ2xlLmNvbS9iYWxsb29uX2NvbXBvbmVudHMvYmFzZS8xLjEuMC4wL2NhcmRfdGVtcGxhdGUua21sI21haW4SUwpPaHR0cHM6Ly9lYXJ0aC5nb29nbGUuY29tL2JhbGxvb25fY29tcG9uZW50cy9iYXNlL2N1cnJlbnQvY2FyZF90ZW1wbGF0ZS5rbWwjbWFpbhgA</ex:extension>
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=ab47bc&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3.2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_00EF578749430FEBBCC0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_00EF578749430FEBBCC0_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_00EF578749430FEBBCC0_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="0E60B9D383430F0B2FD9">
+		<name>Lanzarote</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Basaltic volcanic surfaces and lava tubes<br></div><div><i>main contribution</i><br></div><div>Adds a mature operational test site for field geology, cave exploration, and lunar imaging<br></div><div><i></i><br></div><div><br></div><div><br></div><div><br></div><div><br></div>]]></description>
+		<LookAt>
+			<longitude>-13.65067535</longitude>
+			<latitude>29.0396024</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>81298.00517838509</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-13.5899733,29.0468535,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0C32789027430F266CE6">
+		<name>Jingpo Lake</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Marius Hills; sinuous rilles; lava-tube skylights<br></div><div><i>Main contribution</i><br></div><div><i></i>Scoria cones, skylights, lava-tube systems, and distal lava plateaus in one connected volcanic landscape<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>128.9332299</longitude>
+			<latitude>43.91755489999999</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>66982.88707230204</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>128.8797023,43.8349982,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0B42A2DC4B430F28BC0E">
+		<name>Mount Etna</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Lunar mare surfaces; rugged volcanic terrain; rover operations<br></div><div><i>Main contribution</i><br></div><div><i></i>Granular volcanic material, solidified lava layers, slopes, rocks, and realistic rover-navigation challenges<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>14.994712</longitude>
+			<latitude>37.7518408</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>4207.854148915628</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>14.994712,37.7518413,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="04AB1D4A55430F2B66D4">
+		<name>Nusfjord / Flakstadøy, Lofoten Islands, Norway</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Lunar highlands and ancient lunar crust<br></div><div><i>main contribution</i><br></div><div><i></i>Exceptionally well-preserved anorthosite; useful for interpreting lunar highland rocks, magma-ocean evolution, and spectral/geological field methods<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>13.3468239</longitude>
+			<latitude>68.03557205</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>766.4875542639243</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>13.3478452,68.03531649999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0E71E0503F430F2DD154">
+		<name>Miyake Island</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Lunar crustal materials; basaltic volcanic terrain<br></div><div><i>main contribution</i><br></div><div><i></i>Megacrystic anorthite in basaltic lava flows is identified as a strong material analog for lunar crustal rocks<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>139.51994485</longitude>
+			<latitude>34.0853054</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>19253.27176165439</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>139.5178185,34.0788424,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0411B9CBBA430F30215C">
+		<name>Terceira Island</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Lunar lava-tube habitats and cave operations<br></div><div><i>main contribution</i><br></div><div><i></i>Accessible basaltic lava tubes and crewed cave-mission testing<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>-27.2105112</longitude>
+			<latitude>38.7210787</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>36274.65533052222</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-27.2205771,38.7216415,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="09BEA5F4F2430F31A4B9">
+		<name>Jeju-island south korea</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Lava-tube base architecture<br></div><div><i>main contribution</i><br></div><div><i></i>Proposed lava-tube station concept for Moon/Mars operations<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>126.55727215</longitude>
+			<latitude>33.5634565</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>309938.1209418672</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>126.5661908,33.3785614,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="027C41D795430F37EFD6">
+		<name>Furong Cave- chongqing karst caves</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Structural layout of lunar lava-tube bases<br></div><div><i>main contribution</i><br></div><div><i></i>Large accessible cavities for habitat layout, ingress/egress, ventilation, and human-factors tests<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>107.909012</longitude>
+			<latitude>29.218104</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>908.051167240914</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>107.909012,29.218104,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="04B5D41A38430F3A5BBB">
+		<name>Askja</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Lunar mare geology, sampling, and field-geology training<br></div><div><i>main contribution</i><br></div><div><i></i>Barren basaltic terrain, craters, and complex rock assemblages<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>-16.7485275</longitude>
+			<latitude>65.01105330000001</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>1932.949473497004</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-16.7485275,65.01105369999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0AAA09D6D7430F3D586E">
+		<name>Mistastin Lake</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Impacts into anorthosite-bearing lunar crust<br></div><div><i>main contribution</i><br></div><div><i></i>Combines impact geology, lunar-highland material analogs, and remote field operations<i></i><br></div><div><br></div>]]></description>
+		<LookAt>
+			<longitude>-63.3333333</longitude>
+			<latitude>55.8833328</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>2723.74187259965</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-63.3333333,55.88333329999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="087BB052A2430F3FBD36">
+		<name>Nördlinger Ries, impact crater</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div><b style="font-weight:normal;" id="docs-internal-guid-007ccfd7-7fff-8e7b-e8b6-547776d10441"><span style="color: rgb(0, 0, 0); background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span class="font" style="font-family:Arial, sans-serif"><span class="size" style="font-size:12pt">Impact breccias, impact melting, and crater geology</span></span></span></b><br></div><div><i>main contribution</i><br></div><div><i></i>Adds an accessible impact-material comparison site<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>10.5483528</longitude>
+			<latitude>48.8818551</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>61150.23291670257</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>10.5666679,48.8833336,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="04BD9F08C4430F419520">
+		<name>Kilbourne Hole</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Volcanic deposits, crater-rim traverses, and lava-tube-related features<br></div><div><i>main contribution</i><br></div><div><i></i>Adds documented instrument evaluation and comparative sampling exercises<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>-106.9672285</longitude>
+			<latitude>31.975099</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>4613.474785677149</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-106.9672285,31.9750995,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0CF73FDC0E430F42E9E4">
+		<name>Aden Crater</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Volcanic deposits, crater-rim traverses, and lava-tube-related features<br></div><div><i>main contribution</i><br></div><div>Adds documented instrument evaluation and comparative sampling exercises<br></div>]]></description>
+		<LookAt>
+			<longitude>-107.058066</longitude>
+			<latitude>32.0695405</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>4607.220333981505</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-107.058066,32.069541,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0FDF3C5D4F430F441D8C">
+		<name>Volcan Pinacate</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Marius hills (oceans procellarum) and the lunar maria</div><div><i>main lunar contribution</i><br></div><div>broad volcanic landscape for geology training<br></div><div><br></div>]]></description>
+		<LookAt>
+			<longitude>-106.3410973</longitude>
+			<latitude>31.5876618</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>884.0189240158569</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-106.3410973,31.5876618,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="06B69F3756430FC04656">
+		<name>Harrat Khaybar</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Mare plains and lava tubes<br></div><div><i>main contribution</i><br></div><div>Basaltic lava plains, young flow surfaces, cinder cones, lava domes, tuff rings, lava tubes, rover mobility and remote sensing<br></div>]]></description>
+		<LookAt>
+			<longitude>38.9483333</longitude>
+			<latitude>25.591944</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>5003.062452716134</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>38.9483333,25.5919444,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="088A8653C6430FC2E197">
+		<name>Harrat Rahat</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Mare plains and lava tubes<br></div><div><i>main contribution</i><br></div><div>Basaltic lava plains, young flow surfaces, cinder cones, lava domes, tuff rings, lava tubes, rover mobility and remote sensing<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>39.78333300000001</longitude>
+			<latitude>23.0833326</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>5136.785264304278</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>39.783333,23.083333,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="07CB9A9E29430FC46144">
+		<name>Ethiopian Afar Depression</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>It analogs Lunar rilles and grabens, plus basaltic dike plumbing<br></div><div><i>main contribution</i><br></div><div><i></i>Rift volcanism, hydrothermal systems, salt/brine chemistry, astrobiology, instrument field trials<i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>41.02815529999999</longitude>
+			<latitude>11.6919065</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>1456938.982368163</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>40.6346851,12.1056239,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0D11ED8E27430FC77D4E">
+		<name>Patagonian basalt plateaus, argentina</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div><i></i>Long mare lava flows and lava tubes<i></i><br></div><div><i>main contribution</i><br></div><div>Extensive basalt “mesetas,” arid basalt surfaces, aeolian sand over basalt, rough terrain mobility<br></div>]]></description>
+		<LookAt>
+			<longitude>-69.3200731</longitude>
+			<latitude>-41.32001405</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>3936.586023110675</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-69.3200731,-41.3200146,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0B87A3D165430FCA0DD8">
+		<name>Meseta de la Barda Negra</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div><i></i>Pit craters, collapsed tubes and sinkholes (and instrument testing)<i></i><br></div><div><i>Main contribution</i><br></div><div>Small-scale basalt plateau, aeolian mantling, possible impact-crater-like depression<br></div>]]></description>
+		<LookAt>
+			<longitude>-69.79222219999998</longitude>
+			<latitude>-39.08777725</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>4107.954348235533</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-69.7922222,-39.0877778,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="065E9629B0430FCD1A81">
+		<name>Deccan Volcanic Vent</name>
+		<description><![CDATA[<div><i>Best lunar match</i><br></div><div>Mare basalt stratigraphy, regolith/ISRU and impact in basalt<br></div><div><i>main contribution</i><br></div><div><i></i>Flood-basalt stratigraphy, basalt mineralogy, impact effects, regolith/ISRU, caves and lava tubes<br></div><div><br></div><div><i></i><br></div>]]></description>
+		<LookAt>
+			<longitude>73.43000000000001</longitude>
+			<latitude>18.51</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>995.6720920231134</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_00EF578749430FEBBCC0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>73.42999999999999,18.51,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>
