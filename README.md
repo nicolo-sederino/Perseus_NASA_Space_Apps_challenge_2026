@@ -54,4 +54,4 @@ Built leveraging open-source tools and Global Offers categories:
 ├── core_matlab/           # Original MATLAB analytical engine (ProvaHackaton7.m) & planetary basemaps
 ├── app/                   # Interactive web application (Python / Streamlit / Plotly)
 └── docs/                  # Lunar & Martian engineering assessment frameworks and literature syntheses
-└── docs/                  # Engineering assessment frameworks & Mars/Moon literature syntheses[cite: 1, 3, 4]
+
