@@ -4,43 +4,503 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Perseus | Planetary Analogue Discovery System</title>
-    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            color: #e0f2fe;
+            background-color: #030712;
+            background-image: 
+                radial-gradient(ellipse at top, #0c2442 0%, #050d1a 55%, #02040a 100%);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Sfondo Cielo Stellato */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::before {
+            background-image:
+                radial-gradient(1.5px 1.5px at 12% 18%, #ffffff, transparent),
+                radial-gradient(1px 1px at 28% 42%, #bae6fd, transparent),
+                radial-gradient(2px 2px at 45% 15%, #7dd3fc, transparent),
+                radial-gradient(1px 1px at 63% 33%, #ffffff, transparent),
+                radial-gradient(1.5px 1.5px at 78% 12%, #e0f2fe, transparent),
+                radial-gradient(1px 1px at 89% 48%, #38bdf8, transparent),
+                radial-gradient(1.5px 1.5px at 18% 72%, #ffffff, transparent),
+                radial-gradient(2px 2px at 36% 84%, #bae6fd, transparent),
+                radial-gradient(1px 1px at 54% 66%, #ffffff, transparent),
+                radial-gradient(1.5px 1.5px at 71% 79%, #7dd3fc, transparent),
+                radial-gradient(1px 1px at 92% 88%, #ffffff, transparent),
+                radial-gradient(1.5px 1.5px at 8% 52%, #38bdf8, transparent);
+            background-size: 550px 550px;
+            opacity: 0.85;
+        }
+
+        body::after {
+            background-image:
+                radial-gradient(1px 1px at 22% 27%, #ffffff, transparent),
+                radial-gradient(1.5px 1.5px at 49% 51%, #38bdf8, transparent),
+                radial-gradient(1px 1px at 81% 63%, #bae6fd, transparent),
+                radial-gradient(1px 1px at 67% 91%, #ffffff, transparent),
+                radial-gradient(1.5px 1.5px at 15% 89%, #7dd3fc, transparent);
+            background-size: 380px 380px;
+            opacity: 0.55;
+        }
+
+        /* Header & Navigazione */
+        header {
+            background-color: rgba(6, 16, 33, 0.88);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        nav {
+            max-width: 1060px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #38bdf8;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links li a, .nav-links li button {
+            text-decoration: none;
+            background: none;
+            border: none;
+            color: #bae6fd;
+            font-weight: 500;
+            font-size: 0.96rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active,
+        .nav-links li button:hover,
+        .nav-links li button.active {
+            color: #38bdf8;
+        }
+
+        /* Menu a tendina (Dropdown) */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: rgba(14, 116, 144, 0.22) !important;
+            color: #e0f2fe !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            padding: 0.48rem 1rem !important;
+            border-radius: 8px !important;
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-toggle:hover,
+        .dropdown-toggle.active-parent {
+            background: rgba(2, 132, 199, 0.35) !important;
+            border-color: #38bdf8 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+        }
+
+        .arrow {
+            font-size: 0.75rem;
+            transition: transform 0.25s ease;
+        }
+
+        .dropdown.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 10px);
+            min-width: 250px;
+            background-color: #071326;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 10px;
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(14, 165, 233, 0.15);
+            list-style: none;
+            padding: 0.5rem;
+            display: none;
+            z-index: 1100;
+        }
+
+        .dropdown.open .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li button {
+            width: 100%;
+            text-align: left;
+            display: block;
+            padding: 0.65rem 0.9rem;
+            color: #bae6fd;
+            border-radius: 6px;
+            font-size: 0.92rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-menu li button span {
+            display: block;
+            font-size: 0.76rem;
+            color: #7dd3fc;
+            opacity: 0.8;
+        }
+
+        .dropdown-menu li button:hover,
+        .dropdown-menu li button.active {
+            background-color: rgba(2, 132, 199, 0.3);
+            color: #ffffff;
+        }
+
+        /* Gestione Sezioni (Tab Content) */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active-section {
+            display: block;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1060px;
+            width: 92%;
+            margin: 2.75rem auto;
+            flex: 1;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(12, 36, 66, 0.82) 0%, rgba(7, 22, 46, 0.9) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 14px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 12px 32px rgba(2, 6, 23, 0.65);
+            backdrop-filter: blur(6px);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.15);
+            color: #7dd3fc;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.85rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.65rem;
+            color: #f0f9ff;
+            margin: 2.5rem 0 1rem;
+            border-left: 4px solid #38bdf8;
+            padding-left: 0.85rem;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+            font-size: 1.02rem;
+        }
+
+        /* Pulsanti */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background-color: rgba(12, 36, 66, 0.45);
+            color: #7dd3fc;
+            border: 1px solid #38bdf8;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(56, 189, 248, 0.18);
+            color: #ffffff;
+        }
+
+        /* Grid & Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .card {
+            background-color: rgba(9, 22, 43, 0.82);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 12px;
+            padding: 1.65rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: #38bdf8;
+        }
+
+        .card-link {
+            background: none;
+            border: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 1rem;
+            color: #38bdf8;
+            font-weight: 600;
+            font-size: 0.94rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .card-link:hover {
+            color: #7dd3fc;
+            text-decoration: underline;
+        }
+
+        /* Metrics Box */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-box {
+            background-color: rgba(9, 22, 43, 0.82);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: #bae6fd;
+        }
+
+        /* Tabelle Dati */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1.25rem;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.28);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(9, 22, 43, 0.88);
+            text-align: left;
+        }
+
+        th, td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: rgba(14, 49, 88, 0.9);
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: rgba(2, 132, 199, 0.15);
+        }
+
+        /* Step Cards */
+        .step-card {
+            background-color: rgba(9, 22, 43, 0.82);
+            border-left: 4px solid #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-left-width: 4px;
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 1.2rem;
+        }
+
+        code {
+            background-color: rgba(14, 116, 144, 0.28);
+            color: #7dd3fc;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            font-family: ui-monospace, monospace;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(4, 11, 24, 0.92);
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+            color: #7dd3fc;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 650px) {
+            h1 { font-size: 1.9rem; }
+            .hero { padding: 2rem 1.4rem; }
+            nav { flex-direction: column; gap: 0.75rem; }
+            .dropdown-menu { left: 50%; transform: translateX(-50%); right: auto; }
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <nav>
-            <a href="./index.html" class="logo">TEAM <span>PERSEUS</span></a>
+            <a class="logo" onclick="switchSection('home')">TEAM <span>PERSEUS</span></a>
             <ul class="nav-links">
-                <li><a href="./index.html">Home</a></li>
+                <li><button onclick="switchSection('home')" id="nav-home">Home</button></li>
                 <li class="dropdown" id="directoryDropdown">
                     <button class="dropdown-toggle" id="dropdownToggle" aria-expanded="false">
                         Project Directory <span class="arrow">&#9662;</span>
                     </button>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="./index.html">
+                            <button onclick="switchSection('home')" id="drop-home">
                                 Overview &amp; Challenge
                                 <span>Home Page</span>
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a href="./lunar-module.html">
+                            <button onclick="switchSection('lunar')" id="drop-lunar">
                                 Lunar Module (Flow A)
                                 <span>5 Targets &bull; 24 Features &bull; Google Earth</span>
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a href="./mars-module.html">
+                            <button onclick="switchSection('mars')" id="drop-mars">
                                 Mars Module (Flow C)
                                 <span>10 Targets &bull; 15 Features &bull; Google Earth</span>
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a href="./ml-architecture.html">
+                            <button onclick="switchSection('ml')" id="drop-ml">
                                 ML &amp; MATLAB Architecture
                                 <span>SVD-PCA &bull; K-Means &bull; 3D Dashboard</span>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </li>
@@ -49,79 +509,213 @@
     </header>
 
     <main>
-        <section class="hero">
-            <span class="badge">NASA Space Apps Challenge 2026</span>
-            <h1>Planetary Analogue Discovery System</h1>
-            <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> to identify high-fidelity terrestrial geological analogues for permanent Lunar and Martian surface bases.</p>
-            <div class="btn-group">
-                <a href="./lunar-module.html" class="btn">Explore Lunar Module &rarr;</a>
-                <a href="./mars-module.html" class="btn-outline">Explore Mars Module &rarr;</a>
-                <a href="./ml-architecture.html" class="btn-outline">ML &amp; Code Pipeline &rarr;</a>
+        <!-- ==================== SEZIONE 1: HOME ==================== -->
+        <section id="section-home" class="page-section active-section">
+            <div class="hero">
+                <span class="badge">NASA Space Apps Challenge 2026</span>
+                <h1>Planetary Analogue Discovery System</h1>
+                <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> to identify high-fidelity terrestrial geological analogues for permanent Lunar and Martian surface bases.</p>
+                <div class="btn-group">
+                    <button class="btn" onclick="switchSection('lunar')">Explore Lunar Module &rarr;</button>
+                    <button class="btn-outline" onclick="switchSection('mars')">Explore Mars Module &rarr;</button>
+                    <button class="btn-outline" onclick="switchSection('ml')">ML &amp; Code Pipeline &rarr;</button>
+                </div>
+            </div>
+
+            <section>
+                <h2>About the Team</h2>
+                <p>We are a multidisciplinary team of Aerospace and Computer Science Engineering students from <strong>Sapienza University of Rome</strong> and <strong>Roma Tre University</strong>. Combining expertise in Space, Aeronautics, Control Systems, and AI for space applications, we aim to build innovative careers in the aerospace industry.</p>
+
+                <h2>About the Challenge</h2>
+                <p>Selecting future landing sites and lunar base locations depends on many factors, including topography, geology, environment, and available resources, to name a few. Places on Earth that have analogous characteristics to the Moon or Mars – the Atacama Desert, Haughton Crater, Death Valley – allow mission teams to test equipment and methods before they fly; however, such terrestrial analog sites are not entirely well characterized.</p>
+                <p>Our challenge is to use open Earth, Moon, and Mars data from NASA and other space agencies to identify and characterize new terrestrial analogs for future bases or landing sites, drawing on deserts, polar regions, volcanic and arid terrains, caves, and other environments that share conditions with the lunar or Martian surface, then present our findings as a map, visualization, or other tool.</p>
+            </section>
+
+            <section>
+                <h2>Engineering Thresholds &amp; Parameters</h2>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <span class="metric-value">&le; 5&deg;</span>
+                        <span class="metric-label">Max Touchdown Slope (5m baseline)</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-value">&lt; 0.3 m</span>
+                        <span class="metric-label">Critical Boulder Obstacle Limit</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-value">1 – 3 km</span>
+                        <span class="metric-label">Plume Ejecta Safety Buffer</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-value">&gt; 65–75%</span>
+                        <span class="metric-label">South Pole Solar Illumination</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Implemented Project Modules</h2>
+                <div class="grid">
+                    <div class="card">
+                        <div>
+                            <span class="badge">Module 01 &bull; Flow A</span>
+                            <h3>Lunar Analogue Discovery</h3>
+                            <p>Evaluates <strong>5 key lunar targets</strong> against <strong>23 terrestrial sites</strong> across <strong>24 quantitative geophysical, thermal, and regolith parameters</strong>.</p>
+                        </div>
+                        <button class="card-link" onclick="switchSection('lunar')">Open Lunar Module &rarr;</button>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <span class="badge">Module 02 &bull; Flow C</span>
+                            <h3>Mars Analogue Discovery</h3>
+                            <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong> and Cosine Similarity.</p>
+                        </div>
+                        <button class="card-link" onclick="switchSection('mars')">Open Mars Module &rarr;</button>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <span class="badge">Module 03 &bull; Core Engine</span>
+                            <h3>Data-Driven ML Pipeline</h3>
+                            <p>Built in MATLAB without hardcoded matrices: automated CSV feature intersection, Z-Score standardization, <strong>SVD-PCA</strong>, and <strong>K-Means</strong>.</p>
+                        </div>
+                        <button class="card-link" onclick="switchSection('ml')">Open Technical Architecture &rarr;</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ==================== SEZIONE 2: LUNAR MODULE ==================== -->
+        <section id="section-lunar" class="page-section">
+            <span class="badge">Flow A &bull; 24 Quantitative Features</span>
+            <h1>Lunar Landing Sites &amp; Permanent Bases</h1>
+            <p>Our Lunar Module cross-references <strong>5 high-priority lunar exploration sites</strong> against a curated database of <strong>23 terrestrial volcanic, polar, and impact environments</strong> using 24 quantitative parameters.</p>
+
+            <h2>Interactive 3D Map: Moon &amp; Earth Analogues</h2>
+            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+                <h3>Explore the Lunar Targets on Google Earth</h3>
+                <p>Inspect the 3D topography, craters, lava tube skylights, and coordinates of our 5 lunar targets paired with their best terrestrial analogues.</p>
+                <div class="btn-group" style="margin-top: 0.75rem;">
+                    <a href="INCOLLA_QUI_LINK_GOOGLE_EARTH_MOON" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Moon Project &nearr;</a>
+                </div>
+            </div>
+
+            <h2>Best Terrestrial Matches (Flow A Output)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Lunar Target</th>
+                            <th>Mission Context</th>
+                            <th>Best Terrestrial Analogue</th>
+                            <th>Coordinates</th>
+                            <th>Euclidean Dist.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Marius Hills Skylight</strong></td><td>Lava Tube / Volcanic Dome</td><td>Jingpo Lake Volcanic Field (China)</td><td>44.15&deg; N, 128.85&deg; E</td><td>4.213</td></tr>
+                        <tr><td><strong>Descartes Highlands</strong></td><td>Apollo 16 Pure Anorthosite Crust</td><td>Miyake-jima (Japan)</td><td>34.08&deg; N, 139.53&deg; E</td><td>4.550</td></tr>
+                        <tr><td><strong>Oceanus Procellarum</strong></td><td>Apollo 12 Basaltic Maria Plain</td><td>Askja Caldera (Iceland)</td><td>65.03&deg; N, 16.75&deg; W</td><td>5.994</td></tr>
+                        <tr><td><strong>Mare Tranquillitatis Pit</strong></td><td>Apollo 11 &amp; Subsurface Conduit</td><td>Black Point Lava Flow (USA)</td><td>35.68&deg; N, 111.33&deg; W</td><td>6.412</td></tr>
+                        <tr><td><strong>Shackleton Rim</strong></td><td>Artemis Base / South Pole</td><td>Antarctic Dry Valleys – McMurdo (Antarctica)</td><td>77.82&deg; S, 160.67&deg; E</td><td>7.309</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="btn-group" style="margin-top: 2.5rem;">
+                <button class="btn-outline" onclick="switchSection('home')">&larr; Back to Home</button>
+                <button class="btn" onclick="switchSection('mars')">Next: Mars Module &rarr;</button>
             </div>
         </section>
 
-        <section>
-            <h2>About the Team</h2>
-            <p>We are a multidisciplinary team of Aerospace and Computer Science Engineering students from <strong>Sapienza University of Rome</strong> and <strong>Roma Tre University</strong>. Combining expertise in Space, Aeronautics, Control Systems, and AI for space applications, we aim to build innovative careers in the aerospace industry.</p>
+        <!-- ==================== SEZIONE 3: MARS MODULE ==================== -->
+        <section id="section-mars" class="page-section">
+            <span class="badge">Flow C &bull; 15 Quantitative Features</span>
+            <h1>Martian Exploration &amp; Analogue Discovery</h1>
+            <p>Extending our discovery engine to Mars, <strong>Flow C</strong> evaluates <strong>10 diverse Martian geological targets</strong> against <strong>25 terrestrial analogue sites</strong> across <strong>15 quantitative features</strong>.</p>
 
-            <h2>About the Challenge</h2>
-            <p>Selecting future landing sites and lunar base locations depends on many factors, including topography, geology, environment, and available resources, to name a few. Places on Earth that have analogous characteristics to the Moon or Mars – the Atacama Desert, Haughton Crater, Death Valley – allow mission teams to test equipment and methods before they fly; however, such terrestrial analog sites are not entirely well characterized.</p>
-            <p>Our challenge is to use open Earth, Moon, and Mars data from NASA and other space agencies to identify and characterize new terrestrial analogs for future bases or landing sites, drawing on deserts, polar regions, volcanic and arid terrains, caves, and other environments that share conditions with the lunar or Martian surface, then present our findings as a map, visualization, or other tool.</p>
-        </section>
+            <h2>Interactive 3D Map: Mars &amp; Earth Analogues</h2>
+            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+                <h3>Explore the Martian Targets on Google Earth</h3>
+                <p>Navigate across Tharsis shield volcanoes, glacial debris aprons, and Valles Marineris alongside their top terrestrial matches.</p>
+                <div class="btn-group" style="margin-top: 0.75rem;">
+                    <a href="INCOLLA_QUI_LINK_GOOGLE_EARTH_MARS" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Mars Project &nearr;</a>
+                </div>
+            </div>
 
-        <section>
-            <h2>Engineering Thresholds &amp; Parameters</h2>
-            <p>We translated extraterrestrial geology and mission safety constraints into objective numerical thresholds, cross-referencing orbital planetary data with open Earth observation datasets (Copernicus DEM, Sentinel-1 SAR, Sentinel-2, and Landsat).</p>
+            <h2>Best Terrestrial Matches (Flow C Output)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Martian Target</th>
+                            <th>Geological Setting</th>
+                            <th>Best Terrestrial Analogue</th>
+                            <th>Euclidean Dist.</th>
+                            <th>Cosine Sim.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Arsia Mons</strong></td><td>Tharsis Shield &amp; Collapse Pits</td><td>Mount Etna – Summit Craters (Italy)</td><td>1.146</td><td>0.9694</td></tr>
+                        <tr><td><strong>Pavonis Mons</strong></td><td>Equatorial Shield Volcano</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.355</td><td>0.9171</td></tr>
+                        <tr><td><strong>Elysium Mons &amp; Planitia</strong></td><td>Volcanic Lava Plains</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.369</td><td>0.9163</td></tr>
+                        <tr><td><strong>Ascraeus Mons</strong></td><td>Northern Tharsis Shield</td><td>Craters of the Moon (USA)</td><td>1.453</td><td>0.8291</td></tr>
+                        <tr><td><strong>Deuteronilus Mensae</strong></td><td>Lobate Debris Aprons (85% Ice)</td><td>Stenkul Fjord, Ellesmere Island (Canada)</td><td>1.711</td><td>0.9455</td></tr>
+                        <tr><td><strong>Medusae Fossae &amp; Paleolakes</strong></td><td>Yardangs &amp; Evaporites</td><td>Ustyurt Plateau (Kazakhstan / Uzbekistan)</td><td>2.323</td><td>0.7715</td></tr>
+                        <tr><td><strong>Valles Marineris</strong></td><td>Equatorial Rift &amp; Sulfate Beds</td><td>Makgadikgadi Basin (Botswana)</td><td>2.344</td><td>0.8517</td></tr>
+                        <tr><td><strong>Phlegra Montes</strong></td><td>Glacial Belts (Shallow 20m Ice)</td><td>Larsemann Hills (Antarctica)</td><td>2.355</td><td>0.6224</td></tr>
+                        <tr><td><strong>Olympus Mons</strong></td><td>Shield Volcano &amp; Basal Scarp</td><td>Llullaillaco Volcano Slopes (Chile / Argentina)</td><td>2.356</td><td>0.9551</td></tr>
+                        <tr><td><strong>Eastern Hellas Basin</strong></td><td>Southern Ice-Rich Aprons</td><td>Kilimanjaro Caldera &amp; Glaciers (Tanzania)</td><td>2.756</td><td>0.8796</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <div class="metrics-grid">
-                <div class="metric-box">
-                    <span class="metric-value">&le; 5&deg;</span>
-                    <span class="metric-label">Max Touchdown Slope (5m baseline)</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-value">&lt; 0.3 m</span>
-                    <span class="metric-label">Critical Boulder Obstacle Limit</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-value">1 – 3 km</span>
-                    <span class="metric-label">Plume Ejecta Safety Buffer</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-value">&gt; 65–75%</span>
-                    <span class="metric-label">South Pole Solar Illumination</span>
-                </div>
+            <div class="btn-group" style="margin-top: 2.5rem;">
+                <button class="btn-outline" onclick="switchSection('lunar')">&larr; Previous: Lunar Module</button>
+                <button class="btn" onclick="switchSection('ml')">Next: ML &amp; Code Pipeline &rarr;</button>
             </div>
         </section>
 
-        <section>
-            <h2>Implemented Project Modules</h2>
-            <div class="grid">
-                <div class="card">
-                    <div>
-                        <span class="badge">Module 01 &bull; Flow A</span>
-                        <h3>Lunar Analogue Discovery</h3>
-                        <p>Evaluates <strong>5 key lunar targets</strong> against <strong>23 terrestrial sites</strong> across <strong>24 quantitative geophysical, thermal, and regolith parameters</strong>, complete with an interactive Google Earth 3D project.</p>
-                    </div>
-                    <a href="./lunar-module.html" class="card-link">Open Lunar Module &rarr;</a>
-                </div>
+        <!-- ==================== SEZIONE 4: ML & ARCHITECTURE ==================== -->
+        <section id="section-ml" class="page-section">
+            <span class="badge">MATLAB Engine &bull; Unsupervised Learning</span>
+            <h1>Data-Driven Machine Learning Architecture</h1>
+            <p>The computational core of the <strong>Planetary Analogue Discovery System</strong> is engineered in MATLAB with zero hardcoded feature matrices.</p>
 
-                <div class="card">
-                    <div>
-                        <span class="badge">Module 02 &bull; Flow C</span>
-                        <h3>Mars Analogue Discovery</h3>
-                        <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong> and Cosine Similarity metrics, linked to our Martian Google Earth tour.</p>
-                    </div>
-                    <a href="./mars-module.html" class="card-link">Open Mars Module &rarr;</a>
-                </div>
+            <h2>7-Stage Computational Pipeline</h2>
+            <div class="step-card">
+                <h3>1. Environment Initialization &amp; Metadata Isolation</h3>
+                <p>Cleans the workspace (<code>clear; clc; close all;</code>) and isolates qualitative descriptors so only numerical metrics enter the pipeline.</p>
+            </div>
+            <div class="step-card">
+                <h3>2. Automated Data-Driven Feature Harmonization</h3>
+                <p>Uses set intersection (<code>intersect(..., 'stable')</code>) between planetary and Earth tables to automatically align shared numerical features (24 for Moon, 15 for Mars).</p>
+            </div>
+            <div class="step-card">
+                <h3>3. Robust Z-Score Standardization</h3>
+                <p>Normalizes physical variables with vastly different units and scales to zero mean and unit variance.</p>
+            </div>
+            <div class="step-card">
+                <h3>4. Dimensionality Reduction via SVD-PCA</h3>
+                <p>Applies <strong>Singular Value Decomposition (SVD)</strong> to perform Principal Component Analysis (PCA) projecting vectors into a 3D latent space.</p>
+            </div>
+            <div class="step-card">
+                <h3>5. Unsupervised K-Means Clustering</h3>
+                <p>Groups terrestrial analogue candidates into distinct geological families using <strong>K-Means clustering</strong>.</p>
+            </div>
+            <div class="step-card">
+                <h3>6. Bidirectional Spatial &amp; Cosine Matching</h3>
+                <p>Computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> bidirectionally.</p>
+            </div>
+            <div class="step-card">
+                <h3>7. Multi-View Interactive Visualization Dashboard</h3>
+                <p>Generates an interactive multi-panel dashboard combining 3D PCA scatter plots, NASA photogrammetric basemaps, and dynamic Radar Charts.</p>
+            </div>
 
-                <div class="card">
-                    <div>
-                        <span class="badge">Module 03 &bull; Core Engine</span>
-                        <h3>Data-Driven ML Pipeline</h3>
-                        <p>Built in MATLAB without hardcoded matrices: automated CSV feature intersection, Z-Score standardization, <strong>SVD-PCA</strong>, <strong>K-Means clustering</strong>, and 3D interactive visual analytics.</p>
-                    </div>
-                    <a href="./ml-architecture.html" class="card-link">Open Technical Architecture &rarr;</a>
-                </div>
+            <div class="btn-group" style="margin-top: 2.5rem;">
+                <button class="btn-outline" onclick="switchSection('mars')">&larr; Previous: Mars Module</button>
+                <button class="btn" onclick="switchSection('home')">Back to Overview &rarr;</button>
             </div>
         </section>
     </main>
@@ -130,6 +724,57 @@
         <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project. Hosted on GitHub Pages.</p>
     </footer>
 
-    <script src="./script.js"></script>
+    <script>
+        function switchSection(sectionId) {
+            // Nascondi tutte le sezioni
+            document.querySelectorAll('.page-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+
+            // Mostra la sezione desiderata
+            const target = document.getElementById('section-' + sectionId);
+            if (target) {
+                target.classList.add('active-section');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Chiudi il menu a tendina se aperto
+            document.getElementById('directoryDropdown').classList.remove('open');
+            document.getElementById('dropdownToggle').setAttribute('aria-expanded', 'false');
+
+            // Aggiorna classi active nei pulsanti del menu
+            document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + sectionId);
+            if (activeNav) activeNav.classList.add('active');
+        }
+
+        // Script per gestire il dropdown in JavaScript puro
+        document.addEventListener("DOMContentLoaded", () => {
+            const dropdown = document.getElementById("directoryDropdown");
+            const toggleBtn = document.getElementById("dropdownToggle");
+
+            if (dropdown && toggleBtn) {
+                toggleBtn.addEventListener("click", (event) => {
+                    event.stopPropagation();
+                    const isOpen = dropdown.classList.toggle("open");
+                    toggleBtn.setAttribute("aria-expanded", isOpen);
+                });
+
+                document.addEventListener("click", (event) => {
+                    if (!dropdown.contains(event.target)) {
+                        dropdown.classList.remove("open");
+                        toggleBtn.setAttribute("aria-expanded", "false");
+                    }
+                });
+
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape") {
+                        dropdown.classList.remove("open");
+                        toggleBtn.setAttribute("aria-expanded", "false");
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
