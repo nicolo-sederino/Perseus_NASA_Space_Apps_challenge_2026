@@ -4,18 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Perseus | Planetary Analogue Discovery System</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
     <header>
         <nav>
-            <a href="index.html" class="logo">TEAM <span>PERSEUS</span></a>
+            <a href="./index.html" class="logo">TEAM <span>PERSEUS</span></a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Overview</a></li>
-                <li><a href="lunar-module.html">Lunar Module</a></li>
-                <li><a href="mars-module.html">Mars Module</a></li>
-                <li><a href="ml-architecture.html">ML &amp; Code</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li class="dropdown" id="directoryDropdown">
+                    <button class="dropdown-toggle" id="dropdownToggle" aria-expanded="false">
+                        Project Directory <span class="arrow">&#9662;</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="./index.html">
+                                Overview &amp; Challenge
+                                <span>Home Page</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./lunar-module.html">
+                                Lunar Module (Flow A)
+                                <span>5 Targets &bull; 24 Features &bull; Google Earth</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./mars-module.html">
+                                Mars Module (Flow C)
+                                <span>10 Targets &bull; 15 Features &bull; Google Earth</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./ml-architecture.html">
+                                ML &amp; MATLAB Architecture
+                                <span>SVD-PCA &bull; K-Means &bull; 3D Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -26,8 +54,9 @@
             <h1>Planetary Analogue Discovery System</h1>
             <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> to identify high-fidelity terrestrial geological analogues for permanent Lunar and Martian surface bases.</p>
             <div class="btn-group">
-                <a href="lunar-module.html" class="btn">Explore Lunar Results</a>
-                <a href="mars-module.html" class="btn-outline">Explore Mars Results</a>
+                <a href="./lunar-module.html" class="btn">Explore Lunar Module &rarr;</a>
+                <a href="./mars-module.html" class="btn-outline">Explore Mars Module &rarr;</a>
+                <a href="./ml-architecture.html" class="btn-outline">ML &amp; Code Pipeline &rarr;</a>
             </div>
         </section>
 
@@ -42,7 +71,7 @@
 
         <section>
             <h2>Engineering Thresholds &amp; Parameters</h2>
-            <p>To solve this challenge, we translated extraterrestrial geology and mission safety constraints into objective numerical thresholds, cross-referencing orbital planetary data with open Earth observation datasets (Copernicus DEM, Sentinel-1 SAR, Sentinel-2, and Landsat).</p>
+            <p>We translated extraterrestrial geology and mission safety constraints into objective numerical thresholds, cross-referencing orbital planetary data with open Earth observation datasets (Copernicus DEM, Sentinel-1 SAR, Sentinel-2, and Landsat).</p>
 
             <div class="metrics-grid">
                 <div class="metric-box">
@@ -65,35 +94,33 @@
         </section>
 
         <section>
-            <h2>Our Project Modules</h2>
-            <p>We designed a modular architecture divided into three core components. Explore each section below to inspect our datasets, algorithms, and discovered terrestrial analogues:</p>
-
+            <h2>Implemented Project Modules</h2>
             <div class="grid">
                 <div class="card">
                     <div>
                         <span class="badge">Module 01 &bull; Flow A</span>
                         <h3>Lunar Analogue Discovery</h3>
-                        <p>Evaluates <strong>5 key lunar targets</strong> against <strong>23 terrestrial sites</strong> across <strong>24 quantitative geophysical, thermal, and regolith parameters</strong>—covering South Pole bases (Shackleton Rim) and volcanic lava tubes (Marius Hills).</p>
+                        <p>Evaluates <strong>5 key lunar targets</strong> against <strong>23 terrestrial sites</strong> across <strong>24 quantitative geophysical, thermal, and regolith parameters</strong>, complete with an interactive Google Earth 3D project.</p>
                     </div>
-                    <a href="lunar-module.html" class="card-link">View Lunar Module &rarr;</a>
+                    <a href="./lunar-module.html" class="card-link">Open Lunar Module &rarr;</a>
                 </div>
 
                 <div class="card">
                     <div>
                         <span class="badge">Module 02 &bull; Flow C</span>
                         <h3>Mars Analogue Discovery</h3>
-                        <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong> and Cosine Similarity metrics—spanning shield volcanoes, glacial debris aprons, and evaporite basins.</p>
+                        <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong> and Cosine Similarity metrics, linked to our Martian Google Earth tour.</p>
                     </div>
-                    <a href="mars-module.html" class="card-link">View Mars Module &rarr;</a>
+                    <a href="./mars-module.html" class="card-link">Open Mars Module &rarr;</a>
                 </div>
 
                 <div class="card">
                     <div>
                         <span class="badge">Module 03 &bull; Core Engine</span>
                         <h3>Data-Driven ML Pipeline</h3>
-                        <p>Built in MATLAB without hardcoded matrices: performs automated CSV feature intersection, Z-Score standardization, <strong>SVD-PCA</strong> dimensionality reduction, <strong>K-Means clustering</strong>, and 3D interactive visual analytics.</p>
+                        <p>Built in MATLAB without hardcoded matrices: automated CSV feature intersection, Z-Score standardization, <strong>SVD-PCA</strong>, <strong>K-Means clustering</strong>, and 3D interactive visual analytics.</p>
                     </div>
-                    <a href="ml-architecture.html" class="card-link">View Technical Architecture &rarr;</a>
+                    <a href="./ml-architecture.html" class="card-link">Open Technical Architecture &rarr;</a>
                 </div>
             </div>
         </section>
@@ -103,5 +130,6 @@
         <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project. Hosted on GitHub Pages.</p>
     </footer>
 
+    <script src="./script.js"></script>
 </body>
 </html>
