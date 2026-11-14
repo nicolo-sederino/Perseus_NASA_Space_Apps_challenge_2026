@@ -4,10 +4,8 @@
     "project": "NASA Space Apps Challenge 2026 - Team Perseus",
     "flow": "Flow_B_Mars",
     "planetary_body": "Mars",
-    "reference_target": "Jezero_Crater_Delta_Basin",
+    "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
     "available_targets": [
-      "Jezero_Crater_Delta_Basin",
-      "Gale_Crater_Aeolis_Palus",
       "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
       "Arsia_Mons_(Tharsis_Shield_&_Collapse_Pits)",
       "Pavonis_Mons_(Equatorial_Shield_Volcano)",
@@ -19,21 +17,73 @@
       "Valles_Marineris_(Equatorial_Rift_&_Sulfate_Beds)",
       "Medusae_Fossae_&_Paleolakes_(Yardangs_&_Evaporites)"
     ],
-    "standardization_method": "Domain-Adapted Z-Score",
-    "scaler_calibration_source": "Flow_A_Catalog (Earth_Mars_Analogs_Catalog.csv)",
-    "pca_explained_variance_ratio": [
-      0.4086,
-      0.2699,
-      0.1072,
-      0.0769,
-      0.0491,
-      0.0288
+    "standardization_method": "Domain-Adapted Z-Score (Earth stats for Earth, Mars stats for Mars targets, MATLAB parity)",
+    "calibration_features": [
+      "Altitude_m",
+      "Mean_Slope_deg",
+      "Surface_Pressure_mbar",
+      "T_min_K",
+      "T_max_K",
+      "Wind_Mean_mps",
+      "Water_Ice_wt_pct",
+      "Soil_Cohesion_kPa",
+      "Friction_Angle_deg",
+      "Salts_Evaporites_wt_pct",
+      "UV_Flux_Index",
+      "Mafic_Basalt_Idx",
+      "Eolian_Deflation_Idx"
+    ],
+    "calibration_catalog_rows": 15,
+    "pca_explained_variance_pct": [
+      40.06,
+      19.33,
+      14.15,
+      11.95,
+      6.67,
+      2.93,
+      2.38,
+      0.88,
+      0.81,
+      0.37,
+      0.27,
+      0.15,
+      0.05
     ],
     "kmeans_k": 3,
-    "total_evaluated_sites": 171,
-    "known_calibration_sites_count": 30,
-    "new_discovery_candidates_count": 141,
-    "timestamp_utc": "2026-11-14T14:07:30.397161+00:00"
+    "flow_a_exclusion_buffer_km": 50.0,
+    "flow_a_sites_excluded_from_search": 31,
+    "flow_a_sites_in_results": 0,
+    "total_evaluated_sites": 1105,
+    "new_discovery_candidates_count": 1105,
+    "ranking_metric": "Euclidean distance in PCA space to the target (MATLAB parity)",
+    "similarity_score_definition": "100*exp(-ln2*d/d_median); 50 = as far as the median Flow A analog",
+    "flow_a_reference_distance_best": 1.3746,
+    "flow_a_reference_distance_median": 5.0149,
+    "engineering_parameters": {
+      "buffer_km": 50.0,
+      "max_slope_lander_deg": 5.0,
+      "max_slope_rover_deg": 12.0,
+      "min_safe_landing_frac": 0.5,
+      "dt_min_k": null,
+      "dt_max_k": null,
+      "ndvi_max": 0.15,
+      "hard_filter": "none",
+      "radar_weight": 0.0,
+      "radar_tau": 1.0,
+      "z_clip": null,
+      "exclude_features": [],
+      "min_features": 8,
+      "max_missing_frac": 0.15,
+      "kmeans_k": 3,
+      "random_state": 42
+    },
+    "category_weights": {
+      "Morphometry": 1.0,
+      "Thermophysics": 1.0,
+      "Geochemistry": 1.0,
+      "Environment": 1.0
+    },
+    "timestamp_utc": "2026-11-14T17:50:32.432746+00:00"
   },
   "features": [
     {
@@ -41,46 +91,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          89.2,
-          36.2
+          83.6364,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0123",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+034.50_+0083.64",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 1,
-        "global_rank": 1,
-        "similarity_score_pct": 77.34,
-        "latent_distance": 0.8969,
+        "similarity_score": 50.21,
+        "latent_distance": 4.9843,
+        "cosine_similarity": 0.2367,
+        "distance_vs_flow_a_best": 3.626,
         "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 98.47,
-          "Thermophysics": 89.0,
-          "Geochemistry": 47.88,
-          "Environment": 92.8
+          "Morphometry": 53.01,
+          "Thermophysics": 35.38,
+          "Geochemistry": 66.43,
+          "Environment": 34.63
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 951.6
         },
         "engineering_metrics": {
-          "Altitude_m": 4891.35,
-          "Mean_Slope_deg": 2.127,
-          "Safe_Landing_Frac": 0.9786,
-          "RMS_Roughness_m": 1.527,
-          "Diurnal_Delta_T_K": 39.33,
-          "T_mean_K": 254.48,
-          "Thermal_Inertia": 137.59,
-          "Albedo": 0.2041,
-          "Mafic_Basalt_Idx": 49.49,
-          "Ferric_Oxide_Idx": 1.602,
-          "Salts_Evaporites_wt_pct": 13.89,
+          "Altitude_m": 5254.0,
+          "Mean_Slope_deg": 11.736,
+          "Surface_Pressure_mbar": 542.151,
+          "T_min_K": 243.72,
+          "T_max_K": 309.3,
+          "Wind_Mean_mps": 2.376,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 567.36,
-          "UV_Flux_Index": 13.19,
-          "Eolian_Deflation_Idx": 84.27,
-          "NDVI": 0.0045
+          "Soil_Cohesion_kPa": 1.257,
+          "Friction_Angle_deg": 33.09,
+          "Salts_Evaporites_wt_pct": 14.045,
+          "UV_Flux_Index": 9.885,
+          "Mafic_Basalt_Idx": 39.26,
+          "Eolian_Deflation_Idx": 32.705,
+          "Diurnal_Delta_T_K": 29.975
         }
       }
     },
@@ -89,46 +143,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -67.3,
-          -19.8
+          88.4848,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Atacama_Ande_0024",
-        "region": "Atacama_AndeanAltiplano_Puna",
+        "site_name": "PERSEUS_+034.50_+0088.48",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 2,
-        "global_rank": 2,
-        "similarity_score_pct": 70.62,
-        "latent_distance": 1.1361,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 48.84,
+        "latent_distance": 5.1847,
+        "cosine_similarity": 0.0773,
+        "distance_vs_flow_a_best": 3.772,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 95.29,
-          "Thermophysics": 69.62,
-          "Geochemistry": 53.69,
-          "Environment": 82.3
+          "Morphometry": 36.72,
+          "Thermophysics": 40.54,
+          "Geochemistry": 59.32,
+          "Environment": 27.48
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 577.2
         },
         "engineering_metrics": {
-          "Altitude_m": 3652.0,
-          "Mean_Slope_deg": 0.2,
-          "Safe_Landing_Frac": 1.0,
-          "RMS_Roughness_m": 0.0,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 269.67,
-          "Thermal_Inertia": 60.23,
-          "Albedo": 0.6457,
-          "Mafic_Basalt_Idx": 6.0,
-          "Ferric_Oxide_Idx": 0.976,
-          "Salts_Evaporites_wt_pct": 15.51,
-          "Water_Ice_wt_pct": 61.99,
-          "Surface_Pressure_mbar": 657.16,
-          "UV_Flux_Index": 9.78,
-          "Eolian_Deflation_Idx": 91.73,
-          "NDVI": -0.057
+          "Altitude_m": 4838.0,
+          "Mean_Slope_deg": 6.006,
+          "Surface_Pressure_mbar": 558.262,
+          "T_min_K": 245.58,
+          "T_max_K": 304.08,
+          "Wind_Mean_mps": 2.33,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 2.381,
+          "Friction_Angle_deg": 32.44,
+          "Salts_Evaporites_wt_pct": 17.199,
+          "UV_Flux_Index": 9.711,
+          "Mafic_Basalt_Idx": 34.559,
+          "Eolian_Deflation_Idx": 32.825,
+          "Diurnal_Delta_T_K": 24.948
         }
       }
     },
@@ -137,46 +195,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          97.2,
-          36.2
+          90.9215,
+          35.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0125",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+035.50_+0090.92",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 3,
-        "global_rank": 3,
-        "similarity_score_pct": 70.13,
-        "latent_distance": 0.8357,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 48.82,
+        "latent_distance": 5.1874,
+        "cosine_similarity": 0.2092,
+        "distance_vs_flow_a_best": 3.774,
+        "cluster_id": 1,
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 90.23,
-          "Thermophysics": 80.48,
-          "Geochemistry": 41.66,
-          "Environment": 67.55
+          "Morphometry": 48.06,
+          "Thermophysics": 56.24,
+          "Geochemistry": 77.51,
+          "Environment": 20.72
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 342.2
         },
         "engineering_metrics": {
-          "Altitude_m": 2831.36,
-          "Mean_Slope_deg": 1.819,
-          "Safe_Landing_Frac": 0.9941,
-          "RMS_Roughness_m": 1.234,
-          "Diurnal_Delta_T_K": 36.47,
-          "T_mean_K": 261.97,
-          "Thermal_Inertia": 146.97,
-          "Albedo": 0.2117,
-          "Mafic_Basalt_Idx": 47.8,
-          "Ferric_Oxide_Idx": 1.493,
-          "Salts_Evaporites_wt_pct": 12.2,
+          "Altitude_m": 5146.0,
+          "Mean_Slope_deg": 11.891,
+          "Surface_Pressure_mbar": 545.415,
+          "T_min_K": 245.04,
+          "T_max_K": 294.89,
+          "Wind_Mean_mps": 2.144,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 724.32,
-          "UV_Flux_Index": 7.86,
-          "Eolian_Deflation_Idx": 79.4,
-          "NDVI": 0.0241
+          "Soil_Cohesion_kPa": 3.66,
+          "Friction_Angle_deg": 31.36,
+          "Salts_Evaporites_wt_pct": 11.661,
+          "UV_Flux_Index": 9.5,
+          "Mafic_Basalt_Idx": 50.026,
+          "Eolian_Deflation_Idx": 24.425,
+          "Diurnal_Delta_T_K": 21.413
         }
       }
     },
@@ -185,46 +247,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          97.2,
-          44.2
+          84.7782,
+          35.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0143",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+035.50_+0084.78",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 4,
-        "global_rank": 4,
-        "similarity_score_pct": 63.0,
-        "latent_distance": 1.2599,
+        "similarity_score": 48.34,
+        "latent_distance": 5.2595,
+        "cosine_similarity": 0.11,
+        "distance_vs_flow_a_best": 3.826,
         "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
         "radar_subscores": {
-          "Morphometry": 77.04,
-          "Thermophysics": 81.36,
-          "Geochemistry": 52.65,
-          "Environment": 49.75
+          "Morphometry": 38.69,
+          "Thermophysics": 33.43,
+          "Geochemistry": 70.16,
+          "Environment": 29.77
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 811.7
         },
         "engineering_metrics": {
-          "Altitude_m": 1197.51,
-          "Mean_Slope_deg": 2.652,
-          "Safe_Landing_Frac": 0.9191,
-          "RMS_Roughness_m": 3.116,
-          "Diurnal_Delta_T_K": 33.4,
-          "T_mean_K": 248.38,
-          "Thermal_Inertia": 151.78,
-          "Albedo": 0.2545,
-          "Mafic_Basalt_Idx": 28.3,
-          "Ferric_Oxide_Idx": 1.719,
-          "Salts_Evaporites_wt_pct": 17.06,
+          "Altitude_m": 5036.0,
+          "Mean_Slope_deg": 6.189,
+          "Surface_Pressure_mbar": 553.783,
+          "T_min_K": 243.78,
+          "T_max_K": 311.04,
+          "Wind_Mean_mps": 2.31,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 879.14,
-          "UV_Flux_Index": 6.33,
-          "Eolian_Deflation_Idx": 70.5,
-          "NDVI": 0.045
+          "Soil_Cohesion_kPa": 1.123,
+          "Friction_Angle_deg": 34.27,
+          "Salts_Evaporites_wt_pct": 13.454,
+          "UV_Flux_Index": 9.701,
+          "Mafic_Basalt_Idx": 43.648,
+          "Eolian_Deflation_Idx": 33.464,
+          "Diurnal_Delta_T_K": 30.19
         }
       }
     },
@@ -233,46 +299,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          88.2,
-          34.2
+          85.9516,
+          36.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Tibetan_Pami_0156",
-        "region": "Tibetan_Pamir_High_Plateau",
+        "site_name": "PERSEUS_+036.50_+0085.95",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 5,
-        "global_rank": 5,
-        "similarity_score_pct": 61.8,
-        "latent_distance": 1.9208,
-        "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
+        "similarity_score": 48.32,
+        "latent_distance": 5.2628,
+        "cosine_similarity": 0.1044,
+        "distance_vs_flow_a_best": 3.829,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 95.09,
-          "Thermophysics": 60.37,
-          "Geochemistry": 53.49,
-          "Environment": 75.23
+          "Morphometry": 37.21,
+          "Thermophysics": 42.42,
+          "Geochemistry": 66.58,
+          "Environment": 26.88
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 676.6
         },
         "engineering_metrics": {
-          "Altitude_m": 5034.19,
-          "Mean_Slope_deg": 2.718,
-          "Safe_Landing_Frac": 0.9156,
-          "RMS_Roughness_m": 2.741,
-          "Diurnal_Delta_T_K": 27.52,
-          "T_mean_K": 261.97,
-          "Thermal_Inertia": 180.47,
-          "Albedo": 0.2696,
-          "Mafic_Basalt_Idx": 31.14,
-          "Ferric_Oxide_Idx": 1.754,
-          "Salts_Evaporites_wt_pct": 16.74,
+          "Altitude_m": 5039.0,
+          "Mean_Slope_deg": 7.176,
+          "Surface_Pressure_mbar": 555.903,
+          "T_min_K": 242.98,
+          "T_max_K": 303.19,
+          "Wind_Mean_mps": 2.126,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 557.83,
-          "UV_Flux_Index": 13.72,
-          "Eolian_Deflation_Idx": 58.31,
-          "NDVI": 0.0851
+          "Soil_Cohesion_kPa": 2.391,
+          "Friction_Angle_deg": 32.6,
+          "Salts_Evaporites_wt_pct": 13.372,
+          "UV_Flux_Index": 9.582,
+          "Mafic_Basalt_Idx": 37.949,
+          "Eolian_Deflation_Idx": 26.776,
+          "Diurnal_Delta_T_K": 26.807
         }
       }
     },
@@ -281,46 +351,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          97.2,
-          40.2
+          82.4242,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0134",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+034.50_+0082.42",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 6,
-        "global_rank": 7,
-        "similarity_score_pct": 61.64,
-        "latent_distance": 1.3211,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 48.07,
+        "latent_distance": 5.2991,
+        "cosine_similarity": 0.1995,
+        "distance_vs_flow_a_best": 3.855,
+        "cluster_id": 1,
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 82.33,
-          "Thermophysics": 75.2,
-          "Geochemistry": 43.65,
-          "Environment": 54.46
+          "Morphometry": 43.88,
+          "Thermophysics": 36.4,
+          "Geochemistry": 74.29,
+          "Environment": 29.7
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 874.6
         },
         "engineering_metrics": {
-          "Altitude_m": 1544.07,
-          "Mean_Slope_deg": 2.06,
-          "Safe_Landing_Frac": 0.9834,
-          "RMS_Roughness_m": 1.497,
-          "Diurnal_Delta_T_K": 33.88,
-          "T_mean_K": 260.82,
-          "Thermal_Inertia": 160.42,
-          "Albedo": 0.2008,
-          "Mafic_Basalt_Idx": 48.3,
-          "Ferric_Oxide_Idx": 1.594,
-          "Salts_Evaporites_wt_pct": 11.84,
+          "Altitude_m": 5430.0,
+          "Mean_Slope_deg": 10.938,
+          "Surface_Pressure_mbar": 533.535,
+          "T_min_K": 241.74,
+          "T_max_K": 306.52,
+          "Wind_Mean_mps": 1.786,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 843.75,
-          "UV_Flux_Index": 6.96,
-          "Eolian_Deflation_Idx": 73.35,
-          "NDVI": 0.0418
+          "Soil_Cohesion_kPa": 1.531,
+          "Friction_Angle_deg": 32.06,
+          "Salts_Evaporites_wt_pct": 12.017,
+          "UV_Flux_Index": 10.09,
+          "Mafic_Basalt_Idx": 46.384,
+          "Eolian_Deflation_Idx": 25.297,
+          "Diurnal_Delta_T_K": 29.356
         }
       }
     },
@@ -329,46 +403,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          84.2,
-          38.2
+          87.2355,
+          35.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Tibetan_Pami_0161",
-        "region": "Tibetan_Pamir_High_Plateau",
+        "site_name": "PERSEUS_+035.50_+0087.24",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 7,
-        "global_rank": 8,
-        "similarity_score_pct": 60.4,
-        "latent_distance": 1.4221,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 47.93,
+        "latent_distance": 5.3213,
+        "cosine_similarity": 0.1979,
+        "distance_vs_flow_a_best": 3.871,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 74.99,
-          "Thermophysics": 80.94,
-          "Geochemistry": 47.27,
-          "Environment": 49.96
+          "Morphometry": 49.75,
+          "Thermophysics": 39.17,
+          "Geochemistry": 58.22,
+          "Environment": 25.54
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 608.5
         },
         "engineering_metrics": {
-          "Altitude_m": 1213.32,
-          "Mean_Slope_deg": 2.99,
-          "Safe_Landing_Frac": 0.8811,
-          "RMS_Roughness_m": 2.287,
-          "Diurnal_Delta_T_K": 34.68,
-          "T_mean_K": 251.59,
-          "Thermal_Inertia": 110.78,
-          "Albedo": 0.435,
-          "Mafic_Basalt_Idx": 15.27,
-          "Ferric_Oxide_Idx": 1.39,
-          "Salts_Evaporites_wt_pct": 29.25,
+          "Altitude_m": 5052.0,
+          "Mean_Slope_deg": 15.204,
+          "Surface_Pressure_mbar": 551.33,
+          "T_min_K": 245.1,
+          "T_max_K": 305.57,
+          "Wind_Mean_mps": 2.123,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 877.49,
-          "UV_Flux_Index": 5.63,
-          "Eolian_Deflation_Idx": 72.05,
-          "NDVI": 0.0363
+          "Soil_Cohesion_kPa": 2.9,
+          "Friction_Angle_deg": 32.7,
+          "Salts_Evaporites_wt_pct": 15.348,
+          "UV_Flux_Index": 9.609,
+          "Mafic_Basalt_Idx": 28.361,
+          "Eolian_Deflation_Idx": 24.394,
+          "Diurnal_Delta_T_K": 28.553
         }
       }
     },
@@ -377,46 +455,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          93.2,
-          40.2
+          88.4429,
+          36.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0133",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+036.50_+0088.44",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 8,
-        "global_rank": 9,
-        "similarity_score_pct": 59.98,
-        "latent_distance": 1.5198,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 47.88,
+        "latent_distance": 5.3279,
+        "cosine_similarity": 0.1593,
+        "distance_vs_flow_a_best": 3.876,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 75.92,
-          "Thermophysics": 77.74,
-          "Geochemistry": 53.04,
-          "Environment": 48.67
+          "Morphometry": 41.58,
+          "Thermophysics": 48.12,
+          "Geochemistry": 79.83,
+          "Environment": 20.63
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 464.1
         },
         "engineering_metrics": {
-          "Altitude_m": 892.35,
-          "Mean_Slope_deg": 2.477,
-          "Safe_Landing_Frac": 0.9227,
-          "RMS_Roughness_m": 2.656,
-          "Diurnal_Delta_T_K": 34.29,
-          "T_mean_K": 261.01,
-          "Thermal_Inertia": 142.12,
-          "Albedo": 0.2834,
-          "Mafic_Basalt_Idx": 25.29,
-          "Ferric_Oxide_Idx": 1.744,
-          "Salts_Evaporites_wt_pct": 17.24,
+          "Altitude_m": 5188.0,
+          "Mean_Slope_deg": 9.633,
+          "Surface_Pressure_mbar": 546.203,
+          "T_min_K": 241.18,
+          "T_max_K": 297.68,
+          "Wind_Mean_mps": 1.962,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 911.53,
-          "UV_Flux_Index": 5.97,
-          "Eolian_Deflation_Idx": 72.87,
-          "NDVI": 0.039
+          "Soil_Cohesion_kPa": 3.44,
+          "Friction_Angle_deg": 31.19,
+          "Salts_Evaporites_wt_pct": 9.836,
+          "UV_Flux_Index": 9.537,
+          "Mafic_Basalt_Idx": 51.177,
+          "Eolian_Deflation_Idx": 24.559,
+          "Diurnal_Delta_T_K": 25.021
         }
       }
     },
@@ -425,46 +507,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          81.2,
-          40.2
+          88.7413,
+          37.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0130",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+037.50_+0088.74",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 9,
-        "global_rank": 10,
-        "similarity_score_pct": 59.82,
-        "latent_distance": 1.4187,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 47.72,
+        "latent_distance": 5.3532,
+        "cosine_similarity": -0.0445,
+        "distance_vs_flow_a_best": 3.894,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 74.56,
-          "Thermophysics": 79.93,
-          "Geochemistry": 43.24,
-          "Environment": 51.72
+          "Morphometry": 26.38,
+          "Thermophysics": 33.34,
+          "Geochemistry": 65.13,
+          "Environment": 30.15
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 411.8
         },
         "engineering_metrics": {
-          "Altitude_m": 1038.96,
-          "Mean_Slope_deg": 3.001,
-          "Safe_Landing_Frac": 0.9001,
-          "RMS_Roughness_m": 2.097,
-          "Diurnal_Delta_T_K": 35.88,
-          "T_mean_K": 261.93,
-          "Thermal_Inertia": 140.81,
-          "Albedo": 0.2571,
-          "Mafic_Basalt_Idx": 36.66,
-          "Ferric_Oxide_Idx": 1.461,
-          "Salts_Evaporites_wt_pct": 14.64,
+          "Altitude_m": 4428.0,
+          "Mean_Slope_deg": 2.522,
+          "Surface_Pressure_mbar": 583.644,
+          "T_min_K": 246.69,
+          "T_max_K": 308.8,
+          "Wind_Mean_mps": 2.763,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 895.82,
-          "UV_Flux_Index": 6.02,
-          "Eolian_Deflation_Idx": 74.45,
-          "NDVI": 0.0281
+          "Soil_Cohesion_kPa": 1.967,
+          "Friction_Angle_deg": 33.13,
+          "Salts_Evaporites_wt_pct": 14.324,
+          "UV_Flux_Index": 9.344,
+          "Mafic_Basalt_Idx": 37.815,
+          "Eolian_Deflation_Idx": 29.528,
+          "Diurnal_Delta_T_K": 27.135
         }
       }
     },
@@ -473,46 +559,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          80.2,
-          38.2
+          89.697,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Tibetan_Pami_0160",
-        "region": "Tibetan_Pamir_High_Plateau",
+        "site_name": "PERSEUS_+034.50_+0089.70",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 10,
-        "global_rank": 11,
-        "similarity_score_pct": 59.82,
-        "latent_distance": 1.514,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 47.48,
+        "latent_distance": 5.3895,
+        "cosine_similarity": 0.0899,
+        "distance_vs_flow_a_best": 3.921,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 76.71,
-          "Thermophysics": 75.09,
-          "Geochemistry": 51.4,
-          "Environment": 50.89
+          "Morphometry": 31.35,
+          "Thermophysics": 48.62,
+          "Geochemistry": 77.17,
+          "Environment": 22.73
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 499.1
         },
         "engineering_metrics": {
-          "Altitude_m": 1222.31,
-          "Mean_Slope_deg": 2.765,
-          "Safe_Landing_Frac": 0.9144,
-          "RMS_Roughness_m": 2.412,
-          "Diurnal_Delta_T_K": 34.18,
-          "T_mean_K": 266.25,
-          "Thermal_Inertia": 143.06,
-          "Albedo": 0.281,
-          "Mafic_Basalt_Idx": 29.31,
-          "Ferric_Oxide_Idx": 1.8,
-          "Salts_Evaporites_wt_pct": 15.17,
+          "Altitude_m": 5200.0,
+          "Mean_Slope_deg": 3.8,
+          "Surface_Pressure_mbar": 532.835,
+          "T_min_K": 240.86,
+          "T_max_K": 297.06,
+          "Wind_Mean_mps": 2.13,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 876.56,
-          "UV_Flux_Index": 6.27,
-          "Eolian_Deflation_Idx": 71.73,
-          "NDVI": 0.0397
+          "Soil_Cohesion_kPa": 3.48,
+          "Friction_Angle_deg": 31.71,
+          "Salts_Evaporites_wt_pct": 11.433,
+          "UV_Flux_Index": 9.802,
+          "Mafic_Basalt_Idx": 49.05,
+          "Eolian_Deflation_Idx": 29.998,
+          "Diurnal_Delta_T_K": 23.77
         }
       }
     },
@@ -521,46 +611,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          105.2,
-          44.2
+          78.6348,
+          35.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0145",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+035.50_+0078.63",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 11,
-        "global_rank": 12,
-        "similarity_score_pct": 59.5,
-        "latent_distance": 1.5042,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 47.04,
+        "latent_distance": 5.457,
+        "cosine_similarity": 0.1646,
+        "distance_vs_flow_a_best": 3.97,
+        "cluster_id": 1,
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 81.0,
-          "Thermophysics": 71.07,
-          "Geochemistry": 52.87,
-          "Environment": 46.72
+          "Morphometry": 55.18,
+          "Thermophysics": 29.16,
+          "Geochemistry": 79.95,
+          "Environment": 30.9
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 524.5
         },
         "engineering_metrics": {
-          "Altitude_m": 1276.34,
-          "Mean_Slope_deg": 2.049,
-          "Safe_Landing_Frac": 0.9881,
-          "RMS_Roughness_m": 1.4,
-          "Diurnal_Delta_T_K": 30.91,
-          "T_mean_K": 253.04,
-          "Thermal_Inertia": 175.53,
-          "Albedo": 0.202,
-          "Mafic_Basalt_Idx": 48.16,
-          "Ferric_Oxide_Idx": 1.937,
-          "Salts_Evaporites_wt_pct": 12.14,
+          "Altitude_m": 4976.0,
+          "Mean_Slope_deg": 11.925,
+          "Surface_Pressure_mbar": 537.906,
+          "T_min_K": 243.473,
+          "T_max_K": 314.8,
+          "Wind_Mean_mps": 1.572,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 870.96,
-          "UV_Flux_Index": 6.29,
-          "Eolian_Deflation_Idx": 67.35,
-          "NDVI": 0.0619
+          "Soil_Cohesion_kPa": 1.156,
+          "Friction_Angle_deg": 32.59,
+          "Salts_Evaporites_wt_pct": 11.475,
+          "UV_Flux_Index": 10.209,
+          "Mafic_Basalt_Idx": 52.863,
+          "Eolian_Deflation_Idx": 34.007,
+          "Diurnal_Delta_T_K": 34.627
         }
       }
     },
@@ -569,46 +663,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          80.2,
-          34.2
+          83.5495,
+          35.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Tibetan_Pami_0154",
-        "region": "Tibetan_Pamir_High_Plateau",
+        "site_name": "PERSEUS_+035.50_+0083.55",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 12,
-        "global_rank": 15,
-        "similarity_score_pct": 58.44,
-        "latent_distance": 2.0409,
-        "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
+        "similarity_score": 47.03,
+        "latent_distance": 5.4574,
+        "cosine_similarity": -0.0057,
+        "distance_vs_flow_a_best": 3.97,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 74.51,
-          "Thermophysics": 73.63,
-          "Geochemistry": 35.9,
-          "Environment": 84.21
+          "Morphometry": 30.5,
+          "Thermophysics": 30.82,
+          "Geochemistry": 51.16,
+          "Environment": 32.01
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 916.0
         },
         "engineering_metrics": {
-          "Altitude_m": 5059.01,
-          "Mean_Slope_deg": 6.065,
-          "Safe_Landing_Frac": 0.6385,
-          "RMS_Roughness_m": 10.95,
-          "Diurnal_Delta_T_K": 35.02,
-          "T_mean_K": 263.68,
-          "Thermal_Inertia": 171.54,
-          "Albedo": 0.1166,
-          "Mafic_Basalt_Idx": 69.6,
-          "Ferric_Oxide_Idx": 1.398,
-          "Salts_Evaporites_wt_pct": 8.13,
+          "Altitude_m": 4848.0,
+          "Mean_Slope_deg": 2.599,
+          "Surface_Pressure_mbar": 555.928,
+          "T_min_K": 241.73,
+          "T_max_K": 311.45,
+          "Wind_Mean_mps": 2.623,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 556.19,
-          "UV_Flux_Index": 13.74,
-          "Eolian_Deflation_Idx": 63.0,
-          "NDVI": 0.034
+          "Soil_Cohesion_kPa": 1.732,
+          "Friction_Angle_deg": 33.42,
+          "Salts_Evaporites_wt_pct": 18.826,
+          "UV_Flux_Index": 9.762,
+          "Mafic_Basalt_Idx": 22.717,
+          "Eolian_Deflation_Idx": 34.444,
+          "Diurnal_Delta_T_K": 33.101
         }
       }
     },
@@ -617,46 +715,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          15.2,
-          26.2
+          87.2727,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Sahara_Hyper_0064",
-        "region": "Sahara_Hyperarid_Core",
+        "site_name": "PERSEUS_+034.50_+0087.27",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 13,
-        "global_rank": 16,
-        "similarity_score_pct": 58.36,
-        "latent_distance": 1.7614,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 46.96,
+        "latent_distance": 5.4681,
+        "cosine_similarity": 0.0229,
+        "distance_vs_flow_a_best": 3.978,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 75.76,
-          "Thermophysics": 79.44,
-          "Geochemistry": 52.36,
-          "Environment": 48.78
+          "Morphometry": 32.98,
+          "Thermophysics": 40.37,
+          "Geochemistry": 56.52,
+          "Environment": 26.27
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 664.0
         },
         "engineering_metrics": {
-          "Altitude_m": 445.55,
-          "Mean_Slope_deg": 2.256,
-          "Safe_Landing_Frac": 0.9822,
-          "RMS_Roughness_m": 1.798,
-          "Diurnal_Delta_T_K": 36.21,
-          "T_mean_K": 247.09,
-          "Thermal_Inertia": 82.28,
-          "Albedo": 0.5618,
-          "Mafic_Basalt_Idx": 14.64,
-          "Ferric_Oxide_Idx": 1.596,
-          "Salts_Evaporites_wt_pct": 37.06,
+          "Altitude_m": 5023.0,
+          "Mean_Slope_deg": 4.248,
+          "Surface_Pressure_mbar": 549.809,
+          "T_min_K": 242.76,
+          "T_max_K": 304.44,
+          "Wind_Mean_mps": 2.183,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 961.11,
-          "UV_Flux_Index": 5.8,
-          "Eolian_Deflation_Idx": 77.49,
-          "NDVI": 0.0258
+          "Soil_Cohesion_kPa": 2.928,
+          "Friction_Angle_deg": 32.82,
+          "Salts_Evaporites_wt_pct": 15.885,
+          "UV_Flux_Index": 9.749,
+          "Mafic_Basalt_Idx": 26.475,
+          "Eolian_Deflation_Idx": 31.013,
+          "Diurnal_Delta_T_K": 29.682
         }
       }
     },
@@ -665,46 +767,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          89.2,
-          40.2
+          84.8485,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0132",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+034.50_+0084.85",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 14,
-        "global_rank": 18,
-        "similarity_score_pct": 58.23,
-        "latent_distance": 1.5831,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 46.74,
+        "latent_distance": 5.5032,
+        "cosine_similarity": 0.0526,
+        "distance_vs_flow_a_best": 4.003,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 72.71,
-          "Thermophysics": 76.1,
-          "Geochemistry": 50.45,
-          "Environment": 48.33
+          "Morphometry": 31.49,
+          "Thermophysics": 36.78,
+          "Geochemistry": 72.24,
+          "Environment": 23.9
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 852.7
         },
         "engineering_metrics": {
-          "Altitude_m": 801.86,
-          "Mean_Slope_deg": 3.001,
-          "Safe_Landing_Frac": 0.8823,
-          "RMS_Roughness_m": 2.421,
-          "Diurnal_Delta_T_K": 34.58,
-          "T_mean_K": 265.66,
-          "Thermal_Inertia": 141.17,
-          "Albedo": 0.2821,
-          "Mafic_Basalt_Idx": 27.63,
-          "Ferric_Oxide_Idx": 1.694,
-          "Salts_Evaporites_wt_pct": 16.28,
+          "Altitude_m": 5289.0,
+          "Mean_Slope_deg": 4.912,
+          "Surface_Pressure_mbar": 544.116,
+          "T_min_K": 241.26,
+          "T_max_K": 305.74,
+          "Wind_Mean_mps": 2.054,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 921.36,
-          "UV_Flux_Index": 6.06,
-          "Eolian_Deflation_Idx": 71.81,
-          "NDVI": 0.0369
+          "Soil_Cohesion_kPa": 2.949,
+          "Friction_Angle_deg": 31.69,
+          "Salts_Evaporites_wt_pct": 12.799,
+          "UV_Flux_Index": 9.846,
+          "Mafic_Basalt_Idx": 45.227,
+          "Eolian_Deflation_Idx": 26.648,
+          "Diurnal_Delta_T_K": 26.153
         }
       }
     },
@@ -713,46 +819,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          85.2,
-          40.2
+          85.8553,
+          32.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0131",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+032.50_+0085.86",
+        "region": "Grassland",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 15,
-        "global_rank": 19,
-        "similarity_score_pct": 56.26,
-        "latent_distance": 1.6787,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
+        "similarity_score": 46.57,
+        "latent_distance": 5.5288,
+        "cosine_similarity": 0.0602,
+        "distance_vs_flow_a_best": 4.022,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 70.34,
-          "Thermophysics": 74.15,
-          "Geochemistry": 51.0,
-          "Environment": 44.31
+          "Morphometry": 34.69,
+          "Thermophysics": 32.09,
+          "Geochemistry": 66.77,
+          "Environment": 29.99
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 907.2
         },
         "engineering_metrics": {
-          "Altitude_m": 910.67,
-          "Mean_Slope_deg": 3.39,
-          "Safe_Landing_Frac": 0.8252,
-          "RMS_Roughness_m": 2.564,
-          "Diurnal_Delta_T_K": 32.87,
-          "T_mean_K": 262.34,
-          "Thermal_Inertia": 150.98,
-          "Albedo": 0.2702,
-          "Mafic_Basalt_Idx": 31.32,
-          "Ferric_Oxide_Idx": 1.807,
-          "Salts_Evaporites_wt_pct": 14.65,
+          "Altitude_m": 4872.0,
+          "Mean_Slope_deg": 6.642,
+          "Surface_Pressure_mbar": 549.027,
+          "T_min_K": 244.58,
+          "T_max_K": 312.0,
+          "Wind_Mean_mps": 1.92,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 909.55,
-          "UV_Flux_Index": 5.36,
-          "Eolian_Deflation_Idx": 67.08,
-          "NDVI": 0.0486
+          "Soil_Cohesion_kPa": 1.771,
+          "Friction_Angle_deg": 33.6,
+          "Salts_Evaporites_wt_pct": 13.706,
+          "UV_Flux_Index": 10.087,
+          "Mafic_Basalt_Idx": 39.017,
+          "Eolian_Deflation_Idx": 26.064,
+          "Diurnal_Delta_T_K": 30.281
         }
       }
     },
@@ -761,1246 +871,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          85.2,
-          44.2
+          86.0606,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Discovery_Central_Asia_0140",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "site_name": "PERSEUS_+034.50_+0086.06",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "catalog_role": "discovery_candidate",
         "discovery_rank": 16,
-        "global_rank": 20,
-        "similarity_score_pct": 56.18,
-        "latent_distance": 2.1492,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 77.58,
-          "Thermophysics": 75.08,
-          "Geochemistry": 48.63,
-          "Environment": 57.1
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1033.48,
-          "Mean_Slope_deg": 2.668,
-          "Safe_Landing_Frac": 0.9691,
-          "RMS_Roughness_m": 1.274,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 252.22,
-          "Thermal_Inertia": 48.78,
-          "Albedo": 0.7131,
-          "Mafic_Basalt_Idx": 6.9,
-          "Ferric_Oxide_Idx": 0.881,
-          "Salts_Evaporites_wt_pct": 42.24,
-          "Water_Ice_wt_pct": 23.56,
-          "Surface_Pressure_mbar": 896.4,
-          "UV_Flux_Index": 5.39,
-          "Eolian_Deflation_Idx": 83.91,
-          "NDVI": -0.04
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          44.2,
-          29.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Arabian_Volc_0098",
-        "region": "Arabian_Volcanic_Harrat_Desert",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 17,
-        "global_rank": 21,
-        "similarity_score_pct": 55.02,
-        "latent_distance": 2.1388,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 76.86,
-          "Thermophysics": 69.31,
-          "Geochemistry": 62.16,
-          "Environment": 42.54
-        },
-        "engineering_metrics": {
-          "Altitude_m": 428.26,
-          "Mean_Slope_deg": 1.851,
-          "Safe_Landing_Frac": 0.9952,
-          "RMS_Roughness_m": 1.361,
-          "Diurnal_Delta_T_K": 33.09,
-          "T_mean_K": 270.87,
-          "Thermal_Inertia": 160.29,
-          "Albedo": 0.2201,
-          "Mafic_Basalt_Idx": 38.65,
-          "Ferric_Oxide_Idx": 2.128,
-          "Salts_Evaporites_wt_pct": 15.53,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 963.09,
-          "UV_Flux_Index": 5.13,
-          "Eolian_Deflation_Idx": 72.4,
-          "NDVI": 0.0471
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          93.2,
-          44.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Central_Asia_0142",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 18,
-        "global_rank": 24,
-        "similarity_score_pct": 54.58,
-        "latent_distance": 1.5513,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 70.51,
-          "Thermophysics": 73.41,
-          "Geochemistry": 32.2,
-          "Environment": 47.48
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1163.52,
-          "Mean_Slope_deg": 3.491,
-          "Safe_Landing_Frac": 0.7955,
-          "RMS_Roughness_m": 3.495,
-          "Diurnal_Delta_T_K": 33.43,
-          "T_mean_K": 253.54,
-          "Thermal_Inertia": 181.92,
-          "Albedo": 0.1056,
-          "Mafic_Basalt_Idx": 73.49,
-          "Ferric_Oxide_Idx": 1.379,
-          "Salts_Evaporites_wt_pct": 5.99,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 882.69,
-          "UV_Flux_Index": 5.74,
-          "Eolian_Deflation_Idx": 67.92,
-          "NDVI": 0.0448
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          92.2,
-          34.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Tibetan_Pami_0157",
-        "region": "Tibetan_Pamir_High_Plateau",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 19,
-        "global_rank": 26,
-        "similarity_score_pct": 53.51,
-        "latent_distance": 2.3849,
+        "similarity_score": 46.57,
+        "latent_distance": 5.5297,
+        "cosine_similarity": 0.3381,
+        "distance_vs_flow_a_best": 4.023,
         "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 92.46,
-          "Thermophysics": 44.14,
-          "Geochemistry": 47.25,
-          "Environment": 66.35
-        },
-        "engineering_metrics": {
-          "Altitude_m": 4610.66,
-          "Mean_Slope_deg": 2.99,
-          "Safe_Landing_Frac": 0.8549,
-          "RMS_Roughness_m": 3.473,
-          "Diurnal_Delta_T_K": 24.54,
-          "T_mean_K": 265.71,
-          "Thermal_Inertia": 220.6,
-          "Albedo": 0.2038,
-          "Mafic_Basalt_Idx": 47.69,
-          "Ferric_Oxide_Idx": 1.793,
-          "Salts_Evaporites_wt_pct": 11.12,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 586.56,
-          "UV_Flux_Index": 12.72,
-          "Eolian_Deflation_Idx": 51.37,
-          "NDVI": 0.1054
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          77.2,
-          40.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Central_Asia_0129",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 20,
-        "global_rank": 27,
-        "similarity_score_pct": 53.41,
-        "latent_distance": 1.8461,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 81.65,
-          "Thermophysics": 56.47,
-          "Geochemistry": 50.01,
-          "Environment": 41.34
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1571.76,
-          "Mean_Slope_deg": 2.047,
-          "Safe_Landing_Frac": 0.9548,
-          "RMS_Roughness_m": 1.634,
-          "Diurnal_Delta_T_K": 26.78,
-          "T_mean_K": 258.17,
-          "Thermal_Inertia": 198.48,
-          "Albedo": 0.2184,
-          "Mafic_Basalt_Idx": 40.81,
-          "Ferric_Oxide_Idx": 1.675,
-          "Salts_Evaporites_wt_pct": 14.94,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 840.98,
-          "UV_Flux_Index": 6.08,
-          "Eolian_Deflation_Idx": 58.92,
-          "NDVI": 0.0902
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          52.2,
-          35.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Iranian_Lut__0107",
-        "region": "Iranian_Lut_Dasht_Basins",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 21,
-        "global_rank": 28,
-        "similarity_score_pct": 53.25,
-        "latent_distance": 2.2058,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 78.66,
-          "Thermophysics": 62.29,
-          "Geochemistry": 58.7,
-          "Environment": 42.74
-        },
-        "engineering_metrics": {
-          "Altitude_m": 817.91,
-          "Mean_Slope_deg": 1.959,
-          "Safe_Landing_Frac": 0.9893,
-          "RMS_Roughness_m": 1.488,
-          "Diurnal_Delta_T_K": 30.28,
-          "T_mean_K": 276.88,
-          "Thermal_Inertia": 158.61,
-          "Albedo": 0.2936,
-          "Mafic_Basalt_Idx": 23.48,
-          "Ferric_Oxide_Idx": 1.846,
-          "Salts_Evaporites_wt_pct": 19.09,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 919.61,
-          "UV_Flux_Index": 6.14,
-          "Eolian_Deflation_Idx": 66.35,
-          "NDVI": 0.0662
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.8,
-          73.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Canadian_Hig_0193",
-        "region": "Canadian_High_Arctic_Devon",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 22,
-        "global_rank": 30,
-        "similarity_score_pct": 52.78,
-        "latent_distance": 2.8741,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 78.57,
-          "Thermophysics": 79.93,
-          "Geochemistry": 48.6,
-          "Environment": 53.3
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1020.76,
-          "Mean_Slope_deg": 2.619,
-          "Safe_Landing_Frac": 1.0,
-          "RMS_Roughness_m": 5.177,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 234.91,
-          "Thermal_Inertia": 45.0,
-          "Albedo": 0.8808,
-          "Mafic_Basalt_Idx": 7.03,
-          "Ferric_Oxide_Idx": 0.99,
-          "Salts_Evaporites_wt_pct": 45.0,
-          "Water_Ice_wt_pct": 23.44,
-          "Surface_Pressure_mbar": 897.75,
-          "UV_Flux_Index": 3.74,
-          "Eolian_Deflation_Idx": 84.07,
-          "NDVI": -0.0521
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          89.2,
-          44.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Central_Asia_0141",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 23,
-        "global_rank": 31,
-        "similarity_score_pct": 52.74,
-        "latent_distance": 2.7025,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 78.36,
-          "Thermophysics": 79.93,
-          "Geochemistry": 42.72,
-          "Environment": 54.29
-        },
-        "engineering_metrics": {
-          "Altitude_m": 604.96,
-          "Mean_Slope_deg": 1.416,
-          "Safe_Landing_Frac": 1.0,
-          "RMS_Roughness_m": 0.953,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 239.18,
-          "Thermal_Inertia": 45.0,
-          "Albedo": 0.9441,
-          "Mafic_Basalt_Idx": 8.88,
-          "Ferric_Oxide_Idx": 0.99,
-          "Salts_Evaporites_wt_pct": 45.0,
-          "Water_Ice_wt_pct": 9.19,
-          "Surface_Pressure_mbar": 943.12,
-          "UV_Flux_Index": 4.8,
-          "Eolian_Deflation_Idx": 87.88,
-          "NDVI": 0.0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          73.2,
-          44.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Central_Asia_0137",
-        "region": "Central_Asia_Gobi_Qaidam_Tarim",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 24,
-        "global_rank": 32,
-        "similarity_score_pct": 52.37,
-        "latent_distance": 2.2048,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 76.53,
-          "Thermophysics": 90.17,
-          "Geochemistry": 16.38,
-          "Environment": 53.85
-        },
-        "engineering_metrics": {
-          "Altitude_m": 372.61,
-          "Mean_Slope_deg": 1.654,
-          "Safe_Landing_Frac": 0.9857,
-          "RMS_Roughness_m": 1.344,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 247.34,
-          "Thermal_Inertia": 166.6,
-          "Albedo": 0.02,
-          "Mafic_Basalt_Idx": 76.0,
-          "Ferric_Oxide_Idx": 0.3,
-          "Salts_Evaporites_wt_pct": 1.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 969.46,
-          "UV_Flux_Index": 5.35,
-          "Eolian_Deflation_Idx": 87.12,
-          "NDVI": 0.0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          36.2,
-          25.2
-        ]
-      },
-      "properties": {
-        "site_name": "Discovery_Arabian_Volc_0091",
-        "region": "Arabian_Volcanic_Harrat_Desert",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": false,
-        "catalog_role": "discovery_candidate",
-        "discovery_rank": 25,
-        "global_rank": 33,
-        "similarity_score_pct": 52.06,
-        "latent_distance": 2.4247,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 75.0,
-          "Thermophysics": 72.02,
-          "Geochemistry": 42.89,
-          "Environment": 52.66
-        },
-        "engineering_metrics": {
-          "Altitude_m": 0.0,
-          "Mean_Slope_deg": 0.2,
-          "Safe_Landing_Frac": 1.0,
-          "RMS_Roughness_m": 0.0,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 257.14,
-          "Thermal_Inertia": 45.0,
-          "Albedo": 0.7968,
-          "Mafic_Basalt_Idx": 9.43,
-          "Ferric_Oxide_Idx": 0.938,
-          "Salts_Evaporites_wt_pct": 45.0,
-          "Water_Ice_wt_pct": 9.34,
-          "Surface_Pressure_mbar": 1013.25,
-          "UV_Flux_Index": 5.54,
-          "Eolian_Deflation_Idx": 91.73,
-          "NDVI": -0.029
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -67.75,
-          -24.85
-        ]
-      },
-      "properties": {
-        "site_name": "Salar de Arizaro",
-        "region": "Argentina",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 6,
-        "similarity_score_pct": 61.77,
-        "latent_distance": 1.8375,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 94.11,
-          "Thermophysics": 63.94,
-          "Geochemistry": 44.34,
-          "Environment": 78.19
-        },
-        "engineering_metrics": {
-          "Altitude_m": 3469.36,
-          "Mean_Slope_deg": 1.675,
-          "Safe_Landing_Frac": 0.9988,
-          "RMS_Roughness_m": 1.166,
-          "Diurnal_Delta_T_K": 37.06,
-          "T_mean_K": 300.21,
-          "Thermal_Inertia": 125.24,
-          "Albedo": 0.3174,
-          "Mafic_Basalt_Idx": 15.95,
-          "Ferric_Oxide_Idx": 1.36,
-          "Salts_Evaporites_wt_pct": 18.76,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 671.55,
-          "UV_Flux_Index": 10.75,
-          "Eolian_Deflation_Idx": 81.07,
-          "NDVI": 0.02
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          93.4,
-          37.85
-        ]
-      },
-      "properties": {
-        "site_name": "Qaidam Basin & Lenghu Desert",
-        "region": "China",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 13,
-        "similarity_score_pct": 58.83,
-        "latent_distance": 2.8532,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 86.77,
-          "Thermophysics": 84.58,
-          "Geochemistry": 52.99,
-          "Environment": 72.68
-        },
-        "engineering_metrics": {
-          "Altitude_m": 2706.56,
-          "Mean_Slope_deg": 2.412,
-          "Safe_Landing_Frac": 0.9429,
-          "RMS_Roughness_m": 2.576,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 215.36,
-          "Thermal_Inertia": 65.45,
-          "Albedo": 0.615,
-          "Mafic_Basalt_Idx": 6.0,
-          "Ferric_Oxide_Idx": 0.932,
-          "Salts_Evaporites_wt_pct": 17.67,
-          "Water_Ice_wt_pct": 43.78,
-          "Surface_Pressure_mbar": 735.11,
-          "UV_Flux_Index": 8.15,
-          "Eolian_Deflation_Idx": 84.72,
-          "NDVI": -0.0295
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          160.67,
-          -77.82
-        ]
-      },
-      "properties": {
-        "site_name": "Antarctic Dry Valleys (McMurdo)",
-        "region": "Antarctica",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 14,
-        "similarity_score_pct": 58.58,
-        "latent_distance": 1.8743,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 71.42,
-          "Thermophysics": 92.28,
-          "Geochemistry": 49.29,
-          "Environment": 49.47
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1138.41,
-          "Mean_Slope_deg": 4.246,
-          "Safe_Landing_Frac": 0.9216,
-          "RMS_Roughness_m": 2.019,
-          "Diurnal_Delta_T_K": 37.79,
-          "T_mean_K": 227.4,
-          "Thermal_Inertia": 151.78,
-          "Albedo": 0.1564,
-          "Mafic_Basalt_Idx": 51.37,
-          "Ferric_Oxide_Idx": 1.933,
-          "Salts_Evaporites_wt_pct": 9.3,
-          "Water_Ice_wt_pct": 2.65,
-          "Surface_Pressure_mbar": 885.32,
-          "UV_Flux_Index": 3.94,
-          "Eolian_Deflation_Idx": 74.42,
-          "NDVI": 0.015
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          99.1,
-          43.7
-        ]
-      },
-      "properties": {
-        "site_name": "Trans-Altai Gobi Desert",
-        "region": "Mongolia",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 17,
-        "similarity_score_pct": 58.3,
-        "latent_distance": 1.5496,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 78.14,
-          "Thermophysics": 77.8,
-          "Geochemistry": 39.64,
-          "Environment": 50.87
-        },
-        "engineering_metrics": {
-          "Altitude_m": 929.37,
-          "Mean_Slope_deg": 2.281,
-          "Safe_Landing_Frac": 0.9738,
-          "RMS_Roughness_m": 1.83,
-          "Diurnal_Delta_T_K": 35.27,
-          "T_mean_K": 258.21,
-          "Thermal_Inertia": 165.28,
-          "Albedo": 0.1428,
-          "Mafic_Basalt_Idx": 65.97,
-          "Ferric_Oxide_Idx": 1.571,
-          "Salts_Evaporites_wt_pct": 8.16,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 907.53,
-          "UV_Flux_Index": 6.07,
-          "Eolian_Deflation_Idx": 75.49,
-          "NDVI": 0.0323
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          128.85,
-          44.15
-        ]
-      },
-      "properties": {
-        "site_name": "Jingpo Lake Volcanic Field",
-        "region": "China",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 22,
-        "similarity_score_pct": 54.84,
-        "latent_distance": 2.0821,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 63.98,
-          "Thermophysics": 88.19,
-          "Geochemistry": 46.13,
-          "Environment": 49.34
-        },
-        "engineering_metrics": {
-          "Altitude_m": 446.59,
-          "Mean_Slope_deg": 3.749,
-          "Safe_Landing_Frac": 0.7408,
-          "RMS_Roughness_m": 4.867,
-          "Diurnal_Delta_T_K": 38.32,
-          "T_mean_K": 240.81,
-          "Thermal_Inertia": 92.55,
-          "Albedo": 0.4785,
-          "Mafic_Basalt_Idx": 6.0,
-          "Ferric_Oxide_Idx": 1.116,
-          "Salts_Evaporites_wt_pct": 14.58,
-          "Water_Ice_wt_pct": 40.25,
-          "Surface_Pressure_mbar": 961.0,
-          "UV_Flux_Index": 5.18,
-          "Eolian_Deflation_Idx": 77.06,
-          "NDVI": 0.0115
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.75,
-          65.03
-        ]
-      },
-      "properties": {
-        "site_name": "Askja Caldera",
-        "region": "Iceland",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 23,
-        "similarity_score_pct": 54.74,
-        "latent_distance": 1.947,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 80.86,
-          "Thermophysics": 74.67,
-          "Geochemistry": 40.85,
-          "Environment": 45.42
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1055.5,
-          "Mean_Slope_deg": 0.2,
-          "Safe_Landing_Frac": 1.0,
-          "RMS_Roughness_m": 0.0,
-          "Diurnal_Delta_T_K": 32.76,
-          "T_mean_K": 261.02,
-          "Thermal_Inertia": 150.16,
-          "Albedo": 0.2765,
-          "Mafic_Basalt_Idx": 24.88,
-          "Ferric_Oxide_Idx": 1.048,
-          "Salts_Evaporites_wt_pct": 19.51,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 894.06,
-          "UV_Flux_Index": 4.26,
-          "Eolian_Deflation_Idx": 76.97,
-          "NDVI": 0.0493
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -89.68,
-          75.38
-        ]
-      },
-      "properties": {
-        "site_name": "Haughton Impact Crater",
-        "region": "Canada",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 25,
-        "similarity_score_pct": 53.64,
-        "latent_distance": 2.3636,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 71.91,
-          "Thermophysics": 91.13,
-          "Geochemistry": 39.92,
-          "Environment": 47.31
-        },
-        "engineering_metrics": {
-          "Altitude_m": 138.92,
-          "Mean_Slope_deg": 2.511,
-          "Safe_Landing_Frac": 0.9314,
-          "RMS_Roughness_m": 3.598,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 249.4,
-          "Thermal_Inertia": 115.21,
-          "Albedo": 0.3223,
-          "Mafic_Basalt_Idx": 8.35,
-          "Ferric_Oxide_Idx": 1.024,
-          "Salts_Evaporites_wt_pct": 17.71,
-          "Water_Ice_wt_pct": 12.72,
-          "Surface_Pressure_mbar": 996.7,
-          "UV_Flux_Index": 3.16,
-          "Eolian_Deflation_Idx": 84.41,
-          "NDVI": -0.0644
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -116.82,
-          36.25
-        ]
-      },
-      "properties": {
-        "site_name": "Badwater Basin (Death Valley)",
-        "region": "USA",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 29,
-        "similarity_score_pct": 52.81,
-        "latent_distance": 2.4672,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 73.89,
-          "Thermophysics": 81.63,
-          "Geochemistry": 42.73,
-          "Environment": 50.29
-        },
-        "engineering_metrics": {
-          "Altitude_m": -85.04,
-          "Mean_Slope_deg": 2.042,
-          "Safe_Landing_Frac": 0.9869,
-          "RMS_Roughness_m": 1.464,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 269.1,
-          "Thermal_Inertia": 157.7,
-          "Albedo": 0.0724,
-          "Mafic_Basalt_Idx": 72.67,
-          "Ferric_Oxide_Idx": 1.727,
-          "Salts_Evaporites_wt_pct": 1.0,
-          "Water_Ice_wt_pct": 76.69,
-          "Surface_Pressure_mbar": 1023.52,
-          "UV_Flux_Index": 5.02,
-          "Eolian_Deflation_Idx": 85.89,
-          "NDVI": -0.7774
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          55.5,
-          43.25
-        ]
-      },
-      "properties": {
-        "site_name": "Ustyurt Plateau",
-        "region": "Kazakhstan / Uzbekistan",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 35,
-        "similarity_score_pct": 51.68,
-        "latent_distance": 2.6428,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 75.89,
-          "Thermophysics": 79.72,
-          "Geochemistry": 39.78,
-          "Environment": 51.65
-        },
-        "engineering_metrics": {
-          "Altitude_m": 226.23,
-          "Mean_Slope_deg": 1.773,
-          "Safe_Landing_Frac": 0.9964,
-          "RMS_Roughness_m": 1.224,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 240.47,
-          "Thermal_Inertia": 45.0,
-          "Albedo": 0.95,
-          "Mafic_Basalt_Idx": 14.55,
-          "Ferric_Oxide_Idx": 0.99,
-          "Salts_Evaporites_wt_pct": 45.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 986.43,
-          "UV_Flux_Index": 4.85,
-          "Eolian_Deflation_Idx": 86.75,
-          "NDVI": 0.0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          73.8,
-          38.2
-        ]
-      },
-      "properties": {
-        "site_name": "Eastern Pamir Plateau",
-        "region": "Tajikistan",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 54,
-        "similarity_score_pct": 48.92,
-        "latent_distance": 2.9237,
-        "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
-        "radar_subscores": {
-          "Morphometry": 26.07,
-          "Thermophysics": 77.17,
-          "Geochemistry": 60.39,
-          "Environment": 74.34
-        },
-        "engineering_metrics": {
-          "Altitude_m": 4245.99,
-          "Mean_Slope_deg": 18.83,
-          "Safe_Landing_Frac": 0.0012,
-          "RMS_Roughness_m": 13.947,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 245.99,
-          "Thermal_Inertia": 45.0,
-          "Albedo": 0.8863,
-          "Mafic_Basalt_Idx": 6.0,
-          "Ferric_Oxide_Idx": 0.99,
-          "Salts_Evaporites_wt_pct": 19.75,
-          "Water_Ice_wt_pct": 51.89,
-          "Surface_Pressure_mbar": 612.48,
-          "UV_Flux_Index": 9.71,
-          "Eolian_Deflation_Idx": 54.36,
-          "NDVI": 0.0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.99,
-          37.75
-        ]
-      },
-      "properties": {
-        "site_name": "Mount Etna (Cisternazza & Tubes) / Mount Etna (Summit Craters & Lapilli)",
-        "region": "Italy",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "both_known",
-        "discovery_rank": 0,
-        "global_rank": 71,
-        "similarity_score_pct": 46.96,
-        "latent_distance": 2.5996,
-        "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
-        "radar_subscores": {
-          "Morphometry": 21.66,
-          "Thermophysics": 88.84,
-          "Geochemistry": 37.73,
-          "Environment": 68.49
-        },
-        "engineering_metrics": {
-          "Altitude_m": 3160.59,
-          "Mean_Slope_deg": 18.582,
-          "Safe_Landing_Frac": 0.0499,
-          "RMS_Roughness_m": 28.621,
-          "Diurnal_Delta_T_K": 40.0,
-          "T_mean_K": 257.02,
-          "Thermal_Inertia": 129.87,
-          "Albedo": 0.2361,
-          "Mafic_Basalt_Idx": 28.6,
-          "Ferric_Oxide_Idx": 0.895,
-          "Salts_Evaporites_wt_pct": 6.88,
-          "Water_Ice_wt_pct": 53.73,
-          "Surface_Pressure_mbar": 696.59,
-          "UV_Flux_Index": 9.21,
-          "Eolian_Deflation_Idx": 54.36,
-          "NDVI": -0.0761
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -67.65,
-          -25.55
-        ]
-      },
-      "properties": {
-        "site_name": "Salar de Antofalla",
-        "region": "Argentina",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 94,
-        "similarity_score_pct": 44.38,
-        "latent_distance": 2.5303,
-        "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
-        "radar_subscores": {
-          "Morphometry": 38.9,
-          "Thermophysics": 62.38,
-          "Geochemistry": 44.44,
-          "Environment": 52.94
-        },
-        "engineering_metrics": {
-          "Altitude_m": 3502.67,
-          "Mean_Slope_deg": 10.262,
-          "Safe_Landing_Frac": 0.1213,
-          "RMS_Roughness_m": 17.084,
-          "Diurnal_Delta_T_K": 28.11,
-          "T_mean_K": 258.43,
-          "Thermal_Inertia": 182.87,
-          "Albedo": 0.244,
-          "Mafic_Basalt_Idx": 34.41,
-          "Ferric_Oxide_Idx": 1.565,
-          "Salts_Evaporites_wt_pct": 14.1,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 668.9,
-          "UV_Flux_Index": 9.3,
-          "Eolian_Deflation_Idx": 35.62,
-          "NDVI": 0.0811
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          106.55,
-          29.56
-        ]
-      },
-      "properties": {
-        "site_name": "Chongqing Karst Caves",
-        "region": "China",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 107,
-        "similarity_score_pct": 41.97,
-        "latent_distance": 2.0075,
-        "cluster_id": 0,
-        "cluster_label": "Cluster 3: Basaltic Regolith & Eolian Deflation Plains",
-        "radar_subscores": {
-          "Morphometry": 20.86,
-          "Thermophysics": 68.13,
-          "Geochemistry": 39.56,
-          "Environment": 37.04
-        },
-        "engineering_metrics": {
-          "Altitude_m": 251.14,
-          "Mean_Slope_deg": 11.146,
-          "Safe_Landing_Frac": 0.201,
-          "RMS_Roughness_m": 14.341,
-          "Diurnal_Delta_T_K": 35.45,
-          "T_mean_K": 263.39,
-          "Thermal_Inertia": 72.08,
-          "Albedo": 0.6243,
-          "Mafic_Basalt_Idx": 13.37,
-          "Ferric_Oxide_Idx": 1.035,
-          "Salts_Evaporites_wt_pct": 45.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 983.52,
-          "UV_Flux_Index": 5.31,
-          "Eolian_Deflation_Idx": 47.78,
-          "NDVI": 0.0311
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.56,
-          43.46
-        ]
-      },
-      "properties": {
-        "site_name": "Craters of the Moon (Indian Tunnel) / Craters of the Moon",
-        "region": "USA",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "both_known",
-        "discovery_rank": 0,
-        "global_rank": 108,
-        "similarity_score_pct": 41.96,
-        "latent_distance": 2.2737,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 67.29,
-          "Thermophysics": 45.02,
-          "Geochemistry": 19.94,
-          "Environment": 43.06
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1792.61,
-          "Mean_Slope_deg": 4.487,
-          "Safe_Landing_Frac": 0.6932,
-          "RMS_Roughness_m": 6.481,
-          "Diurnal_Delta_T_K": 27.62,
-          "T_mean_K": 267.49,
-          "Thermal_Inertia": 237.61,
-          "Albedo": 0.0347,
-          "Mafic_Basalt_Idx": 80.01,
-          "Ferric_Oxide_Idx": 1.06,
-          "Salts_Evaporites_wt_pct": 2.51,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 819.25,
-          "UV_Flux_Index": 6.69,
-          "Eolian_Deflation_Idx": 52.92,
-          "NDVI": 0.0844
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          37.35,
-          -3.07
-        ]
-      },
-      "properties": {
-        "site_name": "Kilimanjaro Caldera & Glaciers",
-        "region": "Tanzania",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 117,
-        "similarity_score_pct": 40.6,
-        "latent_distance": 5.2714,
-        "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
-        "radar_subscores": {
-          "Morphometry": 30.66,
-          "Thermophysics": 55.93,
-          "Geochemistry": 62.03,
-          "Environment": 77.68
-        },
-        "engineering_metrics": {
-          "Altitude_m": 5684.14,
-          "Mean_Slope_deg": 21.044,
-          "Safe_Landing_Frac": 0.1427,
-          "RMS_Roughness_m": 49.259,
-          "Diurnal_Delta_T_K": 32.55,
-          "T_mean_K": 283.29,
-          "Thermal_Inertia": 191.38,
-          "Albedo": 0.084,
-          "Mafic_Basalt_Idx": 75.59,
-          "Ferric_Oxide_Idx": 3.755,
-          "Salts_Evaporites_wt_pct": 5.18,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 516.46,
-          "UV_Flux_Index": 14.37,
-          "Eolian_Deflation_Idx": 39.16,
-          "NDVI": 0.0508
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.33,
-          47.05
-        ]
-      },
-      "properties": {
-        "site_name": "Moses Lake Sand Dunes",
-        "region": "USA",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 134,
-        "similarity_score_pct": 38.59,
-        "latent_distance": 2.6803,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 76.34,
-          "Thermophysics": 38.54,
-          "Geochemistry": 26.89,
+          "Morphometry": 27.82,
+          "Thermophysics": 38.16,
+          "Geochemistry": 73.47,
           "Environment": 25.83
         },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 756.4
+        },
         "engineering_metrics": {
-          "Altitude_m": 317.21,
-          "Mean_Slope_deg": 1.649,
-          "Safe_Landing_Frac": 0.9893,
-          "RMS_Roughness_m": 1.167,
-          "Diurnal_Delta_T_K": 23.33,
-          "T_mean_K": 261.0,
-          "Thermal_Inertia": 256.55,
-          "Albedo": 0.1199,
-          "Mafic_Basalt_Idx": 68.69,
-          "Ferric_Oxide_Idx": 1.123,
-          "Salts_Evaporites_wt_pct": 7.12,
+          "Altitude_m": 5666.0,
+          "Mean_Slope_deg": 23.869,
+          "Surface_Pressure_mbar": 524.718,
+          "T_min_K": 244.37,
+          "T_max_K": 307.06,
+          "Wind_Mean_mps": 2.073,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 975.85,
-          "UV_Flux_Index": 4.84,
-          "Eolian_Deflation_Idx": 53.14,
-          "NDVI": 0.1137
+          "Soil_Cohesion_kPa": 2.48,
+          "Friction_Angle_deg": 31.5,
+          "Salts_Evaporites_wt_pct": 12.44,
+          "UV_Flux_Index": 9.938,
+          "Mafic_Basalt_Idx": 46.178,
+          "Eolian_Deflation_Idx": 27.24,
+          "Diurnal_Delta_T_K": 26.703
         }
       }
     },
@@ -2009,46 +923,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -68.53,
-          -24.72
+          82.3208,
+          35.5
         ]
       },
       "properties": {
-        "site_name": "Llullaillaco Volcano Slopes",
-        "region": "Chile / Argentina",
+        "site_name": "PERSEUS_+035.50_+0082.32",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 143,
-        "similarity_score_pct": 35.17,
-        "latent_distance": 5.8537,
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 17,
+        "similarity_score": 46.55,
+        "latent_distance": 5.5319,
+        "cosine_similarity": 0.2108,
+        "distance_vs_flow_a_best": 4.024,
         "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 25.03,
-          "Thermophysics": 52.64,
-          "Geochemistry": 46.18,
-          "Environment": 74.16
+          "Morphometry": 47.2,
+          "Thermophysics": 45.2,
+          "Geochemistry": 81.22,
+          "Environment": 26.38
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 815.0
         },
         "engineering_metrics": {
-          "Altitude_m": 6363.83,
-          "Mean_Slope_deg": 33.924,
-          "Safe_Landing_Frac": 0.0,
-          "RMS_Roughness_m": 45.556,
-          "Diurnal_Delta_T_K": 30.22,
-          "T_mean_K": 285.6,
-          "Thermal_Inertia": 185.28,
-          "Albedo": 0.1766,
-          "Mafic_Basalt_Idx": 56.05,
-          "Ferric_Oxide_Idx": 1.726,
-          "Salts_Evaporites_wt_pct": 10.6,
+          "Altitude_m": 5386.0,
+          "Mean_Slope_deg": 13.418,
+          "Surface_Pressure_mbar": 512.324,
+          "T_min_K": 244.11,
+          "T_max_K": 302.29,
+          "Wind_Mean_mps": 1.284,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 476.48,
-          "UV_Flux_Index": 15.0,
-          "Eolian_Deflation_Idx": 34.42,
-          "NDVI": 0.0667
+          "Soil_Cohesion_kPa": 2.24,
+          "Friction_Angle_deg": 32.24,
+          "Salts_Evaporites_wt_pct": 11.188,
+          "UV_Flux_Index": 10.053,
+          "Mafic_Basalt_Idx": 53.865,
+          "Eolian_Deflation_Idx": 19.45,
+          "Diurnal_Delta_T_K": 29.452
         }
       }
     },
@@ -2057,46 +975,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -1.5,
-          42.18
+          80.0,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "Bardenas Reales",
-        "region": "Spain",
+        "site_name": "PERSEUS_+034.50_+0080.00",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 144,
-        "similarity_score_pct": 34.93,
-        "latent_distance": 3.3913,
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 18,
+        "similarity_score": 46.51,
+        "latent_distance": 5.5387,
+        "cosine_similarity": 0.0467,
+        "distance_vs_flow_a_best": 4.029,
         "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 73.08,
-          "Thermophysics": 26.45,
-          "Geochemistry": 46.19,
-          "Environment": 17.41
+          "Morphometry": 31.43,
+          "Thermophysics": 43.16,
+          "Geochemistry": 51.8,
+          "Environment": 31.45
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 690.8
         },
         "engineering_metrics": {
-          "Altitude_m": 295.63,
-          "Mean_Slope_deg": 2.54,
-          "Safe_Landing_Frac": 0.9441,
-          "RMS_Roughness_m": 2.171,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 272.19,
-          "Thermal_Inertia": 280.41,
-          "Albedo": 0.167,
-          "Mafic_Basalt_Idx": 57.96,
-          "Ferric_Oxide_Idx": 1.728,
-          "Salts_Evaporites_wt_pct": 10.38,
+          "Altitude_m": 5145.0,
+          "Mean_Slope_deg": 3.008,
+          "Surface_Pressure_mbar": 535.285,
+          "T_min_K": 244.72,
+          "T_max_K": 303.06,
+          "Wind_Mean_mps": 1.88,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 978.35,
-          "UV_Flux_Index": 4.71,
-          "Eolian_Deflation_Idx": 43.94,
-          "NDVI": 0.1701
+          "Soil_Cohesion_kPa": 1.697,
+          "Friction_Angle_deg": 32.69,
+          "Salts_Evaporites_wt_pct": 18.428,
+          "UV_Flux_Index": 10.283,
+          "Mafic_Basalt_Idx": 23.108,
+          "Eolian_Deflation_Idx": 32.854,
+          "Diurnal_Delta_T_K": 27.7
         }
       }
     },
@@ -2105,334 +1027,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -111.83,
-          35.34
+          81.1184,
+          32.5
         ]
       },
       "properties": {
-        "site_name": "Lava River Cave",
-        "region": "USA",
+        "site_name": "PERSEUS_+032.50_+0081.12",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 145,
-        "similarity_score_pct": 34.68,
-        "latent_distance": 3.7226,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 83.66,
-          "Thermophysics": 23.78,
-          "Geochemistry": 23.37,
-          "Environment": 37.49
-        },
-        "engineering_metrics": {
-          "Altitude_m": 2355.19,
-          "Mean_Slope_deg": 2.761,
-          "Safe_Landing_Frac": 0.9358,
-          "RMS_Roughness_m": 3.071,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 275.78,
-          "Thermal_Inertia": 311.86,
-          "Albedo": 0.0736,
-          "Mafic_Basalt_Idx": 74.88,
-          "Ferric_Oxide_Idx": 1.256,
-          "Salts_Evaporites_wt_pct": 2.76,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 766.39,
-          "UV_Flux_Index": 8.39,
-          "Eolian_Deflation_Idx": 43.24,
-          "NDVI": 0.6347
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.33,
-          35.68
-        ]
-      },
-      "properties": {
-        "site_name": "Black Point Lava Flow",
-        "region": "USA",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 146,
-        "similarity_score_pct": 34.17,
-        "latent_distance": 3.3438,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 66.99,
-          "Thermophysics": 25.82,
-          "Geochemistry": 37.93,
-          "Environment": 26.64
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1289.58,
-          "Mean_Slope_deg": 4.562,
-          "Safe_Landing_Frac": 0.786,
-          "RMS_Roughness_m": 7.12,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 271.94,
-          "Thermal_Inertia": 299.41,
-          "Albedo": 0.1106,
-          "Mafic_Basalt_Idx": 73.2,
-          "Ferric_Oxide_Idx": 1.584,
-          "Salts_Evaporites_wt_pct": 6.31,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 869.59,
-          "UV_Flux_Index": 6.89,
-          "Eolian_Deflation_Idx": 37.54,
-          "NDVI": 0.1838
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          39.95,
-          25.68
-        ]
-      },
-      "properties": {
-        "site_name": "Harrat Khaybar Volcanic Field",
-        "region": "Saudi Arabia",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 149,
-        "similarity_score_pct": 33.67,
-        "latent_distance": 3.4537,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 84.29,
-          "Thermophysics": 23.02,
-          "Geochemistry": 17.91,
-          "Environment": 31.51
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1707.22,
-          "Mean_Slope_deg": 1.586,
-          "Safe_Landing_Frac": 0.9952,
-          "RMS_Roughness_m": 1.524,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 277.0,
-          "Thermal_Inertia": 329.9,
-          "Albedo": 0.02,
-          "Mafic_Basalt_Idx": 80.8,
-          "Ferric_Oxide_Idx": 1.124,
-          "Salts_Evaporites_wt_pct": 1.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 827.58,
-          "UV_Flux_Index": 6.8,
-          "Eolian_Deflation_Idx": 46.96,
-          "NDVI": 0.2037
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -69.87,
-          -24.08
-        ]
-      },
-      "properties": {
-        "site_name": "Atacama Desert",
-        "region": "Chile",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 151,
-        "similarity_score_pct": 33.24,
-        "latent_distance": 3.9786,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 23.16,
-          "Thermophysics": 51.55,
-          "Geochemistry": 51.17,
-          "Environment": 38.18
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1030.45,
-          "Mean_Slope_deg": 11.748,
-          "Safe_Landing_Frac": 0.1819,
-          "RMS_Roughness_m": 22.033,
-          "Diurnal_Delta_T_K": 31.41,
-          "T_mean_K": 315.27,
-          "Thermal_Inertia": 155.62,
-          "Albedo": 0.2813,
-          "Mafic_Basalt_Idx": 24.95,
-          "Ferric_Oxide_Idx": 1.658,
-          "Salts_Evaporites_wt_pct": 17.44,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 896.72,
-          "UV_Flux_Index": 6.73,
-          "Eolian_Deflation_Idx": 37.63,
-          "NDVI": 0.0586
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          16.5,
-          -19.05
-        ]
-      },
-      "properties": {
-        "site_name": "Etosha Pan",
-        "region": "Namibia",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "mars_known",
-        "discovery_rank": 0,
-        "global_rank": 156,
-        "similarity_score_pct": 30.91,
-        "latent_distance": 4.6808,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 78.27,
-          "Thermophysics": 11.77,
-          "Geochemistry": 41.7,
-          "Environment": 28.3
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1109.66,
-          "Mean_Slope_deg": 2.478,
-          "Safe_Landing_Frac": 0.9608,
-          "RMS_Roughness_m": 1.859,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 313.83,
-          "Thermal_Inertia": 272.73,
-          "Albedo": 0.1898,
-          "Mafic_Basalt_Idx": 53.43,
-          "Ferric_Oxide_Idx": 1.533,
-          "Salts_Evaporites_wt_pct": 11.09,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 888.34,
-          "UV_Flux_Index": 7.24,
-          "Eolian_Deflation_Idx": 44.14,
-          "NDVI": 0.2691
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -155.24,
-          19.41
-        ]
-      },
-      "properties": {
-        "site_name": "Nahuku (Thurston Lava Tube)",
-        "region": "USA",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 157,
-        "similarity_score_pct": 30.66,
-        "latent_distance": 3.5101,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 42.88,
-          "Thermophysics": 32.93,
-          "Geochemistry": 42.13,
-          "Environment": 21.43
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1168.4,
-          "Mean_Slope_deg": 8.887,
-          "Safe_Landing_Frac": 0.5458,
-          "RMS_Roughness_m": 27.814,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 281.4,
-          "Thermal_Inertia": 207.52,
-          "Albedo": 0.3835,
-          "Mafic_Basalt_Idx": 11.48,
-          "Ferric_Oxide_Idx": 1.216,
-          "Salts_Evaporites_wt_pct": 24.77,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 882.18,
-          "UV_Flux_Index": 6.65,
-          "Eolian_Deflation_Idx": 23.84,
-          "NDVI": 0.181
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -155.47,
-          19.82
-        ]
-      },
-      "properties": {
-        "site_name": "Mauna Kea & Volcanic Terrains",
-        "region": "USA",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 162,
-        "similarity_score_pct": 29.6,
-        "latent_distance": 5.8295,
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 19,
+        "similarity_score": 45.78,
+        "latent_distance": 5.6528,
+        "cosine_similarity": 0.283,
+        "distance_vs_flow_a_best": 4.112,
         "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 25.62,
-          "Thermophysics": 24.99,
-          "Geochemistry": 58.99,
-          "Environment": 53.93
+          "Morphometry": 34.57,
+          "Thermophysics": 32.76,
+          "Geochemistry": 59.04,
+          "Environment": 28.2
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 917.1
         },
         "engineering_metrics": {
-          "Altitude_m": 4118.46,
-          "Mean_Slope_deg": 19.777,
-          "Safe_Landing_Frac": 0.0273,
-          "RMS_Roughness_m": 37.448,
-          "Diurnal_Delta_T_K": 24.83,
-          "T_mean_K": 295.9,
-          "Thermal_Inertia": 255.19,
-          "Albedo": 0.0683,
-          "Mafic_Basalt_Idx": 80.28,
-          "Ferric_Oxide_Idx": 4.0,
-          "Salts_Evaporites_wt_pct": 3.05,
+          "Altitude_m": 5260.0,
+          "Mean_Slope_deg": 22.146,
+          "Surface_Pressure_mbar": 560.125,
+          "T_min_K": 247.9,
+          "T_max_K": 308.13,
+          "Wind_Mean_mps": 1.576,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 621.81,
-          "UV_Flux_Index": 11.56,
-          "Eolian_Deflation_Idx": 23.42,
-          "NDVI": 0.1035
+          "Soil_Cohesion_kPa": 1.509,
+          "Friction_Angle_deg": 31.63,
+          "Salts_Evaporites_wt_pct": 16.077,
+          "UV_Flux_Index": 10.446,
+          "Mafic_Basalt_Idx": 31.495,
+          "Eolian_Deflation_Idx": 30.289,
+          "Diurnal_Delta_T_K": 30.045
         }
       }
     },
@@ -2441,46 +1079,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.35,
-          68.03
+          85.8,
+          33.5
         ]
       },
       "properties": {
-        "site_name": "Nusfjord / Flakstadoy",
-        "region": "Norway",
+        "site_name": "PERSEUS_+033.50_+0085.80",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 163,
-        "similarity_score_pct": 27.44,
-        "latent_distance": 3.7105,
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 20,
+        "similarity_score": 45.62,
+        "latent_distance": 5.678,
+        "cosine_similarity": -0.036,
+        "distance_vs_flow_a_best": 4.131,
         "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 54.55,
-          "Thermophysics": 28.59,
-          "Geochemistry": 29.53,
-          "Environment": 10.86
+          "Morphometry": 26.77,
+          "Thermophysics": 34.48,
+          "Geochemistry": 61.94,
+          "Environment": 28.97
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 839.3
         },
         "engineering_metrics": {
-          "Altitude_m": 9.06,
-          "Mean_Slope_deg": 4.635,
-          "Safe_Landing_Frac": 0.6176,
-          "RMS_Roughness_m": 11.336,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 265.75,
-          "Thermal_Inertia": 302.69,
-          "Albedo": 0.1008,
-          "Mafic_Basalt_Idx": 72.07,
-          "Ferric_Oxide_Idx": 1.391,
-          "Salts_Evaporites_wt_pct": 4.53,
+          "Altitude_m": 4799.0,
+          "Mean_Slope_deg": 2.347,
+          "Surface_Pressure_mbar": 556.04,
+          "T_min_K": 246.72,
+          "T_max_K": 307.77,
+          "Wind_Mean_mps": 1.969,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 1012.16,
-          "UV_Flux_Index": 3.51,
-          "Eolian_Deflation_Idx": 37.31,
-          "NDVI": 0.4799
+          "Soil_Cohesion_kPa": 2.07,
+          "Friction_Angle_deg": 32.76,
+          "Salts_Evaporites_wt_pct": 15.246,
+          "UV_Flux_Index": 9.993,
+          "Mafic_Basalt_Idx": 34.636,
+          "Eolian_Deflation_Idx": 27.354,
+          "Diurnal_Delta_T_K": 30.23
         }
       }
     },
@@ -2489,46 +1131,102 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -27.27,
-          38.73
+          99.4553,
+          44.5
         ]
       },
       "properties": {
-        "site_name": "Terceira Island (Natal Cave)",
-        "region": "Portugal",
+        "site_name": "PERSEUS_+044.50_+0099.46",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 168,
-        "similarity_score_pct": 21.85,
-        "latent_distance": 4.2016,
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 21,
+        "similarity_score": 45.2,
+        "latent_distance": 5.7447,
+        "cosine_similarity": -0.2881,
+        "distance_vs_flow_a_best": 4.179,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
+        "radar_subscores": {
+          "Morphometry": 33.35,
+          "Thermophysics": 22.35,
+          "Geochemistry": 75.02,
+          "Environment": 19.82
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 93.4
+        },
+        "engineering_metrics": {
+          "Altitude_m": 2192.0,
+          "Mean_Slope_deg": 6.437,
+          "Surface_Pressure_mbar": 790.898,
+          "T_min_K": 249.78,
+          "T_max_K": 317.64,
+          "Wind_Mean_mps": 2.653,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 0.57,
+          "Friction_Angle_deg": 33.82,
+          "Salts_Evaporites_wt_pct": 12.64,
+          "UV_Flux_Index": 8.051,
+          "Mafic_Basalt_Idx": 48.826,
+          "Eolian_Deflation_Idx": 52.364,
+          "Diurnal_Delta_T_K": 26.743
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.6711,
+          32.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+032.50_+0084.67",
+        "region": "Grassland",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 22,
+        "similarity_score": 45.02,
+        "latent_distance": 5.7732,
+        "cosine_similarity": -0.0253,
+        "distance_vs_flow_a_best": 4.2,
         "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 39.66,
-          "Thermophysics": 25.16,
-          "Geochemistry": 16.84,
-          "Environment": 15.94
+          "Morphometry": 27.96,
+          "Thermophysics": 32.25,
+          "Geochemistry": 69.35,
+          "Environment": 25.56
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 990.9
         },
         "engineering_metrics": {
-          "Altitude_m": 564.97,
-          "Mean_Slope_deg": 7.709,
-          "Safe_Landing_Frac": 0.4138,
-          "RMS_Roughness_m": 14.294,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 272.53,
-          "Thermal_Inertia": 320.59,
-          "Albedo": 0.0477,
-          "Mafic_Basalt_Idx": 76.0,
-          "Ferric_Oxide_Idx": 0.681,
-          "Salts_Evaporites_wt_pct": 1.25,
+          "Altitude_m": 5038.0,
+          "Mean_Slope_deg": 3.269,
+          "Surface_Pressure_mbar": 553.594,
+          "T_min_K": 242.82,
+          "T_max_K": 311.17,
+          "Wind_Mean_mps": 1.947,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 947.6,
-          "UV_Flux_Index": 5.38,
-          "Eolian_Deflation_Idx": 27.57,
-          "NDVI": 0.8024
+          "Soil_Cohesion_kPa": 2.711,
+          "Friction_Angle_deg": 32.04,
+          "Salts_Evaporites_wt_pct": 13.157,
+          "UV_Flux_Index": 10.166,
+          "Mafic_Basalt_Idx": 41.744,
+          "Eolian_Deflation_Idx": 23.928,
+          "Diurnal_Delta_T_K": 32.447
         }
       }
     },
@@ -2537,142 +1235,154 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.53,
-          34.08
+          92.5532,
+          38.5
         ]
       },
       "properties": {
-        "site_name": "Miyake-jima",
-        "region": "Japan",
+        "site_name": "PERSEUS_+038.50_+0092.55",
+        "region": "Barren",
         "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 169,
-        "similarity_score_pct": 19.98,
-        "latent_distance": 3.9163,
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 23,
+        "similarity_score": 44.82,
+        "latent_distance": 5.8055,
+        "cosine_similarity": -0.3314,
+        "distance_vs_flow_a_best": 4.223,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
+        "radar_subscores": {
+          "Morphometry": 32.09,
+          "Thermophysics": 20.09,
+          "Geochemistry": 49.9,
+          "Environment": 25.5
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 103.5
+        },
+        "engineering_metrics": {
+          "Altitude_m": 2698.0,
+          "Mean_Slope_deg": 1.617,
+          "Surface_Pressure_mbar": 729.185,
+          "T_min_K": 251.5,
+          "T_max_K": 319.12,
+          "Wind_Mean_mps": 2.903,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 1.021,
+          "Friction_Angle_deg": 31.92,
+          "Salts_Evaporites_wt_pct": 20.318,
+          "UV_Flux_Index": 9.439,
+          "Mafic_Basalt_Idx": 23.487,
+          "Eolian_Deflation_Idx": 64.746,
+          "Diurnal_Delta_T_K": 28.447
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          90.0,
+          37.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+037.50_+0090.00",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 24,
+        "similarity_score": 44.78,
+        "latent_distance": 5.8123,
+        "cosine_similarity": 0.0511,
+        "distance_vs_flow_a_best": 4.228,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
+        "radar_subscores": {
+          "Morphometry": 53.07,
+          "Thermophysics": 33.01,
+          "Geochemistry": 61.83,
+          "Environment": 22.02
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 301.7
+        },
+        "engineering_metrics": {
+          "Altitude_m": 4124.0,
+          "Mean_Slope_deg": 12.103,
+          "Surface_Pressure_mbar": 608.763,
+          "T_min_K": 250.487,
+          "T_max_K": 305.373,
+          "Wind_Mean_mps": 0.752,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 0.792,
+          "Friction_Angle_deg": 33.92,
+          "Salts_Evaporites_wt_pct": 14.691,
+          "UV_Flux_Index": 9.262,
+          "Mafic_Basalt_Idx": 33.189,
+          "Eolian_Deflation_Idx": 39.605,
+          "Diurnal_Delta_T_K": 26.041
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          33.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+033.50_+0081.00",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 25,
+        "similarity_score": 44.45,
+        "latent_distance": 5.8654,
+        "cosine_similarity": 0.0684,
+        "distance_vs_flow_a_best": 4.267,
         "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 10.21,
-          "Thermophysics": 30.6,
-          "Geochemistry": 26.27,
-          "Environment": 14.3
+          "Morphometry": 39.24,
+          "Thermophysics": 44.11,
+          "Geochemistry": 60.34,
+          "Environment": 18.56
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 832.7
         },
         "engineering_metrics": {
-          "Altitude_m": 694.64,
-          "Mean_Slope_deg": 15.092,
-          "Safe_Landing_Frac": 0.0131,
-          "RMS_Roughness_m": 18.834,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 261.04,
-          "Thermal_Inertia": 310.8,
-          "Albedo": 0.0767,
-          "Mafic_Basalt_Idx": 74.63,
-          "Ferric_Oxide_Idx": 1.232,
-          "Salts_Evaporites_wt_pct": 4.68,
+          "Altitude_m": 5241.0,
+          "Mean_Slope_deg": 8.882,
+          "Surface_Pressure_mbar": 544.264,
+          "T_min_K": 245.5,
+          "T_max_K": 301.65,
+          "Wind_Mean_mps": 1.294,
           "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 933.15,
-          "UV_Flux_Index": 5.9,
-          "Eolian_Deflation_Idx": 15.0,
-          "NDVI": 0.2093
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.5,
-          31.8
-        ]
-      },
-      "properties": {
-        "site_name": "Pinacate Volcanic Field",
-        "region": "Mexico",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 170,
-        "similarity_score_pct": 15.86,
-        "latent_distance": 4.7674,
-        "cluster_id": 2,
-        "cluster_label": "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins",
-        "radar_subscores": {
-          "Morphometry": 9.91,
-          "Thermophysics": 20.76,
-          "Geochemistry": 22.25,
-          "Environment": 15.58
-        },
-        "engineering_metrics": {
-          "Altitude_m": 888.19,
-          "Mean_Slope_deg": 17.368,
-          "Safe_Landing_Frac": 0.0488,
-          "RMS_Roughness_m": 27.326,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 282.03,
-          "Thermal_Inertia": 322.67,
-          "Albedo": 0.0415,
-          "Mafic_Basalt_Idx": 80.97,
-          "Ferric_Oxide_Idx": 1.214,
-          "Salts_Evaporites_wt_pct": 2.1,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 911.98,
-          "UV_Flux_Index": 5.94,
-          "Eolian_Deflation_Idx": 15.0,
-          "NDVI": 0.2738
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          126.53,
-          33.38
-        ]
-      },
-      "properties": {
-        "site_name": "Jeju Island",
-        "region": "South Korea",
-        "planetary_body": "Mars",
-        "reference_target": "Jezero_Crater_Delta_Basin",
-        "is_known_site": true,
-        "catalog_role": "lunar_known",
-        "discovery_rank": 0,
-        "global_rank": 171,
-        "similarity_score_pct": 15.37,
-        "latent_distance": 5.3924,
-        "cluster_id": 1,
-        "cluster_label": "Cluster 1: High-Altitude Radiative & Barometric Stress",
-        "radar_subscores": {
-          "Morphometry": 7.92,
-          "Thermophysics": 27.63,
-          "Geochemistry": 16.43,
-          "Environment": 20.23
-        },
-        "engineering_metrics": {
-          "Altitude_m": 1379.76,
-          "Mean_Slope_deg": 27.942,
-          "Safe_Landing_Frac": 0.0024,
-          "RMS_Roughness_m": 42.315,
-          "Diurnal_Delta_T_K": 20.2,
-          "T_mean_K": 267.0,
-          "Thermal_Inertia": 329.9,
-          "Albedo": 0.02,
-          "Mafic_Basalt_Idx": 76.24,
-          "Ferric_Oxide_Idx": 0.521,
-          "Salts_Evaporites_wt_pct": 1.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Surface_Pressure_mbar": 860.34,
-          "UV_Flux_Index": 6.71,
-          "Eolian_Deflation_Idx": 15.0,
-          "NDVI": 0.6862
+          "Soil_Cohesion_kPa": 3.239,
+          "Friction_Angle_deg": 29.54,
+          "Salts_Evaporites_wt_pct": 16.093,
+          "UV_Flux_Index": 10.37,
+          "Mafic_Basalt_Idx": 33.815,
+          "Eolian_Deflation_Idx": 24.369,
+          "Diurnal_Delta_T_K": 23.409
         }
       }
     }

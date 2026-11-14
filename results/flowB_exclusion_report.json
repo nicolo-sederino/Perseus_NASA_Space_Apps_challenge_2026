@@ -1,0 +1,164 @@
+{
+  "buffer_km": 50.0,
+  "n_anchors": 31,
+  "cells_removed_by_buffer": 0,
+  "candidates_remaining": 1116,
+  "min_distance_to_any_flow_a_site_km_in_search_space": 81.46,
+  "flow_a_sites": [
+    {
+      "site_name": "Black Point Lava Flow",
+      "latitude": 35.68,
+      "longitude": -111.33
+    },
+    {
+      "site_name": "Moses Lake Sand Dunes",
+      "latitude": 47.05,
+      "longitude": -119.33
+    },
+    {
+      "site_name": "Mauna Kea & Volcanic Terrains",
+      "latitude": 19.82,
+      "longitude": -155.47
+    },
+    {
+      "site_name": "Haughton Impact Crater",
+      "latitude": 75.38,
+      "longitude": -89.68
+    },
+    {
+      "site_name": "Antarctic Dry Valleys (McMurdo)",
+      "latitude": -77.82,
+      "longitude": 160.67
+    },
+    {
+      "site_name": "Atacama Desert",
+      "latitude": -24.08,
+      "longitude": -69.87
+    },
+    {
+      "site_name": "Craters of the Moon (Indian Tunnel) / Craters of the Moon",
+      "latitude": 43.46,
+      "longitude": -113.56
+    },
+    {
+      "site_name": "Lava River Cave",
+      "latitude": 35.34,
+      "longitude": -111.83
+    },
+    {
+      "site_name": "Nahuku (Thurston Lava Tube)",
+      "latitude": 19.41,
+      "longitude": -155.24
+    },
+    {
+      "site_name": "Miyake-jima",
+      "latitude": 34.08,
+      "longitude": 139.53
+    },
+    {
+      "site_name": "Nusfjord / Flakstadoy",
+      "latitude": 68.03,
+      "longitude": 13.35
+    },
+    {
+      "site_name": "Mount Etna (Cisternazza & Tubes) / Mount Etna (Summit Craters & Lapilli)",
+      "latitude": 37.75,
+      "longitude": 14.99
+    },
+    {
+      "site_name": "Jingpo Lake Volcanic Field",
+      "latitude": 44.15,
+      "longitude": 128.85
+    },
+    {
+      "site_name": "Terceira Island (Natal Cave)",
+      "latitude": 38.73,
+      "longitude": -27.27
+    },
+    {
+      "site_name": "Jeju Island",
+      "latitude": 33.38,
+      "longitude": 126.53
+    },
+    {
+      "site_name": "Chongqing Karst Caves",
+      "latitude": 29.56,
+      "longitude": 106.55
+    },
+    {
+      "site_name": "Askja Caldera",
+      "latitude": 65.03,
+      "longitude": -16.75
+    },
+    {
+      "site_name": "Pinacate Volcanic Field",
+      "latitude": 31.8,
+      "longitude": -113.5
+    },
+    {
+      "site_name": "Qaidam Basin & Lenghu Desert",
+      "latitude": 37.85,
+      "longitude": 93.4
+    },
+    {
+      "site_name": "Ustyurt Plateau",
+      "latitude": 43.25,
+      "longitude": 55.5
+    },
+    {
+      "site_name": "Trans-Altai Gobi Desert",
+      "latitude": 43.7,
+      "longitude": 99.1
+    },
+    {
+      "site_name": "Badwater Basin (Death Valley)",
+      "latitude": 36.25,
+      "longitude": -116.82
+    },
+    {
+      "site_name": "Salar de Arizaro",
+      "latitude": -24.85,
+      "longitude": -67.75
+    },
+    {
+      "site_name": "Etosha Pan",
+      "latitude": -19.05,
+      "longitude": 16.5
+    },
+    {
+      "site_name": "Llullaillaco Volcano Slopes",
+      "latitude": -24.72,
+      "longitude": -68.53
+    },
+    {
+      "site_name": "Eastern Pamir Plateau",
+      "latitude": 38.2,
+      "longitude": 73.8
+    },
+    {
+      "site_name": "Kilimanjaro Caldera & Glaciers",
+      "latitude": -3.07,
+      "longitude": 37.35
+    },
+    {
+      "site_name": "Stenkul Fjord (Ellesmere Island)",
+      "latitude": 77.5,
+      "longitude": -83.7
+    },
+    {
+      "site_name": "Bardenas Reales",
+      "latitude": 42.18,
+      "longitude": -1.5
+    },
+    {
+      "site_name": "Salar de Antofalla",
+      "latitude": -25.55,
+      "longitude": -67.65
+    },
+    {
+      "site_name": "Harrat Khaybar Volcanic Field",
+      "latitude": 25.68,
+      "longitude": 39.95
+    }
+  ]
+}

@@ -1,0 +1,1772 @@
+{
+  "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)": [
+    {
+      "site_name": "PERSEUS_+034.50_+0083.64",
+      "lat": 34.5,
+      "lon": 83.6364,
+      "similarity_score": 50.21,
+      "distance_vs_flow_a_best": 3.626
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0088.48",
+      "lat": 34.5,
+      "lon": 88.4848,
+      "similarity_score": 48.84,
+      "distance_vs_flow_a_best": 3.772
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0090.92",
+      "lat": 35.5,
+      "lon": 90.9215,
+      "similarity_score": 48.82,
+      "distance_vs_flow_a_best": 3.774
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0084.78",
+      "lat": 35.5,
+      "lon": 84.7782,
+      "similarity_score": 48.34,
+      "distance_vs_flow_a_best": 3.826
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0085.95",
+      "lat": 36.5,
+      "lon": 85.9516,
+      "similarity_score": 48.32,
+      "distance_vs_flow_a_best": 3.829
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0082.42",
+      "lat": 34.5,
+      "lon": 82.4242,
+      "similarity_score": 48.07,
+      "distance_vs_flow_a_best": 3.855
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0087.24",
+      "lat": 35.5,
+      "lon": 87.2355,
+      "similarity_score": 47.93,
+      "distance_vs_flow_a_best": 3.871
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0088.44",
+      "lat": 36.5,
+      "lon": 88.4429,
+      "similarity_score": 47.88,
+      "distance_vs_flow_a_best": 3.876
+    },
+    {
+      "site_name": "PERSEUS_+037.50_+0088.74",
+      "lat": 37.5,
+      "lon": 88.7413,
+      "similarity_score": 47.72,
+      "distance_vs_flow_a_best": 3.894
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0089.70",
+      "lat": 34.5,
+      "lon": 89.697,
+      "similarity_score": 47.48,
+      "distance_vs_flow_a_best": 3.921
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0078.63",
+      "lat": 35.5,
+      "lon": 78.6348,
+      "similarity_score": 47.04,
+      "distance_vs_flow_a_best": 3.97
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0083.55",
+      "lat": 35.5,
+      "lon": 83.5495,
+      "similarity_score": 47.03,
+      "distance_vs_flow_a_best": 3.97
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0087.27",
+      "lat": 34.5,
+      "lon": 87.2727,
+      "similarity_score": 46.96,
+      "distance_vs_flow_a_best": 3.978
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0084.85",
+      "lat": 34.5,
+      "lon": 84.8485,
+      "similarity_score": 46.74,
+      "distance_vs_flow_a_best": 4.003
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0085.86",
+      "lat": 32.5,
+      "lon": 85.8553,
+      "similarity_score": 46.57,
+      "distance_vs_flow_a_best": 4.022
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0086.06",
+      "lat": 34.5,
+      "lon": 86.0606,
+      "similarity_score": 46.57,
+      "distance_vs_flow_a_best": 4.023
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0082.32",
+      "lat": 35.5,
+      "lon": 82.3208,
+      "similarity_score": 46.55,
+      "distance_vs_flow_a_best": 4.024
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0080.00",
+      "lat": 34.5,
+      "lon": 80.0,
+      "similarity_score": 46.51,
+      "distance_vs_flow_a_best": 4.029
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0081.12",
+      "lat": 32.5,
+      "lon": 81.1184,
+      "similarity_score": 45.78,
+      "distance_vs_flow_a_best": 4.112
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0085.80",
+      "lat": 33.5,
+      "lon": 85.8,
+      "similarity_score": 45.62,
+      "distance_vs_flow_a_best": 4.131
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0099.46",
+      "lat": 44.5,
+      "lon": 99.4553,
+      "similarity_score": 45.2,
+      "distance_vs_flow_a_best": 4.179
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0084.67",
+      "lat": 32.5,
+      "lon": 84.6711,
+      "similarity_score": 45.02,
+      "distance_vs_flow_a_best": 4.2
+    },
+    {
+      "site_name": "PERSEUS_+038.50_+0092.55",
+      "lat": 38.5,
+      "lon": 92.5532,
+      "similarity_score": 44.82,
+      "distance_vs_flow_a_best": 4.223
+    },
+    {
+      "site_name": "PERSEUS_+037.50_+0090.00",
+      "lat": 37.5,
+      "lon": 90.0,
+      "similarity_score": 44.78,
+      "distance_vs_flow_a_best": 4.228
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0081.00",
+      "lat": 33.5,
+      "lon": 81.0,
+      "similarity_score": 44.45,
+      "distance_vs_flow_a_best": 4.267
+    }
+  ],
+  "Arsia_Mons_(Tharsis_Shield_&_Collapse_Pits)": [
+    {
+      "site_name": "PERSEUS_+041.50_+0107.33",
+      "lat": 41.5,
+      "lon": 107.3333,
+      "similarity_score": 48.66,
+      "distance_vs_flow_a_best": 3.918
+    },
+    {
+      "site_name": "PERSEUS_+038.50_+0092.55",
+      "lat": 38.5,
+      "lon": 92.5532,
+      "similarity_score": 48.39,
+      "distance_vs_flow_a_best": 3.949
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0083.64",
+      "lat": 34.5,
+      "lon": 83.6364,
+      "similarity_score": 48.02,
+      "distance_vs_flow_a_best": 3.99
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0088.48",
+      "lat": 34.5,
+      "lon": 88.4848,
+      "similarity_score": 47.99,
+      "distance_vs_flow_a_best": 3.994
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0099.46",
+      "lat": 44.5,
+      "lon": 99.4553,
+      "similarity_score": 47.74,
+      "distance_vs_flow_a_best": 4.022
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0061.82",
+      "lat": 34.5,
+      "lon": 61.8182,
+      "similarity_score": 47.71,
+      "distance_vs_flow_a_best": 4.026
+    },
+    {
+      "site_name": "PERSEUS_+037.50_+0088.74",
+      "lat": 37.5,
+      "lon": 88.7413,
+      "similarity_score": 47.64,
+      "distance_vs_flow_a_best": 4.034
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0090.92",
+      "lat": 35.5,
+      "lon": 90.9215,
+      "similarity_score": 47.58,
+      "distance_vs_flow_a_best": 4.041
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0090.73",
+      "lat": 46.5,
+      "lon": 90.7258,
+      "similarity_score": 47.53,
+      "distance_vs_flow_a_best": 4.047
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0088.44",
+      "lat": 36.5,
+      "lon": 88.4429,
+      "similarity_score": 47.39,
+      "distance_vs_flow_a_best": 4.062
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0061.80",
+      "lat": 33.5,
+      "lon": 61.8,
+      "similarity_score": 47.35,
+      "distance_vs_flow_a_best": 4.067
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0056.06",
+      "lat": 36.5,
+      "lon": 56.0554,
+      "similarity_score": 47.16,
+      "distance_vs_flow_a_best": 4.089
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0096.67",
+      "lat": 41.5,
+      "lon": 96.6667,
+      "similarity_score": 47.07,
+      "distance_vs_flow_a_best": 4.1
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0082.42",
+      "lat": 34.5,
+      "lon": 82.4242,
+      "similarity_score": 47.06,
+      "distance_vs_flow_a_best": 4.1
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0085.95",
+      "lat": 36.5,
+      "lon": 85.9516,
+      "similarity_score": 47.04,
+      "distance_vs_flow_a_best": 4.103
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0097.86",
+      "lat": 45.5,
+      "lon": 97.8571,
+      "similarity_score": 47.0,
+      "distance_vs_flow_a_best": 4.107
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0091.05",
+      "lat": 44.5,
+      "lon": 91.0506,
+      "similarity_score": 46.93,
+      "distance_vs_flow_a_best": 4.116
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0059.40",
+      "lat": 33.5,
+      "lon": 59.4,
+      "similarity_score": 46.87,
+      "distance_vs_flow_a_best": 4.122
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0084.85",
+      "lat": 34.5,
+      "lon": 84.8485,
+      "similarity_score": 46.7,
+      "distance_vs_flow_a_best": 4.142
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0096.45",
+      "lat": 42.5,
+      "lon": 96.4528,
+      "similarity_score": 46.57,
+      "distance_vs_flow_a_best": 4.157
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0089.70",
+      "lat": 34.5,
+      "lon": 89.697,
+      "similarity_score": 46.38,
+      "distance_vs_flow_a_best": 4.18
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0096.43",
+      "lat": 45.5,
+      "lon": 96.4286,
+      "similarity_score": 46.35,
+      "distance_vs_flow_a_best": 4.183
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0095.25",
+      "lat": 44.5,
+      "lon": 95.2529,
+      "similarity_score": 46.33,
+      "distance_vs_flow_a_best": 4.185
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0060.99",
+      "lat": 32.5,
+      "lon": 60.9868,
+      "similarity_score": 46.31,
+      "distance_vs_flow_a_best": 4.188
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0078.63",
+      "lat": 35.5,
+      "lon": 78.6348,
+      "similarity_score": 46.28,
+      "distance_vs_flow_a_best": 4.191
+    }
+  ],
+  "Pavonis_Mons_(Equatorial_Shield_Volcano)": [
+    {
+      "site_name": "PERSEUS_+031.50_+0068.01",
+      "lat": 31.5,
+      "lon": 68.013,
+      "similarity_score": 70.76,
+      "distance_vs_flow_a_best": 1.459
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0095.25",
+      "lat": 44.5,
+      "lon": 95.2529,
+      "similarity_score": 70.42,
+      "distance_vs_flow_a_best": 1.48
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0096.45",
+      "lat": 42.5,
+      "lon": 96.4528,
+      "similarity_score": 69.64,
+      "distance_vs_flow_a_best": 1.526
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0096.55",
+      "lat": 43.5,
+      "lon": 96.5517,
+      "similarity_score": 68.88,
+      "distance_vs_flow_a_best": 1.573
+    },
+    {
+      "site_name": "PERSEUS_-024.50_+0024.70",
+      "lat": -24.5,
+      "lon": 24.6951,
+      "similarity_score": 68.52,
+      "distance_vs_flow_a_best": 1.595
+    },
+    {
+      "site_name": "PERSEUS_+026.50_+0017.33",
+      "lat": 26.5,
+      "lon": 17.3292,
+      "similarity_score": 68.43,
+      "distance_vs_flow_a_best": 1.6
+    },
+    {
+      "site_name": "PERSEUS_+027.50_+0016.93",
+      "lat": 27.5,
+      "lon": 16.9279,
+      "similarity_score": 68.16,
+      "distance_vs_flow_a_best": 1.617
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0058.18",
+      "lat": 34.5,
+      "lon": 58.1818,
+      "similarity_score": 68.01,
+      "distance_vs_flow_a_best": 1.626
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0097.81",
+      "lat": 42.5,
+      "lon": 97.8113,
+      "similarity_score": 67.95,
+      "distance_vs_flow_a_best": 1.63
+    },
+    {
+      "site_name": "PERSEUS_-021.50_+0013.97",
+      "lat": -21.5,
+      "lon": 13.9701,
+      "similarity_score": 67.66,
+      "distance_vs_flow_a_best": 1.649
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0095.17",
+      "lat": 43.5,
+      "lon": 95.1724,
+      "similarity_score": 67.65,
+      "distance_vs_flow_a_best": 1.649
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0059.40",
+      "lat": 33.5,
+      "lon": 59.4,
+      "similarity_score": 67.61,
+      "distance_vs_flow_a_best": 1.651
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0037.30",
+      "lat": 32.5,
+      "lon": 37.3026,
+      "similarity_score": 67.42,
+      "distance_vs_flow_a_best": 1.663
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0096.67",
+      "lat": 41.5,
+      "lon": 96.6667,
+      "similarity_score": 67.31,
+      "distance_vs_flow_a_best": 1.67
+    },
+    {
+      "site_name": "PERSEUS_-030.50_+0019.16",
+      "lat": -30.5,
+      "lon": 19.1613,
+      "similarity_score": 67.24,
+      "distance_vs_flow_a_best": 1.675
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0054.06",
+      "lat": 35.5,
+      "lon": 54.0614,
+      "similarity_score": 67.22,
+      "distance_vs_flow_a_best": 1.676
+    },
+    {
+      "site_name": "PERSEUS_+010.50_+0042.20",
+      "lat": 10.5,
+      "lon": 42.2034,
+      "similarity_score": 67.14,
+      "distance_vs_flow_a_best": 1.681
+    },
+    {
+      "site_name": "PERSEUS_+020.50_+0041.66",
+      "lat": 20.5,
+      "lon": 41.6617,
+      "similarity_score": 67.12,
+      "distance_vs_flow_a_best": 1.682
+    },
+    {
+      "site_name": "PERSEUS_+030.50_+0055.16",
+      "lat": 30.5,
+      "lon": 55.1613,
+      "similarity_score": 67.03,
+      "distance_vs_flow_a_best": 1.688
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0055.29",
+      "lat": 35.5,
+      "lon": 55.2901,
+      "similarity_score": 66.77,
+      "distance_vs_flow_a_best": 1.704
+    },
+    {
+      "site_name": "PERSEUS_+018.50_+0036.95",
+      "lat": 18.5,
+      "lon": 36.9501,
+      "similarity_score": 66.75,
+      "distance_vs_flow_a_best": 1.706
+    },
+    {
+      "site_name": "PERSEUS_+017.50_+0022.04",
+      "lat": 17.5,
+      "lon": 22.0408,
+      "similarity_score": 66.73,
+      "distance_vs_flow_a_best": 1.707
+    },
+    {
+      "site_name": "PERSEUS_+021.50_+0041.91",
+      "lat": 21.5,
+      "lon": 41.9104,
+      "similarity_score": 66.68,
+      "distance_vs_flow_a_best": 1.71
+    },
+    {
+      "site_name": "PERSEUS_+018.50_+0023.23",
+      "lat": 18.5,
+      "lon": 23.2258,
+      "similarity_score": 66.64,
+      "distance_vs_flow_a_best": 1.713
+    },
+    {
+      "site_name": "PERSEUS_+024.50_+0011.52",
+      "lat": 24.5,
+      "lon": 11.5244,
+      "similarity_score": 66.63,
+      "distance_vs_flow_a_best": 1.713
+    }
+  ],
+  "Ascraeus_Mons_(Northern_Tharsis_Shield)": [
+    {
+      "site_name": "PERSEUS_+044.50_+0099.46",
+      "lat": 44.5,
+      "lon": 99.4553,
+      "similarity_score": 64.47,
+      "distance_vs_flow_a_best": 1.579
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0095.25",
+      "lat": 44.5,
+      "lon": 95.2529,
+      "similarity_score": 64.35,
+      "distance_vs_flow_a_best": 1.585
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0097.86",
+      "lat": 45.5,
+      "lon": 97.8571,
+      "similarity_score": 63.14,
+      "distance_vs_flow_a_best": 1.654
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0096.67",
+      "lat": 41.5,
+      "lon": 96.6667,
+      "similarity_score": 62.56,
+      "distance_vs_flow_a_best": 1.687
+    },
+    {
+      "site_name": "PERSEUS_+037.50_+0088.74",
+      "lat": 37.5,
+      "lon": 88.7413,
+      "similarity_score": 62.05,
+      "distance_vs_flow_a_best": 1.717
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0096.55",
+      "lat": 43.5,
+      "lon": 96.5517,
+      "similarity_score": 62.0,
+      "distance_vs_flow_a_best": 1.719
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0096.45",
+      "lat": 42.5,
+      "lon": 96.4528,
+      "similarity_score": 61.82,
+      "distance_vs_flow_a_best": 1.73
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0105.77",
+      "lat": 40.5,
+      "lon": 105.7664,
+      "similarity_score": 60.15,
+      "distance_vs_flow_a_best": 1.828
+    },
+    {
+      "site_name": "PERSEUS_+031.50_+0068.01",
+      "lat": 31.5,
+      "lon": 68.013,
+      "similarity_score": 59.9,
+      "distance_vs_flow_a_best": 1.844
+    },
+    {
+      "site_name": "PERSEUS_+048.50_+0091.88",
+      "lat": 48.5,
+      "lon": 91.8828,
+      "similarity_score": 59.87,
+      "distance_vs_flow_a_best": 1.845
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0100.69",
+      "lat": 43.5,
+      "lon": 100.6897,
+      "similarity_score": 59.65,
+      "distance_vs_flow_a_best": 1.858
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0091.05",
+      "lat": 44.5,
+      "lon": 91.0506,
+      "similarity_score": 59.65,
+      "distance_vs_flow_a_best": 1.858
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0078.18",
+      "lat": 40.5,
+      "lon": 78.1752,
+      "similarity_score": 59.54,
+      "distance_vs_flow_a_best": 1.865
+    },
+    {
+      "site_name": "PERSEUS_+038.50_+0090.00",
+      "lat": 38.5,
+      "lon": 90.0,
+      "similarity_score": 59.5,
+      "distance_vs_flow_a_best": 1.868
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0089.27",
+      "lat": 46.5,
+      "lon": 89.2742,
+      "similarity_score": 59.09,
+      "distance_vs_flow_a_best": 1.892
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0095.00",
+      "lat": 45.5,
+      "lon": 95.0,
+      "similarity_score": 58.87,
+      "distance_vs_flow_a_best": 1.906
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0091.33",
+      "lat": 41.5,
+      "lon": 91.3333,
+      "similarity_score": 58.68,
+      "distance_vs_flow_a_best": 1.918
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0090.71",
+      "lat": 45.5,
+      "lon": 90.7143,
+      "similarity_score": 58.56,
+      "distance_vs_flow_a_best": 1.925
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0098.05",
+      "lat": 44.5,
+      "lon": 98.0545,
+      "similarity_score": 58.53,
+      "distance_vs_flow_a_best": 1.927
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0104.60",
+      "lat": 42.5,
+      "lon": 104.6038,
+      "similarity_score": 58.4,
+      "distance_vs_flow_a_best": 1.934
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0059.40",
+      "lat": 33.5,
+      "lon": 59.4,
+      "similarity_score": 58.38,
+      "distance_vs_flow_a_best": 1.936
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0107.33",
+      "lat": 41.5,
+      "lon": 107.3333,
+      "similarity_score": 58.37,
+      "distance_vs_flow_a_best": 1.936
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0097.81",
+      "lat": 42.5,
+      "lon": 97.8113,
+      "similarity_score": 58.33,
+      "distance_vs_flow_a_best": 1.939
+    },
+    {
+      "site_name": "PERSEUS_+038.50_+0092.55",
+      "lat": 38.5,
+      "lon": 92.5532,
+      "similarity_score": 58.28,
+      "distance_vs_flow_a_best": 1.942
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0092.14",
+      "lat": 45.5,
+      "lon": 92.1429,
+      "similarity_score": 58.2,
+      "distance_vs_flow_a_best": 1.947
+    }
+  ],
+  "Elysium_Mons_&_Planitia_(Volcanic_Lava_Plains)": [
+    {
+      "site_name": "PERSEUS_+044.50_+0095.25",
+      "lat": 44.5,
+      "lon": 95.2529,
+      "similarity_score": 70.3,
+      "distance_vs_flow_a_best": 1.354
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0096.45",
+      "lat": 42.5,
+      "lon": 96.4528,
+      "similarity_score": 68.92,
+      "distance_vs_flow_a_best": 1.431
+    },
+    {
+      "site_name": "PERSEUS_+031.50_+0068.01",
+      "lat": 31.5,
+      "lon": 68.013,
+      "similarity_score": 68.6,
+      "distance_vs_flow_a_best": 1.448
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0096.55",
+      "lat": 43.5,
+      "lon": 96.5517,
+      "similarity_score": 68.31,
+      "distance_vs_flow_a_best": 1.465
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0096.67",
+      "lat": 41.5,
+      "lon": 96.6667,
+      "similarity_score": 67.35,
+      "distance_vs_flow_a_best": 1.519
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0099.46",
+      "lat": 44.5,
+      "lon": 99.4553,
+      "similarity_score": 67.07,
+      "distance_vs_flow_a_best": 1.535
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0097.81",
+      "lat": 42.5,
+      "lon": 97.8113,
+      "similarity_score": 66.15,
+      "distance_vs_flow_a_best": 1.588
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0091.05",
+      "lat": 44.5,
+      "lon": 91.0506,
+      "similarity_score": 65.95,
+      "distance_vs_flow_a_best": 1.6
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0059.40",
+      "lat": 33.5,
+      "lon": 59.4,
+      "similarity_score": 65.95,
+      "distance_vs_flow_a_best": 1.6
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0095.17",
+      "lat": 43.5,
+      "lon": 95.1724,
+      "similarity_score": 65.62,
+      "distance_vs_flow_a_best": 1.619
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0058.18",
+      "lat": 34.5,
+      "lon": 58.1818,
+      "similarity_score": 65.57,
+      "distance_vs_flow_a_best": 1.622
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0091.33",
+      "lat": 41.5,
+      "lon": 91.3333,
+      "similarity_score": 65.5,
+      "distance_vs_flow_a_best": 1.626
+    },
+    {
+      "site_name": "PERSEUS_+030.50_+0055.16",
+      "lat": 30.5,
+      "lon": 55.1613,
+      "similarity_score": 65.1,
+      "distance_vs_flow_a_best": 1.65
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0054.06",
+      "lat": 35.5,
+      "lon": 54.0614,
+      "similarity_score": 65.01,
+      "distance_vs_flow_a_best": 1.655
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0105.77",
+      "lat": 40.5,
+      "lon": 105.7664,
+      "similarity_score": 64.78,
+      "distance_vs_flow_a_best": 1.669
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0099.20",
+      "lat": 40.5,
+      "lon": 99.1971,
+      "similarity_score": 64.61,
+      "distance_vs_flow_a_best": 1.679
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0061.82",
+      "lat": 34.5,
+      "lon": 61.8182,
+      "similarity_score": 64.54,
+      "distance_vs_flow_a_best": 1.683
+    },
+    {
+      "site_name": "PERSEUS_-024.50_+0024.70",
+      "lat": -24.5,
+      "lon": 24.6951,
+      "similarity_score": 64.51,
+      "distance_vs_flow_a_best": 1.684
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0104.60",
+      "lat": 42.5,
+      "lon": 104.6038,
+      "similarity_score": 64.37,
+      "distance_vs_flow_a_best": 1.693
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0108.39",
+      "lat": 40.5,
+      "lon": 108.3942,
+      "similarity_score": 64.36,
+      "distance_vs_flow_a_best": 1.693
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0098.05",
+      "lat": 44.5,
+      "lon": 98.0545,
+      "similarity_score": 64.31,
+      "distance_vs_flow_a_best": 1.697
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0097.86",
+      "lat": 45.5,
+      "lon": 97.8571,
+      "similarity_score": 64.28,
+      "distance_vs_flow_a_best": 1.699
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0064.67",
+      "lat": 41.5,
+      "lon": 64.6667,
+      "similarity_score": 64.18,
+      "distance_vs_flow_a_best": 1.705
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0061.80",
+      "lat": 33.5,
+      "lon": 61.8,
+      "similarity_score": 63.99,
+      "distance_vs_flow_a_best": 1.716
+    },
+    {
+      "site_name": "PERSEUS_+027.50_+0016.93",
+      "lat": 27.5,
+      "lon": 16.9279,
+      "similarity_score": 63.66,
+      "distance_vs_flow_a_best": 1.736
+    }
+  ],
+  "Deuteronilus_Mensae_(Lobate_Debris_Aprons_-_85%_Ice)": [
+    {
+      "site_name": "PERSEUS_+057.50_+0160.41",
+      "lat": 57.5,
+      "lon": 160.4145,
+      "similarity_score": 59.61,
+      "distance_vs_flow_a_best": 2.936
+    },
+    {
+      "site_name": "PERSEUS_+048.50_+0057.24",
+      "lat": 48.5,
+      "lon": 57.2385,
+      "similarity_score": 57.56,
+      "distance_vs_flow_a_best": 3.134
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0072.14",
+      "lat": 45.5,
+      "lon": 72.1429,
+      "similarity_score": 56.16,
+      "distance_vs_flow_a_best": 3.274
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0064.60",
+      "lat": 46.5,
+      "lon": 64.5968,
+      "similarity_score": 54.97,
+      "distance_vs_flow_a_best": 3.396
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0074.72",
+      "lat": 42.5,
+      "lon": 74.717,
+      "similarity_score": 54.97,
+      "distance_vs_flow_a_best": 3.396
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0089.27",
+      "lat": 46.5,
+      "lon": 89.2742,
+      "similarity_score": 54.48,
+      "distance_vs_flow_a_best": 3.447
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0061.69",
+      "lat": 46.5,
+      "lon": 61.6935,
+      "similarity_score": 54.28,
+      "distance_vs_flow_a_best": 3.468
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0090.73",
+      "lat": 46.5,
+      "lon": 90.7258,
+      "similarity_score": 54.17,
+      "distance_vs_flow_a_best": 3.479
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0073.31",
+      "lat": 46.5,
+      "lon": 73.3065,
+      "similarity_score": 53.92,
+      "distance_vs_flow_a_best": 3.505
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0093.79",
+      "lat": 43.5,
+      "lon": 93.7931,
+      "similarity_score": 53.28,
+      "distance_vs_flow_a_best": 3.573
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0089.29",
+      "lat": 45.5,
+      "lon": 89.2857,
+      "similarity_score": 52.65,
+      "distance_vs_flow_a_best": 3.64
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0086.37",
+      "lat": 46.5,
+      "lon": 86.371,
+      "similarity_score": 52.49,
+      "distance_vs_flow_a_best": 3.658
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0052.67",
+      "lat": 41.5,
+      "lon": 52.6667,
+      "similarity_score": 52.44,
+      "distance_vs_flow_a_best": 3.664
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0059.29",
+      "lat": 45.5,
+      "lon": 59.2857,
+      "similarity_score": 51.89,
+      "distance_vs_flow_a_best": 3.724
+    },
+    {
+      "site_name": "PERSEUS_+047.50_+0094.81",
+      "lat": 47.5,
+      "lon": 94.8148,
+      "similarity_score": 51.69,
+      "distance_vs_flow_a_best": 3.746
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0052.41",
+      "lat": 43.5,
+      "lon": 52.4138,
+      "similarity_score": 51.67,
+      "distance_vs_flow_a_best": 3.747
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0087.86",
+      "lat": 45.5,
+      "lon": 87.8571,
+      "similarity_score": 51.64,
+      "distance_vs_flow_a_best": 3.75
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0090.71",
+      "lat": 45.5,
+      "lon": 90.7143,
+      "similarity_score": 51.64,
+      "distance_vs_flow_a_best": 3.751
+    },
+    {
+      "site_name": "PERSEUS_+048.50_+0091.88",
+      "lat": 48.5,
+      "lon": 91.8828,
+      "similarity_score": 51.59,
+      "distance_vs_flow_a_best": 3.756
+    },
+    {
+      "site_name": "PERSEUS_+047.50_+0093.33",
+      "lat": 47.5,
+      "lon": 93.3333,
+      "similarity_score": 51.46,
+      "distance_vs_flow_a_best": 3.77
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0084.92",
+      "lat": 46.5,
+      "lon": 84.9194,
+      "similarity_score": 51.39,
+      "distance_vs_flow_a_best": 3.779
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0075.55",
+      "lat": 40.5,
+      "lon": 75.5474,
+      "similarity_score": 51.36,
+      "distance_vs_flow_a_best": 3.782
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0054.63",
+      "lat": 44.5,
+      "lon": 54.6304,
+      "similarity_score": 51.34,
+      "distance_vs_flow_a_best": 3.783
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0092.14",
+      "lat": 45.5,
+      "lon": 92.1429,
+      "similarity_score": 51.32,
+      "distance_vs_flow_a_best": 3.786
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0088.46",
+      "lat": 35.5,
+      "lon": 88.4642,
+      "similarity_score": 50.92,
+      "distance_vs_flow_a_best": 3.83
+    }
+  ],
+  "Phlegra_Montes_(Glacial_Belts_-_Shallow_20m_Ice)": [
+    {
+      "site_name": "PERSEUS_+038.50_+0092.55",
+      "lat": 38.5,
+      "lon": 92.5532,
+      "similarity_score": 54.9,
+      "distance_vs_flow_a_best": 1.944
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0061.82",
+      "lat": 34.5,
+      "lon": 61.8182,
+      "similarity_score": 51.82,
+      "distance_vs_flow_a_best": 2.131
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0091.33",
+      "lat": 41.5,
+      "lon": 91.3333,
+      "similarity_score": 51.28,
+      "distance_vs_flow_a_best": 2.165
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0099.46",
+      "lat": 44.5,
+      "lon": 99.4553,
+      "similarity_score": 51.11,
+      "distance_vs_flow_a_best": 2.176
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0100.69",
+      "lat": 43.5,
+      "lon": 100.6897,
+      "similarity_score": 50.84,
+      "distance_vs_flow_a_best": 2.193
+    },
+    {
+      "site_name": "PERSEUS_+037.50_+0088.74",
+      "lat": 37.5,
+      "lon": 88.7413,
+      "similarity_score": 50.79,
+      "distance_vs_flow_a_best": 2.197
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0060.60",
+      "lat": 33.5,
+      "lon": 60.6,
+      "similarity_score": 50.56,
+      "distance_vs_flow_a_best": 2.211
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0061.80",
+      "lat": 33.5,
+      "lon": 61.8,
+      "similarity_score": 50.26,
+      "distance_vs_flow_a_best": 2.231
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0096.55",
+      "lat": 43.5,
+      "lon": 96.5517,
+      "similarity_score": 50.06,
+      "distance_vs_flow_a_best": 2.243
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0095.25",
+      "lat": 44.5,
+      "lon": 95.2529,
+      "similarity_score": 50.03,
+      "distance_vs_flow_a_best": 2.245
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0096.67",
+      "lat": 41.5,
+      "lon": 96.6667,
+      "similarity_score": 49.99,
+      "distance_vs_flow_a_best": 2.248
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0083.55",
+      "lat": 35.5,
+      "lon": 83.5495,
+      "similarity_score": 49.97,
+      "distance_vs_flow_a_best": 2.25
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0097.86",
+      "lat": 45.5,
+      "lon": 97.8571,
+      "similarity_score": 49.84,
+      "distance_vs_flow_a_best": 2.258
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0088.48",
+      "lat": 34.5,
+      "lon": 88.4848,
+      "similarity_score": 49.78,
+      "distance_vs_flow_a_best": 2.262
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0060.99",
+      "lat": 32.5,
+      "lon": 60.9868,
+      "similarity_score": 49.56,
+      "distance_vs_flow_a_best": 2.276
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0096.45",
+      "lat": 42.5,
+      "lon": 96.4528,
+      "similarity_score": 49.19,
+      "distance_vs_flow_a_best": 2.3
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0087.27",
+      "lat": 34.5,
+      "lon": 87.2727,
+      "similarity_score": 49.06,
+      "distance_vs_flow_a_best": 2.309
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0092.14",
+      "lat": 45.5,
+      "lon": 92.1429,
+      "similarity_score": 48.94,
+      "distance_vs_flow_a_best": 2.317
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0090.00",
+      "lat": 40.5,
+      "lon": 90.0,
+      "similarity_score": 48.78,
+      "distance_vs_flow_a_best": 2.327
+    },
+    {
+      "site_name": "PERSEUS_+039.50_+0088.70",
+      "lat": 39.5,
+      "lon": 88.705,
+      "similarity_score": 48.61,
+      "distance_vs_flow_a_best": 2.339
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0097.16",
+      "lat": 36.5,
+      "lon": 97.1626,
+      "similarity_score": 48.52,
+      "distance_vs_flow_a_best": 2.344
+    },
+    {
+      "site_name": "PERSEUS_+046.50_+0089.27",
+      "lat": 46.5,
+      "lon": 89.2742,
+      "similarity_score": 47.94,
+      "distance_vs_flow_a_best": 2.384
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0089.70",
+      "lat": 34.5,
+      "lon": 89.697,
+      "similarity_score": 47.77,
+      "distance_vs_flow_a_best": 2.395
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0080.00",
+      "lat": 34.5,
+      "lon": 80.0,
+      "similarity_score": 47.76,
+      "distance_vs_flow_a_best": 2.396
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0105.77",
+      "lat": 40.5,
+      "lon": 105.7664,
+      "similarity_score": 47.68,
+      "distance_vs_flow_a_best": 2.401
+    }
+  ],
+  "Eastern_Hellas_Basin_(Southern_Ice-Rich_Aprons)": [
+    {
+      "site_name": "PERSEUS_+034.50_+0088.48",
+      "lat": 34.5,
+      "lon": 88.4848,
+      "similarity_score": 49.55,
+      "distance_vs_flow_a_best": 2.334
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0088.46",
+      "lat": 35.5,
+      "lon": 88.4642,
+      "similarity_score": 49.51,
+      "distance_vs_flow_a_best": 2.337
+    },
+    {
+      "site_name": "PERSEUS_+037.50_+0088.74",
+      "lat": 37.5,
+      "lon": 88.7413,
+      "similarity_score": 49.48,
+      "distance_vs_flow_a_best": 2.339
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0090.92",
+      "lat": 35.5,
+      "lon": 90.9215,
+      "similarity_score": 49.22,
+      "distance_vs_flow_a_best": 2.356
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0083.64",
+      "lat": 34.5,
+      "lon": 83.6364,
+      "similarity_score": 48.77,
+      "distance_vs_flow_a_best": 2.387
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0085.95",
+      "lat": 36.5,
+      "lon": 85.9516,
+      "similarity_score": 48.74,
+      "distance_vs_flow_a_best": 2.389
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0087.24",
+      "lat": 35.5,
+      "lon": 87.2355,
+      "similarity_score": 48.32,
+      "distance_vs_flow_a_best": 2.417
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0084.78",
+      "lat": 35.5,
+      "lon": 84.7782,
+      "similarity_score": 48.11,
+      "distance_vs_flow_a_best": 2.432
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0087.27",
+      "lat": 34.5,
+      "lon": 87.2727,
+      "similarity_score": 48.03,
+      "distance_vs_flow_a_best": 2.437
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0088.44",
+      "lat": 36.5,
+      "lon": 88.4429,
+      "similarity_score": 47.99,
+      "distance_vs_flow_a_best": 2.44
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0089.70",
+      "lat": 34.5,
+      "lon": 89.697,
+      "similarity_score": 47.86,
+      "distance_vs_flow_a_best": 2.449
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0099.46",
+      "lat": 44.5,
+      "lon": 99.4553,
+      "similarity_score": 47.78,
+      "distance_vs_flow_a_best": 2.455
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0107.33",
+      "lat": 41.5,
+      "lon": 107.3333,
+      "similarity_score": 47.65,
+      "distance_vs_flow_a_best": 2.464
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0083.55",
+      "lat": 35.5,
+      "lon": 83.5495,
+      "similarity_score": 47.3,
+      "distance_vs_flow_a_best": 2.489
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0059.40",
+      "lat": 33.5,
+      "lon": 59.4,
+      "similarity_score": 47.26,
+      "distance_vs_flow_a_best": 2.491
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0085.86",
+      "lat": 32.5,
+      "lon": 85.8553,
+      "similarity_score": 47.2,
+      "distance_vs_flow_a_best": 2.496
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0084.85",
+      "lat": 34.5,
+      "lon": 84.8485,
+      "similarity_score": 47.18,
+      "distance_vs_flow_a_best": 2.497
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0061.82",
+      "lat": 34.5,
+      "lon": 61.8182,
+      "similarity_score": 47.04,
+      "distance_vs_flow_a_best": 2.507
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0061.80",
+      "lat": 33.5,
+      "lon": 61.8,
+      "similarity_score": 46.84,
+      "distance_vs_flow_a_best": 2.521
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0085.80",
+      "lat": 33.5,
+      "lon": 85.8,
+      "similarity_score": 46.65,
+      "distance_vs_flow_a_best": 2.535
+    },
+    {
+      "site_name": "PERSEUS_+036.50_+0056.06",
+      "lat": 36.5,
+      "lon": 56.0554,
+      "similarity_score": 46.62,
+      "distance_vs_flow_a_best": 2.537
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0082.42",
+      "lat": 34.5,
+      "lon": 82.4242,
+      "similarity_score": 46.48,
+      "distance_vs_flow_a_best": 2.547
+    },
+    {
+      "site_name": "PERSEUS_+038.50_+0092.55",
+      "lat": 38.5,
+      "lon": 92.5532,
+      "similarity_score": 46.29,
+      "distance_vs_flow_a_best": 2.56
+    },
+    {
+      "site_name": "PERSEUS_+031.50_+0068.01",
+      "lat": 31.5,
+      "lon": 68.013,
+      "similarity_score": 46.26,
+      "distance_vs_flow_a_best": 2.563
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0095.25",
+      "lat": 44.5,
+      "lon": 95.2529,
+      "similarity_score": 46.07,
+      "distance_vs_flow_a_best": 2.576
+    }
+  ],
+  "Valles_Marineris_(Equatorial_Rift_&_Sulfate_Beds)": [
+    {
+      "site_name": "PERSEUS_+041.50_+0052.67",
+      "lat": 41.5,
+      "lon": 52.6667,
+      "similarity_score": 56.41,
+      "distance_vs_flow_a_best": 1.576
+    },
+    {
+      "site_name": "PERSEUS_+031.50_+0036.35",
+      "lat": 31.5,
+      "lon": 36.3518,
+      "similarity_score": 55.59,
+      "distance_vs_flow_a_best": 1.616
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0061.82",
+      "lat": 34.5,
+      "lon": 61.8182,
+      "similarity_score": 55.48,
+      "distance_vs_flow_a_best": 1.622
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0060.60",
+      "lat": 33.5,
+      "lon": 60.6,
+      "similarity_score": 55.03,
+      "distance_vs_flow_a_best": 1.644
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0040.55",
+      "lat": 35.5,
+      "lon": 40.5461,
+      "similarity_score": 54.94,
+      "distance_vs_flow_a_best": 1.649
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0037.58",
+      "lat": 34.5,
+      "lon": 37.5758,
+      "similarity_score": 54.61,
+      "distance_vs_flow_a_best": 1.665
+    },
+    {
+      "site_name": "PERSEUS_-029.50_+0120.77",
+      "lat": -29.5,
+      "lon": 120.7668,
+      "similarity_score": 54.39,
+      "distance_vs_flow_a_best": 1.676
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0090.00",
+      "lat": 40.5,
+      "lon": 90.0,
+      "similarity_score": 54.29,
+      "distance_vs_flow_a_best": 1.681
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0052.41",
+      "lat": 43.5,
+      "lon": 52.4138,
+      "similarity_score": 54.27,
+      "distance_vs_flow_a_best": 1.682
+    },
+    {
+      "site_name": "PERSEUS_+015.50_+0015.56",
+      "lat": 15.5,
+      "lon": 15.562,
+      "similarity_score": 54.23,
+      "distance_vs_flow_a_best": 1.685
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0072.14",
+      "lat": 45.5,
+      "lon": 72.1429,
+      "similarity_score": 54.15,
+      "distance_vs_flow_a_best": 1.689
+    },
+    {
+      "site_name": "PERSEUS_+025.50_+0031.02",
+      "lat": 25.5,
+      "lon": 31.0154,
+      "similarity_score": 54.12,
+      "distance_vs_flow_a_best": 1.69
+    },
+    {
+      "site_name": "PERSEUS_-028.50_+0137.28",
+      "lat": -28.5,
+      "lon": 137.2785,
+      "similarity_score": 54.07,
+      "distance_vs_flow_a_best": 1.693
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0060.99",
+      "lat": 32.5,
+      "lon": 60.9868,
+      "similarity_score": 54.05,
+      "distance_vs_flow_a_best": 1.694
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0091.33",
+      "lat": 41.5,
+      "lon": 91.3333,
+      "similarity_score": 53.85,
+      "distance_vs_flow_a_best": 1.704
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0052.12",
+      "lat": 34.5,
+      "lon": 52.1212,
+      "similarity_score": 53.58,
+      "distance_vs_flow_a_best": 1.718
+    },
+    {
+      "site_name": "PERSEUS_+030.50_+0027.29",
+      "lat": 30.5,
+      "lon": 27.2903,
+      "similarity_score": 53.58,
+      "distance_vs_flow_a_best": 1.718
+    },
+    {
+      "site_name": "PERSEUS_-030.50_+0142.26",
+      "lat": -30.5,
+      "lon": 142.2581,
+      "similarity_score": 53.32,
+      "distance_vs_flow_a_best": 1.731
+    },
+    {
+      "site_name": "PERSEUS_+025.50_+0032.12",
+      "lat": 25.5,
+      "lon": 32.1231,
+      "similarity_score": 53.15,
+      "distance_vs_flow_a_best": 1.74
+    },
+    {
+      "site_name": "PERSEUS_+032.50_+0068.09",
+      "lat": 32.5,
+      "lon": 68.0921,
+      "similarity_score": 53.03,
+      "distance_vs_flow_a_best": 1.746
+    },
+    {
+      "site_name": "PERSEUS_-030.50_+0137.61",
+      "lat": -30.5,
+      "lon": 137.6129,
+      "similarity_score": 52.95,
+      "distance_vs_flow_a_best": 1.75
+    },
+    {
+      "site_name": "PERSEUS_+013.50_+0046.80",
+      "lat": 13.5,
+      "lon": 46.8,
+      "similarity_score": 52.94,
+      "distance_vs_flow_a_best": 1.751
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0065.00",
+      "lat": 45.5,
+      "lon": 65.0,
+      "similarity_score": 52.91,
+      "distance_vs_flow_a_best": 1.752
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0042.42",
+      "lat": 34.5,
+      "lon": 42.4242,
+      "similarity_score": 52.91,
+      "distance_vs_flow_a_best": 1.752
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0059.29",
+      "lat": 45.5,
+      "lon": 59.2857,
+      "similarity_score": 52.9,
+      "distance_vs_flow_a_best": 1.753
+    }
+  ],
+  "Medusae_Fossae_&_Paleolakes_(Yardangs_&_Evaporites)": [
+    {
+      "site_name": "PERSEUS_+032.50_+0060.99",
+      "lat": 32.5,
+      "lon": 60.9868,
+      "similarity_score": 62.24,
+      "distance_vs_flow_a_best": 1.463
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0060.60",
+      "lat": 33.5,
+      "lon": 60.6,
+      "similarity_score": 60.31,
+      "distance_vs_flow_a_best": 1.559
+    },
+    {
+      "site_name": "PERSEUS_+033.50_+0061.80",
+      "lat": 33.5,
+      "lon": 61.8,
+      "similarity_score": 58.91,
+      "distance_vs_flow_a_best": 1.632
+    },
+    {
+      "site_name": "PERSEUS_+031.50_+0060.98",
+      "lat": 31.5,
+      "lon": 60.9772,
+      "similarity_score": 58.81,
+      "distance_vs_flow_a_best": 1.637
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0091.33",
+      "lat": 41.5,
+      "lon": 91.3333,
+      "similarity_score": 57.78,
+      "distance_vs_flow_a_best": 1.692
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0090.00",
+      "lat": 40.5,
+      "lon": 90.0,
+      "similarity_score": 57.62,
+      "distance_vs_flow_a_best": 1.7
+    },
+    {
+      "site_name": "PERSEUS_+038.50_+0092.55",
+      "lat": 38.5,
+      "lon": 92.5532,
+      "similarity_score": 56.03,
+      "distance_vs_flow_a_best": 1.786
+    },
+    {
+      "site_name": "PERSEUS_+039.50_+0088.70",
+      "lat": 39.5,
+      "lon": 88.705,
+      "similarity_score": 56.03,
+      "distance_vs_flow_a_best": 1.787
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0061.82",
+      "lat": 34.5,
+      "lon": 61.8182,
+      "similarity_score": 55.98,
+      "distance_vs_flow_a_best": 1.79
+    },
+    {
+      "site_name": "PERSEUS_+044.50_+0093.85",
+      "lat": 44.5,
+      "lon": 93.8521,
+      "similarity_score": 55.88,
+      "distance_vs_flow_a_best": 1.795
+    },
+    {
+      "site_name": "PERSEUS_+041.50_+0052.67",
+      "lat": 41.5,
+      "lon": 52.6667,
+      "similarity_score": 55.81,
+      "distance_vs_flow_a_best": 1.799
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0054.55",
+      "lat": 34.5,
+      "lon": 54.5455,
+      "similarity_score": 55.46,
+      "distance_vs_flow_a_best": 1.818
+    },
+    {
+      "site_name": "PERSEUS_+035.50_+0040.55",
+      "lat": 35.5,
+      "lon": 40.5461,
+      "similarity_score": 55.38,
+      "distance_vs_flow_a_best": 1.823
+    },
+    {
+      "site_name": "PERSEUS_+008.50_+0048.03",
+      "lat": 8.5,
+      "lon": 48.0337,
+      "similarity_score": 55.14,
+      "distance_vs_flow_a_best": 1.836
+    },
+    {
+      "site_name": "PERSEUS_+034.50_+0055.76",
+      "lat": 34.5,
+      "lon": 55.7576,
+      "similarity_score": 55.14,
+      "distance_vs_flow_a_best": 1.836
+    },
+    {
+      "site_name": "PERSEUS_+031.50_+0062.15",
+      "lat": 31.5,
+      "lon": 62.1498,
+      "similarity_score": 54.89,
+      "distance_vs_flow_a_best": 1.85
+    },
+    {
+      "site_name": "PERSEUS_+045.50_+0059.29",
+      "lat": 45.5,
+      "lon": 59.2857,
+      "similarity_score": 54.44,
+      "distance_vs_flow_a_best": 1.876
+    },
+    {
+      "site_name": "PERSEUS_+022.50_+0015.14",
+      "lat": 22.5,
+      "lon": 15.1351,
+      "similarity_score": 54.19,
+      "distance_vs_flow_a_best": 1.89
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0097.93",
+      "lat": 43.5,
+      "lon": 97.931,
+      "similarity_score": 54.04,
+      "distance_vs_flow_a_best": 1.898
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0096.55",
+      "lat": 43.5,
+      "lon": 96.5517,
+      "similarity_score": 53.95,
+      "distance_vs_flow_a_best": 1.903
+    },
+    {
+      "site_name": "PERSEUS_+042.50_+0096.45",
+      "lat": 42.5,
+      "lon": 96.4528,
+      "similarity_score": 53.81,
+      "distance_vs_flow_a_best": 1.911
+    },
+    {
+      "site_name": "PERSEUS_+010.50_+0049.32",
+      "lat": 10.5,
+      "lon": 49.322,
+      "similarity_score": 53.7,
+      "distance_vs_flow_a_best": 1.918
+    },
+    {
+      "site_name": "PERSEUS_+043.50_+0100.69",
+      "lat": 43.5,
+      "lon": 100.6897,
+      "similarity_score": 53.65,
+      "distance_vs_flow_a_best": 1.921
+    },
+    {
+      "site_name": "PERSEUS_+040.50_+0063.72",
+      "lat": 40.5,
+      "lon": 63.7226,
+      "similarity_score": 53.62,
+      "distance_vs_flow_a_best": 1.922
+    },
+    {
+      "site_name": "PERSEUS_+017.50_+0017.84",
+      "lat": 17.5,
+      "lon": 17.8426,
+      "similarity_score": 53.56,
+      "distance_vs_flow_a_best": 1.926
+    }
+  ]
+}

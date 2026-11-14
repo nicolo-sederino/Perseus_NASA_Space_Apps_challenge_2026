@@ -64,7 +64,7 @@ def main() -> None:
         const lunarPoints = {json.dumps(lunar_data.get("grid_points", []))};
         const marsPoints = {json.dumps(mars_data.get("grid_points", []))};
 
-        const map = L.map('map').setView([20, 10], 2);
+        const map = L.map('map', {{ preferCanvas: true }}).setView([20, 10], 2);
 
         // Keyless Satellite Imagery & Dark Basemap layers (work locally with zero API keys)
         const satelliteLayer = L.tileLayer(
@@ -115,7 +115,7 @@ def main() -> None:
                 let popupContent = `<div class="popup-box">
                     <h3>${{p.site_name}}</h3>
                     <b>Region / Biome:</b> ${{p.region}}<br>
-                    <b>Status:</b> <span class="badge">${{p.is_known_site ? 'Flow A Calibration Anchor' : 'New Discovery Candidate'}}</span><br>
+                    <b>Status:</b> <span class="badge">${{p.is_known_site ? 'Flow A Calibration Anchor' : 'New Discovery Candidate (outside all Flow A buffers)'}}</span><br>
                     <b>Global Rank:</b> #${{p.global_rank}}<br>
                     <b>Similarity Score:</b> <span style="color:#2563eb; font-weight:bold;">${{p.similarity_score}}%</span><br>
                     <b>Cluster Archetype:</b> ${{p.cluster_label}}<br>

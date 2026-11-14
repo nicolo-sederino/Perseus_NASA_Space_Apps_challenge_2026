@@ -1,31 +1,38 @@
 #!/usr/bin/env python3
 """
 NASA Space Apps Challenge 2026 - Team Perseus
-Flow B (Global Discovery): Planetary Analog Scoring, PCA/SVD, K-Means (K=3) & Radar Sub-Scores
+Flow B (Global Discovery): Planetary analog discovery with Flow A calibration space and Flow A site exclusion
 
 AI-Assistance Disclosure (NASA Space Apps Submission Guide):
 This script was developed with AI code-generation assistance and reviewed/validated by Team Perseus.
 
-Scientific & Mathematical Architecture (Harmonized with Flow A MATLAB Core):
-  1. Loads cached global abiotic telemetry from `flow_B_global_discovery/cache/global_abiotic_grid.csv`.
-  2. Sanitizes any corrupted/missing HTTP cells and enforces the abiotic threshold (`NDVI < 0.15`).
-  3. Standardizes features via Z-Score (and Domain-Adapted Z-Score for Mars) anchored to Flow A
-     reference catalogs (`data/Earth_Lunar_Analogs_Catalog.csv`, `data/Earth_Mars_Analogs_Catalog.csv`).
-  4. Performs SVD-based Principal Component Analysis (PCA) and K-Means clustering (K = 3) to
-     classify global abiotic terrain into 3 planetary analog archetypes.
-  5. Computes 4 subsystem fidelity sub-scores (0-100) feeding the unified 4-axis Radar Chart:
-       - Morphometry (slope safety <= 5 deg / <= 2 deg, RMS roughness, rover traverse)
-       - Thermophysics (diurnal Delta-T thermal shock, thermal inertia, cryogenic/insolation regime)
-       - Geochemistry (albedo, mafic basalt, FeO/TiO2, ferric oxide Red/Blue, evaporites, water ice)
-       - Environment (abiotic purity NDVI < 0.15, barometric pressure, UV flux, eolian deflation, soil mechanics)
-  6. Validates algorithm calibration against known Flow A analog sites and exports web-ready
-     JSON heatmaps and RFC-7946 GeoJSON discovery layers into `results/`.
+Design (harmonised with the Flow A MATLAB core, analog_site_matcher.m)
+----------------------------------------------------------------------
+CALIBRATION SPACE (invisible, never part of the search space)
+  * Feature set  = intersection of (Earth analog catalog columns, planetary target catalog columns, global grid
+                   columns) minus the identity columns, exactly like MATLAB's intersect()/setdiff().
+  * Moon:  Z-Score with mu/sigma pooled over [Earth analogs; Moon targets] (MATLAB lunar module).
+  * Mars:  Domain-Adapted Z-Score: Earth analogs standardised with Earth statistics, Mars targets with Mars
+           statistics, then concatenated (MATLAB Mars module).
+  * PCA via SVD of the standardised calibration matrix; the global grid is only PROJECTED into this space.
+  * K-Means (K = 3, seed 42) is fitted on the standardised Earth analog catalog, as in MATLAB.
+  * Metric: Euclidean distance in the full PCA space (+ cosine similarity), as in MATLAB.
+
+SEARCH SPACE
+  * Global satellite grid cells only. Every cell within `buffer_km` of ANY Flow A site is removed
+    (Haversine), so 100% of the exported discoveries are new locations. Flow A sites are never ranked.
+
+All engineering thresholds and weights live in DiscoveryParams (override with --params file.json or CLI flags).
 """
+
+from __future__ import annotations
 
 import argparse
 import json
 import logging
+import math
 import warnings
+from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -33,716 +40,560 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
-from sklearn.decomposition import PCA
+
+from perseus_common import (
+    META_COLS,
+    find_col,
+    load_flow_a_anchors,
+    min_distance_to_sites_km,
+    read_earth_catalog,
+)
 
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=RuntimeWarning)
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    datefmt="%H:%M:%S",
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", datefmt="%H:%M:%S")
 logger = logging.getLogger("PerseusFlowBDiscovery")
 
-# Canonical feature vectors aligned with Flow A physical parameterization
-LUNAR_FEATURES: List[str] = [
-    "Mean_Slope_deg",
-    "Slope_1m",
-    "Slope_5m",
-    "RMS_Roughness_m",
-    "Safe_Landing_Frac",
-    "Ultra_Flat_Frac",
-    "Diurnal_Delta_T_K",
-    "T_mean_K",
-    "T_min_K",
-    "Thermal_Inertia",
-    "Sun_Visibility_pct",
-    "Albedo",
-    "Mafic_Basalt_Idx",
-    "FeO_wt_pct",
-    "TiO2_wt_pct",
-    "Water_Ice_wt_pct",
-    "Bearing_Capacity_kPa",
-    "Soil_Cohesion_kPa",
-    "Friction_Angle_deg",
-]
-
-MARS_FEATURES: List[str] = [
-    "Altitude_m",
-    "Mean_Slope_deg",
-    "Traverse_Slope_deg",
-    "RMS_Roughness_m",
-    "Safe_Landing_Frac",
-    "Diurnal_Delta_T_K",
-    "T_mean_K",
-    "T_min_K",
-    "Thermal_Inertia",
-    "Ferric_Oxide_Idx",
-    "Salts_Evaporites_wt_pct",
-    "Mafic_Basalt_Idx",
-    "Water_Ice_wt_pct",
-    "Albedo",
-    "Surface_Pressure_mbar",
-    "UV_Flux_Index",
-    "Eolian_Deflation_Idx",
-    "NDVI",
-]
-
-# Domain-Adapted weights for Mars Z-Score (emphasizing barometric, thermal-shock, and mineralogical axes)
-MARS_DOMAIN_WEIGHTS: Dict[str, float] = {
-    "Altitude_m": 1.25,
-    "Mean_Slope_deg": 1.10,
-    "Traverse_Slope_deg": 1.00,
-    "RMS_Roughness_m": 1.00,
-    "Safe_Landing_Frac": 1.15,
-    "Diurnal_Delta_T_K": 1.35,
-    "T_mean_K": 1.20,
-    "T_min_K": 1.15,
-    "Thermal_Inertia": 1.20,
-    "Ferric_Oxide_Idx": 1.35,
-    "Salts_Evaporites_wt_pct": 1.35,
-    "Mafic_Basalt_Idx": 1.15,
-    "Water_Ice_wt_pct": 1.15,
-    "Albedo": 1.05,
-    "Surface_Pressure_mbar": 1.30,
-    "UV_Flux_Index": 1.25,
-    "Eolian_Deflation_Idx": 1.30,
-    "NDVI": 1.10,
-}
-
-# Built-in NASA planetary target profiles (used directly or merged with data/*_Targets_Catalog.csv)
-DEFAULT_LUNAR_TARGETS: Dict[str, Dict[str, float]] = {
-    "Shackleton_Rim_South_Pole": {
-        "Mean_Slope_deg": 2.2,
-        "Slope_1m": 1.5,
-        "Slope_5m": 1.9,
-        "RMS_Roughness_m": 1.1,
-        "Safe_Landing_Frac": 0.95,
-        "Ultra_Flat_Frac": 0.55,
-        "Diurnal_Delta_T_K": 42.0,
-        "T_mean_K": 215.0,
-        "T_min_K": 195.0,
-        "Thermal_Inertia": 135.0,
-        "Sun_Visibility_pct": 88.0,
-        "Albedo": 0.24,
-        "Mafic_Basalt_Idx": 35.0,
-        "FeO_wt_pct": 6.5,
-        "TiO2_wt_pct": 0.9,
-        "Water_Ice_wt_pct": 12.0,
-        "Bearing_Capacity_kPa": 4.8,
-        "Soil_Cohesion_kPa": 1.2,
-        "Friction_Angle_deg": 37.5,
-    },
-    "Mare_Tranquillitatis_Basalt": {
-        "Mean_Slope_deg": 1.5,
-        "Slope_1m": 1.0,
-        "Slope_5m": 1.3,
-        "RMS_Roughness_m": 0.8,
-        "Safe_Landing_Frac": 0.99,
-        "Ultra_Flat_Frac": 0.75,
-        "Diurnal_Delta_T_K": 45.0,
-        "T_mean_K": 265.0,
-        "T_min_K": 240.0,
-        "Thermal_Inertia": 120.0,
-        "Sun_Visibility_pct": 94.0,
-        "Albedo": 0.08,
-        "Mafic_Basalt_Idx": 86.0,
-        "FeO_wt_pct": 15.2,
-        "TiO2_wt_pct": 4.5,
-        "Water_Ice_wt_pct": 0.0,
-        "Bearing_Capacity_kPa": 4.5,
-        "Soil_Cohesion_kPa": 0.6,
-        "Friction_Angle_deg": 40.5,
-    },
-}
-
-DEFAULT_MARS_TARGETS: Dict[str, Dict[str, float]] = {
-    "Jezero_Crater_Delta_Basin": {
-        "Altitude_m": 3200.0,
-        "Mean_Slope_deg": 1.8,
-        "Traverse_Slope_deg": 2.1,
-        "RMS_Roughness_m": 1.2,
-        "Safe_Landing_Frac": 0.97,
-        "Diurnal_Delta_T_K": 41.0,
-        "T_mean_K": 255.0,
-        "T_min_K": 234.0,
-        "Thermal_Inertia": 130.0,
-        "Ferric_Oxide_Idx": 2.35,
-        "Salts_Evaporites_wt_pct": 19.5,
-        "Mafic_Basalt_Idx": 42.0,
-        "Water_Ice_wt_pct": 2.0,
-        "Albedo": 0.27,
-        "Surface_Pressure_mbar": 680.0,
-        "UV_Flux_Index": 10.5,
-        "Eolian_Deflation_Idx": 86.0,
-        "NDVI": 0.01,
-    },
-    "Gale_Crater_Aeolis_Palus": {
-        "Altitude_m": 3800.0,
-        "Mean_Slope_deg": 2.4,
-        "Traverse_Slope_deg": 2.8,
-        "RMS_Roughness_m": 1.6,
-        "Safe_Landing_Frac": 0.92,
-        "Diurnal_Delta_T_K": 39.0,
-        "T_mean_K": 250.0,
-        "T_min_K": 230.0,
-        "Thermal_Inertia": 140.0,
-        "Ferric_Oxide_Idx": 2.45,
-        "Salts_Evaporites_wt_pct": 21.0,
-        "Mafic_Basalt_Idx": 48.0,
-        "Water_Ice_wt_pct": 1.5,
-        "Albedo": 0.25,
-        "Surface_Pressure_mbar": 635.0,
-        "UV_Flux_Index": 11.2,
-        "Eolian_Deflation_Idx": 88.0,
-        "NDVI": 0.01,
-    },
+CATEGORIES = ["Morphometry", "Thermophysics", "Geochemistry", "Environment"]
+CATEGORY_KEYWORDS: Dict[str, List[str]] = {
+    "Morphometry": ["slope", "rough", "altitude", "elevation", "flat", "landing", "traverse", "boulder", "pit_", "hab_sep", "dte"],
+    "Thermophysics": ["delta_t", "t_mean", "t_min", "t_max", "thermal", "sun_vis", "temperature", "insolation"],
+    "Geochemistry": ["albedo", "mafic", "feo", "tio2", "ice", "ferric", "salt", "evapor", "mineral", "sio2", "mgo"],
 }
 
 
-def sanitize_grid_dataframe(df: pd.DataFrame) -> pd.DataFrame:
-    """Cleans missing/infinite telemetry values and enforces strict abiotic filtering on discovery cells."""
-    df = df.copy()
-    df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce")
-    df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
-    df = df.dropna(subset=["latitude", "longitude"]).reset_index(drop=True)
-
-    df["site_name"] = df["site_name"].fillna("Unknown_Site").astype(str)
-    df["country"] = df["country"].fillna("Unknown_Region").astype(str)
-    df["catalog_role"] = (
-        df.get("catalog_role", pd.Series(["discovery_candidate"] * len(df)))
-        .fillna("discovery_candidate")
-        .astype(str)
-    )
-    df["is_known_site"] = df["is_known_site"].astype(str).str.lower().isin(["true", "1", "yes"])
-
-    all_numeric_cols = sorted(set(LUNAR_FEATURES + MARS_FEATURES + ["NDWI", "NDSI", "Safe_Area_m2"]))
-    for col in all_numeric_cols:
-        if col not in df.columns:
-            df[col] = 0.0
-        df[col] = pd.to_numeric(df[col], errors="coerce")
-        df[col] = df[col].replace([np.inf, -np.inf], np.nan)
-        med = float(df[col].median()) if not df[col].dropna().empty else 0.0
-        df[col] = df[col].fillna(med)
-
-    # Enforce strict abiotic threshold (NDVI < 0.15) on discovery candidates while retaining Flow A anchors
-    abiotic_mask = df["is_known_site"] | (df["NDVI"] < 0.15)
-    df_clean = df[abiotic_mask].reset_index(drop=True)
-    return df_clean
+@dataclass
+class DiscoveryParams:
+    # --- Flow A exclusion
+    buffer_km: float = 50.0
+    # --- engineering thresholds (flags; hard filter optional)
+    max_slope_lander_deg: float = 5.0
+    max_slope_rover_deg: float = 12.0
+    min_safe_landing_frac: float = 0.50
+    dt_min_k: Optional[float] = None          # optional thermal-window on Diurnal_Delta_T_K
+    dt_max_k: Optional[float] = None
+    ndvi_max: float = 0.15
+    hard_filter: str = "none"                 # none | lander | rover
+    # --- scoring
+    radar_weight: float = 0.0                 # 0 = ranking is pure MATLAB-parity latent distance
+    radar_tau: float = 1.0                    # decay of the per-category similarity (in Z units)
+    z_clip: Optional[float] = None            # None = MATLAB parity (no clipping of grid Z-scores)
+    category_weights: Dict[str, float] = field(default_factory=lambda: {c: 1.0 for c in CATEGORIES})
+    category_overrides: Dict[str, str] = field(default_factory=dict)   # {"Feature_Name": "Geochemistry"}
+    exclude_features: List[str] = field(default_factory=list)
+    min_features: int = 8
+    max_missing_frac: float = 0.15
+    kmeans_k: int = 3
+    random_state: int = 42
 
 
-def load_planetary_targets(
-    data_dir: Path,
-    filename: str,
-    defaults: Dict[str, Dict[str, float]],
-    features: List[str],
-    ref_medians: Dict[str, float],
-) -> Dict[str, Dict[str, float]]:
-    """Loads planetary targets from Flow A CSV catalogs if present, merged with built-in NASA baselines."""
-    targets: Dict[str, Dict[str, float]] = {k: dict(v) for k, v in defaults.items()}
-    csv_path = data_dir / filename
-    if not csv_path.exists():
-        return targets
-
+# --------------------------------------------------------------------------------------------------
+# Helpers
+# --------------------------------------------------------------------------------------------------
+def fnum(x: Any, nd: int = 4) -> Optional[float]:
     try:
-        df_t = pd.read_csv(csv_path)
-        name_col = next(
-            (c for c in df_t.columns if c.lower() in ["target_name", "site_name", "name", "location"]),
-            df_t.columns[0],
+        v = float(x)
+    except (TypeError, ValueError):
+        return None
+    return round(v, nd) if math.isfinite(v) else None
+
+
+def categorize(feature: str, overrides: Dict[str, str]) -> str:
+    if feature in overrides:
+        return overrides[feature]
+    low = feature.lower()
+    for cat in ("Morphometry", "Thermophysics", "Geochemistry"):
+        if any(k in low for k in CATEGORY_KEYWORDS[cat]):
+            return cat
+    return "Environment"
+
+
+def load_params(path: Optional[str], cli: Dict[str, Any]) -> DiscoveryParams:
+    p = DiscoveryParams()
+    if path:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        valid = {f.name for f in fields(DiscoveryParams)}
+        for k, v in data.items():
+            if k in valid:
+                setattr(p, k, v)
+            else:
+                logger.warning(f"Unknown parameter in {path}: {k}")
+    for k, v in cli.items():
+        if v is not None:
+            setattr(p, k, v)
+    return p
+
+
+def sanitize_grid(df: pd.DataFrame, p: DiscoveryParams) -> pd.DataFrame:
+    df = df.copy()
+    for c in ["latitude", "longitude"]:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+    df = df.dropna(subset=["latitude", "longitude"]).reset_index(drop=True)
+    df["site_name"] = df.get("site_name", pd.Series(["Unknown"] * len(df))).fillna("Unknown").astype(str)
+    df["country"] = df.get("country", pd.Series(["Unknown"] * len(df))).fillna("Unknown").astype(str)
+    df["is_known_site"] = df["is_known_site"].astype(str).str.lower().isin(["true", "1", "yes"])
+    for c in df.columns:
+        if c not in ("site_name", "country", "catalog_role", "is_known_site"):
+            df[c] = pd.to_numeric(df[c], errors="coerce").replace([np.inf, -np.inf], np.nan)
+    if "NDVI" in df.columns:
+        df = df[df["is_known_site"] | (df["NDVI"] < p.ndvi_max)].reset_index(drop=True)
+    return df
+
+
+def numeric_feature_columns(df: pd.DataFrame) -> List[str]:
+    return [c for c in df.columns if c not in META_COLS and pd.api.types.is_numeric_dtype(df[c])]
+
+
+# --------------------------------------------------------------------------------------------------
+# Calibration space (MATLAB parity)
+# --------------------------------------------------------------------------------------------------
+@dataclass
+class CalibrationSpace:
+    planet: str
+    features: List[str]
+    method: str
+    mu_e: np.ndarray
+    sd_e: np.ndarray
+    V: np.ndarray
+    explained_pct: np.ndarray
+    weights: np.ndarray
+    Ze: np.ndarray
+    Zt: np.ndarray
+    Se: np.ndarray
+    St: np.ndarray
+    kmeans: KMeans
+    earth_names: List[str]
+    target_names: List[str]
+    earth_coords: np.ndarray
+
+
+def _zstats(X: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    mu = X.mean(axis=0)
+    sd = X.std(axis=0, ddof=1) if len(X) > 1 else np.ones(X.shape[1])
+    sd = np.where(sd == 0, 1e-5, sd)
+    return mu, sd
+
+
+def build_calibration_space(
+    planet: str, earth_df: pd.DataFrame, target_df: pd.DataFrame, grid_cols: List[str], p: DiscoveryParams
+) -> CalibrationSpace:
+    earth_cols = set(numeric_feature_columns(earth_df))
+    target_cols = set(numeric_feature_columns(target_df))
+    shared = [c for c in earth_df.columns if c in earth_cols and c in target_cols]  # MATLAB intersect(...,'stable')
+    in_grid = [c for c in shared if c in grid_cols and c not in p.exclude_features]
+    dropped = [c for c in shared if c not in in_grid]
+    if dropped:
+        logger.info(f"[{planet}] catalog features without a global satellite equivalent (not used): {dropped}")
+    if len(in_grid) < p.min_features:
+        raise SystemExit(
+            f"[{planet}] only {len(in_grid)} usable features ({in_grid}).\n"
+            f"Catalog columns: {sorted(shared)}\nGrid columns:   {sorted(grid_cols)}\n"
+            "Rename catalog columns to match the grid (or lower --min-features)."
         )
-        for _, row in df_t.iterrows():
-            t_name = str(row[name_col]).strip().replace(" ", "_")
-            vec: Dict[str, float] = {}
-            for feat in features:
-                if feat in df_t.columns and pd.notna(row[feat]):
-                    vec[feat] = float(row[feat])
-                else:
-                    vec[feat] = float(ref_medians.get(feat, 0.0))
-            targets[t_name] = vec
-    except Exception as exc:
-        logger.warning(f"Could not parse {filename} ({exc}); using built-in planetary baselines.")
+    feats = in_grid
 
-    return targets
-
-
-def compute_reference_scaler(
-    df_grid: pd.DataFrame,
-    data_dir: Path,
-    catalog_filename: str,
-    features: List[str],
-) -> Tuple[np.ndarray, np.ndarray, str]:
-    """
-    Computes Z-Score mean and std vectors anchored to Flow A curated catalogs
-    (with automatic fallback to the known Flow A calibration sites inside global_abiotic_grid.csv).
-    """
-    cat_path = data_dir / catalog_filename
-    ref_df: Optional[pd.DataFrame] = None
-    source_label = "Flow_A_Calibration_Anchors_in_Grid"
-
-    if cat_path.exists():
-        try:
-            raw_cat = pd.read_csv(cat_path)
-            overlap = [f for f in features if f in raw_cat.columns]
-            if len(overlap) >= len(features) // 2:
-                aligned = pd.DataFrame(index=raw_cat.index)
-                for f in features:
-                    if f in raw_cat.columns:
-                        aligned[f] = pd.to_numeric(raw_cat[f], errors="coerce").fillna(df_grid[f].median())
-                    else:
-                        aligned[f] = float(df_grid[f].median())
-                if len(aligned) >= 3:
-                    ref_df = aligned
-                    source_label = f"Flow_A_Catalog ({catalog_filename})"
-        except Exception:
-            ref_df = None
-
-    if ref_df is None:
-        known_subset = df_grid[df_grid["is_known_site"]]
-        ref_df = known_subset[features] if len(known_subset) >= 3 else df_grid[features]
-
-    mu = ref_df[features].mean(axis=0).to_numpy(dtype=np.float64)
-    sigma = ref_df[features].std(axis=0, ddof=0).to_numpy(dtype=np.float64)
-    grid_sigma = df_grid[features].std(axis=0, ddof=0).to_numpy(dtype=np.float64)
-    sigma = np.where(sigma < 1e-4, np.where(grid_sigma < 1e-4, 1.0, grid_sigma), sigma)
-    return mu, sigma, source_label
-
-
-def compute_lunar_subscores(df: pd.DataFrame) -> pd.DataFrame:
-    """Computes the 4 subsystem fidelity scores (0-100) for Lunar Analog Radar Charts."""
-    slope_score = 100.0 * np.exp(-((np.maximum(df["Mean_Slope_deg"] - 1.5, 0.0) / 7.5) ** 1.6))
-    rough_score = 100.0 * np.exp(-((np.maximum(df["RMS_Roughness_m"] - 0.8, 0.0) / 5.5) ** 1.4))
-    safe_frac_score = 100.0 * np.clip(df["Safe_Landing_Frac"], 0.0, 1.0)
-    morphometry = np.clip(0.45 * slope_score + 0.30 * safe_frac_score + 0.25 * rough_score, 5.0, 99.5)
-
-    dt_score = 100.0 * np.clip((df["Diurnal_Delta_T_K"] - 12.0) / 30.0, 0.0, 1.0)
-    ti_score = 100.0 * np.exp(-(((df["Thermal_Inertia"] - 130.0) / 85.0) ** 2))
-    cold_bonus = 100.0 * np.clip((290.0 - df["T_mean_K"]) / 75.0, 0.0, 1.0)
-    sun_score = np.clip(df["Sun_Visibility_pct"], 0.0, 100.0)
-    thermophysics = np.clip(0.35 * dt_score + 0.25 * ti_score + 0.25 * cold_bonus + 0.15 * sun_score, 5.0, 99.5)
-
-    mare_score = 100.0 * (
-        0.55 * np.clip(df["Mafic_Basalt_Idx"] / 85.0, 0.0, 1.0)
-        + 0.45 * np.clip((0.25 - df["Albedo"]) / 0.18, 0.0, 1.0)
-    )
-    highland_polar_score = 100.0 * (
-        0.50 * np.clip((df["Albedo"] - 0.14) / 0.22, 0.0, 1.0)
-        + 0.50 * np.clip(df["Water_Ice_wt_pct"] / 15.0 + 0.35, 0.0, 1.0)
-    )
-    geochemistry = np.clip(np.maximum(mare_score, highland_polar_score), 5.0, 99.5)
-
-    abiotic_score = 100.0 * np.clip((0.15 - df["NDVI"]) / 0.15, 0.0, 1.0)
-    bearing_score = 100.0 * np.exp(-(((df["Bearing_Capacity_kPa"] - 4.8) / 2.2) ** 2))
-    friction_score = 100.0 * np.clip((df["Friction_Angle_deg"] - 28.0) / 14.0, 0.0, 1.0)
-    environment = np.clip(0.55 * abiotic_score + 0.25 * bearing_score + 0.20 * friction_score, 5.0, 99.5)
-
-    return pd.DataFrame({
-        "Morphometry": np.round(morphometry, 2),
-        "Thermophysics": np.round(thermophysics, 2),
-        "Geochemistry": np.round(geochemistry, 2),
-        "Environment": np.round(environment, 2),
-    })
-
-
-def compute_mars_subscores(df: pd.DataFrame) -> pd.DataFrame:
-    """Computes the 4 subsystem fidelity scores (0-100) for Martian Analog Radar Charts."""
-    slope_score = 100.0 * np.exp(-((np.maximum(df["Mean_Slope_deg"] - 1.5, 0.0) / 8.5) ** 1.5))
-    safe_frac_score = 100.0 * np.clip(df["Safe_Landing_Frac"], 0.0, 1.0)
-    alt_morph_score = 100.0 * np.clip(df["Altitude_m"] / 4500.0, 0.0, 1.0)
-    morphometry = np.clip(0.45 * slope_score + 0.30 * safe_frac_score + 0.25 * alt_morph_score, 5.0, 99.5)
-
-    dt_score = 100.0 * np.clip((df["Diurnal_Delta_T_K"] - 14.0) / 28.0, 0.0, 1.0)
-    cold_score = 100.0 * np.clip((305.0 - df["T_mean_K"]) / 65.0, 0.0, 1.0)
-    ti_score = 100.0 * np.exp(-(((df["Thermal_Inertia"] - 135.0) / 85.0) ** 2))
-    thermophysics = np.clip(0.45 * dt_score + 0.30 * cold_score + 0.25 * ti_score, 5.0, 99.5)
-
-    ferric_score = 100.0 * np.clip((df["Ferric_Oxide_Idx"] - 1.1) / 1.5, 0.0, 1.0)
-    evap_score = 100.0 * np.clip(df["Salts_Evaporites_wt_pct"] / 20.0, 0.0, 1.0)
-    basalt_ice_score = 100.0 * np.clip(
-        0.65 * (df["Mafic_Basalt_Idx"] / 85.0) + 0.35 * (df["Water_Ice_wt_pct"] / 20.0), 0.0, 1.0
-    )
-    geochemistry = np.clip(0.38 * ferric_score + 0.37 * evap_score + 0.25 * basalt_ice_score, 5.0, 99.5)
-
-    press_score = 100.0 * np.clip((1013.25 - df["Surface_Pressure_mbar"]) / 500.0, 0.0, 1.0)
-    uv_score = 100.0 * np.clip((df["UV_Flux_Index"] - 3.5) / 10.5, 0.0, 1.0)
-    eolian_score = 100.0 * np.clip(df["Eolian_Deflation_Idx"] / 90.0, 0.0, 1.0)
-    abiotic_score = 100.0 * np.clip((0.15 - df["NDVI"]) / 0.15, 0.0, 1.0)
-    environment = np.clip(
-        0.28 * press_score + 0.24 * uv_score + 0.26 * eolian_score + 0.22 * abiotic_score, 5.0, 99.5
-    )
-
-    return pd.DataFrame({
-        "Morphometry": np.round(morphometry, 2),
-        "Thermophysics": np.round(thermophysics, 2),
-        "Geochemistry": np.round(geochemistry, 2),
-        "Environment": np.round(environment, 2),
-    })
-
-
-def label_clusters_scientifically(
-    df_sub: pd.DataFrame, cluster_ids: np.ndarray, planet: str
-) -> Dict[int, str]:
-    """Assigns deterministic, domain-grounded geological names to the K=3 K-Means clusters."""
-    temp = df_sub.copy()
-    temp["cid"] = cluster_ids
-    centroids = temp.groupby("cid").mean(numeric_only=True)
-    mapping: Dict[int, str] = {}
-    remaining = list(centroids.index)
+    Xe = earth_df[feats].apply(pd.to_numeric, errors="coerce")
+    Xt = target_df[feats].apply(pd.to_numeric, errors="coerce")
+    med = pd.concat([Xe, Xt]).median()
+    Xe = Xe.fillna(med).to_numpy(float)
+    Xt = Xt.fillna(med).to_numpy(float)
 
     if planet == "lunar":
-        polar_cid = int(centroids.loc[remaining, "T_mean_K"].idxmin())
-        mapping[polar_cid] = "Cluster 1: Polar Cryogenic & Volatile-Rich"
-        remaining.remove(polar_cid)
-
-        if remaining:
-            mare_cid = int(centroids.loc[remaining, "Mafic_Basalt_Idx"].idxmax())
-            mapping[mare_cid] = "Cluster 2: Mare Basaltic Plains (Low-Albedo)"
-            remaining.remove(mare_cid)
-
-        for cid in remaining:
-            mapping[int(cid)] = "Cluster 3: Highland Anorthositic & Regolith Terrain"
+        mu, sd = _zstats(np.vstack([Xe, Xt]))
+        mu_e, sd_e, mu_t, sd_t = mu, sd, mu, sd
+        method = "Standard Z-Score (Earth analogs + Moon targets pooled, MATLAB parity)"
     else:
-        alt_cid = int(centroids.loc[remaining, "Altitude_m"].idxmax())
-        mapping[alt_cid] = "Cluster 1: High-Altitude Radiative & Barometric Stress"
-        remaining.remove(alt_cid)
+        mu_e, sd_e = _zstats(Xe)
+        if len(Xt) >= 3:
+            mu_t, sd_t = _zstats(Xt)
+            method = "Domain-Adapted Z-Score (Earth stats for Earth, Mars stats for Mars targets, MATLAB parity)"
+        else:
+            mu_t, sd_t = mu_e, sd_e
+            method = "Z-Score with Earth statistics (fewer than 3 Mars targets: domain adaptation not estimable)"
+    w = np.array([p.category_weights.get(categorize(f, p.category_overrides), 1.0) for f in feats], float)
+    Ze = ((Xe - mu_e) / sd_e) * w
+    Zt = ((Xt - mu_t) / sd_t) * w
 
-        if remaining:
-            evap_cid = int(centroids.loc[remaining, "Salts_Evaporites_wt_pct"].idxmax())
-            mapping[evap_cid] = "Cluster 2: Hyperarid Evaporitic Playas & Saline Basins"
-            remaining.remove(evap_cid)
+    ref = np.vstack([Ze, Zt])
+    _, S, Vt = np.linalg.svd(ref - ref.mean(axis=0), full_matrices=False)
+    keep = S > 1e-9 * S.max()
+    V = Vt.T[:, keep]
+    eig = (S[keep] ** 2) / max(len(ref) - 1, 1)
+    explained = 100.0 * eig / eig.sum()
 
-        for cid in remaining:
-            mapping[int(cid)] = "Cluster 3: Basaltic Regolith & Eolian Deflation Plains"
+    km = KMeans(n_clusters=min(p.kmeans_k, len(Ze)), random_state=p.random_state, n_init=20).fit(Ze)
+    name_c = find_col(earth_df, ["Site_Name"]) or earth_df.columns[0]
+    tname_c = find_col(target_df, ["Site_Name", "Target_Name", "Name"]) or target_df.columns[0]
+    lat_c, lon_c = find_col(earth_df, ["Latitude"]), find_col(earth_df, ["Longitude"])
+    return CalibrationSpace(
+        planet=planet, features=feats, method=method, mu_e=mu_e, sd_e=sd_e, V=V, explained_pct=explained,
+        weights=w, Ze=Ze, Zt=Zt, Se=Ze @ V, St=Zt @ V, kmeans=km,
+        earth_names=earth_df[name_c].astype(str).tolist(),
+        target_names=target_df[tname_c].astype(str).str.strip().str.replace(" ", "_").tolist(),
+        earth_coords=earth_df[[lat_c, lon_c]].to_numpy(float) if lat_c and lon_c else np.zeros((len(Ze), 2)),
+    )
 
-    return mapping
+
+def cluster_labels(space: CalibrationSpace) -> Dict[int, str]:
+    """Data-driven archetype names: the two features that deviate most from the catalog mean in each centroid."""
+    out: Dict[int, str] = {}
+    for cid, cen in enumerate(space.kmeans.cluster_centers_):
+        idx = np.argsort(-np.abs(cen))[:2]
+        desc = ", ".join(f"{'high' if cen[i] > 0 else 'low'} {space.features[i].replace('_', ' ')}" for i in idx)
+        out[cid] = f"Archetype {cid + 1}: {desc}"
+    return out
 
 
-def run_planetary_discovery(
-    df_grid: pd.DataFrame,
-    planet: str,
-    features: List[str],
-    target_name: str,
-    available_targets: List[str],
-    target_profile: Dict[str, float],
-    mu: np.ndarray,
-    sigma: np.ndarray,
-    scaler_source: str,
-    top_n: int = 25,
-) -> Tuple[Dict[str, Any], Dict[str, Any], pd.DataFrame]:
-    """Executes Z-Score standardization, PCA/SVD, K-Means (K=3), Radar sub-scores, and target matching."""
-    X_raw = df_grid[features].to_numpy(dtype=np.float64)
-    Z = (X_raw - mu) / sigma
+# --------------------------------------------------------------------------------------------------
+# Candidate scoring
+# --------------------------------------------------------------------------------------------------
+def prepare_candidates(cand: pd.DataFrame, feats: List[str], p: DiscoveryParams) -> pd.DataFrame:
+    """Drops cells with too many missing feature values and imputes the remainder with the pool median."""
+    miss = cand[feats].isna().mean(axis=1)
+    cand = cand[miss <= p.max_missing_frac].copy()
+    cand["Imputed_Feature_Count"] = cand[feats].isna().sum(axis=1).astype(int)
+    cand[feats] = cand[feats].fillna(cand[feats].median())
+    return cand.reset_index(drop=True)
 
-    t_raw = np.array([float(target_profile.get(f, mu[i])) for i, f in enumerate(features)], dtype=np.float64)
-    z_target = (t_raw - mu) / sigma
 
-    if planet == "mars":
-        w = np.array([MARS_DOMAIN_WEIGHTS.get(f, 1.0) for f in features], dtype=np.float64)
-        Z = Z * w
-        z_target = z_target * w
+def add_engineering_flags(df: pd.DataFrame, p: DiscoveryParams) -> pd.DataFrame:
+    df = df.copy()
+    ok_l = pd.Series(True, index=df.index)
+    ok_r = pd.Series(True, index=df.index)
+    if "Mean_Slope_deg" in df.columns:
+        ok_l &= df["Mean_Slope_deg"] <= p.max_slope_lander_deg
+    if "Safe_Landing_Frac" in df.columns:
+        ok_l &= df["Safe_Landing_Frac"] >= p.min_safe_landing_frac
+    if "Traverse_Slope_deg" in df.columns:
+        ok_r &= df["Traverse_Slope_deg"] <= p.max_slope_rover_deg
+    elif "Mean_Slope_deg" in df.columns:
+        ok_r &= df["Mean_Slope_deg"] <= p.max_slope_rover_deg
+    if "Diurnal_Delta_T_K" in df.columns:
+        if p.dt_min_k is not None:
+            ok_l &= df["Diurnal_Delta_T_K"] >= p.dt_min_k
+            ok_r &= df["Diurnal_Delta_T_K"] >= p.dt_min_k
+        if p.dt_max_k is not None:
+            ok_l &= df["Diurnal_Delta_T_K"] <= p.dt_max_k
+            ok_r &= df["Diurnal_Delta_T_K"] <= p.dt_max_k
+    df["Lander_Suitable"] = ok_l
+    df["Rover_Suitable"] = ok_r
+    return df
 
-    Z = np.clip(Z, -5.0, 5.0)
-    z_target = np.clip(z_target, -5.0, 5.0)
 
-    n_comp = min(6, Z.shape[1], max(2, Z.shape[0] - 1))
-    pca = PCA(n_components=n_comp, svd_solver="full", random_state=42)
-    Z_pca = pca.fit_transform(Z)
-    target_pca = pca.transform(z_target.reshape(1, -1))[0]
+def score_candidates(space: CalibrationSpace, cand: pd.DataFrame, t_idx: int, p: DiscoveryParams,
+                     labels: Dict[int, str]) -> Tuple[pd.DataFrame, Dict[str, float]]:
+    feats = space.features
+    Zg = ((cand[feats].to_numpy(float) - space.mu_e) / space.sd_e) * space.weights
+    if p.z_clip is not None:
+        Zg = np.clip(Zg, -p.z_clip, p.z_clip)
+    Sg = Zg @ space.V
+    st = space.St[t_idx]
+    zt = space.Zt[t_idx]
 
-    n_clusters = min(3, len(df_grid))
-    kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=20)
-    cluster_ids = kmeans.fit_predict(Z_pca)
-    cluster_names = label_clusters_scientifically(df_grid, cluster_ids, planet)
+    d = np.linalg.norm(Sg - st, axis=1)
+    cos = (Sg @ st) / (np.linalg.norm(Sg, axis=1) * np.linalg.norm(st) + 1e-12)
+    d_cat = np.linalg.norm(space.Se - st, axis=1)          # Flow A analogs -> target (MATLAB 'dist')
+    d_best, d_med = float(d_cat.min()), float(np.median(d_cat))
+    latent_score = 100.0 * np.exp(-math.log(2.0) * d / max(d_med, 1e-9))   # 50 = as far as the median Flow A analog
 
-    var_weights = np.sqrt(np.maximum(pca.explained_variance_ratio_, 0.02))
-    latent_dist = np.linalg.norm((Z_pca - target_pca) * var_weights, axis=1)
-    latent_proximity_score = 100.0 * np.exp(-0.42 * latent_dist)
+    res = cand.copy()
+    res["Latent_Distance"] = d
+    res["Cosine_Similarity"] = cos
+    res["Distance_vs_FlowA_Best"] = d / max(d_best, 1e-9)    # < 1 : closer than ANY catalogued analog
+    cats = [categorize(f, p.category_overrides) for f in feats]
+    diffs = np.abs(Zg - zt)
+    radar = {}
+    for c in CATEGORIES:
+        cols = [i for i, cc in enumerate(cats) if cc == c]
+        radar[c] = 100.0 * np.exp(-diffs[:, cols].mean(axis=1) / p.radar_tau) if cols else np.full(len(res), np.nan)
+        res[f"{c}_Score"] = radar[c]
+    radar_mean = np.nanmean(np.vstack([radar[c] for c in CATEGORIES]), axis=0)
+    res["Similarity_Score_pct"] = np.clip((1.0 - p.radar_weight) * latent_score + p.radar_weight * radar_mean, 0.0, 100.0)
+    clu = space.kmeans.predict(Zg)
+    res["Cluster_ID"] = clu
+    res["Cluster_Label"] = [labels.get(int(c), f"Archetype {int(c) + 1}") for c in clu]
+    res["PC1"] = Sg[:, 0]
+    res["PC2"] = Sg[:, 1] if Sg.shape[1] > 1 else 0.0
 
-    subscores_df = compute_lunar_subscores(df_grid) if planet == "lunar" else compute_mars_subscores(df_grid)
-    radar_mean = subscores_df.mean(axis=1).to_numpy(dtype=np.float64)
+    res = res.sort_values("Similarity_Score_pct", ascending=False).reset_index(drop=True)
+    res["Global_Rank"] = np.arange(1, len(res) + 1)
+    return res, {"d_best_flow_a": d_best, "d_median_flow_a": d_med}
 
-    similarity_score = np.round(np.clip(0.65 * radar_mean + 0.35 * latent_proximity_score, 1.0, 99.5), 2)
 
-    res_df = df_grid.copy()
-    res_df["Morphometry_Score"] = subscores_df["Morphometry"]
-    res_df["Thermophysics_Score"] = subscores_df["Thermophysics"]
-    res_df["Geochemistry_Score"] = subscores_df["Geochemistry"]
-    res_df["Environment_Score"] = subscores_df["Environment"]
-    res_df["Latent_Distance"] = np.round(latent_dist, 4)
-    res_df["Similarity_Score_pct"] = similarity_score
-    res_df["Cluster_ID"] = cluster_ids
-    res_df["Cluster_Label"] = [cluster_names[int(c)] for c in cluster_ids]
-    res_df["PC1"] = np.round(Z_pca[:, 0], 4)
-    res_df["PC2"] = np.round(Z_pca[:, 1], 4)
-
-    res_df = res_df.sort_values(by="Similarity_Score_pct", ascending=False).reset_index(drop=True)
-    res_df["Global_Rank"] = np.arange(1, len(res_df) + 1)
-
-    known_df = res_df[res_df["is_known_site"]].copy()
-    calibration_records = []
-    for _, row in known_df.iterrows():
-        calibration_records.append({
-            "site_name": row["site_name"],
-            "catalog_role": row["catalog_role"],
-            "global_rank": int(row["Global_Rank"]),
-            "similarity_score_pct": float(row["Similarity_Score_pct"]),
-            "cluster_label": row["Cluster_Label"],
-            "radar_subscores": {
-                "Morphometry": float(row["Morphometry_Score"]),
-                "Thermophysics": float(row["Thermophysics_Score"]),
-                "Geochemistry": float(row["Geochemistry_Score"]),
-                "Environment": float(row["Environment_Score"]),
-            },
+# --------------------------------------------------------------------------------------------------
+# Parity validation: satellite-derived anchors vs curated Flow A catalog values
+# --------------------------------------------------------------------------------------------------
+def feature_parity_report(grid_anchors: pd.DataFrame, earth_df: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    lat_c, lon_c = find_col(earth_df, ["Latitude"]), find_col(earth_df, ["Longitude"])
+    if grid_anchors.empty or not lat_c or not lon_c:
+        return pd.DataFrame()
+    pairs = []
+    for i, r in earth_df.iterrows():
+        m = grid_anchors[
+            ((grid_anchors["latitude"] - float(r[lat_c])).abs() < 0.08)
+            & ((grid_anchors["longitude"] - float(r[lon_c])).abs() < 0.08)
+        ]
+        if not m.empty:
+            pairs.append((i, m.index[0]))
+    if len(pairs) < 3:
+        return pd.DataFrame()
+    shared = [c for c in numeric_feature_columns(earth_df) if c in grid_anchors.columns]
+    for c in shared:
+        a = pd.to_numeric(earth_df.loc[[i for i, _ in pairs], c], errors="coerce").to_numpy(float)
+        b = pd.to_numeric(grid_anchors.loc[[j for _, j in pairs], c], errors="coerce").to_numpy(float)
+        ok = np.isfinite(a) & np.isfinite(b)
+        if ok.sum() < 3:
+            continue
+        sa, sb = pd.Series(a[ok]), pd.Series(b[ok])
+        rows.append({
+            "feature": c, "n_sites": int(ok.sum()),
+            "pearson_r": fnum(sa.corr(sb), 3), "spearman_rho": fnum(sa.corr(sb, method="spearman"), 3),
+            "mean_abs_error": fnum(np.mean(np.abs(a[ok] - b[ok])), 4),
+            "bias_satellite_minus_catalog": fnum(np.mean(b[ok] - a[ok]), 4),
+            "catalog_mean": fnum(a[ok].mean(), 4), "satellite_mean": fnum(b[ok].mean(), 4),
         })
+    return pd.DataFrame(rows)
 
-    heatmap_points = []
-    for _, row in res_df.iterrows():
-        heatmap_points.append({
-            "site_name": row["site_name"],
-            "region": row["country"],
-            "lat": round(float(row["latitude"]), 4),
-            "lon": round(float(row["longitude"]), 4),
-            "is_known_site": bool(row["is_known_site"]),
-            "global_rank": int(row["Global_Rank"]),
-            "similarity_score": float(row["Similarity_Score_pct"]),
-            "cluster_id": int(row["Cluster_ID"]),
-            "cluster_label": row["Cluster_Label"],
-            "pc1": float(row["PC1"]),
-            "pc2": float(row["PC2"]),
-            "radar_subscores": {
-                "Morphometry": float(row["Morphometry_Score"]),
-                "Thermophysics": float(row["Thermophysics_Score"]),
-                "Geochemistry": float(row["Geochemistry_Score"]),
-                "Environment": float(row["Environment_Score"]),
-            },
-            "telemetry": {
-                "Altitude_m": float(row["Altitude_m"]),
-                "Mean_Slope_deg": float(row["Mean_Slope_deg"]),
-                "Diurnal_Delta_T_K": float(row["Diurnal_Delta_T_K"]),
-                "T_mean_K": float(row["T_mean_K"]),
-                "Albedo": float(row["Albedo"]),
-                "Ferric_Oxide_Idx": float(row["Ferric_Oxide_Idx"]),
-                "Mafic_Basalt_Idx": float(row["Mafic_Basalt_Idx"]),
-                "Salts_Evaporites_wt_pct": float(row["Salts_Evaporites_wt_pct"]),
-                "Surface_Pressure_mbar": float(row["Surface_Pressure_mbar"]),
-                "UV_Flux_Index": float(row["UV_Flux_Index"]),
-                "NDVI": float(row["NDVI"]),
-            },
-        })
 
-    heatmap_json = {
-        "metadata": {
-            "project": "NASA Space Apps Challenge 2026 - Team Perseus",
-            "flow": f"Flow_B_{planet.capitalize()}",
-            "planetary_body": planet.capitalize(),
-            "reference_target": target_name,
-            "available_targets": available_targets,
-            "standardization_method": "Domain-Adapted Z-Score" if planet == "mars" else "Standard Z-Score",
-            "scaler_calibration_source": scaler_source,
-            "pca_explained_variance_ratio": [round(float(v), 4) for v in pca.explained_variance_ratio_],
-            "kmeans_k": n_clusters,
-            "total_evaluated_sites": len(res_df),
-            "known_calibration_sites_count": int(res_df["is_known_site"].sum()),
-            "new_discovery_candidates_count": int((~res_df["is_known_site"]).sum()),
-            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        },
-        "calibration_validation": calibration_records,
-        "grid_points": heatmap_points,
+# --------------------------------------------------------------------------------------------------
+# Export
+# --------------------------------------------------------------------------------------------------
+def export_planet(planet: str, space: CalibrationSpace, res: pd.DataFrame, target_name: str, available: List[str],
+                  ref_stats: Dict[str, float], p: DiscoveryParams, anchors_scored: List[Dict[str, Any]],
+                  top_n: int, max_map_points: int, results_dir: Path, exclusion_info: Dict[str, Any]) -> None:
+    n_known_in_output = 0  # by construction, Flow A sites are never in the search space
+    meta = {
+        "project": "NASA Space Apps Challenge 2026 - Team Perseus",
+        "flow": f"Flow_B_{planet.capitalize()}",
+        "planetary_body": planet.capitalize(),
+        "reference_target": target_name,
+        "available_targets": available,
+        "standardization_method": space.method,
+        "calibration_features": space.features,
+        "calibration_catalog_rows": int(len(space.Ze)),
+        "pca_explained_variance_pct": [round(float(v), 2) for v in space.explained_pct],
+        "kmeans_k": int(space.kmeans.n_clusters),
+        "flow_a_exclusion_buffer_km": p.buffer_km,
+        "flow_a_sites_excluded_from_search": exclusion_info["n_anchors"],
+        "flow_a_sites_in_results": n_known_in_output,
+        "total_evaluated_sites": int(len(res)),
+        "new_discovery_candidates_count": int(len(res)),
+        "ranking_metric": "Euclidean distance in PCA space to the target (MATLAB parity)"
+                          + ("" if p.radar_weight == 0 else f" blended with radar sub-scores (weight {p.radar_weight})"),
+        "similarity_score_definition": "100*exp(-ln2*d/d_median); 50 = as far as the median Flow A analog",
+        "flow_a_reference_distance_best": round(ref_stats["d_best_flow_a"], 4),
+        "flow_a_reference_distance_median": round(ref_stats["d_median_flow_a"], 4),
+        "engineering_parameters": {k: v for k, v in asdict(p).items() if k not in ("category_weights", "category_overrides")},
+        "category_weights": p.category_weights,
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
     }
 
-    new_discoveries = res_df[~res_df["is_known_site"]].head(top_n).copy()
-    new_discoveries["discovery_rank"] = np.arange(1, len(new_discoveries) + 1)
+    def point(row: pd.Series) -> Dict[str, Any]:
+        tele = {f: fnum(row[f], 3) for f in space.features}
+        for extra in ("Altitude_m", "Mean_Slope_deg", "Diurnal_Delta_T_K"):
+            if extra in row.index:
+                tele[extra] = fnum(row[extra], 3)
+        return {
+            "site_name": row["site_name"], "region": row["country"],
+            "lat": round(float(row["latitude"]), 4), "lon": round(float(row["longitude"]), 4),
+            "is_known_site": False,
+            "global_rank": int(row["Global_Rank"]),
+            "similarity_score": fnum(row["Similarity_Score_pct"], 2),
+            "latent_distance": fnum(row["Latent_Distance"], 4),
+            "cosine_similarity": fnum(row["Cosine_Similarity"], 4),
+            "distance_vs_flow_a_best": fnum(row["Distance_vs_FlowA_Best"], 3),
+            "cluster_id": int(row["Cluster_ID"]), "cluster_label": row["Cluster_Label"],
+            "pc1": fnum(row["PC1"], 4), "pc2": fnum(row["PC2"], 4),
+            "radar_subscores": {c: fnum(row[f"{c}_Score"], 2) for c in CATEGORIES},
+            "engineering": {
+                "lander_suitable": bool(row["Lander_Suitable"]), "rover_suitable": bool(row["Rover_Suitable"]),
+                "imputed_feature_count": int(row["Imputed_Feature_Count"]),
+                "nearest_flow_a_site_km": fnum(row["Nearest_FlowA_km"], 1),
+            },
+            "telemetry": tele,
+        }
 
-    known_export = res_df[res_df["is_known_site"]].copy()
-    known_export["discovery_rank"] = 0
+    map_df = res.head(max_map_points)
+    heat = {"metadata": meta, "calibration_validation": anchors_scored, "grid_points": [point(r) for _, r in map_df.iterrows()]}
+    (results_dir / f"flowB_{planet}_heatmap.json").write_text(json.dumps(heat, indent=2), encoding="utf-8")
 
-    combined_geo_df = pd.concat([new_discoveries, known_export], ignore_index=True)
-    features_geo: List[Dict[str, Any]] = []
-    for _, row in combined_geo_df.iterrows():
-        features_geo.append({
+    feats_geo = []
+    for _, r in res.head(top_n).iterrows():
+        pt = point(r)
+        feats_geo.append({
             "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [round(float(row["longitude"]), 4), round(float(row["latitude"]), 4)],
-            },
+            "geometry": {"type": "Point", "coordinates": [pt["lon"], pt["lat"]]},
             "properties": {
-                "site_name": row["site_name"],
-                "region": row["country"],
-                "planetary_body": planet.capitalize(),
-                "reference_target": target_name,
-                "is_known_site": bool(row["is_known_site"]),
-                "catalog_role": str(row["catalog_role"]),
-                "discovery_rank": int(row["discovery_rank"]),
-                "global_rank": int(row["Global_Rank"]),
-                "similarity_score_pct": float(row["Similarity_Score_pct"]),
-                "latent_distance": float(row["Latent_Distance"]),
-                "cluster_id": int(row["Cluster_ID"]),
-                "cluster_label": row["Cluster_Label"],
-                "radar_subscores": {
-                    "Morphometry": float(row["Morphometry_Score"]),
-                    "Thermophysics": float(row["Thermophysics_Score"]),
-                    "Geochemistry": float(row["Geochemistry_Score"]),
-                    "Environment": float(row["Environment_Score"]),
-                },
-                "engineering_metrics": {
-                    "Altitude_m": float(row["Altitude_m"]),
-                    "Mean_Slope_deg": float(row["Mean_Slope_deg"]),
-                    "Safe_Landing_Frac": float(row["Safe_Landing_Frac"]),
-                    "RMS_Roughness_m": float(row["RMS_Roughness_m"]),
-                    "Diurnal_Delta_T_K": float(row["Diurnal_Delta_T_K"]),
-                    "T_mean_K": float(row["T_mean_K"]),
-                    "Thermal_Inertia": float(row["Thermal_Inertia"]),
-                    "Albedo": float(row["Albedo"]),
-                    "Mafic_Basalt_Idx": float(row["Mafic_Basalt_Idx"]),
-                    "Ferric_Oxide_Idx": float(row["Ferric_Oxide_Idx"]),
-                    "Salts_Evaporites_wt_pct": float(row["Salts_Evaporites_wt_pct"]),
-                    "Water_Ice_wt_pct": float(row["Water_Ice_wt_pct"]),
-                    "Surface_Pressure_mbar": float(row["Surface_Pressure_mbar"]),
-                    "UV_Flux_Index": float(row["UV_Flux_Index"]),
-                    "Eolian_Deflation_Idx": float(row["Eolian_Deflation_Idx"]),
-                    "NDVI": float(row["NDVI"]),
-                },
+                "site_name": pt["site_name"], "region": pt["region"], "planetary_body": planet.capitalize(),
+                "reference_target": target_name, "is_known_site": False, "discovery_rank": pt["global_rank"],
+                **{k: pt[k] for k in ("similarity_score", "latent_distance", "cosine_similarity",
+                                      "distance_vs_flow_a_best", "cluster_id", "cluster_label",
+                                      "radar_subscores", "engineering")},
+                "engineering_metrics": pt["telemetry"],
             },
         })
-
-    geojson_obj = {
-        "type": "FeatureCollection",
-        "metadata": heatmap_json["metadata"],
-        "features": features_geo,
-    }
-
-    return heatmap_json, geojson_obj, res_df
+    geo = {"type": "FeatureCollection", "metadata": meta, "features": feats_geo}
+    (results_dir / f"flowB_{planet}_discoveries.geojson").write_text(json.dumps(geo, indent=2), encoding="utf-8")
 
 
+def load_targets(data_dir: Path, fname: str) -> pd.DataFrame:
+    path = data_dir / fname
+    if not path.exists():
+        raise FileNotFoundError(f"Missing Flow A target catalog: {path}")
+    df = pd.read_csv(path)
+    name_c = find_col(df, ["Site_Name", "Target_Name", "Name"]) or df.columns[0]
+    df = df.rename(columns={name_c: "Site_Name"}) if name_c != "Site_Name" else df
+    return df
+
+
+def run_planet(planet: str, grid: pd.DataFrame, candidates: pd.DataFrame, anchors_in_grid: pd.DataFrame,
+               data_dir: Path, results_dir: Path, target_arg: Optional[str], p: DiscoveryParams, top_n: int,
+               max_map_points: int, all_targets: bool, exclusion_info: Dict[str, Any]) -> pd.DataFrame:
+    earth_file = "Earth_Lunar_Analogs_Catalog.csv" if planet == "lunar" else "Earth_Mars_Analogs_Catalog.csv"
+    tgt_file = "Lunar_Targets_Catalog.csv" if planet == "lunar" else "Mars_Targets_Catalog.csv"
+    earth_df = read_earth_catalog(data_dir / earth_file)
+    target_df = load_targets(data_dir, tgt_file)
+
+    space = build_calibration_space(planet, earth_df, target_df, list(grid.columns), p)
+    labels = cluster_labels(space)
+    logger.info(f"[{planet}] calibration space: {len(space.features)} features | {len(earth_df)} Earth analogs + "
+                f"{len(target_df)} targets | PCA comps {len(space.explained_pct)} | {space.method}")
+
+    cand = prepare_candidates(candidates, space.features, p)
+    cand = add_engineering_flags(cand, p)
+    if p.hard_filter == "lander":
+        cand = cand[cand["Lander_Suitable"]].reset_index(drop=True)
+    elif p.hard_filter == "rover":
+        cand = cand[cand["Rover_Suitable"]].reset_index(drop=True)
+    logger.info(f"[{planet}] {len(cand)} discovery cells enter scoring (hard_filter={p.hard_filter})")
+    if cand.empty:
+        raise SystemExit(f"[{planet}] no candidate cells left after filtering; relax the thresholds.")
+
+    t_names = space.target_names
+    chosen = target_arg.replace(" ", "_") if target_arg else t_names[0]
+    if chosen not in t_names:
+        logger.warning(f"[{planet}] target '{chosen}' not found, using '{t_names[0]}'. Available: {t_names}")
+        chosen = t_names[0]
+    t_idx = t_names.index(chosen)
+
+    res, ref_stats = score_candidates(space, cand, t_idx, p, labels)
+
+    # Validation: how do the satellite-extracted Flow A anchors score with the SAME machinery? (never exported as results)
+    anchors_scored: List[Dict[str, Any]] = []
+    if not anchors_in_grid.empty:
+        a = prepare_candidates(anchors_in_grid.copy(), space.features, DiscoveryParams(max_missing_frac=1.0))
+        a = add_engineering_flags(a, p)
+        a_res, _ = score_candidates(space, a, t_idx, p, labels)
+        for _, r in a_res.iterrows():
+            anchors_scored.append({
+                "site_name": r["site_name"], "similarity_score_pct": fnum(r["Similarity_Score_pct"], 2),
+                "distance_vs_flow_a_best": fnum(r["Distance_vs_FlowA_Best"], 3), "cluster_label": r["Cluster_Label"],
+            })
+    export_planet(planet, space, res, chosen, t_names, ref_stats, p, anchors_scored, top_n, max_map_points,
+                  results_dir, exclusion_info)
+
+    parity = feature_parity_report(anchors_in_grid.reset_index(drop=True), earth_df)
+    if not parity.empty:
+        parity.to_csv(results_dir / f"flowB_{planet}_feature_parity_report.csv", index=False)
+        logger.info(f"[{planet}] satellite-vs-catalog parity (median Spearman rho over features): "
+                    f"{parity['spearman_rho'].median():.2f}")
+
+    top = res.head(3)
+    for _, r in top.iterrows():
+        logger.info(f"[{planet}] top new analog for {chosen}: {r['site_name']} ({r['country']}) | "
+                    f"score {r['Similarity_Score_pct']:.1f}% | d/d_best_FlowA = {r['Distance_vs_FlowA_Best']:.2f}")
+
+    if all_targets:
+        compact: Dict[str, Any] = {}
+        for ti, tn in enumerate(t_names):
+            rr, _ = score_candidates(space, cand, ti, p, labels)
+            compact[tn] = [
+                {"site_name": r["site_name"], "lat": round(float(r["latitude"]), 4), "lon": round(float(r["longitude"]), 4),
+                 "similarity_score": fnum(r["Similarity_Score_pct"], 2), "distance_vs_flow_a_best": fnum(r["Distance_vs_FlowA_Best"], 3)}
+                for _, r in rr.head(top_n).iterrows()
+            ]
+        (results_dir / f"flowB_{planet}_all_targets_top{top_n}.json").write_text(json.dumps(compact, indent=2), encoding="utf-8")
+    return res
+
+
+# --------------------------------------------------------------------------------------------------
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Team Perseus - Flow B Planetary Analog Discovery (Lunar & Mars)"
-    )
-    parser.add_argument(
-        "--lunar-target",
-        type=str,
-        default="Shackleton_Rim_South_Pole",
-        help="Target lunar site name from Lunar_Targets_Catalog.csv or built-in profiles",
-    )
-    parser.add_argument(
-        "--mars-target",
-        type=str,
-        default="Jezero_Crater_Delta_Basin",
-        help="Target Martian site name from Mars_Targets_Catalog.csv or built-in profiles",
-    )
-    parser.add_argument(
-        "--top-n",
-        type=int,
-        default=25,
-        help="Number of top new analog discoveries to export in GeoJSON layers",
-    )
-    args = parser.parse_args()
+    ap = argparse.ArgumentParser(description="Team Perseus - Flow B Planetary Analog Discovery (Lunar & Mars)")
+    ap.add_argument("--lunar-target", default=None)
+    ap.add_argument("--mars-target", default=None)
+    ap.add_argument("--top-n", type=int, default=25)
+    ap.add_argument("--max-map-points", type=int, default=3000, help="points written to the heatmap JSON (best first)")
+    ap.add_argument("--all-targets", action="store_true", help="also export the top-N for every catalog target")
+    ap.add_argument("--params", default=None, help="JSON file overriding DiscoveryParams")
+    ap.add_argument("--write-default-params", default=None, metavar="FILE", help="write the default parameter JSON and exit")
+    ap.add_argument("--grid", default=None, help="path to the extractor CSV (default: cache/global_abiotic_grid.csv)")
+    ap.add_argument("--buffer-km", type=float, default=None)
+    ap.add_argument("--max-slope-lander", type=float, default=None, dest="max_slope_lander_deg")
+    ap.add_argument("--max-slope-rover", type=float, default=None, dest="max_slope_rover_deg")
+    ap.add_argument("--min-safe-frac", type=float, default=None, dest="min_safe_landing_frac")
+    ap.add_argument("--dt-min", type=float, default=None, dest="dt_min_k")
+    ap.add_argument("--dt-max", type=float, default=None, dest="dt_max_k")
+    ap.add_argument("--hard-filter", choices=["none", "lander", "rover"], default=None)
+    ap.add_argument("--radar-weight", type=float, default=None)
+    ap.add_argument("--min-features", type=int, default=None)
+    args = ap.parse_args()
+
+    if args.write_default_params:
+        Path(args.write_default_params).write_text(json.dumps(asdict(DiscoveryParams()), indent=2), encoding="utf-8")
+        print(f"Default parameters written to {args.write_default_params}")
+        return
+
+    cli = {k: getattr(args, k) for k in ("buffer_km", "max_slope_lander_deg", "max_slope_rover_deg",
+                                         "min_safe_landing_frac", "dt_min_k", "dt_max_k", "hard_filter",
+                                         "radar_weight", "min_features")}
+    p = load_params(args.params, cli)
 
     script_dir = Path(__file__).resolve().parent
     repo_root = script_dir.parent
-    cache_csv = script_dir / "cache" / "global_abiotic_grid.csv"
     data_dir = repo_root / "data"
     results_dir = repo_root / "results"
     results_dir.mkdir(parents=True, exist_ok=True)
+    grid_csv = Path(args.grid) if args.grid else script_dir / "cache" / "global_abiotic_grid.csv"
+    if not grid_csv.exists():
+        raise FileNotFoundError(f"{grid_csv} not found. Run gee_global_extract.py first.")
 
-    if not cache_csv.exists():
-        raise FileNotFoundError(
-            f"Cached abiotic grid not found at {cache_csv}. Run extract_global_grid.py first."
-        )
+    logger.info("=" * 78)
+    logger.info("  NASA SPACE APPS 2026 - TEAM PERSEUS | FLOW B GLOBAL ANALOG DISCOVERY")
+    logger.info("=" * 78)
 
-    logger.info("==========================================================================")
-    logger.info("  NASA SPACE APPS 2026 - TEAM PERSEUS | FLOW B GLOBAL ANALOG DISCOVERY    ")
-    logger.info("==========================================================================")
+    grid = sanitize_grid(pd.read_csv(grid_csv), p)
+    anchors = load_flow_a_anchors(data_dir)
 
-    raw_df = pd.read_csv(cache_csv)
-    df_grid = sanitize_grid_dataframe(raw_df)
-    logger.info(
-        f"Loaded {len(df_grid)} clean abiotic cells "
-        f"({int(df_grid['is_known_site'].sum())} Flow A anchors + "
-        f"{int((~df_grid['is_known_site']).sum())} discovery candidates)."
+    # ---- Flow A exclusion: the buffer is applied HERE too, independently of the extractor
+    grid["Nearest_FlowA_km"] = min_distance_to_sites_km(
+        grid.latitude.values, grid.longitude.values, anchors.latitude.values, anchors.longitude.values
     )
+    in_grid_anchor = grid["is_known_site"]
+    anchors_in_grid = grid[in_grid_anchor].copy()
+    pool = grid[~in_grid_anchor]
+    candidates = pool[pool["Nearest_FlowA_km"] >= p.buffer_km].copy().reset_index(drop=True)
+    n_excl = int(len(pool) - len(candidates))
+    assert (candidates["Nearest_FlowA_km"] >= p.buffer_km).all()
+    exclusion_info = {
+        "buffer_km": p.buffer_km, "n_anchors": int(len(anchors)), "cells_removed_by_buffer": n_excl,
+        "candidates_remaining": int(len(candidates)),
+        "min_distance_to_any_flow_a_site_km_in_search_space": fnum(candidates["Nearest_FlowA_km"].min(), 2),
+        "flow_a_sites": anchors[["site_name", "latitude", "longitude"]].to_dict("records"),
+    }
+    (results_dir / "flowB_exclusion_report.json").write_text(json.dumps(exclusion_info, indent=2), encoding="utf-8")
+    logger.info(f"Flow A exclusion: {len(anchors)} sites, {p.buffer_km:.0f} km buffer -> {n_excl} cells removed, "
+                f"{len(candidates)} discovery cells remain (min distance to Flow A = "
+                f"{exclusion_info['min_distance_to_any_flow_a_site_km_in_search_space']} km)")
 
-    ref_medians = df_grid.median(numeric_only=True).to_dict()
+    for planet, tgt in (("lunar", args.lunar_target), ("mars", args.mars_target)):
+        run_planet(planet, grid, candidates, anchors_in_grid, data_dir, results_dir, tgt, p, args.top_n,
+                   args.max_map_points, args.all_targets, exclusion_info)
 
-    # --- 1. FLOW B_LUNAR ---
-    lunar_targets = load_planetary_targets(
-        data_dir, "Lunar_Targets_Catalog.csv", DEFAULT_LUNAR_TARGETS, LUNAR_FEATURES, ref_medians
-    )
-    lunar_target_key = (
-        args.lunar_target if args.lunar_target in lunar_targets else next(iter(lunar_targets.keys()))
-    )
-    mu_l, sigma_l, src_l = compute_reference_scaler(
-        df_grid, data_dir, "Earth_Lunar_Analogs_Catalog.csv", LUNAR_FEATURES
-    )
-    lunar_hm, lunar_geo, lunar_ranked = run_planetary_discovery(
-        df_grid=df_grid,
-        planet="lunar",
-        features=LUNAR_FEATURES,
-        target_name=lunar_target_key,
-        available_targets=list(lunar_targets.keys()),
-        target_profile=lunar_targets[lunar_target_key],
-        mu=mu_l,
-        sigma=sigma_l,
-        scaler_source=src_l,
-        top_n=args.top_n,
-    )
-
-    with open(results_dir / "flowB_lunar_heatmap.json", "w", encoding="utf-8") as f:
-        json.dump(lunar_hm, f, indent=2)
-    with open(results_dir / "flowB_lunar_discoveries.geojson", "w", encoding="utf-8") as f:
-        json.dump(lunar_geo, f, indent=2)
-
-    logger.info(f"[Flow B_Lunar] Target: {lunar_target_key} | Scaler: {src_l}")
-    top_l = lunar_ranked[~lunar_ranked["is_known_site"]].head(3)
-    for _, r in top_l.iterrows():
-        logger.info(
-            f"  -> Top New Lunar Analog: {r['site_name']} ({r['country']}) | "
-            f"Score: {r['Similarity_Score_pct']}% | {r['Cluster_Label']}"
-        )
-
-    # --- 2. FLOW B_MARS ---
-    mars_targets = load_planetary_targets(
-        data_dir, "Mars_Targets_Catalog.csv", DEFAULT_MARS_TARGETS, MARS_FEATURES, ref_medians
-    )
-    mars_target_key = (
-        args.mars_target if args.mars_target in mars_targets else next(iter(mars_targets.keys()))
-    )
-    mu_m, sigma_m, src_m = compute_reference_scaler(
-        df_grid, data_dir, "Earth_Mars_Analogs_Catalog.csv", MARS_FEATURES
-    )
-    mars_hm, mars_geo, mars_ranked = run_planetary_discovery(
-        df_grid=df_grid,
-        planet="mars",
-        features=MARS_FEATURES,
-        target_name=mars_target_key,
-        available_targets=list(mars_targets.keys()),
-        target_profile=mars_targets[mars_target_key],
-        mu=mu_m,
-        sigma=sigma_m,
-        scaler_source=src_m,
-        top_n=args.top_n,
-    )
-
-    with open(results_dir / "flowB_mars_heatmap.json", "w", encoding="utf-8") as f:
-        json.dump(mars_hm, f, indent=2)
-    with open(results_dir / "flowB_mars_discoveries.geojson", "w", encoding="utf-8") as f:
-        json.dump(mars_geo, f, indent=2)
-
-    logger.info(f"[Flow B_Mars] Target: {mars_target_key} | Scaler: {src_m}")
-    top_m = mars_ranked[~mars_ranked["is_known_site"]].head(3)
-    for _, r in top_m.iterrows():
-        logger.info(
-            f"  -> Top New Martian Analog: {r['site_name']} ({r['country']}) | "
-            f"Score: {r['Similarity_Score_pct']}% | {r['Cluster_Label']}"
-        )
-
-    logger.info("==========================================================================")
-    logger.info("EXPORTED 4 WEB-READY DISCOVERY ARTIFACTS TO results/:")
-    logger.info("  1. results/flowB_lunar_heatmap.json")
-    logger.info("  2. results/flowB_lunar_discoveries.geojson")
-    logger.info("  3. results/flowB_mars_heatmap.json")
-    logger.info("  4. results/flowB_mars_discoveries.geojson")
-    logger.info("==========================================================================")
+    logger.info("=" * 78)
+    logger.info("EXPORTED to results/: flowB_{lunar,mars}_heatmap.json, flowB_{lunar,mars}_discoveries.geojson,")
+    logger.info("  flowB_exclusion_report.json, flowB_*_feature_parity_report.csv")
+    logger.info("=" * 78)
 
 
 if __name__ == "__main__":
