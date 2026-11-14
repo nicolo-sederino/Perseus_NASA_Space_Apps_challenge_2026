@@ -53,10 +53,10 @@
     "flow_a_exclusion_buffer_km": 50.0,
     "flow_a_sites_excluded_from_search": 31,
     "flow_a_sites_in_results": 0,
-    "total_evaluated_sites": 1105,
-    "new_discovery_candidates_count": 1105,
-    "ranking_metric": "Euclidean distance in PCA space to the target (MATLAB parity)",
-    "similarity_score_definition": "100*exp(-ln2*d/d_median); 50 = as far as the median Flow A analog",
+    "total_evaluated_sites": 1116,
+    "new_discovery_candidates_count": 1116,
+    "ranking_metric": "Euclidean distance in PCA space to target blended with 4-axis Radar sub-scores",
+    "similarity_score_definition": "100*exp(-ln2*d/d_median) blended with Radar sub-scores",
     "flow_a_reference_distance_best": 1.3746,
     "flow_a_reference_distance_median": 5.0149,
     "engineering_parameters": {
@@ -68,12 +68,12 @@
       "dt_max_k": null,
       "ndvi_max": 0.15,
       "hard_filter": "none",
-      "radar_weight": 0.0,
-      "radar_tau": 1.0,
-      "z_clip": null,
+      "radar_weight": 0.25,
+      "radar_tau": 1.5,
+      "z_clip": 4.5,
       "exclude_features": [],
       "min_features": 8,
-      "max_missing_frac": 0.15,
+      "max_missing_frac": 0.5,
       "kmeans_k": 3,
       "random_state": 42
     },
@@ -83,7 +83,7 @@
       "Geochemistry": 1.0,
       "Environment": 1.0
     },
-    "timestamp_utc": "2026-11-14T17:50:32.432746+00:00"
+    "timestamp_utc": "2026-11-14T20:03:47.191474+00:00"
   },
   "features": [
     {
@@ -102,17 +102,17 @@
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
         "discovery_rank": 1,
-        "similarity_score": 50.21,
+        "similarity_score": 52.72,
         "latent_distance": 4.9843,
         "cosine_similarity": 0.2367,
         "distance_vs_flow_a_best": 3.626,
         "cluster_id": 1,
         "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 53.01,
-          "Thermophysics": 35.38,
-          "Geochemistry": 66.43,
-          "Environment": 34.63
+          "Morphometry": 65.5,
+          "Thermophysics": 50.02,
+          "Geochemistry": 76.14,
+          "Environment": 49.31
         },
         "engineering": {
           "lander_suitable": false,
@@ -143,58 +143,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          88.4848,
-          34.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+034.50_+0088.48",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 2,
-        "similarity_score": 48.84,
-        "latent_distance": 5.1847,
-        "cosine_similarity": 0.0773,
-        "distance_vs_flow_a_best": 3.772,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
-        "radar_subscores": {
-          "Morphometry": 36.72,
-          "Thermophysics": 40.54,
-          "Geochemistry": 59.32,
-          "Environment": 27.48
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 577.2
-        },
-        "engineering_metrics": {
-          "Altitude_m": 4838.0,
-          "Mean_Slope_deg": 6.006,
-          "Surface_Pressure_mbar": 558.262,
-          "T_min_K": 245.58,
-          "T_max_K": 304.08,
-          "Wind_Mean_mps": 2.33,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 2.381,
-          "Friction_Angle_deg": 32.44,
-          "Salts_Evaporites_wt_pct": 17.199,
-          "UV_Flux_Index": 9.711,
-          "Mafic_Basalt_Idx": 34.559,
-          "Eolian_Deflation_Idx": 32.825,
-          "Diurnal_Delta_T_K": 24.948
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           90.9215,
           35.5
         ]
@@ -205,18 +153,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 3,
-        "similarity_score": 48.82,
+        "discovery_rank": 2,
+        "similarity_score": 52.17,
         "latent_distance": 5.1874,
         "cosine_similarity": 0.2092,
         "distance_vs_flow_a_best": 3.774,
         "cluster_id": 1,
         "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 48.06,
-          "Thermophysics": 56.24,
-          "Geochemistry": 77.51,
-          "Environment": 20.72
+          "Morphometry": 61.35,
+          "Thermophysics": 68.14,
+          "Geochemistry": 84.38,
+          "Environment": 35.02
         },
         "engineering": {
           "lander_suitable": false,
@@ -247,206 +195,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          84.7782,
-          35.5
+          86.5161,
+          30.5
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+035.50_+0084.78",
+        "site_name": "PERSEUS_+030.50_+0086.52",
         "region": "Barren",
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 4,
-        "similarity_score": 48.34,
-        "latent_distance": 5.2595,
-        "cosine_similarity": 0.11,
-        "distance_vs_flow_a_best": 3.826,
-        "cluster_id": 0,
-        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
-        "radar_subscores": {
-          "Morphometry": 38.69,
-          "Thermophysics": 33.43,
-          "Geochemistry": 70.16,
-          "Environment": 29.77
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 811.7
-        },
-        "engineering_metrics": {
-          "Altitude_m": 5036.0,
-          "Mean_Slope_deg": 6.189,
-          "Surface_Pressure_mbar": 553.783,
-          "T_min_K": 243.78,
-          "T_max_K": 311.04,
-          "Wind_Mean_mps": 2.31,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 1.123,
-          "Friction_Angle_deg": 34.27,
-          "Salts_Evaporites_wt_pct": 13.454,
-          "UV_Flux_Index": 9.701,
-          "Mafic_Basalt_Idx": 43.648,
-          "Eolian_Deflation_Idx": 33.464,
-          "Diurnal_Delta_T_K": 30.19
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          85.9516,
-          36.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+036.50_+0085.95",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 5,
-        "similarity_score": 48.32,
-        "latent_distance": 5.2628,
-        "cosine_similarity": 0.1044,
-        "distance_vs_flow_a_best": 3.829,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
-        "radar_subscores": {
-          "Morphometry": 37.21,
-          "Thermophysics": 42.42,
-          "Geochemistry": 66.58,
-          "Environment": 26.88
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 676.6
-        },
-        "engineering_metrics": {
-          "Altitude_m": 5039.0,
-          "Mean_Slope_deg": 7.176,
-          "Surface_Pressure_mbar": 555.903,
-          "T_min_K": 242.98,
-          "T_max_K": 303.19,
-          "Wind_Mean_mps": 2.126,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 2.391,
-          "Friction_Angle_deg": 32.6,
-          "Salts_Evaporites_wt_pct": 13.372,
-          "UV_Flux_Index": 9.582,
-          "Mafic_Basalt_Idx": 37.949,
-          "Eolian_Deflation_Idx": 26.776,
-          "Diurnal_Delta_T_K": 26.807
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          82.4242,
-          34.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+034.50_+0082.42",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 6,
-        "similarity_score": 48.07,
-        "latent_distance": 5.2991,
-        "cosine_similarity": 0.1995,
-        "distance_vs_flow_a_best": 3.855,
+        "discovery_rank": 3,
+        "similarity_score": 52.06,
+        "latent_distance": 5.1919,
+        "cosine_similarity": 0.4771,
+        "distance_vs_flow_a_best": 3.777,
         "cluster_id": 1,
         "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 43.88,
-          "Thermophysics": 36.4,
-          "Geochemistry": 74.29,
-          "Environment": 29.7
+          "Morphometry": 55.75,
+          "Thermophysics": 73.43,
+          "Geochemistry": 78.77,
+          "Environment": 39.49
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": false,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 874.6
+          "imputed_feature_count": 3,
+          "nearest_flow_a_site_km": 1033.2
         },
         "engineering_metrics": {
-          "Altitude_m": 5430.0,
-          "Mean_Slope_deg": 10.938,
-          "Surface_Pressure_mbar": 533.535,
-          "T_min_K": 241.74,
-          "T_max_K": 306.52,
-          "Wind_Mean_mps": 1.786,
+          "Altitude_m": 5977.0,
+          "Mean_Slope_deg": 23.975,
+          "Surface_Pressure_mbar": 531.423,
+          "T_min_K": 247.22,
+          "T_max_K": 289.42,
+          "Wind_Mean_mps": 1.692,
           "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 1.531,
-          "Friction_Angle_deg": 32.06,
-          "Salts_Evaporites_wt_pct": 12.017,
-          "UV_Flux_Index": 10.09,
-          "Mafic_Basalt_Idx": 46.384,
-          "Eolian_Deflation_Idx": 25.297,
-          "Diurnal_Delta_T_K": 29.356
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          87.2355,
-          35.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+035.50_+0087.24",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 7,
-        "similarity_score": 47.93,
-        "latent_distance": 5.3213,
-        "cosine_similarity": 0.1979,
-        "distance_vs_flow_a_best": 3.871,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
-        "radar_subscores": {
-          "Morphometry": 49.75,
-          "Thermophysics": 39.17,
-          "Geochemistry": 58.22,
-          "Environment": 25.54
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": false,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 608.5
-        },
-        "engineering_metrics": {
-          "Altitude_m": 5052.0,
-          "Mean_Slope_deg": 15.204,
-          "Surface_Pressure_mbar": 551.33,
-          "T_min_K": 245.1,
-          "T_max_K": 305.57,
-          "Wind_Mean_mps": 2.123,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 2.9,
-          "Friction_Angle_deg": 32.7,
-          "Salts_Evaporites_wt_pct": 15.348,
-          "UV_Flux_Index": 9.609,
-          "Mafic_Basalt_Idx": 28.361,
-          "Eolian_Deflation_Idx": 24.394,
-          "Diurnal_Delta_T_K": 28.553
+          "Soil_Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.25,
+          "Salts_Evaporites_wt_pct": 15.589,
+          "UV_Flux_Index": 10.399,
+          "Mafic_Basalt_Idx": 48.142,
+          "Eolian_Deflation_Idx": 57.678,
+          "Diurnal_Delta_T_K": 19.15
         }
       }
     },
@@ -465,18 +257,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 8,
-        "similarity_score": 47.88,
+        "discovery_rank": 4,
+        "similarity_score": 50.79,
         "latent_distance": 5.3279,
         "cosine_similarity": 0.1593,
         "distance_vs_flow_a_best": 3.876,
         "cluster_id": 2,
         "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 41.58,
-          "Thermophysics": 48.12,
-          "Geochemistry": 79.83,
-          "Environment": 20.63
+          "Morphometry": 55.7,
+          "Thermophysics": 61.41,
+          "Geochemistry": 86.05,
+          "Environment": 34.92
         },
         "engineering": {
           "lander_suitable": false,
@@ -507,102 +299,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          88.7413,
-          37.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+037.50_+0088.74",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 9,
-        "similarity_score": 47.72,
-        "latent_distance": 5.3532,
-        "cosine_similarity": -0.0445,
-        "distance_vs_flow_a_best": 3.894,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
-        "radar_subscores": {
-          "Morphometry": 26.38,
-          "Thermophysics": 33.34,
-          "Geochemistry": 65.13,
-          "Environment": 30.15
-        },
-        "engineering": {
-          "lander_suitable": true,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 411.8
-        },
-        "engineering_metrics": {
-          "Altitude_m": 4428.0,
-          "Mean_Slope_deg": 2.522,
-          "Surface_Pressure_mbar": 583.644,
-          "T_min_K": 246.69,
-          "T_max_K": 308.8,
-          "Wind_Mean_mps": 2.763,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 1.967,
-          "Friction_Angle_deg": 33.13,
-          "Salts_Evaporites_wt_pct": 14.324,
-          "UV_Flux_Index": 9.344,
-          "Mafic_Basalt_Idx": 37.815,
-          "Eolian_Deflation_Idx": 29.528,
-          "Diurnal_Delta_T_K": 27.135
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          89.697,
+          82.4242,
           34.5
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+034.50_+0089.70",
+        "site_name": "PERSEUS_+034.50_+0082.42",
         "region": "Barren",
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 10,
-        "similarity_score": 47.48,
-        "latent_distance": 5.3895,
-        "cosine_similarity": 0.0899,
-        "distance_vs_flow_a_best": 3.921,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "discovery_rank": 5,
+        "similarity_score": 50.76,
+        "latent_distance": 5.2991,
+        "cosine_similarity": 0.1995,
+        "distance_vs_flow_a_best": 3.855,
+        "cluster_id": 1,
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 31.35,
-          "Thermophysics": 48.62,
-          "Geochemistry": 77.17,
-          "Environment": 22.73
+          "Morphometry": 57.75,
+          "Thermophysics": 50.98,
+          "Geochemistry": 82.03,
+          "Environment": 44.51
         },
         "engineering": {
-          "lander_suitable": true,
-          "rover_suitable": true,
+          "lander_suitable": false,
+          "rover_suitable": false,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 499.1
+          "nearest_flow_a_site_km": 874.6
         },
         "engineering_metrics": {
-          "Altitude_m": 5200.0,
-          "Mean_Slope_deg": 3.8,
-          "Surface_Pressure_mbar": 532.835,
-          "T_min_K": 240.86,
-          "T_max_K": 297.06,
-          "Wind_Mean_mps": 2.13,
+          "Altitude_m": 5430.0,
+          "Mean_Slope_deg": 10.938,
+          "Surface_Pressure_mbar": 533.535,
+          "T_min_K": 241.74,
+          "T_max_K": 306.52,
+          "Wind_Mean_mps": 1.786,
           "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 3.48,
-          "Friction_Angle_deg": 31.71,
-          "Salts_Evaporites_wt_pct": 11.433,
-          "UV_Flux_Index": 9.802,
-          "Mafic_Basalt_Idx": 49.05,
-          "Eolian_Deflation_Idx": 29.998,
-          "Diurnal_Delta_T_K": 23.77
+          "Soil_Cohesion_kPa": 1.531,
+          "Friction_Angle_deg": 32.06,
+          "Salts_Evaporites_wt_pct": 12.017,
+          "UV_Flux_Index": 10.09,
+          "Mafic_Basalt_Idx": 46.384,
+          "Eolian_Deflation_Idx": 25.297,
+          "Diurnal_Delta_T_K": 29.356
         }
       }
     },
@@ -621,18 +361,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 11,
-        "similarity_score": 47.04,
+        "discovery_rank": 6,
+        "similarity_score": 50.47,
         "latent_distance": 5.457,
         "cosine_similarity": 0.1646,
         "distance_vs_flow_a_best": 3.97,
         "cluster_id": 1,
         "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 55.18,
-          "Thermophysics": 29.16,
-          "Geochemistry": 79.95,
-          "Environment": 30.9
+          "Morphometry": 67.28,
+          "Thermophysics": 43.97,
+          "Geochemistry": 86.14,
+          "Environment": 45.7
         },
         "engineering": {
           "lander_suitable": false,
@@ -663,50 +403,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          83.5495,
+          82.3208,
           35.5
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+035.50_+0083.55",
+        "site_name": "PERSEUS_+035.50_+0082.32",
         "region": "Barren",
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 12,
-        "similarity_score": 47.03,
-        "latent_distance": 5.4574,
-        "cosine_similarity": -0.0057,
-        "distance_vs_flow_a_best": 3.97,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "discovery_rank": 7,
+        "similarity_score": 50.4,
+        "latent_distance": 5.5319,
+        "cosine_similarity": 0.2108,
+        "distance_vs_flow_a_best": 4.024,
+        "cluster_id": 1,
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 30.5,
-          "Thermophysics": 30.82,
-          "Geochemistry": 51.16,
-          "Environment": 32.01
+          "Morphometry": 60.62,
+          "Thermophysics": 58.9,
+          "Geochemistry": 87.05,
+          "Environment": 41.14
         },
         "engineering": {
-          "lander_suitable": true,
-          "rover_suitable": true,
+          "lander_suitable": false,
+          "rover_suitable": false,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 916.0
+          "nearest_flow_a_site_km": 815.0
         },
         "engineering_metrics": {
-          "Altitude_m": 4848.0,
-          "Mean_Slope_deg": 2.599,
-          "Surface_Pressure_mbar": 555.928,
-          "T_min_K": 241.73,
-          "T_max_K": 311.45,
-          "Wind_Mean_mps": 2.623,
+          "Altitude_m": 5386.0,
+          "Mean_Slope_deg": 13.418,
+          "Surface_Pressure_mbar": 512.324,
+          "T_min_K": 244.11,
+          "T_max_K": 302.29,
+          "Wind_Mean_mps": 1.284,
           "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 1.732,
-          "Friction_Angle_deg": 33.42,
-          "Salts_Evaporites_wt_pct": 18.826,
-          "UV_Flux_Index": 9.762,
-          "Mafic_Basalt_Idx": 22.717,
-          "Eolian_Deflation_Idx": 34.444,
-          "Diurnal_Delta_T_K": 33.101
+          "Soil_Cohesion_kPa": 2.24,
+          "Friction_Angle_deg": 32.24,
+          "Salts_Evaporites_wt_pct": 11.188,
+          "UV_Flux_Index": 10.053,
+          "Mafic_Basalt_Idx": 53.865,
+          "Eolian_Deflation_Idx": 19.45,
+          "Diurnal_Delta_T_K": 29.452
         }
       }
     },
@@ -715,50 +455,362 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          87.2727,
-          34.5
+          85.9516,
+          36.5
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+034.50_+0087.27",
+        "site_name": "PERSEUS_+036.50_+0085.95",
         "region": "Barren",
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 13,
-        "similarity_score": 46.96,
-        "latent_distance": 5.4681,
-        "cosine_similarity": 0.0229,
-        "distance_vs_flow_a_best": 3.978,
+        "discovery_rank": 8,
+        "similarity_score": 50.37,
+        "latent_distance": 5.2628,
+        "cosine_similarity": 0.1044,
+        "distance_vs_flow_a_best": 3.829,
         "cluster_id": 2,
         "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 32.98,
-          "Thermophysics": 40.37,
-          "Geochemistry": 56.52,
-          "Environment": 26.27
+          "Morphometry": 51.73,
+          "Thermophysics": 56.45,
+          "Geochemistry": 76.25,
+          "Environment": 41.65
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 676.6
+        },
+        "engineering_metrics": {
+          "Altitude_m": 5039.0,
+          "Mean_Slope_deg": 7.176,
+          "Surface_Pressure_mbar": 555.903,
+          "T_min_K": 242.98,
+          "T_max_K": 303.19,
+          "Wind_Mean_mps": 2.126,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 2.391,
+          "Friction_Angle_deg": 32.6,
+          "Salts_Evaporites_wt_pct": 13.372,
+          "UV_Flux_Index": 9.582,
+          "Mafic_Basalt_Idx": 37.949,
+          "Eolian_Deflation_Idx": 26.776,
+          "Diurnal_Delta_T_K": 26.807
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.4848,
+          34.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+034.50_+0088.48",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 9,
+        "similarity_score": 50.31,
+        "latent_distance": 5.1847,
+        "cosine_similarity": 0.0773,
+        "distance_vs_flow_a_best": 3.772,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "radar_subscores": {
+          "Morphometry": 51.28,
+          "Thermophysics": 54.78,
+          "Geochemistry": 70.6,
+          "Environment": 42.27
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 577.2
+        },
+        "engineering_metrics": {
+          "Altitude_m": 4838.0,
+          "Mean_Slope_deg": 6.006,
+          "Surface_Pressure_mbar": 558.262,
+          "T_min_K": 245.58,
+          "T_max_K": 304.08,
+          "Wind_Mean_mps": 2.33,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 2.381,
+          "Friction_Angle_deg": 32.44,
+          "Salts_Evaporites_wt_pct": 17.199,
+          "UV_Flux_Index": 9.711,
+          "Mafic_Basalt_Idx": 34.559,
+          "Eolian_Deflation_Idx": 32.825,
+          "Diurnal_Delta_T_K": 24.948
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.7782,
+          35.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+035.50_+0084.78",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 10,
+        "similarity_score": 50.3,
+        "latent_distance": 5.2595,
+        "cosine_similarity": 0.11,
+        "distance_vs_flow_a_best": 3.826,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
+        "radar_subscores": {
+          "Morphometry": 53.1,
+          "Thermophysics": 48.17,
+          "Geochemistry": 78.96,
+          "Environment": 44.59
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 811.7
+        },
+        "engineering_metrics": {
+          "Altitude_m": 5036.0,
+          "Mean_Slope_deg": 6.189,
+          "Surface_Pressure_mbar": 553.783,
+          "T_min_K": 243.78,
+          "T_max_K": 311.04,
+          "Wind_Mean_mps": 2.31,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 1.123,
+          "Friction_Angle_deg": 34.27,
+          "Salts_Evaporites_wt_pct": 13.454,
+          "UV_Flux_Index": 9.701,
+          "Mafic_Basalt_Idx": 43.648,
+          "Eolian_Deflation_Idx": 33.464,
+          "Diurnal_Delta_T_K": 30.19
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.2355,
+          35.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+035.50_+0087.24",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 11,
+        "similarity_score": 50.09,
+        "latent_distance": 5.3213,
+        "cosine_similarity": 0.1979,
+        "distance_vs_flow_a_best": 3.871,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "radar_subscores": {
+          "Morphometry": 62.79,
+          "Thermophysics": 53.54,
+          "Geochemistry": 69.72,
+          "Environment": 40.26
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 608.5
+        },
+        "engineering_metrics": {
+          "Altitude_m": 5052.0,
+          "Mean_Slope_deg": 15.204,
+          "Surface_Pressure_mbar": 551.33,
+          "T_min_K": 245.1,
+          "T_max_K": 305.57,
+          "Wind_Mean_mps": 2.123,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 2.9,
+          "Friction_Angle_deg": 32.7,
+          "Salts_Evaporites_wt_pct": 15.348,
+          "UV_Flux_Index": 9.609,
+          "Mafic_Basalt_Idx": 28.361,
+          "Eolian_Deflation_Idx": 24.394,
+          "Diurnal_Delta_T_K": 28.553
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.697,
+          34.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+034.50_+0089.70",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 12,
+        "similarity_score": 49.94,
+        "latent_distance": 5.3895,
+        "cosine_similarity": 0.0899,
+        "distance_vs_flow_a_best": 3.921,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "radar_subscores": {
+          "Morphometry": 46.15,
+          "Thermophysics": 61.83,
+          "Geochemistry": 84.14,
+          "Environment": 37.24
         },
         "engineering": {
           "lander_suitable": true,
           "rover_suitable": true,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 664.0
+          "nearest_flow_a_site_km": 499.1
         },
         "engineering_metrics": {
-          "Altitude_m": 5023.0,
-          "Mean_Slope_deg": 4.248,
-          "Surface_Pressure_mbar": 549.809,
-          "T_min_K": 242.76,
-          "T_max_K": 304.44,
-          "Wind_Mean_mps": 2.183,
+          "Altitude_m": 5200.0,
+          "Mean_Slope_deg": 3.8,
+          "Surface_Pressure_mbar": 532.835,
+          "T_min_K": 240.86,
+          "T_max_K": 297.06,
+          "Wind_Mean_mps": 2.13,
           "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 2.928,
-          "Friction_Angle_deg": 32.82,
-          "Salts_Evaporites_wt_pct": 15.885,
-          "UV_Flux_Index": 9.749,
-          "Mafic_Basalt_Idx": 26.475,
-          "Eolian_Deflation_Idx": 31.013,
-          "Diurnal_Delta_T_K": 29.682
+          "Soil_Cohesion_kPa": 3.48,
+          "Friction_Angle_deg": 31.71,
+          "Salts_Evaporites_wt_pct": 11.433,
+          "UV_Flux_Index": 9.802,
+          "Mafic_Basalt_Idx": 49.05,
+          "Eolian_Deflation_Idx": 29.998,
+          "Diurnal_Delta_T_K": 23.77
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2,
+          33.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+033.50_+0082.20",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 13,
+        "similarity_score": 49.33,
+        "latent_distance": 5.3874,
+        "cosine_similarity": 0.3825,
+        "distance_vs_flow_a_best": 3.919,
+        "cluster_id": 1,
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
+        "radar_subscores": {
+          "Morphometry": 65.65,
+          "Thermophysics": 61.43,
+          "Geochemistry": 52.8,
+          "Environment": 39.51
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 3,
+          "nearest_flow_a_site_km": 919.3
+        },
+        "engineering_metrics": {
+          "Altitude_m": 5809.0,
+          "Mean_Slope_deg": 20.457,
+          "Surface_Pressure_mbar": 529.353,
+          "T_min_K": 242.32,
+          "T_max_K": 298.78,
+          "Wind_Mean_mps": 1.758,
+          "Water_Ice_wt_pct": 43.143,
+          "Soil_Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.25,
+          "Salts_Evaporites_wt_pct": 7.245,
+          "UV_Flux_Index": 10.3,
+          "Mafic_Basalt_Idx": 26.712,
+          "Eolian_Deflation_Idx": 57.678,
+          "Diurnal_Delta_T_K": 22.527
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.7413,
+          37.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+037.50_+0088.74",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 14,
+        "similarity_score": 48.87,
+        "latent_distance": 5.3532,
+        "cosine_similarity": -0.0445,
+        "distance_vs_flow_a_best": 3.894,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "radar_subscores": {
+          "Morphometry": 41.13,
+          "Thermophysics": 48.08,
+          "Geochemistry": 75.14,
+          "Environment": 44.96
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 411.8
+        },
+        "engineering_metrics": {
+          "Altitude_m": 4428.0,
+          "Mean_Slope_deg": 2.522,
+          "Surface_Pressure_mbar": 583.644,
+          "T_min_K": 246.69,
+          "T_max_K": 308.8,
+          "Wind_Mean_mps": 2.763,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 1.967,
+          "Friction_Angle_deg": 33.13,
+          "Salts_Evaporites_wt_pct": 14.324,
+          "UV_Flux_Index": 9.344,
+          "Mafic_Basalt_Idx": 37.815,
+          "Eolian_Deflation_Idx": 29.528,
+          "Diurnal_Delta_T_K": 27.135
         }
       }
     },
@@ -777,18 +829,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 14,
-        "similarity_score": 46.74,
+        "discovery_rank": 15,
+        "similarity_score": 48.59,
         "latent_distance": 5.5032,
         "cosine_similarity": 0.0526,
         "distance_vs_flow_a_best": 4.003,
         "cluster_id": 2,
         "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 31.49,
-          "Thermophysics": 36.78,
-          "Geochemistry": 72.24,
-          "Environment": 23.9
+          "Morphometry": 46.29,
+          "Thermophysics": 51.33,
+          "Geochemistry": 80.51,
+          "Environment": 38.52
         },
         "engineering": {
           "lander_suitable": true,
@@ -829,18 +881,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 15,
-        "similarity_score": 46.57,
+        "discovery_rank": 16,
+        "similarity_score": 48.52,
         "latent_distance": 5.5288,
         "cosine_similarity": 0.0602,
         "distance_vs_flow_a_best": 4.022,
         "cluster_id": 2,
         "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 34.69,
-          "Thermophysics": 32.09,
-          "Geochemistry": 66.77,
-          "Environment": 29.99
+          "Morphometry": 49.37,
+          "Thermophysics": 46.87,
+          "Geochemistry": 76.39,
+          "Environment": 44.81
         },
         "engineering": {
           "lander_suitable": false,
@@ -881,18 +933,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 16,
-        "similarity_score": 46.57,
+        "discovery_rank": 17,
+        "similarity_score": 48.5,
         "latent_distance": 5.5297,
         "cosine_similarity": 0.3381,
         "distance_vs_flow_a_best": 4.023,
         "cluster_id": 1,
         "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 27.82,
-          "Thermophysics": 38.16,
-          "Geochemistry": 73.47,
-          "Environment": 25.83
+          "Morphometry": 42.62,
+          "Thermophysics": 52.61,
+          "Geochemistry": 81.42,
+          "Environment": 40.56
         },
         "engineering": {
           "lander_suitable": false,
@@ -923,50 +975,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          82.3208,
-          35.5
+          87.2727,
+          34.5
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+035.50_+0082.32",
+        "site_name": "PERSEUS_+034.50_+0087.27",
         "region": "Barren",
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 17,
-        "similarity_score": 46.55,
-        "latent_distance": 5.5319,
-        "cosine_similarity": 0.2108,
-        "distance_vs_flow_a_best": 4.024,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
+        "discovery_rank": 18,
+        "similarity_score": 48.46,
+        "latent_distance": 5.4681,
+        "cosine_similarity": 0.0229,
+        "distance_vs_flow_a_best": 3.978,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 47.2,
-          "Thermophysics": 45.2,
-          "Geochemistry": 81.22,
-          "Environment": 26.38
+          "Morphometry": 47.74,
+          "Thermophysics": 54.63,
+          "Geochemistry": 68.36,
+          "Environment": 41.02
         },
         "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": false,
+          "lander_suitable": true,
+          "rover_suitable": true,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 815.0
+          "nearest_flow_a_site_km": 664.0
         },
         "engineering_metrics": {
-          "Altitude_m": 5386.0,
-          "Mean_Slope_deg": 13.418,
-          "Surface_Pressure_mbar": 512.324,
-          "T_min_K": 244.11,
-          "T_max_K": 302.29,
-          "Wind_Mean_mps": 1.284,
+          "Altitude_m": 5023.0,
+          "Mean_Slope_deg": 4.248,
+          "Surface_Pressure_mbar": 549.809,
+          "T_min_K": 242.76,
+          "T_max_K": 304.44,
+          "Wind_Mean_mps": 2.183,
           "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 2.24,
-          "Friction_Angle_deg": 32.24,
-          "Salts_Evaporites_wt_pct": 11.188,
-          "UV_Flux_Index": 10.053,
-          "Mafic_Basalt_Idx": 53.865,
-          "Eolian_Deflation_Idx": 19.45,
-          "Diurnal_Delta_T_K": 29.452
+          "Soil_Cohesion_kPa": 2.928,
+          "Friction_Angle_deg": 32.82,
+          "Salts_Evaporites_wt_pct": 15.885,
+          "UV_Flux_Index": 9.749,
+          "Mafic_Basalt_Idx": 26.475,
+          "Eolian_Deflation_Idx": 31.013,
+          "Diurnal_Delta_T_K": 29.682
         }
       }
     },
@@ -985,18 +1037,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 18,
-        "similarity_score": 46.51,
+        "discovery_rank": 19,
+        "similarity_score": 48.26,
         "latent_distance": 5.5387,
         "cosine_similarity": 0.0467,
         "distance_vs_flow_a_best": 4.029,
         "cluster_id": 2,
         "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 31.43,
-          "Thermophysics": 43.16,
-          "Geochemistry": 51.8,
-          "Environment": 31.45
+          "Morphometry": 46.23,
+          "Thermophysics": 57.12,
+          "Geochemistry": 64.5,
+          "Environment": 46.25
         },
         "engineering": {
           "lander_suitable": true,
@@ -1027,6 +1079,162 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          81.0922,
+          35.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+035.50_+0081.09",
+        "region": "Snow and Ice",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 20,
+        "similarity_score": 47.96,
+        "latent_distance": 5.9355,
+        "cosine_similarity": 0.293,
+        "distance_vs_flow_a_best": 4.318,
+        "cluster_id": 1,
+        "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
+        "radar_subscores": {
+          "Morphometry": 80.17,
+          "Thermophysics": 82.43,
+          "Geochemistry": 38.3,
+          "Environment": 38.22
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 3,
+          "nearest_flow_a_site_km": 714.7
+        },
+        "engineering_metrics": {
+          "Altitude_m": 5781.0,
+          "Mean_Slope_deg": 11.897,
+          "Surface_Pressure_mbar": 492.614,
+          "T_min_K": 236.38,
+          "T_max_K": 279.868,
+          "Wind_Mean_mps": 1.072,
+          "Water_Ice_wt_pct": 67.033,
+          "Soil_Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.25,
+          "Salts_Evaporites_wt_pct": 8.541,
+          "UV_Flux_Index": 10.225,
+          "Mafic_Basalt_Idx": 6.0,
+          "Eolian_Deflation_Idx": 57.678,
+          "Diurnal_Delta_T_K": 20.265
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.5495,
+          35.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+035.50_+0083.55",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 21,
+        "similarity_score": 47.88,
+        "latent_distance": 5.4574,
+        "cosine_similarity": -0.0057,
+        "distance_vs_flow_a_best": 3.97,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "radar_subscores": {
+          "Morphometry": 45.31,
+          "Thermophysics": 45.62,
+          "Geochemistry": 63.97,
+          "Environment": 46.8
+        },
+        "engineering": {
+          "lander_suitable": true,
+          "rover_suitable": true,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 916.0
+        },
+        "engineering_metrics": {
+          "Altitude_m": 4848.0,
+          "Mean_Slope_deg": 2.599,
+          "Surface_Pressure_mbar": 555.928,
+          "T_min_K": 241.73,
+          "T_max_K": 311.45,
+          "Wind_Mean_mps": 2.623,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 1.732,
+          "Friction_Angle_deg": 33.42,
+          "Salts_Evaporites_wt_pct": 18.826,
+          "UV_Flux_Index": 9.762,
+          "Mafic_Basalt_Idx": 22.717,
+          "Eolian_Deflation_Idx": 34.444,
+          "Diurnal_Delta_T_K": 33.101
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          90.0,
+          37.5
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+037.50_+0090.00",
+        "region": "Barren",
+        "planetary_body": "Mars",
+        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
+        "is_known_site": false,
+        "discovery_rank": 22,
+        "similarity_score": 47.48,
+        "latent_distance": 5.8123,
+        "cosine_similarity": 0.0511,
+        "distance_vs_flow_a_best": 4.228,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
+        "radar_subscores": {
+          "Morphometry": 65.55,
+          "Thermophysics": 47.76,
+          "Geochemistry": 72.58,
+          "Environment": 36.46
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 301.7
+        },
+        "engineering_metrics": {
+          "Altitude_m": 4124.0,
+          "Mean_Slope_deg": 12.103,
+          "Surface_Pressure_mbar": 608.763,
+          "T_min_K": 250.487,
+          "T_max_K": 305.373,
+          "Wind_Mean_mps": 0.752,
+          "Water_Ice_wt_pct": 0.0,
+          "Soil_Cohesion_kPa": 0.792,
+          "Friction_Angle_deg": 33.92,
+          "Salts_Evaporites_wt_pct": 14.691,
+          "UV_Flux_Index": 9.262,
+          "Mafic_Basalt_Idx": 33.189,
+          "Eolian_Deflation_Idx": 39.605,
+          "Diurnal_Delta_T_K": 26.041
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           81.1184,
           32.5
         ]
@@ -1037,18 +1245,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 19,
-        "similarity_score": 45.78,
+        "discovery_rank": 23,
+        "similarity_score": 47.47,
         "latent_distance": 5.6528,
         "cosine_similarity": 0.283,
         "distance_vs_flow_a_best": 4.112,
         "cluster_id": 1,
         "cluster_label": "Archetype 2: high Mean Slope deg, high Altitude m",
         "radar_subscores": {
-          "Morphometry": 34.57,
-          "Thermophysics": 32.76,
-          "Geochemistry": 59.04,
-          "Environment": 28.2
+          "Morphometry": 49.25,
+          "Thermophysics": 47.53,
+          "Geochemistry": 70.38,
+          "Environment": 43.0
         },
         "engineering": {
           "lander_suitable": false,
@@ -1089,18 +1297,18 @@
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
-        "discovery_rank": 20,
-        "similarity_score": 45.62,
+        "discovery_rank": 24,
+        "similarity_score": 47.16,
         "latent_distance": 5.678,
         "cosine_similarity": -0.036,
         "distance_vs_flow_a_best": 4.131,
         "cluster_id": 2,
         "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
         "radar_subscores": {
-          "Morphometry": 26.77,
-          "Thermophysics": 34.48,
-          "Geochemistry": 61.94,
-          "Environment": 28.97
+          "Morphometry": 41.54,
+          "Thermophysics": 49.17,
+          "Geochemistry": 72.66,
+          "Environment": 43.78
         },
         "engineering": {
           "lander_suitable": true,
@@ -1131,258 +1339,50 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          99.4553,
-          44.5
+          107.3333,
+          41.5
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+044.50_+0099.46",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 21,
-        "similarity_score": 45.2,
-        "latent_distance": 5.7447,
-        "cosine_similarity": -0.2881,
-        "distance_vs_flow_a_best": 4.179,
-        "cluster_id": 0,
-        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
-        "radar_subscores": {
-          "Morphometry": 33.35,
-          "Thermophysics": 22.35,
-          "Geochemistry": 75.02,
-          "Environment": 19.82
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 93.4
-        },
-        "engineering_metrics": {
-          "Altitude_m": 2192.0,
-          "Mean_Slope_deg": 6.437,
-          "Surface_Pressure_mbar": 790.898,
-          "T_min_K": 249.78,
-          "T_max_K": 317.64,
-          "Wind_Mean_mps": 2.653,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 0.57,
-          "Friction_Angle_deg": 33.82,
-          "Salts_Evaporites_wt_pct": 12.64,
-          "UV_Flux_Index": 8.051,
-          "Mafic_Basalt_Idx": 48.826,
-          "Eolian_Deflation_Idx": 52.364,
-          "Diurnal_Delta_T_K": 26.743
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          84.6711,
-          32.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+032.50_+0084.67",
-        "region": "Grassland",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 22,
-        "similarity_score": 45.02,
-        "latent_distance": 5.7732,
-        "cosine_similarity": -0.0253,
-        "distance_vs_flow_a_best": 4.2,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
-        "radar_subscores": {
-          "Morphometry": 27.96,
-          "Thermophysics": 32.25,
-          "Geochemistry": 69.35,
-          "Environment": 25.56
-        },
-        "engineering": {
-          "lander_suitable": true,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 990.9
-        },
-        "engineering_metrics": {
-          "Altitude_m": 5038.0,
-          "Mean_Slope_deg": 3.269,
-          "Surface_Pressure_mbar": 553.594,
-          "T_min_K": 242.82,
-          "T_max_K": 311.17,
-          "Wind_Mean_mps": 1.947,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 2.711,
-          "Friction_Angle_deg": 32.04,
-          "Salts_Evaporites_wt_pct": 13.157,
-          "UV_Flux_Index": 10.166,
-          "Mafic_Basalt_Idx": 41.744,
-          "Eolian_Deflation_Idx": 23.928,
-          "Diurnal_Delta_T_K": 32.447
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          92.5532,
-          38.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+038.50_+0092.55",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 23,
-        "similarity_score": 44.82,
-        "latent_distance": 5.8055,
-        "cosine_similarity": -0.3314,
-        "distance_vs_flow_a_best": 4.223,
-        "cluster_id": 0,
-        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
-        "radar_subscores": {
-          "Morphometry": 32.09,
-          "Thermophysics": 20.09,
-          "Geochemistry": 49.9,
-          "Environment": 25.5
-        },
-        "engineering": {
-          "lander_suitable": true,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 103.5
-        },
-        "engineering_metrics": {
-          "Altitude_m": 2698.0,
-          "Mean_Slope_deg": 1.617,
-          "Surface_Pressure_mbar": 729.185,
-          "T_min_K": 251.5,
-          "T_max_K": 319.12,
-          "Wind_Mean_mps": 2.903,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 1.021,
-          "Friction_Angle_deg": 31.92,
-          "Salts_Evaporites_wt_pct": 20.318,
-          "UV_Flux_Index": 9.439,
-          "Mafic_Basalt_Idx": 23.487,
-          "Eolian_Deflation_Idx": 64.746,
-          "Diurnal_Delta_T_K": 28.447
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          90.0,
-          37.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+037.50_+0090.00",
-        "region": "Barren",
-        "planetary_body": "Mars",
-        "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
-        "is_known_site": false,
-        "discovery_rank": 24,
-        "similarity_score": 44.78,
-        "latent_distance": 5.8123,
-        "cosine_similarity": 0.0511,
-        "distance_vs_flow_a_best": 4.228,
-        "cluster_id": 0,
-        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
-        "radar_subscores": {
-          "Morphometry": 53.07,
-          "Thermophysics": 33.01,
-          "Geochemistry": 61.83,
-          "Environment": 22.02
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": false,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 301.7
-        },
-        "engineering_metrics": {
-          "Altitude_m": 4124.0,
-          "Mean_Slope_deg": 12.103,
-          "Surface_Pressure_mbar": 608.763,
-          "T_min_K": 250.487,
-          "T_max_K": 305.373,
-          "Wind_Mean_mps": 0.752,
-          "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 0.792,
-          "Friction_Angle_deg": 33.92,
-          "Salts_Evaporites_wt_pct": 14.691,
-          "UV_Flux_Index": 9.262,
-          "Mafic_Basalt_Idx": 33.189,
-          "Eolian_Deflation_Idx": 39.605,
-          "Diurnal_Delta_T_K": 26.041
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          81.0,
-          33.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+033.50_+0081.00",
+        "site_name": "PERSEUS_+041.50_+0107.33",
         "region": "Barren",
         "planetary_body": "Mars",
         "reference_target": "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)",
         "is_known_site": false,
         "discovery_rank": 25,
-        "similarity_score": 44.45,
-        "latent_distance": 5.8654,
-        "cosine_similarity": 0.0684,
-        "distance_vs_flow_a_best": 4.267,
-        "cluster_id": 2,
-        "cluster_label": "Archetype 3: high Soil Cohesion kPa, high Salts Evaporites wt pct",
+        "similarity_score": 46.93,
+        "latent_distance": 5.8743,
+        "cosine_similarity": -0.1923,
+        "distance_vs_flow_a_best": 4.273,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Soil Cohesion kPa, high Eolian Deflation Idx",
         "radar_subscores": {
-          "Morphometry": 39.24,
-          "Thermophysics": 44.11,
-          "Geochemistry": 60.34,
-          "Environment": 18.56
+          "Morphometry": 57.74,
+          "Thermophysics": 37.38,
+          "Geochemistry": 90.74,
+          "Environment": 32.15
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": false,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 832.7
+          "nearest_flow_a_site_km": 716.5
         },
         "engineering_metrics": {
-          "Altitude_m": 5241.0,
-          "Mean_Slope_deg": 8.882,
-          "Surface_Pressure_mbar": 544.264,
-          "T_min_K": 245.5,
-          "T_max_K": 301.65,
-          "Wind_Mean_mps": 1.294,
+          "Altitude_m": 1721.0,
+          "Mean_Slope_deg": 12.475,
+          "Surface_Pressure_mbar": 834.707,
+          "T_min_K": 254.92,
+          "T_max_K": 311.943,
+          "Wind_Mean_mps": 1.926,
           "Water_Ice_wt_pct": 0.0,
-          "Soil_Cohesion_kPa": 3.239,
-          "Friction_Angle_deg": 29.54,
-          "Salts_Evaporites_wt_pct": 16.093,
-          "UV_Flux_Index": 10.37,
-          "Mafic_Basalt_Idx": 33.815,
-          "Eolian_Deflation_Idx": 24.369,
-          "Diurnal_Delta_T_K": 23.409
+          "Soil_Cohesion_kPa": 1.536,
+          "Friction_Angle_deg": 32.22,
+          "Salts_Evaporites_wt_pct": 6.967,
+          "UV_Flux_Index": 8.064,
+          "Mafic_Basalt_Idx": 68.729,
+          "Eolian_Deflation_Idx": 50.621,
+          "Diurnal_Delta_T_K": 19.615
         }
       }
     }

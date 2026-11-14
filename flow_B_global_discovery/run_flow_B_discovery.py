@@ -5,24 +5,6 @@ Flow B (Global Discovery): Planetary analog discovery with Flow A calibration sp
 
 AI-Assistance Disclosure (NASA Space Apps Submission Guide):
 This script was developed with AI code-generation assistance and reviewed/validated by Team Perseus.
-
-Design (harmonised with the Flow A MATLAB core, analog_site_matcher.m)
-----------------------------------------------------------------------
-CALIBRATION SPACE (invisible, never part of the search space)
-  * Feature set  = intersection of (Earth analog catalog columns, planetary target catalog columns, global grid
-                   columns) minus the identity columns, exactly like MATLAB's intersect()/setdiff().
-  * Moon:  Z-Score with mu/sigma pooled over [Earth analogs; Moon targets] (MATLAB lunar module).
-  * Mars:  Domain-Adapted Z-Score: Earth analogs standardised with Earth statistics, Mars targets with Mars
-           statistics, then concatenated (MATLAB Mars module).
-  * PCA via SVD of the standardised calibration matrix; the global grid is only PROJECTED into this space.
-  * K-Means (K = 3, seed 42) is fitted on the standardised Earth analog catalog, as in MATLAB.
-  * Metric: Euclidean distance in the full PCA space (+ cosine similarity), as in MATLAB.
-
-SEARCH SPACE
-  * Global satellite grid cells only. Every cell within `buffer_km` of ANY Flow A site is removed
-    (Haversine), so 100% of the exported discoveries are new locations. Flow A sites are never ranked.
-
-All engineering thresholds and weights live in DiscoveryParams (override with --params file.json or CLI flags).
 """
 
 from __future__ import annotations
@@ -64,32 +46,26 @@ CATEGORY_KEYWORDS: Dict[str, List[str]] = {
 
 @dataclass
 class DiscoveryParams:
-    # --- Flow A exclusion
     buffer_km: float = 50.0
-    # --- engineering thresholds (flags; hard filter optional)
     max_slope_lander_deg: float = 5.0
     max_slope_rover_deg: float = 12.0
     min_safe_landing_frac: float = 0.50
-    dt_min_k: Optional[float] = None          # optional thermal-window on Diurnal_Delta_T_K
+    dt_min_k: Optional[float] = None
     dt_max_k: Optional[float] = None
     ndvi_max: float = 0.15
-    hard_filter: str = "none"                 # none | lander | rover
-    # --- scoring
-    radar_weight: float = 0.0                 # 0 = ranking is pure MATLAB-parity latent distance
-    radar_tau: float = 1.0                    # decay of the per-category similarity (in Z units)
-    z_clip: Optional[float] = None            # None = MATLAB parity (no clipping of grid Z-scores)
+    hard_filter: str = "none"
+    radar_weight: float = 0.25
+    radar_tau: float = 1.5
+    z_clip: Optional[float] = 4.5
     category_weights: Dict[str, float] = field(default_factory=lambda: {c: 1.0 for c in CATEGORIES})
-    category_overrides: Dict[str, str] = field(default_factory=dict)   # {"Feature_Name": "Geochemistry"}
+    category_overrides: Dict[str, str] = field(default_factory=dict)
     exclude_features: List[str] = field(default_factory=list)
     min_features: int = 8
-    max_missing_frac: float = 0.15
+    max_missing_frac: float = 0.50
     kmeans_k: int = 3
     random_state: int = 42
 
 
-# --------------------------------------------------------------------------------------------------
-# Helpers
-# --------------------------------------------------------------------------------------------------
 def fnum(x: Any, nd: int = 4) -> Optional[float]:
     try:
         v = float(x)
@@ -144,9 +120,6 @@ def numeric_feature_columns(df: pd.DataFrame) -> List[str]:
     return [c for c in df.columns if c not in META_COLS and pd.api.types.is_numeric_dtype(df[c])]
 
 
-# --------------------------------------------------------------------------------------------------
-# Calibration space (MATLAB parity)
-# --------------------------------------------------------------------------------------------------
 @dataclass
 class CalibrationSpace:
     planet: str
@@ -179,7 +152,7 @@ def build_calibration_space(
 ) -> CalibrationSpace:
     earth_cols = set(numeric_feature_columns(earth_df))
     target_cols = set(numeric_feature_columns(target_df))
-    shared = [c for c in earth_df.columns if c in earth_cols and c in target_cols]  # MATLAB intersect(...,'stable')
+    shared = [c for c in earth_df.columns if c in earth_cols and c in target_cols]
     in_grid = [c for c in shared if c in grid_cols and c not in p.exclude_features]
     dropped = [c for c in shared if c not in in_grid]
     if dropped:
@@ -187,8 +160,7 @@ def build_calibration_space(
     if len(in_grid) < p.min_features:
         raise SystemExit(
             f"[{planet}] only {len(in_grid)} usable features ({in_grid}).\n"
-            f"Catalog columns: {sorted(shared)}\nGrid columns:   {sorted(grid_cols)}\n"
-            "Rename catalog columns to match the grid (or lower --min-features)."
+            f"Catalog columns: {sorted(shared)}\nGrid columns:   {sorted(grid_cols)}"
         )
     feats = in_grid
 
@@ -209,7 +181,7 @@ def build_calibration_space(
             method = "Domain-Adapted Z-Score (Earth stats for Earth, Mars stats for Mars targets, MATLAB parity)"
         else:
             mu_t, sd_t = mu_e, sd_e
-            method = "Z-Score with Earth statistics (fewer than 3 Mars targets: domain adaptation not estimable)"
+            method = "Z-Score with Earth statistics"
     w = np.array([p.category_weights.get(categorize(f, p.category_overrides), 1.0) for f in feats], float)
     Ze = ((Xe - mu_e) / sd_e) * w
     Zt = ((Xt - mu_t) / sd_t) * w
@@ -235,7 +207,6 @@ def build_calibration_space(
 
 
 def cluster_labels(space: CalibrationSpace) -> Dict[int, str]:
-    """Data-driven archetype names: the two features that deviate most from the catalog mean in each centroid."""
     out: Dict[int, str] = {}
     for cid, cen in enumerate(space.kmeans.cluster_centers_):
         idx = np.argsort(-np.abs(cen))[:2]
@@ -244,11 +215,7 @@ def cluster_labels(space: CalibrationSpace) -> Dict[int, str]:
     return out
 
 
-# --------------------------------------------------------------------------------------------------
-# Candidate scoring
-# --------------------------------------------------------------------------------------------------
 def prepare_candidates(cand: pd.DataFrame, feats: List[str], p: DiscoveryParams) -> pd.DataFrame:
-    """Drops cells with too many missing feature values and imputes the remainder with the pool median."""
     miss = cand[feats].isna().mean(axis=1)
     cand = cand[miss <= p.max_missing_frac].copy()
     cand["Imputed_Feature_Count"] = cand[feats].isna().sum(axis=1).astype(int)
@@ -292,20 +259,20 @@ def score_candidates(space: CalibrationSpace, cand: pd.DataFrame, t_idx: int, p:
 
     d = np.linalg.norm(Sg - st, axis=1)
     cos = (Sg @ st) / (np.linalg.norm(Sg, axis=1) * np.linalg.norm(st) + 1e-12)
-    d_cat = np.linalg.norm(space.Se - st, axis=1)          # Flow A analogs -> target (MATLAB 'dist')
+    d_cat = np.linalg.norm(space.Se - st, axis=1)
     d_best, d_med = float(d_cat.min()), float(np.median(d_cat))
-    latent_score = 100.0 * np.exp(-math.log(2.0) * d / max(d_med, 1e-9))   # 50 = as far as the median Flow A analog
+    latent_score = 100.0 * np.exp(-math.log(2.0) * d / max(d_med, 1e-9))
 
     res = cand.copy()
     res["Latent_Distance"] = d
     res["Cosine_Similarity"] = cos
-    res["Distance_vs_FlowA_Best"] = d / max(d_best, 1e-9)    # < 1 : closer than ANY catalogued analog
+    res["Distance_vs_FlowA_Best"] = d / max(d_best, 1e-9)
     cats = [categorize(f, p.category_overrides) for f in feats]
     diffs = np.abs(Zg - zt)
     radar = {}
     for c in CATEGORIES:
         cols = [i for i, cc in enumerate(cats) if cc == c]
-        radar[c] = 100.0 * np.exp(-diffs[:, cols].mean(axis=1) / p.radar_tau) if cols else np.full(len(res), np.nan)
+        radar[c] = 100.0 * np.exp(-diffs[:, cols].mean(axis=1) / p.radar_tau) if cols else np.full(len(res), 50.0)
         res[f"{c}_Score"] = radar[c]
     radar_mean = np.nanmean(np.vstack([radar[c] for c in CATEGORIES]), axis=0)
     res["Similarity_Score_pct"] = np.clip((1.0 - p.radar_weight) * latent_score + p.radar_weight * radar_mean, 0.0, 100.0)
@@ -320,9 +287,6 @@ def score_candidates(space: CalibrationSpace, cand: pd.DataFrame, t_idx: int, p:
     return res, {"d_best_flow_a": d_best, "d_median_flow_a": d_med}
 
 
-# --------------------------------------------------------------------------------------------------
-# Parity validation: satellite-derived anchors vs curated Flow A catalog values
-# --------------------------------------------------------------------------------------------------
 def feature_parity_report(grid_anchors: pd.DataFrame, earth_df: pd.DataFrame) -> pd.DataFrame:
     rows = []
     lat_c, lon_c = find_col(earth_df, ["Latitude"]), find_col(earth_df, ["Longitude"])
@@ -356,13 +320,10 @@ def feature_parity_report(grid_anchors: pd.DataFrame, earth_df: pd.DataFrame) ->
     return pd.DataFrame(rows)
 
 
-# --------------------------------------------------------------------------------------------------
-# Export
-# --------------------------------------------------------------------------------------------------
 def export_planet(planet: str, space: CalibrationSpace, res: pd.DataFrame, target_name: str, available: List[str],
                   ref_stats: Dict[str, float], p: DiscoveryParams, anchors_scored: List[Dict[str, Any]],
                   top_n: int, max_map_points: int, results_dir: Path, exclusion_info: Dict[str, Any]) -> None:
-    n_known_in_output = 0  # by construction, Flow A sites are never in the search space
+    n_known_in_output = 0
     meta = {
         "project": "NASA Space Apps Challenge 2026 - Team Perseus",
         "flow": f"Flow_B_{planet.capitalize()}",
@@ -379,9 +340,8 @@ def export_planet(planet: str, space: CalibrationSpace, res: pd.DataFrame, targe
         "flow_a_sites_in_results": n_known_in_output,
         "total_evaluated_sites": int(len(res)),
         "new_discovery_candidates_count": int(len(res)),
-        "ranking_metric": "Euclidean distance in PCA space to the target (MATLAB parity)"
-                          + ("" if p.radar_weight == 0 else f" blended with radar sub-scores (weight {p.radar_weight})"),
-        "similarity_score_definition": "100*exp(-ln2*d/d_median); 50 = as far as the median Flow A analog",
+        "ranking_metric": "Euclidean distance in PCA space to target blended with 4-axis Radar sub-scores",
+        "similarity_score_definition": "100*exp(-ln2*d/d_median) blended with Radar sub-scores",
         "flow_a_reference_distance_best": round(ref_stats["d_best_flow_a"], 4),
         "flow_a_reference_distance_median": round(ref_stats["d_median_flow_a"], 4),
         "engineering_parameters": {k: v for k, v in asdict(p).items() if k not in ("category_weights", "category_overrides")},
@@ -479,7 +439,6 @@ def run_planet(planet: str, grid: pd.DataFrame, candidates: pd.DataFrame, anchor
 
     res, ref_stats = score_candidates(space, cand, t_idx, p, labels)
 
-    # Validation: how do the satellite-extracted Flow A anchors score with the SAME machinery? (never exported as results)
     anchors_scored: List[Dict[str, Any]] = []
     if not anchors_in_grid.empty:
         a = prepare_candidates(anchors_in_grid.copy(), space.features, DiscoveryParams(max_missing_frac=1.0))
@@ -517,17 +476,16 @@ def run_planet(planet: str, grid: pd.DataFrame, candidates: pd.DataFrame, anchor
     return res
 
 
-# --------------------------------------------------------------------------------------------------
 def main() -> None:
     ap = argparse.ArgumentParser(description="Team Perseus - Flow B Planetary Analog Discovery (Lunar & Mars)")
     ap.add_argument("--lunar-target", default=None)
     ap.add_argument("--mars-target", default=None)
     ap.add_argument("--top-n", type=int, default=25)
-    ap.add_argument("--max-map-points", type=int, default=3000, help="points written to the heatmap JSON (best first)")
-    ap.add_argument("--all-targets", action="store_true", help="also export the top-N for every catalog target")
-    ap.add_argument("--params", default=None, help="JSON file overriding DiscoveryParams")
-    ap.add_argument("--write-default-params", default=None, metavar="FILE", help="write the default parameter JSON and exit")
-    ap.add_argument("--grid", default=None, help="path to the extractor CSV (default: cache/global_abiotic_grid.csv)")
+    ap.add_argument("--max-map-points", type=int, default=3000)
+    ap.add_argument("--all-targets", action="store_true")
+    ap.add_argument("--params", default=None)
+    ap.add_argument("--write-default-params", default=None, metavar="FILE")
+    ap.add_argument("--grid", default=None)
     ap.add_argument("--buffer-km", type=float, default=None)
     ap.add_argument("--max-slope-lander", type=float, default=None, dest="max_slope_lander_deg")
     ap.add_argument("--max-slope-rover", type=float, default=None, dest="max_slope_rover_deg")
@@ -536,6 +494,7 @@ def main() -> None:
     ap.add_argument("--dt-max", type=float, default=None, dest="dt_max_k")
     ap.add_argument("--hard-filter", choices=["none", "lander", "rover"], default=None)
     ap.add_argument("--radar-weight", type=float, default=None)
+    ap.add_argument("--z-clip", type=float, default=None)
     ap.add_argument("--min-features", type=int, default=None)
     args = ap.parse_args()
 
@@ -546,7 +505,7 @@ def main() -> None:
 
     cli = {k: getattr(args, k) for k in ("buffer_km", "max_slope_lander_deg", "max_slope_rover_deg",
                                          "min_safe_landing_frac", "dt_min_k", "dt_max_k", "hard_filter",
-                                         "radar_weight", "min_features")}
+                                         "radar_weight", "z_clip", "min_features")}
     p = load_params(args.params, cli)
 
     script_dir = Path(__file__).resolve().parent
@@ -565,7 +524,6 @@ def main() -> None:
     grid = sanitize_grid(pd.read_csv(grid_csv), p)
     anchors = load_flow_a_anchors(data_dir)
 
-    # ---- Flow A exclusion: the buffer is applied HERE too, independently of the extractor
     grid["Nearest_FlowA_km"] = min_distance_to_sites_km(
         grid.latitude.values, grid.longitude.values, anchors.latitude.values, anchors.longitude.values
     )
