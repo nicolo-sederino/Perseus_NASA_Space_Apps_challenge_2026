@@ -1,0 +1,16 @@
+{
+  "project": "NASA Space Apps Challenge 2026 - Team Perseus",
+  "module": "Flow B Global Abiotic Grid Extraction",
+  "ai_assisted_development": "Developed with AI code-generation assistance and validated by Team Perseus",
+  "timestamp_utc": "2026-11-14T13:56:01.632870+00:00",
+  "nasa_collections": [
+    "landsat-c2-l2 (NASA/USGS Landsat 8/9 Collection 2 Level-2 Optical & Thermal Infrared)",
+    "nasadem (NASA SRTM 30m Global Digital Elevation Model)"
+  ],
+  "partner_collections": [
+    "cop-dem-glo-90 (ESA Copernicus 90m DEM for polar latitudes |lat| >= 56 deg)"
+  ],
+  "total_abiotic_cells": 171,
+  "known_calibration_sites": 30,
+  "execution_time_seconds": 1617.18
+}

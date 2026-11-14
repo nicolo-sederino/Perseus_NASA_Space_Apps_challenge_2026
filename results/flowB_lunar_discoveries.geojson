@@ -1,0 +1,2675 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "project": "NASA Space Apps Challenge 2026 - Team Perseus",
+    "flow": "Flow_B_Lunar",
+    "planetary_body": "Lunar",
+    "reference_target": "Shackleton_Rim_South_Pole",
+    "available_targets": [
+      "Shackleton_Rim_South_Pole",
+      "Mare_Tranquillitatis_Basalt",
+      "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
+      "Mare_Tranquillitatis_Pit_(Apollo_11_&_Subsurface_Conduit)",
+      "Marius_Hills_Skylight_(Lava_Tube_/_Volcanic_Dome)",
+      "Oceanus_Procellarum_(Apollo_12_Basaltic_Maria_Plain)",
+      "Descartes_Highlands_(Apollo_16_Pure_Anorthosite_Crust)"
+    ],
+    "standardization_method": "Standard Z-Score",
+    "scaler_calibration_source": "Flow_A_Catalog (Earth_Lunar_Analogs_Catalog.csv)",
+    "pca_explained_variance_ratio": [
+      0.5199,
+      0.2645,
+      0.1229,
+      0.0439,
+      0.0264,
+      0.007
+    ],
+    "kmeans_k": 3,
+    "total_evaluated_sites": 171,
+    "known_calibration_sites_count": 30,
+    "new_discovery_candidates_count": 141,
+    "timestamp_utc": "2026-11-14T14:07:30.343635+00:00"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          156.2,
+          -78.8
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Antarctica_D_0207",
+        "region": "Antarctica_DryValleys_Plateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 1,
+        "global_rank": 3,
+        "similarity_score_pct": 77.25,
+        "latent_distance": 1.5082,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 96.75,
+          "Thermophysics": 78.52,
+          "Geochemistry": 99.5,
+          "Environment": 86.28
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1721.13,
+          "Mean_Slope_deg": 1.43,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 2.146,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 222.33,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8446,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 80.37,
+          "Surface_Pressure_mbar": 826.22,
+          "UV_Flux_Index": 4.29,
+          "Eolian_Deflation_Idx": 87.83,
+          "NDVI": -0.0216
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.8,
+          73.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0190",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 2,
+        "global_rank": 4,
+        "similarity_score_pct": 77.13,
+        "latent_distance": 1.2952,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 92.92,
+          "Thermophysics": 69.99,
+          "Geochemistry": 99.5,
+          "Environment": 87.22
+        },
+        "engineering_metrics": {
+          "Altitude_m": 319.47,
+          "Mean_Slope_deg": 2.127,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 3.057,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 246.34,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.7932,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.956,
+          "Salts_Evaporites_wt_pct": 6.01,
+          "Water_Ice_wt_pct": 71.87,
+          "Surface_Pressure_mbar": 975.59,
+          "UV_Flux_Index": 3.58,
+          "Eolian_Deflation_Idx": 85.63,
+          "NDVI": -0.087
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.2,
+          44.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Central_Asia_0140",
+        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 3,
+        "global_rank": 5,
+        "similarity_score_pct": 77.01,
+        "latent_distance": 1.3355,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 96.04,
+          "Thermophysics": 67.61,
+          "Geochemistry": 99.5,
+          "Environment": 87.84
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1033.48,
+          "Mean_Slope_deg": 2.668,
+          "Safe_Landing_Frac": 0.9691,
+          "RMS_Roughness_m": 1.274,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 252.22,
+          "Thermal_Inertia": 48.78,
+          "Albedo": 0.7131,
+          "Mafic_Basalt_Idx": 6.9,
+          "Ferric_Oxide_Idx": 0.881,
+          "Salts_Evaporites_wt_pct": 42.24,
+          "Water_Ice_wt_pct": 23.56,
+          "Surface_Pressure_mbar": 896.4,
+          "UV_Flux_Index": 5.39,
+          "Eolian_Deflation_Idx": 83.91,
+          "NDVI": -0.04
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2,
+          44.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Central_Asia_0141",
+        "region": "Central_Asia_Gobi_Qaidam_Tarim",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 4,
+        "global_rank": 6,
+        "similarity_score_pct": 76.65,
+        "latent_distance": 1.4572,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 70.65,
+          "Geochemistry": 98.13,
+          "Environment": 86.61
+        },
+        "engineering_metrics": {
+          "Altitude_m": 604.96,
+          "Mean_Slope_deg": 1.416,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.953,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 239.18,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.9441,
+          "Mafic_Basalt_Idx": 8.88,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 45.0,
+          "Water_Ice_wt_pct": 9.19,
+          "Surface_Pressure_mbar": 943.12,
+          "UV_Flux_Index": 4.8,
+          "Eolian_Deflation_Idx": 87.88,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8,
+          73.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0193",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 5,
+        "global_rank": 7,
+        "similarity_score_pct": 75.68,
+        "latent_distance": 1.3785,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 85.0,
+          "Thermophysics": 72.69,
+          "Geochemistry": 99.5,
+          "Environment": 87.8
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1020.76,
+          "Mean_Slope_deg": 2.619,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 5.177,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 234.91,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8808,
+          "Mafic_Basalt_Idx": 7.03,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 45.0,
+          "Water_Ice_wt_pct": 23.44,
+          "Surface_Pressure_mbar": 897.75,
+          "UV_Flux_Index": 3.74,
+          "Eolian_Deflation_Idx": 84.07,
+          "NDVI": -0.0521
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          156.2,
+          -74.8
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Antarctica_D_0211",
+        "region": "Antarctica_DryValleys_Plateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 6,
+        "global_rank": 9,
+        "similarity_score_pct": 74.75,
+        "latent_distance": 1.8765,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 78.38,
+          "Geochemistry": 99.5,
+          "Environment": 84.71
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1928.52,
+          "Mean_Slope_deg": 0.608,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.749,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 222.69,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8499,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 2.89,
+          "Water_Ice_wt_pct": 76.53,
+          "Surface_Pressure_mbar": 806.15,
+          "UV_Flux_Index": 4.83,
+          "Eolian_Deflation_Idx": 90.44,
+          "NDVI": -0.0189
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          164.2,
+          -74.8
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Antarctica_D_0213",
+        "region": "Antarctica_DryValleys_Plateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 7,
+        "global_rank": 10,
+        "similarity_score_pct": 74.67,
+        "latent_distance": 2.1695,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 85.92,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 234.65,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 65.67,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.39,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.4817
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          160.2,
+          -74.8
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Antarctica_D_0212",
+        "region": "Antarctica_DryValleys_Plateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 8,
+        "global_rank": 11,
+        "similarity_score_pct": 74.18,
+        "latent_distance": 1.9312,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 77.39,
+          "Geochemistry": 99.5,
+          "Environment": 84.41
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1451.75,
+          "Mean_Slope_deg": 0.471,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.263,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 225.65,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8591,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 5.01,
+          "Water_Ice_wt_pct": 73.43,
+          "Surface_Pressure_mbar": 853.03,
+          "UV_Flux_Index": 4.43,
+          "Eolian_Deflation_Idx": 90.87,
+          "NDVI": -0.0085
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.8,
+          77.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0195",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 9,
+        "global_rank": 12,
+        "similarity_score_pct": 73.94,
+        "latent_distance": 1.9303,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 76.5,
+          "Geochemistry": 99.5,
+          "Environment": 83.79
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 246.33,
+          "Thermal_Inertia": 69.96,
+          "Albedo": 0.5885,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.758,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 80.25,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.25,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.0956
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.8,
+          77.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0199",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 10,
+        "global_rank": 13,
+        "similarity_score_pct": 73.29,
+        "latent_distance": 2.2508,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 80.36,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 247.76,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 59.9,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 2.96,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.8,
+          77.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0201",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 11,
+        "global_rank": 14,
+        "similarity_score_pct": 73.15,
+        "latent_distance": 2.282,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 80.59,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 250.79,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 69.29,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.24,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.8,
+          77.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0200",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 12,
+        "global_rank": 15,
+        "similarity_score_pct": 73.11,
+        "latent_distance": 2.2652,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 79.77,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 249.53,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 55.94,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 2.96,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.2536
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.8,
+          77.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0204",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 13,
+        "global_rank": 16,
+        "similarity_score_pct": 73.08,
+        "latent_distance": 2.2841,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 80.24,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 251.16,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 58.84,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.19,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.353
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.8,
+          77.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0198",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 14,
+        "global_rank": 17,
+        "similarity_score_pct": 73.04,
+        "latent_distance": 2.0159,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 74.32,
+          "Geochemistry": 99.5,
+          "Environment": 83.79
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 233.6,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8083,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 80.37,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.15,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.0722
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8,
+          77.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0196",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 15,
+        "global_rank": 18,
+        "similarity_score_pct": 72.97,
+        "latent_distance": 2.0383,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 74.75,
+          "Geochemistry": 99.5,
+          "Environment": 83.79
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 233.6,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8707,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 7.41,
+          "Water_Ice_wt_pct": 69.92,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.24,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          168.2,
+          -78.8
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Antarctica_D_0210",
+        "region": "Antarctica_DryValleys_Plateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 16,
+        "global_rank": 19,
+        "similarity_score_pct": 72.95,
+        "latent_distance": 2.0009,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 73.05,
+          "Geochemistry": 99.5,
+          "Environment": 83.95
+        },
+        "engineering_metrics": {
+          "Altitude_m": 43.86,
+          "Mean_Slope_deg": 0.263,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.255,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 232.72,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8606,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 80.29,
+          "Surface_Pressure_mbar": 1007.99,
+          "UV_Flux_Index": 2.71,
+          "Eolian_Deflation_Idx": 91.53,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.8,
+          73.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0189",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 17,
+        "global_rank": 20,
+        "similarity_score_pct": 72.85,
+        "latent_distance": 2.2995,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 79.32,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 253.06,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 41.32,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.38,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          164.2,
+          -78.8
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Antarctica_D_0209",
+        "region": "Antarctica_DryValleys_Plateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 18,
+        "global_rank": 21,
+        "similarity_score_pct": 72.81,
+        "latent_distance": 2.0223,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 73.09,
+          "Geochemistry": 99.5,
+          "Environment": 83.87
+        },
+        "engineering_metrics": {
+          "Altitude_m": 65.78,
+          "Mean_Slope_deg": 0.235,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.235,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 232.59,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8777,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 13.64,
+          "Water_Ice_wt_pct": 60.82,
+          "Surface_Pressure_mbar": 1005.38,
+          "UV_Flux_Index": 2.72,
+          "Eolian_Deflation_Idx": 91.62,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8,
+          73.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Canadian_Hig_0186",
+        "region": "Canadian_High_Arctic_Devon",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 19,
+        "global_rank": 22,
+        "similarity_score_pct": 72.74,
+        "latent_distance": 2.285,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 78.17,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 252.24,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 26.86,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 3.03,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.3,
+          -19.8
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Atacama_Ande_0024",
+        "region": "Atacama_AndeanAltiplano_Puna",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 20,
+        "global_rank": 24,
+        "similarity_score_pct": 71.36,
+        "latent_distance": 2.0211,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 64.21,
+          "Geochemistry": 99.5,
+          "Environment": 83.79
+        },
+        "engineering_metrics": {
+          "Altitude_m": 3652.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 269.67,
+          "Thermal_Inertia": 60.23,
+          "Albedo": 0.6457,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.976,
+          "Salts_Evaporites_wt_pct": 15.51,
+          "Water_Ice_wt_pct": 61.99,
+          "Surface_Pressure_mbar": 657.16,
+          "UV_Flux_Index": 9.78,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.057
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.2,
+          25.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Arabian_Volc_0091",
+        "region": "Arabian_Volcanic_Harrat_Desert",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 21,
+        "global_rank": 25,
+        "similarity_score_pct": 71.33,
+        "latent_distance": 2.0715,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 66.32,
+          "Geochemistry": 98.63,
+          "Environment": 84.26
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 257.14,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.7968,
+          "Mafic_Basalt_Idx": 9.43,
+          "Ferric_Oxide_Idx": 0.938,
+          "Salts_Evaporites_wt_pct": 45.0,
+          "Water_Ice_wt_pct": 9.34,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 5.54,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.029
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.8,
+          33.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Mojave_Great_0005",
+        "region": "Mojave_GreatBasin_ColoradoPlateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 22,
+        "global_rank": 26,
+        "similarity_score_pct": 70.99,
+        "latent_distance": 2.4798,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 73.85,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 270.01,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 39.81,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 5.41,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.2,
+          29.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Arabian_Volc_0099",
+        "region": "Arabian_Volcanic_Harrat_Desert",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 23,
+        "global_rank": 27,
+        "similarity_score_pct": 70.92,
+        "latent_distance": 2.4928,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 73.86,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 270.93,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 59.31,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 5.66,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": -0.6805
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.8,
+          29.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Mojave_Great_0002",
+        "region": "Mojave_GreatBasin_ColoradoPlateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 24,
+        "global_rank": 28,
+        "similarity_score_pct": 70.81,
+        "latent_distance": 2.4998,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 73.42,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 271.61,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 39.93,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 5.57,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.8,
+          29.2
+        ]
+      },
+      "properties": {
+        "site_name": "Discovery_Mojave_Great_0001",
+        "region": "Mojave_GreatBasin_ColoradoPlateau",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": false,
+        "catalog_role": "discovery_candidate",
+        "discovery_rank": 25,
+        "global_rank": 29,
+        "similarity_score_pct": 70.77,
+        "latent_distance": 2.4955,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 73.02,
+          "Geochemistry": 94.18,
+          "Environment": 93.29
+        },
+        "engineering_metrics": {
+          "Altitude_m": 0.0,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 271.48,
+          "Thermal_Inertia": 166.6,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.3,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 41.55,
+          "Surface_Pressure_mbar": 1013.25,
+          "UV_Flux_Index": 5.39,
+          "Eolian_Deflation_Idx": 91.73,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          93.4,
+          37.85
+        ]
+      },
+      "properties": {
+        "site_name": "Qaidam Basin & Lenghu Desert",
+        "region": "China",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 1,
+        "similarity_score_pct": 79.42,
+        "latent_distance": 1.297,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 92.12,
+          "Thermophysics": 84.67,
+          "Geochemistry": 99.5,
+          "Environment": 87.5
+        },
+        "engineering_metrics": {
+          "Altitude_m": 2706.56,
+          "Mean_Slope_deg": 2.412,
+          "Safe_Landing_Frac": 0.9429,
+          "RMS_Roughness_m": 2.576,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 215.36,
+          "Thermal_Inertia": 65.45,
+          "Albedo": 0.615,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.932,
+          "Salts_Evaporites_wt_pct": 17.67,
+          "Water_Ice_wt_pct": 43.78,
+          "Surface_Pressure_mbar": 735.11,
+          "UV_Flux_Index": 8.15,
+          "Eolian_Deflation_Idx": 84.72,
+          "NDVI": -0.0295
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.68,
+          75.38
+        ]
+      },
+      "properties": {
+        "site_name": "Haughton Impact Crater",
+        "region": "Canada",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 2,
+        "similarity_score_pct": 79.07,
+        "latent_distance": 1.0981,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 88.11,
+          "Thermophysics": 83.36,
+          "Geochemistry": 91.43,
+          "Environment": 87.9
+        },
+        "engineering_metrics": {
+          "Altitude_m": 138.92,
+          "Mean_Slope_deg": 2.511,
+          "Safe_Landing_Frac": 0.9314,
+          "RMS_Roughness_m": 3.598,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 249.4,
+          "Thermal_Inertia": 115.21,
+          "Albedo": 0.3223,
+          "Mafic_Basalt_Idx": 8.35,
+          "Ferric_Oxide_Idx": 1.024,
+          "Salts_Evaporites_wt_pct": 17.71,
+          "Water_Ice_wt_pct": 12.72,
+          "Surface_Pressure_mbar": 996.7,
+          "UV_Flux_Index": 3.16,
+          "Eolian_Deflation_Idx": 84.41,
+          "NDVI": -0.0644
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.82,
+          36.25
+        ]
+      },
+      "properties": {
+        "site_name": "Badwater Basin (Death Valley)",
+        "region": "USA",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 8,
+        "similarity_score_pct": 74.79,
+        "latent_distance": 1.8315,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 97.68,
+          "Thermophysics": 75.14,
+          "Geochemistry": 91.42,
+          "Environment": 96.19
+        },
+        "engineering_metrics": {
+          "Altitude_m": -85.04,
+          "Mean_Slope_deg": 2.042,
+          "Safe_Landing_Frac": 0.9869,
+          "RMS_Roughness_m": 1.464,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 269.1,
+          "Thermal_Inertia": 157.7,
+          "Albedo": 0.0724,
+          "Mafic_Basalt_Idx": 72.67,
+          "Ferric_Oxide_Idx": 1.727,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 76.69,
+          "Surface_Pressure_mbar": 1023.52,
+          "UV_Flux_Index": 5.02,
+          "Eolian_Deflation_Idx": 85.89,
+          "NDVI": -0.7774
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.85,
+          44.15
+        ]
+      },
+      "properties": {
+        "site_name": "Jingpo Lake Volcanic Field",
+        "region": "China",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 23,
+        "similarity_score_pct": 71.93,
+        "latent_distance": 1.7219,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 74.11,
+          "Thermophysics": 80.85,
+          "Geochemistry": 99.5,
+          "Environment": 83.7
+        },
+        "engineering_metrics": {
+          "Altitude_m": 446.59,
+          "Mean_Slope_deg": 3.749,
+          "Safe_Landing_Frac": 0.7408,
+          "RMS_Roughness_m": 4.867,
+          "Diurnal_Delta_T_K": 38.32,
+          "T_mean_K": 240.81,
+          "Thermal_Inertia": 92.55,
+          "Albedo": 0.4785,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 1.116,
+          "Salts_Evaporites_wt_pct": 14.58,
+          "Water_Ice_wt_pct": 40.25,
+          "Surface_Pressure_mbar": 961.0,
+          "UV_Flux_Index": 5.18,
+          "Eolian_Deflation_Idx": 77.06,
+          "NDVI": 0.0115
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.5,
+          43.25
+        ]
+      },
+      "properties": {
+        "site_name": "Ustyurt Plateau",
+        "region": "Kazakhstan / Uzbekistan",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 36,
+        "similarity_score_pct": 67.24,
+        "latent_distance": 2.1242,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 98.99,
+          "Thermophysics": 71.1,
+          "Geochemistry": 67.5,
+          "Environment": 87.95
+        },
+        "engineering_metrics": {
+          "Altitude_m": 226.23,
+          "Mean_Slope_deg": 1.773,
+          "Safe_Landing_Frac": 0.9964,
+          "RMS_Roughness_m": 1.224,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 240.47,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.95,
+          "Mafic_Basalt_Idx": 14.55,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 45.0,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 986.43,
+          "UV_Flux_Index": 4.85,
+          "Eolian_Deflation_Idx": 86.75,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          160.67,
+          -77.82
+        ]
+      },
+      "properties": {
+        "site_name": "Antarctic Dry Valleys (McMurdo)",
+        "region": "Antarctica",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 37,
+        "similarity_score_pct": 64.58,
+        "latent_distance": 2.4373,
+        "cluster_id": 2,
+        "cluster_label": "Cluster 1: Polar Cryogenic & Volatile-Rich",
+        "radar_subscores": {
+          "Morphometry": 86.62,
+          "Thermophysics": 88.46,
+          "Geochemistry": 56.64,
+          "Environment": 88.32
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1138.41,
+          "Mean_Slope_deg": 4.246,
+          "Safe_Landing_Frac": 0.9216,
+          "RMS_Roughness_m": 2.019,
+          "Diurnal_Delta_T_K": 37.79,
+          "T_mean_K": 227.4,
+          "Thermal_Inertia": 151.78,
+          "Albedo": 0.1564,
+          "Mafic_Basalt_Idx": 51.37,
+          "Ferric_Oxide_Idx": 1.933,
+          "Salts_Evaporites_wt_pct": 9.3,
+          "Water_Ice_wt_pct": 2.65,
+          "Surface_Pressure_mbar": 885.32,
+          "UV_Flux_Index": 3.94,
+          "Eolian_Deflation_Idx": 74.42,
+          "NDVI": 0.015
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.1,
+          43.7
+        ]
+      },
+      "properties": {
+        "site_name": "Trans-Altai Gobi Desert",
+        "region": "Mongolia",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 43,
+        "similarity_score_pct": 60.97,
+        "latent_distance": 3.3198,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 95.74,
+          "Thermophysics": 72.85,
+          "Geochemistry": 69.49,
+          "Environment": 83.7
+        },
+        "engineering_metrics": {
+          "Altitude_m": 929.37,
+          "Mean_Slope_deg": 2.281,
+          "Safe_Landing_Frac": 0.9738,
+          "RMS_Roughness_m": 1.83,
+          "Diurnal_Delta_T_K": 35.27,
+          "T_mean_K": 258.21,
+          "Thermal_Inertia": 165.28,
+          "Albedo": 0.1428,
+          "Mafic_Basalt_Idx": 65.97,
+          "Ferric_Oxide_Idx": 1.571,
+          "Salts_Evaporites_wt_pct": 8.16,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 907.53,
+          "UV_Flux_Index": 6.07,
+          "Eolian_Deflation_Idx": 75.49,
+          "NDVI": 0.0323
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.75,
+          -24.85
+        ]
+      },
+      "properties": {
+        "site_name": "Salar de Arizaro",
+        "region": "Argentina",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 45,
+        "similarity_score_pct": 57.87,
+        "latent_distance": 3.4654,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 99.3,
+          "Thermophysics": 68.09,
+          "Geochemistry": 57.82,
+          "Environment": 80.67
+        },
+        "engineering_metrics": {
+          "Altitude_m": 3469.36,
+          "Mean_Slope_deg": 1.675,
+          "Safe_Landing_Frac": 0.9988,
+          "RMS_Roughness_m": 1.166,
+          "Diurnal_Delta_T_K": 37.06,
+          "T_mean_K": 300.21,
+          "Thermal_Inertia": 125.24,
+          "Albedo": 0.3174,
+          "Mafic_Basalt_Idx": 15.95,
+          "Ferric_Oxide_Idx": 1.36,
+          "Salts_Evaporites_wt_pct": 18.76,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 671.55,
+          "UV_Flux_Index": 10.75,
+          "Eolian_Deflation_Idx": 81.07,
+          "NDVI": 0.02
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.75,
+          65.03
+        ]
+      },
+      "properties": {
+        "site_name": "Askja Caldera",
+        "region": "Iceland",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 54,
+        "similarity_score_pct": 55.88,
+        "latent_distance": 3.1335,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 99.5,
+          "Thermophysics": 69.83,
+          "Geochemistry": 48.52,
+          "Environment": 68.27
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1055.5,
+          "Mean_Slope_deg": 0.2,
+          "Safe_Landing_Frac": 1.0,
+          "RMS_Roughness_m": 0.0,
+          "Diurnal_Delta_T_K": 32.76,
+          "T_mean_K": 261.02,
+          "Thermal_Inertia": 150.16,
+          "Albedo": 0.2765,
+          "Mafic_Basalt_Idx": 24.88,
+          "Ferric_Oxide_Idx": 1.048,
+          "Salts_Evaporites_wt_pct": 19.51,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 894.06,
+          "UV_Flux_Index": 4.26,
+          "Eolian_Deflation_Idx": 76.97,
+          "NDVI": 0.0493
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.33,
+          47.05
+        ]
+      },
+      "properties": {
+        "site_name": "Moses Lake Sand Dunes",
+        "region": "USA",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 72,
+        "similarity_score_pct": 48.58,
+        "latent_distance": 4.6148,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 99.04,
+          "Thermophysics": 38.53,
+          "Geochemistry": 76.97,
+          "Environment": 53.42
+        },
+        "engineering_metrics": {
+          "Altitude_m": 317.21,
+          "Mean_Slope_deg": 1.649,
+          "Safe_Landing_Frac": 0.9893,
+          "RMS_Roughness_m": 1.167,
+          "Diurnal_Delta_T_K": 23.33,
+          "T_mean_K": 261.0,
+          "Thermal_Inertia": 256.55,
+          "Albedo": 0.1199,
+          "Mafic_Basalt_Idx": 68.69,
+          "Ferric_Oxide_Idx": 1.123,
+          "Salts_Evaporites_wt_pct": 7.12,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 975.85,
+          "UV_Flux_Index": 4.84,
+          "Eolian_Deflation_Idx": 53.14,
+          "NDVI": 0.1137
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.56,
+          43.46
+        ]
+      },
+      "properties": {
+        "site_name": "Craters of the Moon (Indian Tunnel) / Craters of the Moon",
+        "region": "USA",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "both_known",
+        "discovery_rank": 0,
+        "global_rank": 76,
+        "similarity_score_pct": 48.3,
+        "latent_distance": 5.1698,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 65.36,
+          "Thermophysics": 43.98,
+          "Geochemistry": 96.77,
+          "Environment": 66.56
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1792.61,
+          "Mean_Slope_deg": 4.487,
+          "Safe_Landing_Frac": 0.6932,
+          "RMS_Roughness_m": 6.481,
+          "Diurnal_Delta_T_K": 27.62,
+          "T_mean_K": 267.49,
+          "Thermal_Inertia": 237.61,
+          "Albedo": 0.0347,
+          "Mafic_Basalt_Idx": 80.01,
+          "Ferric_Oxide_Idx": 1.06,
+          "Salts_Evaporites_wt_pct": 2.51,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 819.25,
+          "UV_Flux_Index": 6.69,
+          "Eolian_Deflation_Idx": 52.92,
+          "NDVI": 0.0844
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.95,
+          25.68
+        ]
+      },
+      "properties": {
+        "site_name": "Harrat Khaybar Volcanic Field",
+        "region": "Saudi Arabia",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 90,
+        "similarity_score_pct": 45.61,
+        "latent_distance": 6.0244,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 98.4,
+          "Thermophysics": 26.19,
+          "Geochemistry": 97.28,
+          "Environment": 41.65
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1707.22,
+          "Mean_Slope_deg": 1.586,
+          "Safe_Landing_Frac": 0.9952,
+          "RMS_Roughness_m": 1.524,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 277.0,
+          "Thermal_Inertia": 329.9,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 80.8,
+          "Ferric_Oxide_Idx": 1.124,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 827.58,
+          "UV_Flux_Index": 6.8,
+          "Eolian_Deflation_Idx": 46.96,
+          "NDVI": 0.2037
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.83,
+          35.34
+        ]
+      },
+      "properties": {
+        "site_name": "Lava River Cave",
+        "region": "USA",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 99,
+        "similarity_score_pct": 44.06,
+        "latent_distance": 5.8352,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 89.26,
+          "Thermophysics": 28.66,
+          "Geochemistry": 92.55,
+          "Environment": 42.11
+        },
+        "engineering_metrics": {
+          "Altitude_m": 2355.19,
+          "Mean_Slope_deg": 2.761,
+          "Safe_Landing_Frac": 0.9358,
+          "RMS_Roughness_m": 3.071,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 275.78,
+          "Thermal_Inertia": 311.86,
+          "Albedo": 0.0736,
+          "Mafic_Basalt_Idx": 74.88,
+          "Ferric_Oxide_Idx": 1.256,
+          "Salts_Evaporites_wt_pct": 2.76,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 766.39,
+          "UV_Flux_Index": 8.39,
+          "Eolian_Deflation_Idx": 43.24,
+          "NDVI": 0.6347
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.8,
+          38.2
+        ]
+      },
+      "properties": {
+        "site_name": "Eastern Pamir Plateau",
+        "region": "Tajikistan",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 116,
+        "similarity_score_pct": 40.34,
+        "latent_distance": 8.699,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 68.33,
+          "Geochemistry": 99.5,
+          "Environment": 69.83
+        },
+        "engineering_metrics": {
+          "Altitude_m": 4245.99,
+          "Mean_Slope_deg": 18.83,
+          "Safe_Landing_Frac": 0.0012,
+          "RMS_Roughness_m": 13.947,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 245.99,
+          "Thermal_Inertia": 45.0,
+          "Albedo": 0.8863,
+          "Mafic_Basalt_Idx": 6.0,
+          "Ferric_Oxide_Idx": 0.99,
+          "Salts_Evaporites_wt_pct": 19.75,
+          "Water_Ice_wt_pct": 51.89,
+          "Surface_Pressure_mbar": 612.48,
+          "UV_Flux_Index": 9.71,
+          "Eolian_Deflation_Idx": 54.36,
+          "NDVI": 0.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5,
+          42.18
+        ]
+      },
+      "properties": {
+        "site_name": "Bardenas Reales",
+        "region": "Spain",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 117,
+        "similarity_score_pct": 39.77,
+        "latent_distance": 5.1256,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 93.12,
+          "Thermophysics": 28.7,
+          "Geochemistry": 58.25,
+          "Environment": 39.67
+        },
+        "engineering_metrics": {
+          "Altitude_m": 295.63,
+          "Mean_Slope_deg": 2.54,
+          "Safe_Landing_Frac": 0.9441,
+          "RMS_Roughness_m": 2.171,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 272.19,
+          "Thermal_Inertia": 280.41,
+          "Albedo": 0.167,
+          "Mafic_Basalt_Idx": 57.96,
+          "Ferric_Oxide_Idx": 1.728,
+          "Salts_Evaporites_wt_pct": 10.38,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 978.35,
+          "UV_Flux_Index": 4.71,
+          "Eolian_Deflation_Idx": 43.94,
+          "NDVI": 0.1701
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.33,
+          35.68
+        ]
+      },
+      "properties": {
+        "site_name": "Black Point Lava Flow",
+        "region": "USA",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 123,
+        "similarity_score_pct": 38.64,
+        "latent_distance": 5.9805,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 66.45,
+          "Thermophysics": 30.15,
+          "Geochemistry": 82.21,
+          "Environment": 41.52
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1289.58,
+          "Mean_Slope_deg": 4.562,
+          "Safe_Landing_Frac": 0.786,
+          "RMS_Roughness_m": 7.12,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 271.94,
+          "Thermal_Inertia": 299.41,
+          "Albedo": 0.1106,
+          "Mafic_Basalt_Idx": 73.2,
+          "Ferric_Oxide_Idx": 1.584,
+          "Salts_Evaporites_wt_pct": 6.31,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 869.59,
+          "UV_Flux_Index": 6.89,
+          "Eolian_Deflation_Idx": 37.54,
+          "NDVI": 0.1838
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.99,
+          37.75
+        ]
+      },
+      "properties": {
+        "site_name": "Mount Etna (Cisternazza & Tubes) / Mount Etna (Summit Craters & Lapilli)",
+        "region": "Italy",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "both_known",
+        "discovery_rank": 0,
+        "global_rank": 124,
+        "similarity_score_pct": 38.56,
+        "latent_distance": 8.8139,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 82.24,
+          "Geochemistry": 71.84,
+          "Environment": 72.9
+        },
+        "engineering_metrics": {
+          "Altitude_m": 3160.59,
+          "Mean_Slope_deg": 18.582,
+          "Safe_Landing_Frac": 0.0499,
+          "RMS_Roughness_m": 28.621,
+          "Diurnal_Delta_T_K": 40.0,
+          "T_mean_K": 257.02,
+          "Thermal_Inertia": 129.87,
+          "Albedo": 0.2361,
+          "Mafic_Basalt_Idx": 28.6,
+          "Ferric_Oxide_Idx": 0.895,
+          "Salts_Evaporites_wt_pct": 6.88,
+          "Water_Ice_wt_pct": 53.73,
+          "Surface_Pressure_mbar": 696.59,
+          "UV_Flux_Index": 9.21,
+          "Eolian_Deflation_Idx": 54.36,
+          "NDVI": -0.0761
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.35,
+          68.03
+        ]
+      },
+      "properties": {
+        "site_name": "Nusfjord / Flakstadoy",
+        "region": "Norway",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 131,
+        "similarity_score_pct": 37.32,
+        "latent_distance": 5.939,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 55.74,
+          "Thermophysics": 30.93,
+          "Geochemistry": 83.93,
+          "Environment": 41.3
+        },
+        "engineering_metrics": {
+          "Altitude_m": 9.06,
+          "Mean_Slope_deg": 4.635,
+          "Safe_Landing_Frac": 0.6176,
+          "RMS_Roughness_m": 11.336,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 265.75,
+          "Thermal_Inertia": 302.69,
+          "Albedo": 0.1008,
+          "Mafic_Basalt_Idx": 72.07,
+          "Ferric_Oxide_Idx": 1.391,
+          "Salts_Evaporites_wt_pct": 4.53,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 1012.16,
+          "UV_Flux_Index": 3.51,
+          "Eolian_Deflation_Idx": 37.31,
+          "NDVI": 0.4799
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5,
+          -19.05
+        ]
+      },
+      "properties": {
+        "site_name": "Etosha Pan",
+        "region": "Namibia",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 133,
+        "similarity_score_pct": 36.96,
+        "latent_distance": 5.7945,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 94.76,
+          "Thermophysics": 25.16,
+          "Geochemistry": 49.62,
+          "Environment": 39.0
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1109.66,
+          "Mean_Slope_deg": 2.478,
+          "Safe_Landing_Frac": 0.9608,
+          "RMS_Roughness_m": 1.859,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 313.83,
+          "Thermal_Inertia": 272.73,
+          "Albedo": 0.1898,
+          "Mafic_Basalt_Idx": 53.43,
+          "Ferric_Oxide_Idx": 1.533,
+          "Salts_Evaporites_wt_pct": 11.09,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 888.34,
+          "UV_Flux_Index": 7.24,
+          "Eolian_Deflation_Idx": 44.14,
+          "NDVI": 0.2691
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.55,
+          29.56
+        ]
+      },
+      "properties": {
+        "site_name": "Chongqing Karst Caves",
+        "region": "China",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 140,
+        "similarity_score_pct": 35.7,
+        "latent_distance": 7.4488,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 16.85,
+          "Thermophysics": 64.58,
+          "Geochemistry": 67.5,
+          "Environment": 61.34
+        },
+        "engineering_metrics": {
+          "Altitude_m": 251.14,
+          "Mean_Slope_deg": 11.146,
+          "Safe_Landing_Frac": 0.201,
+          "RMS_Roughness_m": 14.341,
+          "Diurnal_Delta_T_K": 35.45,
+          "T_mean_K": 263.39,
+          "Thermal_Inertia": 72.08,
+          "Albedo": 0.6243,
+          "Mafic_Basalt_Idx": 13.37,
+          "Ferric_Oxide_Idx": 1.035,
+          "Salts_Evaporites_wt_pct": 45.0,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 983.52,
+          "UV_Flux_Index": 5.31,
+          "Eolian_Deflation_Idx": 47.78,
+          "NDVI": 0.0311
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.35,
+          -3.07
+        ]
+      },
+      "properties": {
+        "site_name": "Kilimanjaro Caldera & Glaciers",
+        "region": "Tanzania",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 142,
+        "similarity_score_pct": 34.41,
+        "latent_distance": 10.3244,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 52.86,
+          "Geochemistry": 90.41,
+          "Environment": 60.65
+        },
+        "engineering_metrics": {
+          "Altitude_m": 5684.14,
+          "Mean_Slope_deg": 21.044,
+          "Safe_Landing_Frac": 0.1427,
+          "RMS_Roughness_m": 49.259,
+          "Diurnal_Delta_T_K": 32.55,
+          "T_mean_K": 283.29,
+          "Thermal_Inertia": 191.38,
+          "Albedo": 0.084,
+          "Mafic_Basalt_Idx": 75.59,
+          "Ferric_Oxide_Idx": 3.755,
+          "Salts_Evaporites_wt_pct": 5.18,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 516.46,
+          "UV_Flux_Index": 14.37,
+          "Eolian_Deflation_Idx": 39.16,
+          "NDVI": 0.0508
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -27.27,
+          38.73
+        ]
+      },
+      "properties": {
+        "site_name": "Terceira Island (Natal Cave)",
+        "region": "Portugal",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 145,
+        "similarity_score_pct": 32.77,
+        "latent_distance": 7.5837,
+        "cluster_id": 0,
+        "cluster_label": "Cluster 3: Highland Anorthositic & Regolith Terrain",
+        "radar_subscores": {
+          "Morphometry": 34.65,
+          "Thermophysics": 28.38,
+          "Geochemistry": 94.18,
+          "Environment": 35.56
+        },
+        "engineering_metrics": {
+          "Altitude_m": 564.97,
+          "Mean_Slope_deg": 7.709,
+          "Safe_Landing_Frac": 0.4138,
+          "RMS_Roughness_m": 14.294,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 272.53,
+          "Thermal_Inertia": 320.59,
+          "Albedo": 0.0477,
+          "Mafic_Basalt_Idx": 76.0,
+          "Ferric_Oxide_Idx": 0.681,
+          "Salts_Evaporites_wt_pct": 1.25,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 947.6,
+          "UV_Flux_Index": 5.38,
+          "Eolian_Deflation_Idx": 27.57,
+          "NDVI": 0.8024
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.87,
+          -24.08
+        ]
+      },
+      "properties": {
+        "site_name": "Atacama Desert",
+        "region": "Chile",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 156,
+        "similarity_score_pct": 29.21,
+        "latent_distance": 8.7044,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 14.15,
+          "Thermophysics": 59.02,
+          "Geochemistry": 49.61,
+          "Environment": 51.42
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1030.45,
+          "Mean_Slope_deg": 11.748,
+          "Safe_Landing_Frac": 0.1819,
+          "RMS_Roughness_m": 22.033,
+          "Diurnal_Delta_T_K": 31.41,
+          "T_mean_K": 315.27,
+          "Thermal_Inertia": 155.62,
+          "Albedo": 0.2813,
+          "Mafic_Basalt_Idx": 24.95,
+          "Ferric_Oxide_Idx": 1.658,
+          "Salts_Evaporites_wt_pct": 17.44,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 896.72,
+          "UV_Flux_Index": 6.73,
+          "Eolian_Deflation_Idx": 37.63,
+          "NDVI": 0.0586
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.47,
+          19.82
+        ]
+      },
+      "properties": {
+        "site_name": "Mauna Kea & Volcanic Terrains",
+        "region": "USA",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 158,
+        "similarity_score_pct": 28.77,
+        "latent_distance": 10.8953,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 30.88,
+          "Geochemistry": 96.95,
+          "Environment": 41.97
+        },
+        "engineering_metrics": {
+          "Altitude_m": 4118.46,
+          "Mean_Slope_deg": 19.777,
+          "Safe_Landing_Frac": 0.0273,
+          "RMS_Roughness_m": 37.448,
+          "Diurnal_Delta_T_K": 24.83,
+          "T_mean_K": 295.9,
+          "Thermal_Inertia": 255.19,
+          "Albedo": 0.0683,
+          "Mafic_Basalt_Idx": 80.28,
+          "Ferric_Oxide_Idx": 4.0,
+          "Salts_Evaporites_wt_pct": 3.05,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 621.81,
+          "UV_Flux_Index": 11.56,
+          "Eolian_Deflation_Idx": 23.42,
+          "NDVI": 0.1035
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.65,
+          -25.55
+        ]
+      },
+      "properties": {
+        "site_name": "Salar de Antofalla",
+        "region": "Argentina",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 159,
+        "similarity_score_pct": 28.22,
+        "latent_distance": 7.3845,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 16.38,
+          "Thermophysics": 58.32,
+          "Geochemistry": 41.14,
+          "Environment": 48.11
+        },
+        "engineering_metrics": {
+          "Altitude_m": 3502.67,
+          "Mean_Slope_deg": 10.262,
+          "Safe_Landing_Frac": 0.1213,
+          "RMS_Roughness_m": 17.084,
+          "Diurnal_Delta_T_K": 28.11,
+          "T_mean_K": 258.43,
+          "Thermal_Inertia": 182.87,
+          "Albedo": 0.244,
+          "Mafic_Basalt_Idx": 34.41,
+          "Ferric_Oxide_Idx": 1.565,
+          "Salts_Evaporites_wt_pct": 14.1,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 668.9,
+          "UV_Flux_Index": 9.3,
+          "Eolian_Deflation_Idx": 35.62,
+          "NDVI": 0.0811
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.24,
+          19.41
+        ]
+      },
+      "properties": {
+        "site_name": "Nahuku (Thurston Lava Tube)",
+        "region": "USA",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 160,
+        "similarity_score_pct": 27.92,
+        "latent_distance": 7.0101,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 33.33,
+          "Thermophysics": 36.14,
+          "Geochemistry": 67.5,
+          "Environment": 23.53
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1168.4,
+          "Mean_Slope_deg": 8.887,
+          "Safe_Landing_Frac": 0.5458,
+          "RMS_Roughness_m": 27.814,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 281.4,
+          "Thermal_Inertia": 207.52,
+          "Albedo": 0.3835,
+          "Mafic_Basalt_Idx": 11.48,
+          "Ferric_Oxide_Idx": 1.216,
+          "Salts_Evaporites_wt_pct": 24.77,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 882.18,
+          "UV_Flux_Index": 6.65,
+          "Eolian_Deflation_Idx": 23.84,
+          "NDVI": 0.181
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.53,
+          -24.72
+        ]
+      },
+      "properties": {
+        "site_name": "Llullaillaco Volcano Slopes",
+        "region": "Chile / Argentina",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "mars_known",
+        "discovery_rank": 0,
+        "global_rank": 162,
+        "similarity_score_pct": 27.21,
+        "latent_distance": 10.5563,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 53.08,
+          "Geochemistry": 54.62,
+          "Environment": 52.16
+        },
+        "engineering_metrics": {
+          "Altitude_m": 6363.83,
+          "Mean_Slope_deg": 33.924,
+          "Safe_Landing_Frac": 0.0,
+          "RMS_Roughness_m": 45.556,
+          "Diurnal_Delta_T_K": 30.22,
+          "T_mean_K": 285.6,
+          "Thermal_Inertia": 185.28,
+          "Albedo": 0.1766,
+          "Mafic_Basalt_Idx": 56.05,
+          "Ferric_Oxide_Idx": 1.726,
+          "Salts_Evaporites_wt_pct": 10.6,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 476.48,
+          "UV_Flux_Index": 15.0,
+          "Eolian_Deflation_Idx": 34.42,
+          "NDVI": 0.0667
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.53,
+          33.38
+        ]
+      },
+      "properties": {
+        "site_name": "Jeju Island",
+        "region": "South Korea",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 164,
+        "similarity_score_pct": 25.37,
+        "latent_distance": 11.4004,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 30.64,
+          "Geochemistry": 94.33,
+          "Environment": 24.36
+        },
+        "engineering_metrics": {
+          "Altitude_m": 1379.76,
+          "Mean_Slope_deg": 27.942,
+          "Safe_Landing_Frac": 0.0024,
+          "RMS_Roughness_m": 42.315,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 267.0,
+          "Thermal_Inertia": 329.9,
+          "Albedo": 0.02,
+          "Mafic_Basalt_Idx": 76.24,
+          "Ferric_Oxide_Idx": 0.521,
+          "Salts_Evaporites_wt_pct": 1.0,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 860.34,
+          "UV_Flux_Index": 6.71,
+          "Eolian_Deflation_Idx": 15.0,
+          "NDVI": 0.6862
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.53,
+          34.08
+        ]
+      },
+      "properties": {
+        "site_name": "Miyake-jima",
+        "region": "Japan",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 165,
+        "similarity_score_pct": 25.34,
+        "latent_distance": 10.7076,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 32.79,
+          "Geochemistry": 91.62,
+          "Environment": 24.14
+        },
+        "engineering_metrics": {
+          "Altitude_m": 694.64,
+          "Mean_Slope_deg": 15.092,
+          "Safe_Landing_Frac": 0.0131,
+          "RMS_Roughness_m": 18.834,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 261.04,
+          "Thermal_Inertia": 310.8,
+          "Albedo": 0.0767,
+          "Mafic_Basalt_Idx": 74.63,
+          "Ferric_Oxide_Idx": 1.232,
+          "Salts_Evaporites_wt_pct": 4.68,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 933.15,
+          "UV_Flux_Index": 5.9,
+          "Eolian_Deflation_Idx": 15.0,
+          "NDVI": 0.2093
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.5,
+          31.8
+        ]
+      },
+      "properties": {
+        "site_name": "Pinacate Volcanic Field",
+        "region": "Mexico",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_South_Pole",
+        "is_known_site": true,
+        "catalog_role": "lunar_known",
+        "discovery_rank": 0,
+        "global_rank": 166,
+        "similarity_score_pct": 25.1,
+        "latent_distance": 11.1694,
+        "cluster_id": 1,
+        "cluster_label": "Cluster 2: Mare Basaltic Plains (Low-Albedo)",
+        "radar_subscores": {
+          "Morphometry": 5.0,
+          "Thermophysics": 25.12,
+          "Geochemistry": 97.39,
+          "Environment": 25.0
+        },
+        "engineering_metrics": {
+          "Altitude_m": 888.19,
+          "Mean_Slope_deg": 17.368,
+          "Safe_Landing_Frac": 0.0488,
+          "RMS_Roughness_m": 27.326,
+          "Diurnal_Delta_T_K": 20.2,
+          "T_mean_K": 282.03,
+          "Thermal_Inertia": 322.67,
+          "Albedo": 0.0415,
+          "Mafic_Basalt_Idx": 80.97,
+          "Ferric_Oxide_Idx": 1.214,
+          "Salts_Evaporites_wt_pct": 2.1,
+          "Water_Ice_wt_pct": 0.0,
+          "Surface_Pressure_mbar": 911.98,
+          "UV_Flux_Index": 5.94,
+          "Eolian_Deflation_Idx": 15.0,
+          "NDVI": 0.2738
+        }
+      }
+    }
+  ]
+}
