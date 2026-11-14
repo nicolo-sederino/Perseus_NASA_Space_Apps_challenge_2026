@@ -1,84 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Home Page</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Perseus | Planetary Analogue Discovery System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ===== NAVIGATION ===== -->
-  <header>
-    <nav>
-      <span class="logo">Perseus Earth analogs to moon and mars</span>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- ===== INTERACTIVE MAPS ===== -->
-  <section class="maps">
-	  <a class="button" href="mappa.html">Open the interactive maps</a>
-	  <li><a href="mappa.html">Innovative Earth's sites that are analogs to the moon </a></li>
-	  <iframe src="https://earth.google.com/web/@13.35751036,16.22970182,283.48246199a,14325434.85133976d,30.00021611y,0h,0t,0r/data=CgRCAggBMikKJwolCiExRHNRc3pqc3BYWEc0WlhUd1hxYV9FTV8xOG5JMUJLdlggAToDCgEwQgIIAEoICOKh090HEAE" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      <li><a href="mappa.html">Innovative Earth's sites that are analogs to mars</a></li> 
-	  <iframe src="https://earth.google.com/web/@22.39438117,-5.16295206,-189.07317332a,17462508.53469471d,32.70986693y,0h,0t,0r/data=CgRCAggBMikKJwolCiExM1EzcXl0QWthdWU1QnlpeGtKbkpBUDBKVDVtdmtDQ2MgAToDCgEwQgIIAEoHCPiZvEwQAQ" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </section>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">TEAM <span>PERSEUS</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Overview</a></li>
+                <li><a href="lunar-module.html">Lunar Module</a></li>
+                <li><a href="mars-module.html">Mars Module</a></li>
+                <li><a href="ml-architecture.html">ML &amp; Code</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <!-- ===== ABOUT ===== -->
-	  <section id="Why are we doing this?">
-  <h2>Our Challenge</h2>
-  <p>
-    Selecting future landing sites and lunar base locations depends on many factors,
-    including topography, geology, environment, and available resources, to name a few.
-    Places on Earth that have analogous characteristics to the Moon or Mars – the Atacama
-    Desert, Haughton Crater, Death Valley – allow mission teams to test equipment and
-    methods before they fly; however, such terrestrial analog sites are not entirely well
-    characterized.
-  </p>
-</section>
-   
-</section>
-      </p>
-    </section>
+    <main>
+        <section class="hero">
+            <span class="badge">NASA Space Apps Challenge 2026</span>
+            <h1>Planetary Analogue Discovery System</h1>
+            <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> to identify high-fidelity terrestrial geological analogues for permanent Lunar and Martian surface bases.</p>
+            <div class="btn-group">
+                <a href="lunar-module.html" class="btn">Explore Lunar Results</a>
+                <a href="mars-module.html" class="btn-outline">Explore Mars Results</a>
+            </div>
+        </section>
 
-    <!-- ===== PROJECTS: copy a "card" block to add more ===== -->
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>Innovative Earth's sites that are analogs to the moon </h3>
-          <p>Short description of the project.</p>
-          <a href="#">Learn more →</a>
-        </div>
-        <div class="card">
-          <h3>Project Two</h3>
-          <p>Short description of the project.</p>
-          <a href="#">Learn more →</a>
-        </div>
-        <div class="card">
-          <h3>Project Three</h3>
-          <p>Short description of the project.</p>
-          <a href="#">Learn more →</a>
-        </div>
-      </div>
-    </section>
+        <section>
+            <h2>About the Team</h2>
+            <p>We are a group of passionate Aerospace and Computer Science Engineering undergraduate students at the <strong>Sapienza University of Rome</strong>. After our bachelor's degree, we intend to pursue a master's degree in Space and Astronautical Engineering, and then build a career in the space industry.</p>
 
-    <!-- ===== CONTACT ===== -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-      <p>GitHub: <a href="https://github.com/your-username">github.com/your-username</a></p>
-    </section>
-  </main>
+            <h2>About the Challenge</h2>
+            <p>Selecting future landing sites and lunar base locations depends on many factors, including topography, geology, environment, and available resources, to name a few. Places on Earth that have analogous characteristics to the Moon or Mars – the Atacama Desert, Haughton Crater, Death Valley – allow mission teams to test equipment and methods before they fly; however, such terrestrial analog sites are not entirely well characterized.</p>
+            <p>Our challenge is to use open Earth, Moon, and Mars data from NASA and other space agencies to identify and characterize new terrestrial analogs for future bases or landing sites, drawing on deserts, polar regions, volcanic and arid terrains, caves, and other environments that share conditions with the lunar or Martian surface, then present our findings as a map, visualization, or other tool.</p>
+        </section>
 
-  <footer>
-    <p>&copy; 2026 Your Name. Built with GitHub Pages.</p>
-  </footer>
+        <section>
+            <h2>Engineering Thresholds &amp; Parameters</h2>
+            <p>To solve this challenge, we translated extraterrestrial geology and mission safety constraints into objective numerical thresholds, cross-referencing orbital planetary data with open Earth observation datasets (Copernicus DEM, Sentinel-1 SAR, Sentinel-2, and Landsat).</p>
+
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <span class="metric-value">&le; 5&deg;</span>
+                    <span class="metric-label">Max Touchdown Slope (5m baseline)</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">&lt; 0.3 m</span>
+                    <span class="metric-label">Critical Boulder Obstacle Limit</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">1 – 3 km</span>
+                    <span class="metric-label">Plume Ejecta Safety Buffer</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">&gt; 65–75%</span>
+                    <span class="metric-label">South Pole Solar Illumination</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Our Project Modules</h2>
+            <p>We designed a modular architecture divided into three core components. Explore each section below to inspect our datasets, algorithms, and discovered terrestrial analogues:</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <span class="badge">Module 01 &bull; Flow A</span>
+                        <h3>Lunar Analogue Discovery</h3>
+                        <p>Evaluates <strong>5 key lunar targets</strong> against <strong>23 terrestrial sites</strong> across <strong>24 quantitative geophysical, thermal, and regolith parameters</strong>—covering South Pole bases (Shackleton Rim) and volcanic lava tubes (Marius Hills).</p>
+                    </div>
+                    <a href="lunar-module.html" class="card-link">View Lunar Module &rarr;</a>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="badge">Module 02 &bull; Flow C</span>
+                        <h3>Mars Analogue Discovery</h3>
+                        <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong> and Cosine Similarity metrics—spanning shield volcanoes, glacial debris aprons, and evaporite basins.</p>
+                    </div>
+                    <a href="mars-module.html" class="card-link">View Mars Module &rarr;</a>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="badge">Module 03 &bull; Core Engine</span>
+                        <h3>Data-Driven ML Pipeline</h3>
+                        <p>Built in MATLAB without hardcoded matrices: performs automated CSV feature intersection, Z-Score standardization, <strong>SVD-PCA</strong> dimensionality reduction, <strong>K-Means clustering</strong>, and 3D interactive visual analytics.</p>
+                    </div>
+                    <a href="ml-architecture.html" class="card-link">View Technical Architecture &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project. Hosted on GitHub Pages.</p>
+    </footer>
 
 </body>
 </html>
