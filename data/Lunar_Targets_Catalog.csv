@@ -1,0 +1,6 @@
+Site_Name,Latitude,Longitude,Slope_1m,Slope_5m,Slope_25m,Effective_Attitude,Boulder_Height_m,Boulder_Area_frac,Safe_Area_m2,Traverse_Slope_deg,Hab_Sep_m,Density_0_15cm_kg_m3,Density_0_60cm_kg_m3,Cohesion_kPa,Friction_Angle_deg,Bearing_Capacity_kPa,FeO_wt_pct,TiO2_wt_pct,T_min_K,T_max_K,Thermal_Inertia,Sun_Visibility_pct,DTE_pct,Water_Ice_wt_pct,Pit_Diameter_m,Pit_Depth_m
+Shackleton Rim (Artemis Base / South Pole),-89.9,0.0,3.8,4.2,4.8,5.0,0.25,0.03,350000,7.5,2000,1480,1640,0.5,42.0,5.2,4.5,0.8,40.0,220.0,50.0,82.0,58.0,5.6,0.0,0.0
+Mare Tranquillitatis Pit (Apollo 11 & Subsurface Conduit),8.5,31.4,2.0,3.2,3.5,4.0,0.4,0.05,500000,4.0,1500,1520,1680,0.58,42.5,6.0,15.2,7.8,102.0,390.0,58.0,48.0,99.0,0.0,100.0,105.0
+Marius Hills Skylight (Lava Tube / Volcanic Dome),14.08,-56.77,6.5,8.0,9.5,8.5,0.55,0.08,180000,9.8,1200,1500,1650,0.48,41.5,4.8,16.5,4.2,98.0,385.0,62.0,46.0,98.0,0.0,58.0,40.0
+Oceanus Procellarum (Apollo 12 Basaltic Maria Plain),-3.01,-23.42,1.8,2.2,2.5,3.2,0.15,0.02,850000,3.0,2500,1510,1670,0.55,42.0,5.5,16.0,4.8,100.0,392.0,54.0,45.0,99.0,0.0,0.0,0.0
+Descartes Highlands (Apollo 16 Pure Anorthosite Crust),-8.97,15.5,4.5,5.8,6.2,6.5,0.45,0.06,300000,6.8,1800,1490,1630,0.46,41.0,4.5,4.2,0.4,105.0,380.0,52.0,47.0,99.0,0.0,0.0,0.0
