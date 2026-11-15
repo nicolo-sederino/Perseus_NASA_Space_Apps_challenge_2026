@@ -63,7 +63,7 @@ flowchart TD
     end
 
     subgraph OUTPUTS ["6. WEB DEPLOYMENT & OPEN-SCIENCE ARTIFACTS (results/)"]
-        F1["Interactive Discovery Map (discovery_map.html)<br/>Top 5 Highlighted Candidates + 15-Target Selector<br/>50 km SYBIL Exclusion Rings + CSV/GeoJSON/JSON Export"]:::output
+        F1["Interactive Discovery Map (dperseus_local_viewer.html)<br/>Top 5 Highlighted Candidates + 15-Target Selector<br/>50 km SYBIL Exclusion Rings + CSV/GeoJSON/JSON Export"]:::output
         F2["Open-Science Datasets<br/>flowB_{lunar,mars}_heatmap.json<br/>flowB_{lunar,mars}_discoveries.geojson<br/>flowB_{lunar,mars}_feature_parity_report.csv"]:::output
         E3 --> F1 & F2
     end
