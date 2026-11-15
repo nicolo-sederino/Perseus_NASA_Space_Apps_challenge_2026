@@ -216,6 +216,11 @@
             animation: fadeIn 0.25s ease-out;
         }
 
+        /* Sicurezza aggiuntiva: il viewer è visibile solo quando Flow B è attiva */
+        #section-flow-b:not(.active-section) .map-container {
+            display: none !important;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
@@ -666,7 +671,7 @@
                 <p>Interactive Leaflet map illustrating planetary telemetry clustering, multi-sensor reductions (Landsat, MODIS, NASADEM, ERA5-Land), and K-Means archetypes (K = 3).</p>
                 
                 <div class="map-container" style="margin-top: 20px; border-radius: 8px; overflow: hidden; border: 1px solid #334155;">
-                    <iframe src="results/perseus_local_viewer.html" title="Perseus Global Discovery Viewer" width="100%" height="750px" style="border: none; display: block;"></iframe>
+                    <iframe id="flow-b-viewer" src="results/perseus_local_viewer.html" title="Perseus Global Discovery Viewer" width="100%" height="750px" style="border: none; display: block;"></iframe>
                 </div>
             </div>
 
@@ -790,7 +795,7 @@
                     </div>
                     <div>
                         <p style="margin-bottom: 0.4rem;"><strong>Martian Mission Filters (7 Modes):</strong></p>
-                        <p style="font-size: 0.92rem;">&bull; <strong>EDL &amp; Surface Base:</strong> Safe area &ge; 500k m&sup2;, slope &le; 5&deg;&ndash;10&deg;, thermal inertia &ge; 180, albedo &le; 0.26.<br>
+                        <p style="font-size: 0.92rem;">&bull; <strong>EDL &amp; Surface Base:</strong> Safe area &ge; 500k m&sup2;, slope &le; 5&deg;&ndash;10&deg;, thermal inertia &ge; 180, albedo &ge; 0.26.<br>
                         &bull; <strong>UAV / Drone Flight:</strong> High-altitude thin-air analogs (&ge; 2,500 m elevation, wind &le; 10 m/s).<br>
                         &bull; <strong>Extreme EVA &amp; ISRU:</strong> Hyper-arid cryogenic sites (T<sub>min</sub> &le; 255 K, RH &le; 15%) and subsurface permafrost/hydrated sulfates.</p>
                     </div>
@@ -840,6 +845,15 @@ score_all = all_data_norm * V;</code></pre>
             if (target) {
                 target.classList.add('active-section');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Ricarica il viewer Leaflet alla prima apertura di Flow B per evitare tile a 0px
+            if (sectionId === 'flow-b') {
+                const viewerFrame = document.getElementById('flow-b-viewer');
+                if (viewerFrame && !viewerFrame.dataset.loaded) {
+                    viewerFrame.src = viewerFrame.getAttribute('src');
+                    viewerFrame.dataset.loaded = 'true';
+                }
             }
 
             // Chiudi il menu a tendina se aperto
