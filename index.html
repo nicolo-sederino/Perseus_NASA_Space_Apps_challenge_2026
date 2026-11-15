@@ -632,7 +632,110 @@
         <section id="section-flow-b" class="page-section">
             <span class="badge">Flow B &bull; Global Planetary Discovery Engine</span>
             <h1>Global Planetary Analog Discovery</h1>
-            <p>A cloud-native planetary scale discovery engine utilizing <strong>Google Earth Engine (GEE)</strong> to scan and identify novel, uncatalogued terrestrial analogues for lunar (e.g., Shackleton Rim) and Martian environments, incorporating strict Haversine spatial exclusion filters ($50\text{ km}$) relative to the curated Flow A sites.</p>
+            
+  <p>
+    <strong>Flow B (<code>flow_B_global_discovery</code>)</strong> extends the selection engine of Flow A from a closed catalog of known terrestrial sites to an automated global planetary discovery system. While Flow A evaluates analogs already documented in scientific literature, Flow B scans the entire emerged Earth surface using <strong>Google Earth Engine (GEE)</strong>, geographically excludes Flow A sites, extracts multi-sensor telemetry from NASA and ESA orbital missions, and projects abiotic cells into the latent space calibrated on Flow A&rsquo;s MATLAB core to discover novel lunar and Martian analogs.
+  </p>
+
+  <h3>1. Module Architecture: Inputs &amp; Outputs</h3>
+  <p>The pipeline is structured into four active Python modules (alongside the initial STAC prototype archived in <code>legacy/</code>):</p>
+  <ul>
+    <li>
+      <strong><code>perseus_common.py</code></strong><br>
+      <em>Role:</em> Shared utilities, Haversine geodetic distance calculations, and loading calibration anchors.<br>
+      <em>Inputs:</em> <code>data/Earth_Lunar_Analogs_Catalog.csv</code>, <code>data/Earth_Mars_Analogs_Catalog.csv</code>.<br>
+      <em>Outputs:</em> Deduplicated Flow A anchor DataFrame and minimum distance vectors <em>d</em><sub>min</sub> (km).
+    </li>
+    <li>
+      <strong><code>gee_global_extract.py</code></strong><br>
+      <em>Role:</em> Server-side extractor on Google Earth Engine across two stages, plus physical and geotechnical derivation.<br>
+      <em>Inputs:</em> Global equal-area grid (0.25&deg;), NASA/ESA/ECMWF satellite collections, Flow A anchors.<br>
+      <em>Outputs:</em> <code>cache/global_abiotic_grid.csv</code>, <code>cache/extraction_metadata.json</code>.
+    </li>
+    <li>
+      <strong><code>run_flow_B_discovery.py</code></strong><br>
+      <em>Role:</em> Mathematical engine for standardization, PCA/SVD projection, K-Means clustering, and multi-criteria scoring.<br>
+      <em>Inputs:</em> <code>cache/global_abiotic_grid.csv</code>, target catalogs <code>Lunar_Targets_Catalog.csv</code> (5 targets) and <code>Mars_Targets_Catalog.csv</code> (10 targets).<br>
+      <em>Outputs:</em> <code>results/flowB_{lunar,mars}_heatmap.json</code>, <code>results/flowB_{lunar,mars}_discoveries.geojson</code>, <code>results/flowB_exclusion_report.json</code>, <code>results/flowB_*_feature_parity_report.csv</code>.
+    </li>
+    <li>
+      <strong><code>generate_local_viewer.py</code></strong><br>
+      <em>Role:</em> Standalone cartographic web-app generator for local visualization and GitHub Pages deployment.<br>
+      <em>Inputs:</em> Heatmap and exclusion JSON files in <code>results/</code>.<br>
+      <em>Outputs:</em> <code>results/perseus_local_viewer.html</code> (deployed as <code>discovery_map.html</code>).
+    </li>
+  </ul>
+
+  <h3>2. NASA &amp; Orbital Partners Data Processing</h3>
+  <p>
+    Radiometric and topographic processing executes server-side on Google Earth Engine datacenters over a multi-seasonal climatological window of <strong>4 years (2021&ndash;2024)</strong>. Raw orbital imagery is transformed into <strong>28 physical and engineering variables</strong> across four processing chains:
+  </p>
+  <ul>
+    <li>
+      <strong>A. Multi-Scale Topography &amp; Morphometry (NASA NASADEM + Copernicus GLO-30 / CryoSat-2)</strong><br>
+      <em>Sources:</em> <code>NASA/NASADEM_HGT/001</code> (30 m native resolution, derived from SRTM) fused seamlessly with <code>COPERNICUS/DEM/GLO30</code> and <code>CPOM/CryoSat2/ANTARCTICA_DEM</code> to cover polar latitudes beyond &plusmn;60&deg;.<br>
+      <em>Geometric Treatment:</em> To eliminate longitudinal distortion near the poles (&Delta;<em>x</em> &prop; cos &phi;), neighborhood statistics are computed over a <strong>metric circular kernel</strong> (<code>ee.Kernel.circle(radius=win_px * 30.0, units="meters")</code>, 480 m radius, area &approx; 0.72 km&sup2;).<br>
+      <em>Derived Quantities:</em> Elevation (<code>Altitude_m</code>), local slope at 30 m (<code>Slope_30m_deg</code>), smoothed slopes at 90 m and 270 m, mean landing slope (<code>Mean_Slope_deg</code>), 75th-percentile rover traversability (<code>Traverse_Slope_deg</code>), safe landing fraction (<code>Safe_Landing_Frac</code>, slope &le; 5&deg;), ultra-flat fraction (<code>Ultra_Flat_Frac</code>, &le; 2&deg;), and root-mean-square surface roughness (<code>RMS_Roughness_m</code>).
+    </li>
+    <li>
+      <strong>B. Optical Spectroscopy &amp; Mineralogy (NASA/USGS Landsat 8 &amp; 9 Collection 2 Level-2)</strong><br>
+      <em>Sources:</em> <code>LANDSAT/LC08/C02/T1_L2</code> and <code>LANDSAT/LC09/C02/T1_L2</code> (plus <code>T2_L2</code> collections for Antarctic orbits) at 30 m resolution.<br>
+      <em>Cloud Masking &amp; Radiometric Calibration:</em> Bit-masking on <code>QA_PIXEL</code> (<code>qa.bitwiseAnd(30).eq(0)</code>) removes clouds, cloud shadows, cirrus, and snow/ice. Digital Numbers (DN) across six bands (<code>SR_B2</code>&ndash;<code>SR_B7</code>) are converted to physical surface reflectance (&rho;<sub>&lambda;</sub> = DN<sub>&lambda;</sub> &middot; 0.0000275 &minus; 0.2) and aggregated via <strong>multi-year median</strong>.<br>
+      <em>Geochemical &amp; Spectral Proxies:</em> Normalized difference indices (NDVI, NDWI, NDSI), broadband albedo (<code>Albedo</code>), ferric oxide index (<code>Ferric_Oxide_Idx</code>), mafic/basaltic index (<code>Mafic_Basalt_Idx</code>), FeO and TiO<sub>2</sub> weight percentages, salts and evaporites (<code>Salts_Evaporites_wt_pct</code>), and water ice (<code>Water_Ice_wt_pct</code>) constrained thermodynamically by <em>T</em><sub>min</sub> &lt; 273.15 K.
+    </li>
+    <li>
+      <strong>C. Thermophysics &amp; Thermal Inertia (NASA MODIS Aqua MYD11A2)</strong><br>
+      <em>Source:</em> <code>MODIS/061/MYD11A2</code> (8-day composites at 1 km resolution, 13:30 and 01:30 local solar time).<br>
+      <em>Thermal Treatment:</em> Scaled to Kelvin (&times; 0.02) to derive mean temperature, 5th percentile (<em>T</em><sub>min</sub>), 95th percentile (<em>T</em><sub>max</sub>), and clear-sky fraction (<code>Sun_Visibility_pct</code>).<br>
+      <em>Empirical Thermal Inertia Calibration:</em> Apparent Thermal Inertia ATI = (1 &minus; <em>A</em>) / &Delta;<em>T</em> is computed from diurnal temperature amplitude &Delta;<em>T</em> and albedo, then calibrated against Flow A anchors via median scaling factor <em>k</em><sub>TI</sub> to yield TI = <em>k</em><sub>TI</sub> &middot; ATI.
+    </li>
+    <li>
+      <strong>D. Atmosphere &amp; Soil Geotechnics (ECMWF ERA5-Land + OpenLandMap)</strong><br>
+      <em>Atmosphere (<code>ECMWF/ERA5_LAND/MONTHLY_AGGR</code>):</em> Mean and peak monthly 10 m wind speeds, surface pressure (<code>Surface_Pressure_mbar</code>), solar UV flux proxy (<code>UV_Flux_Index</code>), and volumetric soil moisture (<code>swvl1</code>).<br>
+      <em>Regolith Mechanics (<code>OpenLandMap</code>):</em> Granulometric fractions (<code>sand_pct</code>, <code>clay_pct</code>) and bulk density yield internal friction angle &phi;, cohesion <em>c</em>, Terzaghi bearing capacity (<code>Bearing_Capacity_kPa</code>), and eolian deflation index (<code>Eolian_Deflation_Idx</code>).
+    </li>
+  </ul>
+
+  <h3>3. Four-Level Cascade Filtering Pipeline</h3>
+  <ol>
+    <li>
+      <strong>Barrier 1 &mdash; Equal-Area Grid &amp; Flow A Geographic Exclusion (50 km):</strong> <code>build_grid()</code> generates a global equal-area sampling grid (&Delta;&phi; = 0.25&deg;, &approx; 27.8 km spacing). <code>min_distance_to_sites_km()</code> removes every cell within 50 km of known Flow A sites (<em>d</em><sub>min</sub> &ge; 50.0 km).
+    </li>
+    <li>
+      <strong>Barrier 2 &mdash; Server-Side Coarse Mask (Stage 1 at 1 km):</strong> Queries <code>MODIS/061/MCD12Q1</code> (IGBP land cover) and <code>MODIS/061/MOD13A3</code> (monthly NDVI). Eliminates forests, wetlands, croplands, urban centers, water bodies (<code>LC_EXCLUDE</code>), and vegetated regions with NDVI<sub>max</sub> &ge; 0.20.
+    </li>
+    <li>
+      <strong>Barrier 3 &mdash; Strict Abiotic Filter &amp; Telemetry Integrity (Stage 2 at 30 m):</strong> Parallelized via <code>ThreadPoolExecutor</code> with incremental disk checkpoints. Enforces a strict abiotic threshold of NDVI<sub>Landsat</sub> &lt; 0.15 (while preserving Flow A calibration anchors with <code>is_known_site=True</code>).
+    </li>
+    <li>
+      <strong>Barrier 4 &mdash; Lander &amp; Rover Engineering Constraints (<code>run_flow_B_discovery.py</code>):</strong> Evaluates operational feasibility flags: <code>Lander_Suitable</code> (<code>Mean_Slope_deg</code> &le; 5.0&deg; and <code>Safe_Landing_Frac</code> &ge; 0.50) and <code>Rover_Suitable</code> (<code>Traverse_Slope_deg</code> &le; 12.0&deg;).
+    </li>
+  </ol>
+
+  <h3>4. Classification &amp; Scoring in Latent Space</h3>
+  <ul>
+    <li>
+      <strong>Feature Intersection &amp; Cross-Domain Alignment:</strong> <code>build_calibration_space()</code> isolates <strong>13 shared numerical features</strong> across terrestrial catalogs, planetary targets, and satellite grids, aligning physical scales via median ratios derived from Flow A anchors.
+    </li>
+    <li>
+      <strong>Dual-Mode Standardization:</strong> Applies standard Z-score normalization for the Moon (<code>lunar</code>) and <strong>Domain-Adapted Z-Score</strong> for Mars (<code>mars</code>), standardizing terrestrial cells and Martian targets against their respective planetary distributions. Z-scores are clipped to [&minus;4.5&sigma;, +4.5&sigma;].
+    </li>
+    <li>
+      <strong>SVD/PCA Projection &amp; K-Means Clustering:</strong> Singular Value Decomposition (SVD) on the Flow A reference matrix (<strong>Z</strong><sub>ref</sub>) retains ~95% cumulative variance (6 principal components for the Moon, 7 for Mars). Global candidate cells are projected via <strong>S</strong><sub><em>g</em></sub> = <strong>Z</strong><sub><em>g</em></sub><strong>V</strong>, and a <strong>K-Means (<em>K</em> = 3)</strong> model assigns geological archetypes (<code>Cluster_ID</code> and <code>Cluster_Label</code>).
+    </li>
+    <li>
+      <strong>Hybrid Similarity Index:</strong> Euclidean distance in PCA space <em>d</em> = &Vert;<strong>S</strong><sub><em>g</em></sub> &minus; <strong>s</strong><sub><em>t</em></sub>&Vert;<sub>2</sub> is mapped via exponential decay: Score<sub>latent</sub> = 100 &middot; exp(&minus;ln(2) &middot; <em>d</em> / <em>d</em><sub>median,FlowA</sub>), then fused (75% weight) with the 4-axis Radar Chart sub-score mean (25% weight).
+    </li>
+  </ul>
+
+  <h3>5. Exported Artifacts &amp; Web Visualization</h3>
+  <ul>
+    <li><strong>JSON Heatmaps &amp; Top-25 Rankings:</strong> <code>flowB_{lunar,mars}_heatmap.json</code> and <code>flowB_{lunar,mars}_all_targets_top25.json</code> covering all 5 lunar and 10 Martian targets.</li>
+    <li><strong>GeoJSON Discoveries:</strong> Standard RFC 7946 vector layers (<code>flowB_{lunar,mars}_discoveries.geojson</code>) ready for QGIS and ArcGIS integration.</li>
+    <li><strong>Audit Reports:</strong> <code>flowB_exclusion_report.json</code> and feature parity CSV reports verifying cross-domain consistency.</li>
+    <li><strong>Interactive Web Viewer:</strong> <code>perseus_local_viewer.html</code> (<code>discovery_map.html</code>), a standalone Leaflet satellite map featuring planet/target selectors, 50 km exclusion rings, engineering suitability badges, and full telemetry popups.</li>
+  </ul>
+</section>
 
             <h2>Interactive Global Discovery Viewer</h2>
             <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
