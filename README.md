@@ -7,7 +7,8 @@
 
 🗺️ [**Interactive Global Discovery Map**](https://nicolo-sederino.github.io/Perseus_NASA_Space_Apps_challenge_2026/results/perseus_local_viewer.html) | Explore the identified Earth analog sites on a global map (`perseus_local_viewer.html`) |
 
-🎥 **Project Demo / Pitch Deck (`docs/`):** `[INSERT_PUBLIC_DEMO_LINK_HERE]`
+🎥 **Project Demo / Pitch Deck (`report/`):** [Team Perseus Pitch Deck (PDF)](https://github.com/nicolo-sederino/Perseus_NASA_Space_Apps_challenge_2026/blob/main/report/demoPerseus.pptx.pdf)
+
 
 > **AI-Assistance Disclosure (NASA Space Apps Submission Guidelines):**  
 > Components of the `IRIS` orbital extraction pipeline, web interface, and technical documentation were developed with AI code-generation assistance and subsequently calibrated, audited, and scientifically validated by Team Perseus.
