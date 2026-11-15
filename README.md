@@ -10,7 +10,7 @@
 🎥 [**Project Demo / Pitch Deck**](https://github.com/nicolo-sederino/Perseus_NASA_Space_Apps_challenge_2026/blob/main/report/demoPerseus.pptx.pdf) | Team Perseus presentation slides (`demoPerseus.pptx.pdf`) |
 
 
-> **AI-Assistance Disclosure (NASA Space Apps Submission Guidelines):**  
+> **AI-Assistance Disclosure **  
 > Components of the `IRIS` orbital extraction pipeline, web interface, and technical documentation were developed with AI code-generation assistance and subsequently calibrated, audited, and scientifically validated by Team Perseus.
 
 ---
