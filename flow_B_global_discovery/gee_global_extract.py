@@ -114,7 +114,7 @@ def stage2_image(y0: int, y1: int, safe_slope_deg: float, flat_slope_deg: float,
     dem = nasadem.unmask(glo_mosaic).rename("elevation").setDefaultProjection(nasadem.projection())
 
     slope = ee.Terrain.slope(dem).rename("slope")
-    # Metric radius (~480m radius = ~1km diameter) avoids latitude distortion in polar regions
+    # Metric circle radius prevents high-latitude longitudinal distortion
     kernel = ee.Kernel.circle(radius=win_px * 30.0, units="meters")
     mean_slope = slope.reduceNeighborhood(ee.Reducer.mean(), kernel).rename("mean_slope")
     slope_p75 = slope.reduceNeighborhood(ee.Reducer.percentile([75]), kernel).rename("slope_p75")
@@ -193,7 +193,7 @@ def _reduce_points(batch: pd.DataFrame, image: "ee.Image", scale: float, tile_sc
 
 
 def _extract_with_split(batch: pd.DataFrame, image: "ee.Image", scale: float, tile_scale: int,
-                        min_size: int = 50, depth: int = 0) -> pd.DataFrame:
+                        min_size: int = 40, depth: int = 0) -> pd.DataFrame:
     try:
         return _reduce_points(batch, image, scale, tile_scale)
     except Exception as exc:
@@ -209,7 +209,8 @@ def _extract_with_split(batch: pd.DataFrame, image: "ee.Image", scale: float, ti
 
 
 def run_stage(points: pd.DataFrame, image: "ee.Image", scale: float, label: str,
-              batch_size: int, workers: int, tile_scale: int) -> pd.DataFrame:
+              batch_size: int, workers: int, tile_scale: int,
+              checkpoint_csv: Optional[Path] = None) -> pd.DataFrame:
     pts = points.copy()
     pts["_band"] = np.floor((pts["latitude"] + 90.0) / 5.0)
     pts = pts.sort_values(["_band", "longitude"]).drop(columns="_band").reset_index(drop=True)
@@ -217,12 +218,18 @@ def run_stage(points: pd.DataFrame, image: "ee.Image", scale: float, label: str,
     logger.info(f"[{label}] {len(pts)} points in {len(batches)} batches ({workers} parallel workers)")
     t0 = time.time()
     results: List[pd.DataFrame] = []
+    if checkpoint_csv and checkpoint_csv.exists():
+        checkpoint_csv.unlink()
+
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futs = [pool.submit(_extract_with_split, b, image, scale, tile_scale) for b in batches]
         for k, fut in enumerate(as_completed(futs), start=1):
             res = fut.result()
             if not res.empty:
                 results.append(res)
+                if checkpoint_csv:
+                    write_hdr = not checkpoint_csv.exists()
+                    res.to_csv(checkpoint_csv, mode="a", header=write_hdr, index=False)
             if k % 5 == 0 or k == len(futs):
                 logger.info(f"[{label}] {k}/{len(futs)} batches done in {time.time() - t0:.0f}s")
     if not results:
@@ -233,6 +240,14 @@ def run_stage(points: pd.DataFrame, image: "ee.Image", scale: float, label: str,
 def derive_features(raw: pd.DataFrame, dp: DerivationParams, gp: GeotechParams) -> pd.DataFrame:
     d = raw.copy()
     eps = 1e-6
+    for _c in [
+        "latitude", "longitude", "elevation", "mean_slope", "slope_p75", "safe_frac", "flat_frac",
+        "rms_rough", "slope", "slope_90", "slope_270", "blue", "green", "red", "nir", "swir1", "swir2",
+        "day_p95", "night_p5", "day_mean", "night_mean", "clear_frac", "sp_pa", "wind_mean",
+        "wind_max_monthly", "ssrd_wm2", "swvl1", "sand_pct", "clay_pct", "bd_0_15", "bd_0_60",
+    ]:
+        if _c in d.columns:
+            d[_c] = pd.to_numeric(d[_c], errors="coerce").astype(np.float64)
     for c in ["blue", "green", "red", "nir", "swir1", "swir2"]:
         d[c] = d[c].clip(0.0, 1.5)
 
@@ -273,11 +288,20 @@ def derive_features(raw: pd.DataFrame, dp: DerivationParams, gp: GeotechParams) 
     d["Thermal_Inertia"] = (dp.ti_scale * d["ATI"]).clip(10.0, 1000.0)
     d["Sun_Visibility_pct"] = (d["clear_frac"] * 100.0).clip(0.0, 100.0)
 
-    d["Surface_Pressure_mbar"] = d["sp_pa"] / 100.0
-    d["UV_Flux_Index"] = (d["ssrd_wm2"] / dp.uv_scale_w_m2).clip(0.0, 20.0)
-    d["Wind_Mean_mps"] = d["wind_mean"]
-    d["Wind_Peak_Monthly_mps"] = d["wind_max_monthly"]
+    # Barometric & atmospheric variables (with Antarctic fallback where ERA5-Land is masked below -60 deg)
+    alt_m = d["Altitude_m"].fillna(0.0)
+    sp_mbar_fallback = 1013.25 * np.exp(-np.maximum(alt_m, -100.0) / 8434.5)
+    d["Surface_Pressure_mbar"] = (d["sp_pa"] / 100.0).fillna(sp_mbar_fallback)
+    d["Wind_Mean_mps"] = d["wind_mean"].fillna(7.2)
+    d["Wind_Peak_Monthly_mps"] = d["wind_max_monthly"].fillna(13.5)
+    ssrd_fallback = (
+        180.0
+        * np.cos(np.radians(np.clip(d["latitude"].abs(), 0.0, 85.0)))
+        * np.exp(np.maximum(alt_m, 0.0) / 8000.0)
+    )
+    d["UV_Flux_Index"] = (d["ssrd_wm2"].fillna(ssrd_fallback) / dp.uv_scale_w_m2).clip(0.0, 20.0)
 
+    # Soil mechanics (OpenLandMap texture + ERA5-Land moisture; NaN preserved over Antarctica)
     sand = d["sand_pct"].clip(0, 100)
     clay = d["clay_pct"].clip(0, 100)
     silt = (100.0 - sand - clay).clip(lower=0.0)
@@ -287,7 +311,7 @@ def derive_features(raw: pd.DataFrame, dp: DerivationParams, gp: GeotechParams) 
     d["Density_0_60cm_kg_m3"] = d["bd_0_60"]
     phi = (sand * gp.phi_sand_deg + silt * gp.phi_silt_deg + clay * gp.phi_clay_deg) / tot
     phi = (phi + gp.density_phi_gain_deg_per_1000 * (rho - 1500.0) / 1000.0).clip(20.0, 45.0)
-    theta = d["swvl1"].clip(0.0, 0.5)
+    theta = d["swvl1"].fillna(0.02).clip(0.0, 0.5)
     moisture_factor = 0.3 + 0.7 * (theta / 0.25).clip(0.0, 1.0)
     coh = ((gp.cohesion_clay_kpa_per_pct * clay + gp.cohesion_silt_kpa_per_pct * silt) * moisture_factor).clip(
         0.0, gp.cohesion_max_kpa
@@ -303,9 +327,9 @@ def derive_features(raw: pd.DataFrame, dp: DerivationParams, gp: GeotechParams) 
     d["Bearing_Capacity_kPa"] = coh * nc + 0.5 * gamma_kn_m3 * gp.footing_width_m * ng
     d["Soil_Data_Available"] = d["sand_pct"].notna().astype(int)
 
-    wind_term = ((d["wind_max_monthly"] - dp.eolian_wind_lo) / (dp.eolian_wind_hi - dp.eolian_wind_lo)).clip(0, 1)
+    wind_term = ((d["Wind_Peak_Monthly_mps"] - dp.eolian_wind_lo) / (dp.eolian_wind_hi - dp.eolian_wind_lo)).clip(0, 1)
     dry_term = 1.0 - (theta / dp.eolian_dry_ref_m3m3).clip(0.0, 1.0)
-    erodible = (0.6 * sand / 100.0 + 0.4 * (1.0 - clay / 100.0)).clip(0.0, 1.0)
+    erodible = (0.6 * sand.fillna(65.0) / 100.0 + 0.4 * (1.0 - clay.fillna(5.0) / 100.0)).clip(0.0, 1.0)
     d["Eolian_Deflation_Idx"] = 100.0 * (
         dp.eolian_w_wind * wind_term + dp.eolian_w_dry * dry_term + dp.eolian_w_erodible * erodible
     )
@@ -357,8 +381,8 @@ def main() -> None:
     ap.add_argument("--safe-slope-deg", type=float, default=5.0)
     ap.add_argument("--flat-slope-deg", type=float, default=2.0)
     ap.add_argument("--window-px", type=int, default=16)
-    ap.add_argument("--batch-size", type=int, default=1500)
-    ap.add_argument("--workers", type=int, default=12)
+    ap.add_argument("--batch-size", type=int, default=1000)
+    ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--tile-scale", type=int, default=4)
     ap.add_argument("--gravity", type=float, default=9.81)
     ap.add_argument("--footing-width", type=float, default=1.0)
@@ -396,17 +420,19 @@ def main() -> None:
     s1 = run_stage(grid, stage1_image(y0, y1), 1000, "stage1", args.batch_size, args.workers, args.tile_scale)
     if s1.empty:
         sys.exit("Stage 1 returned no data. Check Earth Engine access / quotas.")
-    s1 = s1.merge(grid, on="pid", how="inner")
+    s1 = s1.merge(grid, on="pid", how="inner").sort_values("pid").reset_index(drop=True)
 
-    # Allow polar/Antarctic cells (lat < -60 or lat > 75) where MODIS MCD12Q1/MOD13A3 are masked to proceed to Stage 2
+    # Allow polar/Antarctic cells (lat < -60 or lat > 75) where MODIS MCD12Q1/MOD13A3 are masked
     polar_exempt = (s1["latitude"] < -60.0) | (s1["latitude"] > 75.0)
     modis_valid = (
         s1["lc"].notna() & ~s1["lc"].isin(LC_EXCLUDE) & s1["ndvi_max"].notna() & (s1["ndvi_max"] < args.stage1_ndvi_max)
     )
     keep = modis_valid | (polar_exempt & s1["ndvi_max"].isna())
     cand = s1[keep].copy().reset_index(drop=True)
-    cand["country"] = cand["lc"].map(lambda x: LC_NAMES.get(int(x), "Polar / Ice-Free Cryogenic") if pd.notna(x) else "Antarctica / Polar")
-    logger.info(f"Stage 1: {len(cand)}/{len(grid)} cells survive")
+    cand["country"] = cand["lc"].map(
+        lambda x: LC_NAMES.get(int(x), "Polar / Ice-Free Cryogenic") if pd.notna(x) else "Antarctica / Polar"
+    )
+    logger.info(f"Stage 1: {len(cand)}/{len(grid)} cells survive (polar exempt included: {int(polar_exempt.sum())})")
     cand["site_name"] = [f"PERSEUS_{la:+07.2f}_{lo:+08.2f}" for la, lo in zip(cand.latitude, cand.longitude)]
     cand["catalog_role"] = "discovery_candidate"
     cand["is_known_site"] = False
@@ -420,13 +446,14 @@ def main() -> None:
     pool = pd.concat([cand, anc], ignore_index=True)
     pool["pid"] = np.arange(len(pool))
     img2 = stage2_image(y0, y1, args.safe_slope_deg, args.flat_slope_deg, args.window_px)
-    s2 = run_stage(pool, img2, 30, "stage2", args.batch_size, args.workers, args.tile_scale)
+    ckpt_path = cache_dir / "stage2_partial_checkpoint.csv"
+    s2 = run_stage(pool, img2, 30, "stage2", args.batch_size, args.workers, args.tile_scale, checkpoint_csv=ckpt_path)
     if s2.empty:
         sys.exit("Stage 2 returned no data.")
     raw = pool.merge(s2, on="pid", how="inner").drop(columns=["pid"])
-    needed = ["elevation", "blue", "green", "red", "nir", "swir1", "swir2", "day_mean", "night_mean", "sp_pa", "wind_mean", "ssrd_wm2"]
+    needed = ["elevation", "blue", "green", "red", "nir", "swir1", "swir2", "day_mean", "night_mean"]
     raw = raw.dropna(subset=needed).reset_index(drop=True)
-    logger.info(f"Stage 2: {len(raw)} cells with complete DEM + Landsat + MODIS LST + ERA5 measurements")
+    logger.info(f"Stage 2: {len(raw)} cells with complete DEM + Landsat + MODIS LST measurements")
 
     feats = derive_features(raw, dp, gp)
     if args.ti_scale is None:
@@ -438,6 +465,8 @@ def main() -> None:
 
     csv_path = cache_dir / "global_abiotic_grid.csv"
     final.round(5).to_csv(csv_path, index=False)
+    if ckpt_path.exists():
+        ckpt_path.unlink()
 
     meta: Dict[str, Any] = {
         "project": "NASA Space Apps Challenge 2026 - Team Perseus",
@@ -450,6 +479,8 @@ def main() -> None:
         "grid_cells_total": n_grid_raw,
         "candidate_cells_after_stage1": int(len(cand)),
         "discovery_cells_kept": int((~final["is_known_site"]).sum()),
+        "polar_south_cells_kept": int(((~final["is_known_site"]) & (final["latitude"] < -60.0)).sum()),
+        "polar_north_cells_kept": int(((~final["is_known_site"]) & (final["latitude"] > 60.0)).sum()),
         "flow_a_calibration_anchors_kept": int(final["is_known_site"].sum()),
         "thermal_inertia_scale": dp.ti_scale,
         "geotech_params": asdict(gp),
@@ -459,7 +490,8 @@ def main() -> None:
     (cache_dir / "extraction_metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
     logger.info("=" * 78)
-    logger.info(f"DONE in {meta['execution_time_seconds']} s | {meta['discovery_cells_kept']} discovery cells + "
+    logger.info(f"DONE in {meta['execution_time_seconds']} s | {meta['discovery_cells_kept']} discovery cells "
+                f"(Antarctic: {meta['polar_south_cells_kept']}, Arctic: {meta['polar_north_cells_kept']}) + "
                 f"{meta['flow_a_calibration_anchors_kept']} calibration anchors -> {csv_path}")
     logger.info("=" * 78)
 

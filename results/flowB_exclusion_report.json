@@ -2,8 +2,8 @@
   "buffer_km": 50.0,
   "n_anchors": 31,
   "cells_removed_by_buffer": 0,
-  "candidates_remaining": 1116,
-  "min_distance_to_any_flow_a_site_km_in_search_space": 81.46,
+  "candidates_remaining": 17839,
+  "min_distance_to_any_flow_a_site_km_in_search_space": 50.37,
   "flow_a_sites": [
     {
       "site_name": "Black Point Lava Flow",
