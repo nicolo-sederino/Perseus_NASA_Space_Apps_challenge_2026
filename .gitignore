@@ -218,4 +218,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-flow_B_global_discovery/cache/stage2_partial_checkpoint.csv
+IRIS_Flow_B/cache/stage2_partial_checkpoint.csv
