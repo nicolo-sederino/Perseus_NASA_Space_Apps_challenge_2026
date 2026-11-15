@@ -1,13 +1,13 @@
 # IRIS — Planetary Analog Global Discovery Engine (Flow B)
 
 **NASA Space Apps Challenge 2026 — Team Perseus**  
-**Module:** `IRIS` (Global Orbital Telemetry & Planetary Analog Discovery Pipeline)
+**Module:** `IRIS` (Global Orbital Telemetry & Planetary Analog Discovery Pipeline)  
+🗺️ **Interactive Full-Page Discovery Map:** [Launch IRIS Global Analog Viewer](https://nicolo-sederino.github.io/Perseus_NASA_Space_Apps_challenge_2026/results/perseus_local_viewer.html)
 
 > **AI-Assistance Disclosure (NASA Space Apps Submission Guidelines):**  
 > This software module and its technical documentation were developed with AI code-generation assistance and subsequently reviewed, calibrated, and scientifically validated by Team Perseus.
 
 ---
-
 ## 1. Mission Overview & Integration with SYBIL (Flow A)
 
 Within the **Perseus** architecture, terrestrial analog identification is structured into two complementary engines:
