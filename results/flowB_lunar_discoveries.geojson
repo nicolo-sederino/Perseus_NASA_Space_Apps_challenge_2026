@@ -28,32 +28,25 @@
       "Sun_Visibility_pct",
       "Water_Ice_wt_pct"
     ],
-    "calibration_catalog_rows": 18,
+    "calibration_catalog_rows": 23,
     "pca_explained_variance_pct": [
-      38.99,
-      23.31,
-      16.96,
-      8.35,
-      6.3,
-      3.8,
-      0.93,
-      0.59,
-      0.36,
-      0.24,
-      0.07,
-      0.06,
-      0.03
+      38.54,
+      22.36,
+      17.4,
+      8.45,
+      7.13,
+      3.66
     ],
     "kmeans_k": 3,
     "flow_a_exclusion_buffer_km": 50.0,
-    "flow_a_sites_excluded_from_search": 31,
+    "flow_a_sites_excluded_from_search": 44,
     "flow_a_sites_in_results": 0,
-    "total_evaluated_sites": 1116,
-    "new_discovery_candidates_count": 1116,
-    "ranking_metric": "Euclidean distance in PCA space to target blended with 4-axis Radar sub-scores",
+    "total_evaluated_sites": 17902,
+    "new_discovery_candidates_count": 17902,
+    "ranking_metric": "Euclidean distance in 95%-variance PCA space blended with 4-axis Radar sub-scores",
     "similarity_score_definition": "100*exp(-ln2*d/d_median) blended with Radar sub-scores",
-    "flow_a_reference_distance_best": 4.5718,
-    "flow_a_reference_distance_median": 6.6875,
+    "flow_a_reference_distance_best": 4.5905,
+    "flow_a_reference_distance_median": 7.1597,
     "engineering_parameters": {
       "buffer_km": 50.0,
       "max_slope_lander_deg": 5.0,
@@ -66,6 +59,7 @@
       "radar_weight": 0.25,
       "radar_tau": 1.5,
       "z_clip": 4.5,
+      "pca_variance_pct": 95.0,
       "exclude_features": [],
       "min_features": 8,
       "max_missing_frac": 0.5,
@@ -78,7 +72,7 @@
       "Geochemistry": 1.0,
       "Environment": 1.0
     },
-    "timestamp_utc": "2026-11-14T20:03:46.913828+00:00"
+    "timestamp_utc": "2026-11-15T10:09:08.315210+00:00"
   },
   "features": [
     {
@@ -86,52 +80,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          77.4061,
-          35.5
+          77.0765,
+          36.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+035.50_+0077.41",
-        "region": "Snow and Ice",
+        "site_name": "PERSEUS_+036.12_+0077.08",
+        "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 1,
-        "similarity_score": 41.75,
-        "latent_distance": 8.2284,
-        "cosine_similarity": 0.4397,
-        "distance_vs_flow_a_best": 1.8,
+        "similarity_score": 63.82,
+        "latent_distance": 4.0517,
+        "cosine_similarity": 0.7751,
+        "distance_vs_flow_a_best": 0.883,
         "cluster_id": 0,
-        "cluster_label": "Archetype 1: low TiO2 wt pct, high Density 0 15cm kg m3",
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 22.14,
-          "Thermophysics": 47.19,
-          "Geochemistry": 72.91,
-          "Environment": 14.37
+          "Morphometry": 73.93,
+          "Thermophysics": 40.75,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
-          "lander_suitable": true,
+          "lander_suitable": false,
           "rover_suitable": true,
           "imputed_feature_count": 5,
-          "nearest_flow_a_site_km": 439.4
+          "nearest_flow_a_site_km": 370.8
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 3.705,
+          "Traverse_Slope_deg": 8.204,
           "Density_0_15cm_kg_m3": 1450.0,
           "Density_0_60cm_kg_m3": 1482.5,
           "Cohesion_kPa": 0.206,
-          "Friction_Angle_deg": 35.25,
-          "Bearing_Capacity_kPa": 373.533,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
           "FeO_wt_pct": 4.28,
           "TiO2_wt_pct": 0.357,
-          "T_min_K": 235.52,
-          "T_max_K": 282.08,
-          "Thermal_Inertia": 29.339,
-          "Sun_Visibility_pct": 80.328,
-          "Water_Ice_wt_pct": 66.893,
-          "Altitude_m": 5684.0,
-          "Mean_Slope_deg": 2.886,
-          "Diurnal_Delta_T_K": 17.524
+          "T_min_K": 237.82,
+          "T_max_K": 298.58,
+          "Thermal_Inertia": 19.405,
+          "Sun_Visibility_pct": 81.421,
+          "Water_Ice_wt_pct": 67.978,
+          "Altitude_m": 5491.0,
+          "Mean_Slope_deg": 6.412,
+          "Diurnal_Delta_T_K": 32.045
         }
       }
     },
@@ -140,52 +134,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          84.7059,
-          36.5
+          91.006,
+          36.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+036.50_+0084.71",
+        "site_name": "PERSEUS_+036.12_+0091.01",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 2,
-        "similarity_score": 41.52,
-        "latent_distance": 8.7061,
-        "cosine_similarity": 0.0276,
-        "distance_vs_flow_a_best": 1.904,
+        "similarity_score": 63.18,
+        "latent_distance": 4.3858,
+        "cosine_similarity": 0.739,
+        "distance_vs_flow_a_best": 0.955,
         "cluster_id": 0,
-        "cluster_label": "Archetype 1: low TiO2 wt pct, high Density 0 15cm kg m3",
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 97.56,
-          "Thermophysics": 31.65,
-          "Geochemistry": 30.99,
-          "Environment": 17.41
+          "Morphometry": 90.99,
+          "Thermophysics": 39.3,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 784.5
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 286.3
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.438,
-          "Density_0_15cm_kg_m3": 1490.0,
-          "Density_0_60cm_kg_m3": 1522.5,
-          "Cohesion_kPa": 0.742,
-          "Friction_Angle_deg": 34.81,
-          "Bearing_Capacity_kPa": 381.728,
-          "FeO_wt_pct": 8.979,
-          "TiO2_wt_pct": 1.891,
-          "T_min_K": 245.84,
-          "T_max_K": 310.32,
-          "Thermal_Inertia": 111.839,
-          "Sun_Visibility_pct": 98.907,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 4690.0,
-          "Mean_Slope_deg": 5.96,
-          "Diurnal_Delta_T_K": 33.009
+          "Traverse_Slope_deg": 7.72,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 245.66,
+          "T_max_K": 292.247,
+          "Thermal_Inertia": 67.372,
+          "Sun_Visibility_pct": 89.617,
+          "Water_Ice_wt_pct": 67.796,
+          "Altitude_m": 5193.0,
+          "Mean_Slope_deg": 5.85,
+          "Diurnal_Delta_T_K": 20.52
         }
       }
     },
@@ -194,52 +188,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1.7089,
-          28.5
+          86.5357,
+          27.875
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+028.50_+0001.71",
-        "region": "Barren",
+        "site_name": "PERSEUS_+027.88_+0086.54",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 3,
-        "similarity_score": 40.63,
-        "latent_distance": 8.8699,
-        "cosine_similarity": -0.0094,
-        "distance_vs_flow_a_best": 1.94,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 62.35,
+        "latent_distance": 4.2198,
+        "cosine_similarity": 0.7545,
+        "distance_vs_flow_a_best": 0.919,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 92.91,
-          "Thermophysics": 25.74,
-          "Geochemistry": 34.26,
-          "Environment": 18.6
+          "Morphometry": 63.63,
+          "Thermophysics": 40.59,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1548.4
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 1280.2
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.685,
-          "Density_0_15cm_kg_m3": 1485.0,
-          "Density_0_60cm_kg_m3": 1522.5,
-          "Cohesion_kPa": 0.284,
-          "Friction_Angle_deg": 35.17,
-          "Bearing_Capacity_kPa": 381.741,
-          "FeO_wt_pct": 7.933,
-          "TiO2_wt_pct": 1.47,
-          "T_min_K": 278.08,
-          "T_max_K": 330.72,
-          "Thermal_Inertia": 129.83,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 532.0,
-          "Mean_Slope_deg": 5.354,
-          "Diurnal_Delta_T_K": 26.9
+          "Traverse_Slope_deg": 8.554,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 249.993,
+          "T_max_K": 283.06,
+          "Thermal_Inertia": 48.766,
+          "Sun_Visibility_pct": 71.038,
+          "Water_Ice_wt_pct": 72.843,
+          "Altitude_m": 5561.0,
+          "Mean_Slope_deg": 7.536,
+          "Diurnal_Delta_T_K": 17.391
         }
       }
     },
@@ -248,52 +242,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          32.378,
-          24.5
+          95.0121,
+          30.625
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+024.50_+0032.38",
+        "site_name": "PERSEUS_+030.62_+0095.01",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 4,
-        "similarity_score": 40.35,
-        "latent_distance": 8.7432,
-        "cosine_similarity": -0.0087,
-        "distance_vs_flow_a_best": 1.912,
+        "similarity_score": 61.63,
+        "latent_distance": 4.4263,
+        "cosine_similarity": 0.7321,
+        "distance_vs_flow_a_best": 0.964,
         "cluster_id": 0,
-        "cluster_label": "Archetype 1: low TiO2 wt pct, high Density 0 15cm kg m3",
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 75.78,
-          "Thermophysics": 25.25,
-          "Geochemistry": 39.04,
-          "Environment": 20.64
+          "Morphometry": 69.47,
+          "Thermophysics": 38.99,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 773.6
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 816.9
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 8.198,
-          "Density_0_15cm_kg_m3": 1510.0,
-          "Density_0_60cm_kg_m3": 1532.5,
-          "Cohesion_kPa": 0.428,
-          "Friction_Angle_deg": 34.63,
-          "Bearing_Capacity_kPa": 359.712,
-          "FeO_wt_pct": 6.495,
-          "TiO2_wt_pct": 0.954,
-          "T_min_K": 282.65,
-          "T_max_K": 327.61,
-          "Thermal_Inertia": 139.761,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 283.0,
-          "Mean_Slope_deg": 5.781,
-          "Diurnal_Delta_T_K": 24.003
+          "Traverse_Slope_deg": 8.35,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 251.08,
+          "T_max_K": 288.753,
+          "Thermal_Inertia": 84.568,
+          "Sun_Visibility_pct": 86.885,
+          "Water_Ice_wt_pct": 60.349,
+          "Altitude_m": 4671.0,
+          "Mean_Slope_deg": 6.497,
+          "Diurnal_Delta_T_K": 16.473
         }
       }
     },
@@ -302,52 +296,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          6.4865,
-          22.5
+          72.838,
+          39.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+022.50_+0006.49",
-        "region": "Barren",
+        "site_name": "PERSEUS_+039.12_+0072.84",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 5,
-        "similarity_score": 40.27,
-        "latent_distance": 9.1219,
-        "cosine_similarity": 0.0125,
-        "distance_vs_flow_a_best": 1.995,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 60.68,
+        "latent_distance": 4.4422,
+        "cosine_similarity": 0.732,
+        "distance_vs_flow_a_best": 0.968,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 98.2,
-          "Thermophysics": 26.01,
-          "Geochemistry": 37.5,
-          "Environment": 16.41
+          "Morphometry": 53.27,
+          "Thermophysics": 41.19,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
-          "lander_suitable": false,
+          "lander_suitable": true,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1880.4
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 132.5
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.546,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1477.5,
-          "Cohesion_kPa": 0.344,
-          "Friction_Angle_deg": 34.79,
-          "Bearing_Capacity_kPa": 352.318,
-          "FeO_wt_pct": 6.951,
-          "TiO2_wt_pct": 1.109,
-          "T_min_K": 280.985,
-          "T_max_K": 328.49,
-          "Thermal_Inertia": 126.286,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 845.0,
-          "Mean_Slope_deg": 5.739,
-          "Diurnal_Delta_T_K": 26.951
+          "Traverse_Slope_deg": 6.032,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 237.68,
+          "T_max_K": 286.46,
+          "Thermal_Inertia": 43.999,
+          "Sun_Visibility_pct": 72.131,
+          "Water_Ice_wt_pct": 70.162,
+          "Altitude_m": 4799.0,
+          "Mean_Slope_deg": 4.845,
+          "Diurnal_Delta_T_K": 18.137
         }
       }
     },
@@ -356,52 +350,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          36.8051,
-          29.5
+          54.6015,
+          35.875
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+029.50_+0036.81",
+        "site_name": "PERSEUS_+035.88_+0054.60",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 6,
-        "similarity_score": 39.46,
-        "latent_distance": 8.8733,
-        "cosine_similarity": -0.007,
-        "distance_vs_flow_a_best": 1.941,
-        "cluster_id": 0,
-        "cluster_label": "Archetype 1: low TiO2 wt pct, high Density 0 15cm kg m3",
+        "similarity_score": 60.11,
+        "latent_distance": 4.6224,
+        "cosine_similarity": 0.6688,
+        "distance_vs_flow_a_best": 1.007,
+        "cluster_id": 2,
+        "cluster_label": "Archetype 3: high Density 0 15cm kg m3, high Bearing Capacity kPa",
         "radar_subscores": {
-          "Morphometry": 68.58,
-          "Thermophysics": 26.22,
-          "Geochemistry": 37.86,
-          "Environment": 20.38
+          "Morphometry": 77.21,
+          "Thermophysics": 23.0,
+          "Geochemistry": 79.46,
+          "Environment": 15.03
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 525.7
+          "nearest_flow_a_site_km": 823.7
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 6.551,
-          "Density_0_15cm_kg_m3": 1475.0,
-          "Density_0_60cm_kg_m3": 1512.5,
-          "Cohesion_kPa": 0.571,
-          "Friction_Angle_deg": 34.35,
-          "Bearing_Capacity_kPa": 346.576,
-          "FeO_wt_pct": 6.842,
-          "TiO2_wt_pct": 1.071,
-          "T_min_K": 276.36,
-          "T_max_K": 330.1,
-          "Thermal_Inertia": 124.205,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 1170.0,
-          "Mean_Slope_deg": 5.309,
-          "Diurnal_Delta_T_K": 27.315
+          "Traverse_Slope_deg": 6.897,
+          "Density_0_15cm_kg_m3": 1470.0,
+          "Density_0_60cm_kg_m3": 1492.5,
+          "Cohesion_kPa": 2.448,
+          "Friction_Angle_deg": 31.21,
+          "Bearing_Capacity_kPa": 277.739,
+          "FeO_wt_pct": 4.348,
+          "TiO2_wt_pct": 0.37,
+          "T_min_K": 269.64,
+          "T_max_K": 321.3,
+          "Thermal_Inertia": 178.909,
+          "Sun_Visibility_pct": 97.268,
+          "Water_Ice_wt_pct": 8.334,
+          "Altitude_m": 1051.0,
+          "Mean_Slope_deg": 5.59,
+          "Diurnal_Delta_T_K": 18.264
         }
       }
     },
@@ -410,52 +404,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          49.3294,
-          17.5
+          80.494,
+          35.375
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+017.50_+0049.33",
-        "region": "Barren",
+        "site_name": "PERSEUS_+035.38_+0080.49",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 7,
-        "similarity_score": 39.15,
-        "latent_distance": 9.0879,
-        "cosine_similarity": 0.0013,
-        "distance_vs_flow_a_best": 1.988,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 60.1,
+        "latent_distance": 4.4642,
+        "cosine_similarity": 0.7324,
+        "distance_vs_flow_a_best": 0.972,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 80.71,
-          "Thermophysics": 25.57,
-          "Geochemistry": 35.35,
-          "Environment": 16.97
+          "Morphometry": 49.29,
+          "Thermophysics": 37.65,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
-          "lander_suitable": false,
+          "lander_suitable": true,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1328.6
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 673.6
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 8.039,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1485.0,
-          "Cohesion_kPa": 0.35,
-          "Friction_Angle_deg": 34.88,
-          "Bearing_Capacity_kPa": 359.258,
-          "FeO_wt_pct": 7.598,
-          "TiO2_wt_pct": 1.342,
-          "T_min_K": 285.67,
-          "T_max_K": 328.98,
-          "Thermal_Inertia": 128.379,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 601.0,
-          "Mean_Slope_deg": 6.205,
-          "Diurnal_Delta_T_K": 27.243
+          "Traverse_Slope_deg": 5.85,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 233.18,
+          "T_max_K": 282.56,
+          "Thermal_Inertia": 27.336,
+          "Sun_Visibility_pct": 65.027,
+          "Water_Ice_wt_pct": 68.082,
+          "Altitude_m": 5891.0,
+          "Mean_Slope_deg": 4.691,
+          "Diurnal_Delta_T_K": 19.329
         }
       }
     },
@@ -464,52 +458,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          36.3354,
-          26.5
+          83.7043,
+          29.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+026.50_+0036.34",
-        "region": "Barren",
+        "site_name": "PERSEUS_+029.12_+0083.70",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 8,
-        "similarity_score": 39.02,
-        "latent_distance": 9.2316,
-        "cosine_similarity": 0.0012,
-        "distance_vs_flow_a_best": 2.019,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 58.84,
+        "latent_distance": 4.7389,
+        "cosine_similarity": 0.6996,
+        "distance_vs_flow_a_best": 1.032,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 82.22,
-          "Thermophysics": 24.83,
-          "Geochemistry": 40.46,
-          "Environment": 15.8
+          "Morphometry": 44.5,
+          "Thermophysics": 42.72,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
-          "lander_suitable": false,
+          "lander_suitable": true,
           "rover_suitable": true,
-          "imputed_feature_count": 2,
-          "nearest_flow_a_site_km": 372.3
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 1250.5
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.993,
-          "Density_0_15cm_kg_m3": 1475.0,
-          "Density_0_60cm_kg_m3": 1515.0,
+          "Traverse_Slope_deg": 5.612,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
           "Cohesion_kPa": 0.206,
-          "Friction_Angle_deg": 34.4,
-          "Bearing_Capacity_kPa": 373.533,
-          "FeO_wt_pct": 6.08,
-          "TiO2_wt_pct": 0.821,
-          "T_min_K": 285.16,
-          "T_max_K": 325.12,
-          "Thermal_Inertia": 149.396,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 46.0,
-          "Mean_Slope_deg": 5.868,
-          "Diurnal_Delta_T_K": 22.126
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 241.78,
+          "T_max_K": 282.81,
+          "Thermal_Inertia": 86.569,
+          "Sun_Visibility_pct": 81.421,
+          "Water_Ice_wt_pct": 73.63,
+          "Altitude_m": 5837.0,
+          "Mean_Slope_deg": 4.211,
+          "Diurnal_Delta_T_K": 15.997
         }
       }
     },
@@ -518,52 +512,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          45.4154,
-          25.5
+          76.1479,
+          36.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+025.50_+0045.42",
+        "site_name": "PERSEUS_+036.12_+0076.15",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 9,
-        "similarity_score": 38.77,
-        "latent_distance": 9.2841,
-        "cosine_similarity": 0.0101,
-        "distance_vs_flow_a_best": 2.031,
+        "similarity_score": 58.74,
+        "latent_distance": 4.9186,
+        "cosine_similarity": 0.6382,
+        "distance_vs_flow_a_best": 1.071,
         "cluster_id": 0,
-        "cluster_label": "Archetype 1: low TiO2 wt pct, high Density 0 15cm kg m3",
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 80.68,
-          "Thermophysics": 25.68,
-          "Geochemistry": 40.77,
-          "Environment": 14.76
+          "Morphometry": 84.46,
+          "Thermophysics": 26.29,
+          "Geochemistry": 66.94,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 548.4
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 310.7
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 8.04,
-          "Density_0_15cm_kg_m3": 1445.0,
+          "Traverse_Slope_deg": 7.894,
+          "Density_0_15cm_kg_m3": 1450.0,
           "Density_0_60cm_kg_m3": 1482.5,
-          "Cohesion_kPa": 0.703,
-          "Friction_Angle_deg": 34.19,
-          "Bearing_Capacity_kPa": 337.734,
-          "FeO_wt_pct": 5.864,
-          "TiO2_wt_pct": 0.756,
-          "T_min_K": 280.78,
-          "T_max_K": 328.17,
-          "Thermal_Inertia": 135.626,
-          "Sun_Visibility_pct": 99.454,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 907.0,
-          "Mean_Slope_deg": 6.074,
-          "Diurnal_Delta_T_K": 22.567
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 7.665,
+          "TiO2_wt_pct": 1.368,
+          "T_min_K": 243.58,
+          "T_max_K": 288.987,
+          "Thermal_Inertia": 173.624,
+          "Sun_Visibility_pct": 59.016,
+          "Water_Ice_wt_pct": 43.137,
+          "Altitude_m": 4935.0,
+          "Mean_Slope_deg": 7.003,
+          "Diurnal_Delta_T_K": 21.501
         }
       }
     },
@@ -572,52 +566,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.6825,
-          20.5
+          80.841,
+          34.375
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+020.50_+0010.68",
-        "region": "Barren",
+        "site_name": "PERSEUS_+034.38_+0080.84",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 10,
-        "similarity_score": 38.76,
-        "latent_distance": 9.6749,
-        "cosine_similarity": 0.0468,
-        "distance_vs_flow_a_best": 2.116,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 58.35,
+        "latent_distance": 4.7179,
+        "cosine_similarity": 0.7039,
+        "distance_vs_flow_a_best": 1.028,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 99.09,
-          "Thermophysics": 27.51,
-          "Geochemistry": 40.72,
-          "Environment": 12.59
+          "Morphometry": 38.46,
+          "Thermophysics": 39.38,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
-          "lander_suitable": false,
+          "lander_suitable": true,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1962.6
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 760.7
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.477,
-          "Density_0_15cm_kg_m3": 1460.0,
-          "Density_0_60cm_kg_m3": 1495.0,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.86,
-          "Bearing_Capacity_kPa": 404.376,
-          "FeO_wt_pct": 5.979,
-          "TiO2_wt_pct": 0.791,
-          "T_min_K": 279.98,
-          "T_max_K": 328.57,
-          "Thermal_Inertia": 101.663,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 461.0,
-          "Mean_Slope_deg": 5.652,
-          "Diurnal_Delta_T_K": 27.533
+          "Traverse_Slope_deg": 5.272,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 237.67,
+          "T_max_K": 278.68,
+          "Thermal_Inertia": 48.413,
+          "Sun_Visibility_pct": 63.934,
+          "Water_Ice_wt_pct": 68.727,
+          "Altitude_m": 6092.0,
+          "Mean_Slope_deg": 4.212,
+          "Diurnal_Delta_T_K": 14.339
         }
       }
     },
@@ -626,52 +620,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.6364,
-          23.5
+          76.1954,
+          35.875
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+023.50_+0013.64",
+        "site_name": "PERSEUS_+035.88_+0076.20",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 11,
-        "similarity_score": 38.62,
-        "latent_distance": 9.6963,
-        "cosine_similarity": 0.0508,
-        "distance_vs_flow_a_best": 2.121,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 58.06,
+        "latent_distance": 4.5414,
+        "cosine_similarity": 0.7215,
+        "distance_vs_flow_a_best": 0.989,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 98.03,
-          "Thermophysics": 27.46,
-          "Geochemistry": 40.85,
-          "Environment": 12.25
+          "Morphometry": 26.23,
+          "Thermophysics": 33.85,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1589.8
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 334.7
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.45,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1490.0,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.84,
-          "Bearing_Capacity_kPa": 401.733,
-          "FeO_wt_pct": 5.712,
-          "TiO2_wt_pct": 0.711,
-          "T_min_K": 276.54,
-          "T_max_K": 327.3,
-          "Thermal_Inertia": 108.263,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 612.0,
-          "Mean_Slope_deg": 5.672,
-          "Diurnal_Delta_T_K": 26.957
+          "Traverse_Slope_deg": 10.621,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 237.673,
+          "T_max_K": 288.86,
+          "Thermal_Inertia": 50.476,
+          "Sun_Visibility_pct": 54.098,
+          "Water_Ice_wt_pct": 61.82,
+          "Altitude_m": 5195.0,
+          "Mean_Slope_deg": 9.917,
+          "Diurnal_Delta_T_K": 25.762
         }
       }
     },
@@ -680,52 +674,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          16.0237,
-          20.5
+          86.7073,
+          37.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+020.50_+0016.02",
+        "site_name": "PERSEUS_+037.12_+0086.71",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 12,
-        "similarity_score": 38.61,
-        "latent_distance": 9.688,
-        "cosine_similarity": 0.0432,
-        "distance_vs_flow_a_best": 2.119,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 57.66,
+        "latent_distance": 4.9736,
+        "cosine_similarity": 0.6579,
+        "distance_vs_flow_a_best": 1.083,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 97.61,
-          "Thermophysics": 26.89,
-          "Geochemistry": 40.86,
-          "Environment": 12.8
+          "Morphometry": 63.75,
+          "Thermophysics": 29.85,
+          "Geochemistry": 79.04,
+          "Environment": 8.46
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1920.7
+          "nearest_flow_a_site_km": 595.9
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.439,
-          "Density_0_15cm_kg_m3": 1465.0,
-          "Density_0_60cm_kg_m3": 1497.5,
-          "Cohesion_kPa": 0.006,
-          "Friction_Angle_deg": 35.93,
-          "Bearing_Capacity_kPa": 409.315,
-          "FeO_wt_pct": 5.69,
-          "TiO2_wt_pct": 0.705,
-          "T_min_K": 282.633,
-          "T_max_K": 328.72,
-          "Thermal_Inertia": 109.163,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 682.0,
-          "Mean_Slope_deg": 5.598,
-          "Diurnal_Delta_T_K": 27.25
+          "Traverse_Slope_deg": 6.45,
+          "Density_0_15cm_kg_m3": 1190.0,
+          "Density_0_60cm_kg_m3": 1240.0,
+          "Cohesion_kPa": 2.648,
+          "Friction_Angle_deg": 31.76,
+          "Bearing_Capacity_kPa": 269.339,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 245.82,
+          "T_max_K": 309.015,
+          "Thermal_Inertia": 108.37,
+          "Sun_Visibility_pct": 98.907,
+          "Water_Ice_wt_pct": 59.534,
+          "Altitude_m": 4183.0,
+          "Mean_Slope_deg": 6.042,
+          "Diurnal_Delta_T_K": 28.254
         }
       }
     },
@@ -734,52 +728,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.5572,
-          18.5
+          81.8841,
+          30.375
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+018.50_+0010.56",
+        "site_name": "PERSEUS_+030.38_+0081.88",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 13,
-        "similarity_score": 38.58,
-        "latent_distance": 9.6057,
-        "cosine_similarity": 0.0556,
-        "distance_vs_flow_a_best": 2.101,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 57.61,
+        "latent_distance": 4.5921,
+        "cosine_similarity": 0.723,
+        "distance_vs_flow_a_best": 1.0,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 92.8,
-          "Thermophysics": 27.96,
-          "Geochemistry": 40.83,
-          "Environment": 12.36
+          "Morphometry": 18.77,
+          "Thermophysics": 37.83,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 2183.4
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 1142.9
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.688,
+          "Traverse_Slope_deg": 11.401,
           "Density_0_15cm_kg_m3": 1450.0,
-          "Density_0_60cm_kg_m3": 1475.0,
-          "Cohesion_kPa": 0.075,
-          "Friction_Angle_deg": 35.64,
-          "Bearing_Capacity_kPa": 388.282,
-          "FeO_wt_pct": 5.761,
-          "TiO2_wt_pct": 0.725,
-          "T_min_K": 279.58,
-          "T_max_K": 327.74,
-          "Thermal_Inertia": 96.343,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 437.0,
-          "Mean_Slope_deg": 5.808,
-          "Diurnal_Delta_T_K": 26.786
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 243.86,
+          "T_max_K": 284.54,
+          "Thermal_Inertia": 51.244,
+          "Sun_Visibility_pct": 63.934,
+          "Water_Ice_wt_pct": 66.743,
+          "Altitude_m": 5680.0,
+          "Mean_Slope_deg": 8.845,
+          "Diurnal_Delta_T_K": 18.256
         }
       }
     },
@@ -788,52 +782,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4,
-          25.5
+          79.8197,
+          32.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+025.50_+0014.40",
-        "region": "Barren",
+        "site_name": "PERSEUS_+032.12_+0079.82",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 14,
-        "similarity_score": 38.57,
-        "latent_distance": 9.7055,
-        "cosine_similarity": 0.0527,
-        "distance_vs_flow_a_best": 2.123,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 56.71,
+        "latent_distance": 4.9283,
+        "cosine_similarity": 0.6809,
+        "distance_vs_flow_a_best": 1.074,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 97.23,
-          "Thermophysics": 28.07,
-          "Geochemistry": 40.81,
-          "Environment": 12.16
+          "Morphometry": 33.41,
+          "Thermophysics": 33.5,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
-          "lander_suitable": false,
+          "lander_suitable": true,
           "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1363.3
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 868.9
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.429,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1487.5,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.83,
-          "Bearing_Capacity_kPa": 400.422,
-          "FeO_wt_pct": 5.792,
-          "TiO2_wt_pct": 0.734,
-          "T_min_K": 276.267,
-          "T_max_K": 327.927,
-          "Thermal_Inertia": 100.265,
-          "Sun_Visibility_pct": 99.454,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 472.0,
-          "Mean_Slope_deg": 5.689,
-          "Diurnal_Delta_T_K": 26.368
+          "Traverse_Slope_deg": 4.943,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 237.12,
+          "T_max_K": 281.16,
+          "Thermal_Inertia": 35.203,
+          "Sun_Visibility_pct": 53.005,
+          "Water_Ice_wt_pct": 69.663,
+          "Altitude_m": 5952.0,
+          "Mean_Slope_deg": 3.824,
+          "Diurnal_Delta_T_K": 17.737
         }
       }
     },
@@ -842,52 +836,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          21.4925,
-          21.5
+          87.3248,
+          49.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+021.50_+0021.49",
-        "region": "Barren",
+        "site_name": "PERSEUS_+049.12_+0087.32",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 15,
-        "similarity_score": 38.52,
-        "latent_distance": 9.7114,
-        "cosine_similarity": 0.046,
-        "distance_vs_flow_a_best": 2.124,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 56.24,
+        "latent_distance": 5.2391,
+        "cosine_similarity": 0.6494,
+        "distance_vs_flow_a_best": 1.141,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 97.49,
-          "Thermophysics": 27.56,
-          "Geochemistry": 40.36,
-          "Environment": 12.4
+          "Morphometry": 54.89,
+          "Thermophysics": 35.23,
+          "Geochemistry": 79.04,
+          "Environment": 8.04
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1911.7
+          "nearest_flow_a_site_km": 1083.8
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.436,
-          "Density_0_15cm_kg_m3": 1460.0,
-          "Density_0_60cm_kg_m3": 1490.0,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.84,
-          "Bearing_Capacity_kPa": 401.741,
-          "FeO_wt_pct": 6.11,
-          "TiO2_wt_pct": 0.831,
-          "T_min_K": 277.76,
-          "T_max_K": 330.2,
-          "Thermal_Inertia": 100.076,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 516.0,
-          "Mean_Slope_deg": 5.533,
-          "Diurnal_Delta_T_K": 29.45
+          "Traverse_Slope_deg": 8.899,
+          "Density_0_15cm_kg_m3": 940.0,
+          "Density_0_60cm_kg_m3": 1055.0,
+          "Cohesion_kPa": 4.86,
+          "Friction_Angle_deg": 28.84,
+          "Bearing_Capacity_kPa": 231.489,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 240.51,
+          "T_max_K": 285.18,
+          "Thermal_Inertia": 116.658,
+          "Sun_Visibility_pct": 92.896,
+          "Water_Ice_wt_pct": 76.412,
+          "Altitude_m": 2880.0,
+          "Mean_Slope_deg": 7.489,
+          "Diurnal_Delta_T_K": 8.719
         }
       }
     },
@@ -896,322 +890,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          104.0426,
-          38.5
+          84.4743,
+          34.375
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+038.50_+0104.04",
+        "site_name": "PERSEUS_+034.38_+0084.47",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 16,
-        "similarity_score": 38.5,
-        "latent_distance": 9.2889,
-        "cosine_similarity": 0.0196,
-        "distance_vs_flow_a_best": 2.032,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
-        "radar_subscores": {
-          "Morphometry": 84.45,
-          "Thermophysics": 28.65,
-          "Geochemistry": 31.15,
-          "Environment": 13.63
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 710.9
-        },
-        "engineering_metrics": {
-          "Traverse_Slope_deg": 7.075,
-          "Density_0_15cm_kg_m3": 1435.0,
-          "Density_0_60cm_kg_m3": 1470.0,
-          "Cohesion_kPa": 0.228,
-          "Friction_Angle_deg": 35.12,
-          "Bearing_Capacity_kPa": 363.558,
-          "FeO_wt_pct": 8.924,
-          "TiO2_wt_pct": 1.868,
-          "T_min_K": 255.095,
-          "T_max_K": 331.087,
-          "Thermal_Inertia": 109.086,
-          "Sun_Visibility_pct": 98.907,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 1356.0,
-          "Mean_Slope_deg": 5.281,
-          "Diurnal_Delta_T_K": 33.675
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          12.819,
-          20.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+020.50_+0012.82",
-        "region": "Barren",
-        "planetary_body": "Lunar",
-        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
-        "is_known_site": false,
-        "discovery_rank": 17,
-        "similarity_score": 38.47,
-        "latent_distance": 9.7493,
-        "cosine_similarity": 0.043,
-        "distance_vs_flow_a_best": 2.132,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
-        "radar_subscores": {
-          "Morphometry": 98.83,
-          "Thermophysics": 27.01,
-          "Geochemistry": 40.72,
-          "Environment": 12.16
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1929.5
-        },
-        "engineering_metrics": {
-          "Traverse_Slope_deg": 7.47,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1487.5,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.83,
-          "Bearing_Capacity_kPa": 400.425,
-          "FeO_wt_pct": 5.984,
-          "TiO2_wt_pct": 0.792,
-          "T_min_K": 280.92,
-          "T_max_K": 329.68,
-          "Thermal_Inertia": 107.045,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 468.0,
-          "Mean_Slope_deg": 5.713,
-          "Diurnal_Delta_T_K": 27.946
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          17.7391,
-          16.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+016.50_+0017.74",
-        "region": "Barren",
-        "planetary_body": "Lunar",
-        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
-        "is_known_site": false,
-        "discovery_rank": 18,
-        "similarity_score": 38.46,
-        "latent_distance": 9.6913,
-        "cosine_similarity": 0.0374,
-        "distance_vs_flow_a_best": 2.12,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
-        "radar_subscores": {
-          "Morphometry": 95.24,
-          "Thermophysics": 27.25,
-          "Geochemistry": 40.75,
-          "Environment": 12.61
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 2378.2
-        },
-        "engineering_metrics": {
-          "Traverse_Slope_deg": 7.623,
-          "Density_0_15cm_kg_m3": 1465.0,
-          "Density_0_60cm_kg_m3": 1490.0,
-          "Cohesion_kPa": 0.019,
-          "Friction_Angle_deg": 35.78,
-          "Bearing_Capacity_kPa": 398.261,
-          "FeO_wt_pct": 5.913,
-          "TiO2_wt_pct": 0.771,
-          "T_min_K": 282.46,
-          "T_max_K": 327.52,
-          "Thermal_Inertia": 113.796,
-          "Sun_Visibility_pct": 98.361,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 199.0,
-          "Mean_Slope_deg": 5.913,
-          "Diurnal_Delta_T_K": 25.257
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          23.2615,
-          25.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+025.50_+0023.26",
-        "region": "Barren",
-        "planetary_body": "Lunar",
-        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
-        "is_known_site": false,
-        "discovery_rank": 19,
-        "similarity_score": 38.38,
-        "latent_distance": 9.7252,
-        "cosine_similarity": 0.0479,
-        "distance_vs_flow_a_best": 2.127,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
-        "radar_subscores": {
-          "Morphometry": 95.81,
-          "Thermophysics": 27.39,
-          "Geochemistry": 40.76,
-          "Environment": 12.16
-        },
-        "engineering": {
-          "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1569.5
-        },
-        "engineering_metrics": {
-          "Traverse_Slope_deg": 7.392,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1487.5,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.83,
-          "Bearing_Capacity_kPa": 400.421,
-          "FeO_wt_pct": 5.882,
-          "TiO2_wt_pct": 0.761,
-          "T_min_K": 277.72,
-          "T_max_K": 328.28,
-          "Thermal_Inertia": 106.446,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 375.0,
-          "Mean_Slope_deg": 5.529,
-          "Diurnal_Delta_T_K": 26.195
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          4.9091,
-          23.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+023.50_+0004.91",
-        "region": "Barren",
-        "planetary_body": "Lunar",
-        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
-        "is_known_site": false,
-        "discovery_rank": 20,
-        "similarity_score": 38.37,
-        "latent_distance": 8.8842,
-        "cosine_similarity": -0.0144,
-        "distance_vs_flow_a_best": 1.943,
+        "similarity_score": 55.56,
+        "latent_distance": 5.509,
+        "cosine_similarity": 0.6028,
+        "distance_vs_flow_a_best": 1.2,
         "cluster_id": 0,
-        "cluster_label": "Archetype 1: low TiO2 wt pct, high Density 0 15cm kg m3",
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 52.96,
-          "Thermophysics": 25.95,
-          "Geochemistry": 36.48,
-          "Environment": 20.62
-        },
-        "engineering": {
-          "lander_suitable": true,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1852.2
-        },
-        "engineering_metrics": {
-          "Traverse_Slope_deg": 5.9,
-          "Density_0_15cm_kg_m3": 1475.0,
-          "Density_0_60cm_kg_m3": 1512.5,
-          "Cohesion_kPa": 0.424,
-          "Friction_Angle_deg": 34.61,
-          "Bearing_Capacity_kPa": 353.992,
-          "FeO_wt_pct": 7.254,
-          "TiO2_wt_pct": 1.216,
-          "T_min_K": 281.027,
-          "T_max_K": 329.49,
-          "Thermal_Inertia": 125.363,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 935.0,
-          "Mean_Slope_deg": 4.79,
-          "Diurnal_Delta_T_K": 27.414
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          46.7257,
-          19.5
-        ]
-      },
-      "properties": {
-        "site_name": "PERSEUS_+019.50_+0046.73",
-        "region": "Barren",
-        "planetary_body": "Lunar",
-        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
-        "is_known_site": false,
-        "discovery_rank": 21,
-        "similarity_score": 38.35,
-        "latent_distance": 9.7749,
-        "cosine_similarity": 0.0438,
-        "distance_vs_flow_a_best": 2.138,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
-        "radar_subscores": {
-          "Morphometry": 98.1,
-          "Thermophysics": 26.92,
-          "Geochemistry": 40.78,
-          "Environment": 12.07
+          "Morphometry": 66.83,
+          "Thermophysics": 31.3,
+          "Geochemistry": 79.16,
+          "Environment": 7.65
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": true,
           "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 977.4
+          "nearest_flow_a_site_km": 889.5
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.548,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1485.0,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.82,
-          "Bearing_Capacity_kPa": 399.12,
-          "FeO_wt_pct": 5.842,
-          "TiO2_wt_pct": 0.749,
-          "T_min_K": 282.56,
-          "T_max_K": 330.0,
-          "Thermal_Inertia": 106.245,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 623.0,
-          "Mean_Slope_deg": 5.767,
-          "Diurnal_Delta_T_K": 27.683
+          "Traverse_Slope_deg": 6.56,
+          "Density_0_15cm_kg_m3": 840.0,
+          "Density_0_60cm_kg_m3": 952.5,
+          "Cohesion_kPa": 3.74,
+          "Friction_Angle_deg": 29.95,
+          "Bearing_Capacity_kPa": 216.168,
+          "FeO_wt_pct": 4.299,
+          "TiO2_wt_pct": 0.361,
+          "T_min_K": 244.6,
+          "T_max_K": 302.0,
+          "Thermal_Inertia": 138.227,
+          "Sun_Visibility_pct": 91.257,
+          "Water_Ice_wt_pct": 21.517,
+          "Altitude_m": 5584.0,
+          "Mean_Slope_deg": 5.4,
+          "Diurnal_Delta_T_K": 23.32
         }
       }
     },
@@ -1220,52 +944,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          81.0922,
-          35.5
+          82.3077,
+          35.625
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+035.50_+0081.09",
+        "site_name": "PERSEUS_+035.62_+0082.31",
         "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
-        "discovery_rank": 22,
-        "similarity_score": 38.3,
-        "latent_distance": 8.9015,
-        "cosine_similarity": 0.418,
-        "distance_vs_flow_a_best": 1.947,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "discovery_rank": 17,
+        "similarity_score": 55.2,
+        "latent_distance": 4.9515,
+        "cosine_similarity": 0.6942,
+        "distance_vs_flow_a_best": 1.079,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 7.18,
-          "Thermophysics": 41.44,
-          "Geochemistry": 72.91,
-          "Environment": 14.37
+          "Morphometry": 13.79,
+          "Thermophysics": 30.7,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
           "rover_suitable": false,
           "imputed_feature_count": 5,
-          "nearest_flow_a_site_km": 714.7
+          "nearest_flow_a_site_km": 808.4
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 14.131,
+          "Traverse_Slope_deg": 12.119,
           "Density_0_15cm_kg_m3": 1450.0,
           "Density_0_60cm_kg_m3": 1482.5,
           "Cohesion_kPa": 0.206,
-          "Friction_Angle_deg": 35.25,
-          "Bearing_Capacity_kPa": 373.533,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
           "FeO_wt_pct": 4.28,
           "TiO2_wt_pct": 0.357,
-          "T_min_K": 236.38,
-          "T_max_K": 279.868,
-          "Thermal_Inertia": 58.129,
-          "Sun_Visibility_pct": 65.574,
-          "Water_Ice_wt_pct": 67.033,
-          "Altitude_m": 5781.0,
-          "Mean_Slope_deg": 11.897,
-          "Diurnal_Delta_T_K": 20.265
+          "T_min_K": 237.82,
+          "T_max_K": 283.24,
+          "Thermal_Inertia": 25.791,
+          "Sun_Visibility_pct": 48.087,
+          "Water_Ice_wt_pct": 68.032,
+          "Altitude_m": 6257.0,
+          "Mean_Slope_deg": 9.192,
+          "Diurnal_Delta_T_K": 23.308
         }
       }
     },
@@ -1274,52 +998,322 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          20.3049,
-          24.5
+          78.1161,
+          34.375
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+024.50_+0020.30",
+        "site_name": "PERSEUS_+034.38_+0078.12",
+        "region": "Barren",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
+        "is_known_site": false,
+        "discovery_rank": 18,
+        "similarity_score": 54.73,
+        "latent_distance": 4.9457,
+        "cosine_similarity": 0.6757,
+        "distance_vs_flow_a_best": 1.077,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
+        "radar_subscores": {
+          "Morphometry": 6.65,
+          "Thermophysics": 36.85,
+          "Geochemistry": 79.04,
+          "Environment": 9.65
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 574.8
+        },
+        "engineering_metrics": {
+          "Traverse_Slope_deg": 27.135,
+          "Density_0_15cm_kg_m3": 1360.0,
+          "Density_0_60cm_kg_m3": 1460.0,
+          "Cohesion_kPa": 2.346,
+          "Friction_Angle_deg": 32.58,
+          "Bearing_Capacity_kPa": 323.744,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 240.227,
+          "T_max_K": 302.32,
+          "Thermal_Inertia": 93.59,
+          "Sun_Visibility_pct": 86.885,
+          "Water_Ice_wt_pct": 65.806,
+          "Altitude_m": 5224.0,
+          "Mean_Slope_deg": 21.91,
+          "Diurnal_Delta_T_K": 24.931
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.9688,
+          36.875
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+036.88_+0072.97",
+        "region": "Snow and Ice",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
+        "is_known_site": false,
+        "discovery_rank": 19,
+        "similarity_score": 54.71,
+        "latent_distance": 4.9878,
+        "cosine_similarity": 0.7016,
+        "distance_vs_flow_a_best": 1.087,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
+        "radar_subscores": {
+          "Morphometry": 6.65,
+          "Thermophysics": 40.82,
+          "Geochemistry": 79.04,
+          "Environment": 8.43
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 0,
+          "nearest_flow_a_site_km": 164.6
+        },
+        "engineering_metrics": {
+          "Traverse_Slope_deg": 53.187,
+          "Density_0_15cm_kg_m3": 1305.0,
+          "Density_0_60cm_kg_m3": 1442.5,
+          "Cohesion_kPa": 2.212,
+          "Friction_Angle_deg": 32.51,
+          "Bearing_Capacity_kPa": 312.946,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 238.35,
+          "T_max_K": 285.24,
+          "Thermal_Inertia": 28.133,
+          "Sun_Visibility_pct": 89.617,
+          "Water_Ice_wt_pct": 50.467,
+          "Altitude_m": 5770.0,
+          "Mean_Slope_deg": 43.892,
+          "Diurnal_Delta_T_K": 13.201
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8021,
+          35.875
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+035.88_+0072.80",
+        "region": "Barren",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
+        "is_known_site": false,
+        "discovery_rank": 20,
+        "similarity_score": 54.54,
+        "latent_distance": 5.1376,
+        "cosine_similarity": 0.6878,
+        "distance_vs_flow_a_best": 1.119,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
+        "radar_subscores": {
+          "Morphometry": 10.24,
+          "Thermophysics": 36.85,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 273.3
+        },
+        "engineering_metrics": {
+          "Traverse_Slope_deg": 12.815,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 244.32,
+          "T_max_K": 293.14,
+          "Thermal_Inertia": 71.363,
+          "Sun_Visibility_pct": 94.536,
+          "Water_Ice_wt_pct": 64.896,
+          "Altitude_m": 4408.0,
+          "Mean_Slope_deg": 9.57,
+          "Diurnal_Delta_T_K": 15.071
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.2812,
+          36.875
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+036.88_+0073.28",
+        "region": "Barren",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
+        "is_known_site": false,
+        "discovery_rank": 21,
+        "similarity_score": 54.45,
+        "latent_distance": 5.1626,
+        "cosine_similarity": 0.6963,
+        "distance_vs_flow_a_best": 1.125,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
+        "radar_subscores": {
+          "Morphometry": 6.65,
+          "Thermophysics": 40.72,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 154.3
+        },
+        "engineering_metrics": {
+          "Traverse_Slope_deg": 17.623,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 240.36,
+          "T_max_K": 295.54,
+          "Thermal_Inertia": 15.624,
+          "Sun_Visibility_pct": 82.514,
+          "Water_Ice_wt_pct": 61.766,
+          "Altitude_m": 4798.0,
+          "Mean_Slope_deg": 14.35,
+          "Diurnal_Delta_T_K": 18.125
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3933,
+          42.125
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+042.12_+0080.39",
+        "region": "Barren",
+        "planetary_body": "Lunar",
+        "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
+        "is_known_site": false,
+        "discovery_rank": 22,
+        "similarity_score": 54.36,
+        "latent_distance": 5.1929,
+        "cosine_similarity": 0.7045,
+        "distance_vs_flow_a_best": 1.131,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
+        "radar_subscores": {
+          "Morphometry": 6.65,
+          "Thermophysics": 41.56,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
+        },
+        "engineering": {
+          "lander_suitable": false,
+          "rover_suitable": false,
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 709.8
+        },
+        "engineering_metrics": {
+          "Traverse_Slope_deg": 44.267,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 237.213,
+          "T_max_K": 281.98,
+          "Thermal_Inertia": 15.739,
+          "Sun_Visibility_pct": 86.885,
+          "Water_Ice_wt_pct": 65.972,
+          "Altitude_m": 4989.0,
+          "Mean_Slope_deg": 31.244,
+          "Diurnal_Delta_T_K": 15.268
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.8304,
+          36.625
+        ]
+      },
+      "properties": {
+        "site_name": "PERSEUS_+036.62_+0075.83",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 23,
-        "similarity_score": 38.28,
-        "latent_distance": 9.7441,
-        "cosine_similarity": 0.0575,
-        "distance_vs_flow_a_best": 2.131,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 54.28,
+        "latent_distance": 5.1487,
+        "cosine_similarity": 0.6949,
+        "distance_vs_flow_a_best": 1.122,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 94.61,
-          "Thermophysics": 28.1,
-          "Geochemistry": 40.82,
-          "Environment": 11.84
+          "Morphometry": 6.65,
+          "Thermophysics": 37.12,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1557.0
+          "rover_suitable": false,
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 250.6
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.639,
+          "Traverse_Slope_deg": 34.073,
           "Density_0_15cm_kg_m3": 1450.0,
           "Density_0_60cm_kg_m3": 1482.5,
-          "Cohesion_kPa": 0.012,
-          "Friction_Angle_deg": 35.81,
-          "Bearing_Capacity_kPa": 397.811,
-          "FeO_wt_pct": 5.778,
-          "TiO2_wt_pct": 0.73,
-          "T_min_K": 276.28,
-          "T_max_K": 327.07,
-          "Thermal_Inertia": 98.499,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 475.0,
-          "Mean_Slope_deg": 5.914,
-          "Diurnal_Delta_T_K": 26.838
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 242.167,
+          "T_max_K": 292.01,
+          "Thermal_Inertia": 10.081,
+          "Sun_Visibility_pct": 73.224,
+          "Water_Ice_wt_pct": 68.956,
+          "Altitude_m": 5164.0,
+          "Mean_Slope_deg": 26.691,
+          "Diurnal_Delta_T_K": 23.839
         }
       }
     },
@@ -1328,52 +1322,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          28.0115,
-          15.5
+          90.0774,
+          36.125
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+015.50_+0028.01",
-        "region": "Barren",
+        "site_name": "PERSEUS_+036.12_+0090.08",
+        "region": "Snow and Ice",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 24,
-        "similarity_score": 38.23,
-        "latent_distance": 9.7036,
-        "cosine_similarity": 0.0437,
-        "distance_vs_flow_a_best": 2.122,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 54.28,
+        "latent_distance": 5.1872,
+        "cosine_similarity": 0.6998,
+        "distance_vs_flow_a_best": 1.13,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 92.67,
-          "Thermophysics": 26.81,
-          "Geochemistry": 40.82,
-          "Environment": 12.51
+          "Morphometry": 6.65,
+          "Thermophysics": 39.8,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 1679.0
+          "rover_suitable": false,
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 351.9
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 7.692,
-          "Density_0_15cm_kg_m3": 1460.0,
-          "Density_0_60cm_kg_m3": 1492.5,
-          "Cohesion_kPa": 0.013,
-          "Friction_Angle_deg": 35.85,
-          "Bearing_Capacity_kPa": 403.1,
-          "FeO_wt_pct": 5.772,
-          "TiO2_wt_pct": 0.728,
-          "T_min_K": 281.63,
-          "T_max_K": 328.056,
-          "Thermal_Inertia": 112.78,
-          "Sun_Visibility_pct": 100.0,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 565.0,
-          "Mean_Slope_deg": 5.805,
-          "Diurnal_Delta_T_K": 26.373
+          "Traverse_Slope_deg": 17.148,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 237.66,
+          "T_max_K": 274.48,
+          "Thermal_Inertia": 14.518,
+          "Sun_Visibility_pct": 70.492,
+          "Water_Ice_wt_pct": 68.996,
+          "Altitude_m": 5762.0,
+          "Mean_Slope_deg": 14.206,
+          "Diurnal_Delta_T_K": 16.552
         }
       }
     },
@@ -1382,52 +1376,52 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          18.0531,
-          19.5
+          94.3077,
+          35.625
         ]
       },
       "properties": {
-        "site_name": "PERSEUS_+019.50_+0018.05",
+        "site_name": "PERSEUS_+035.62_+0094.31",
         "region": "Barren",
         "planetary_body": "Lunar",
         "reference_target": "Shackleton_Rim_(Artemis_Base_/_South_Pole)",
         "is_known_site": false,
         "discovery_rank": 25,
-        "similarity_score": 38.21,
-        "latent_distance": 9.3637,
-        "cosine_similarity": 0.0288,
-        "distance_vs_flow_a_best": 2.048,
-        "cluster_id": 1,
-        "cluster_label": "Archetype 2: low Friction Angle deg, low Density 0 15cm kg m3",
+        "similarity_score": 54.25,
+        "latent_distance": 5.217,
+        "cosine_similarity": 0.6852,
+        "distance_vs_flow_a_best": 1.136,
+        "cluster_id": 0,
+        "cluster_label": "Archetype 1: low Friction Angle deg, low Density 0 15cm kg m3",
         "radar_subscores": {
-          "Morphometry": 75.45,
-          "Thermophysics": 26.56,
-          "Geochemistry": 40.81,
-          "Environment": 13.95
+          "Morphometry": 6.65,
+          "Thermophysics": 41.36,
+          "Geochemistry": 79.04,
+          "Environment": 16.73
         },
         "engineering": {
           "lander_suitable": false,
-          "rover_suitable": true,
-          "imputed_feature_count": 0,
-          "nearest_flow_a_site_km": 2050.9
+          "rover_suitable": false,
+          "imputed_feature_count": 5,
+          "nearest_flow_a_site_km": 260.3
         },
         "engineering_metrics": {
-          "Traverse_Slope_deg": 6.791,
-          "Density_0_15cm_kg_m3": 1455.0,
-          "Density_0_60cm_kg_m3": 1485.0,
-          "Cohesion_kPa": 0.166,
-          "Friction_Angle_deg": 35.24,
-          "Bearing_Capacity_kPa": 371.18,
-          "FeO_wt_pct": 5.798,
-          "TiO2_wt_pct": 0.736,
-          "T_min_K": 283.77,
-          "T_max_K": 330.247,
-          "Thermal_Inertia": 113.488,
-          "Sun_Visibility_pct": 99.454,
-          "Water_Ice_wt_pct": 0.0,
-          "Altitude_m": 633.0,
-          "Mean_Slope_deg": 5.293,
-          "Diurnal_Delta_T_K": 27.822
+          "Traverse_Slope_deg": 15.765,
+          "Density_0_15cm_kg_m3": 1450.0,
+          "Density_0_60cm_kg_m3": 1482.5,
+          "Cohesion_kPa": 0.206,
+          "Friction_Angle_deg": 35.22,
+          "Bearing_Capacity_kPa": 372.693,
+          "FeO_wt_pct": 4.28,
+          "TiO2_wt_pct": 0.357,
+          "T_min_K": 243.58,
+          "T_max_K": 296.25,
+          "Thermal_Inertia": 32.034,
+          "Sun_Visibility_pct": 80.328,
+          "Water_Ice_wt_pct": 63.393,
+          "Altitude_m": 5284.0,
+          "Mean_Slope_deg": 12.324,
+          "Diurnal_Delta_T_K": 23.338
         }
       }
     }

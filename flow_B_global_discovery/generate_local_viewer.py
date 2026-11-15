@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Team Perseus - Local Map Viewer Generator for NASA Space Apps 2026
-Generates an interactive standalone HTML map (results/perseus_local_viewer.html)
-showing Flow B new discoveries, Radar sub-scores, engineering flags, and Flow A 50km exclusion zones.
+Team Perseus - Interactive Discovery Map Generator for NASA Space Apps 2026
+Supports dynamic switching across all 5 Lunar and 10 Martian reference targets,
+4-axis Radar sub-scores, engineering flags, and Flow A 50km exclusion zones.
 """
 
 import json
@@ -19,27 +19,15 @@ def main() -> None:
     mars_json_path = results_dir / "flowB_mars_heatmap.json"
     excl_json_path = results_dir / "flowB_exclusion_report.json"
 
-    lunar_data = (
-        json.loads(lunar_json_path.read_text(encoding="utf-8"))
-        if lunar_json_path.exists()
-        else {"grid_points": [], "metadata": {}}
-    )
-    mars_data = (
-        json.loads(mars_json_path.read_text(encoding="utf-8"))
-        if mars_json_path.exists()
-        else {"grid_points": [], "metadata": {}}
-    )
-    excl_data = (
-        json.loads(excl_json_path.read_text(encoding="utf-8"))
-        if excl_json_path.exists()
-        else {"flow_a_sites": [], "buffer_km": 50.0}
-    )
+    lunar_data = json.loads(lunar_json_path.read_text(encoding="utf-8")) if lunar_json_path.exists() else {"grid_points": [], "metadata": {}, "targets_map": {}}
+    mars_data = json.loads(mars_json_path.read_text(encoding="utf-8")) if mars_json_path.exists() else {"grid_points": [], "metadata": {}, "targets_map": {}}
+    excl_data = json.loads(excl_json_path.read_text(encoding="utf-8")) if excl_json_path.exists() else {"flow_a_sites": [], "buffer_km": 50.0}
 
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Team Perseus - NASA Space Apps 2026 | Local Discovery Viewer</title>
+    <title>Team Perseus - NASA Space Apps 2026 | Global Discovery Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -47,14 +35,14 @@ def main() -> None:
         #header {{ background: #111827; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #3b82f6; flex-wrap: wrap; gap: 10px; }}
         h1 {{ margin: 0; font-size: 16px; color: #60a5fa; letter-spacing: 0.4px; }}
         .sub {{ font-size: 12px; color: #9ca3af; margin-top: 2px; }}
-        .controls {{ display: flex; gap: 8px; align-items: center; }}
-        button {{ background: #1f2937; color: white; border: 1px solid #3b82f6; padding: 7px 14px; cursor: pointer; border-radius: 6px; font-weight: bold; font-size: 13px; transition: all 0.2s; }}
-        button:hover {{ background: #374151; }}
+        .controls {{ display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }}
+        button, select {{ background: #1f2937; color: white; border: 1px solid #3b82f6; padding: 7px 12px; cursor: pointer; border-radius: 6px; font-weight: bold; font-size: 12.5px; transition: all 0.2s; }}
+        button:hover, select:hover {{ background: #374151; }}
         button.active {{ background: #2563eb; border-color: #60a5fa; }}
         button.excl-btn {{ border-color: #ef4444; }}
         button.excl-btn.active {{ background: #b91c1c; border-color: #f87171; }}
         #map {{ height: calc(100vh - 64px); width: 100%; background: #0b0f19; }}
-        .popup-box {{ font-size: 12.5px; color: #111; line-height: 1.45; min-width: 240px; }}
+        .popup-box {{ font-size: 12.5px; color: #111; line-height: 1.45; min-width: 245px; }}
         .popup-box h3 {{ margin: 0 0 6px 0; color: #1d4ed8; font-size: 14.5px; }}
         .badge {{ background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; }}
         .badge-ok {{ background: #d1fae5; color: #065f46; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; }}
@@ -68,8 +56,9 @@ def main() -> None:
             <div class="sub" id="target-info">Loading target metadata...</div>
         </div>
         <div class="controls">
-            <button id="btn-lunar" class="active" onclick="switchLayer('lunar')">Flow B: Lunar Analogs</button>
-            <button id="btn-mars" onclick="switchLayer('mars')">Flow B: Mars Analogs</button>
+            <button id="btn-lunar" class="active" onclick="switchPlanet('lunar')">Moon Analogs</button>
+            <button id="btn-mars" onclick="switchPlanet('mars')">Mars Analogs</button>
+            <select id="target-select" onchange="onTargetChange()"></select>
             <button id="btn-excl" class="excl-btn active" onclick="toggleExclusion()">Flow A 50km Exclusion Zones</button>
         </div>
     </div>
@@ -79,35 +68,20 @@ def main() -> None:
         const lunarData = {json.dumps(lunar_data)};
         const marsData = {json.dumps(mars_data)};
         const exclData = {json.dumps(excl_data)};
+        let currentPlanet = 'lunar';
 
         const map = L.map('map', {{ preferCanvas: true }}).setView([20, 10], 2);
 
         const satelliteLayer = L.tileLayer(
             'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{{z}}/{{y}}/{{x}}',
-            {{
-                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, NASA/USGS',
-                maxZoom: 18
-            }}
+            {{ attribution: 'Tiles &copy; Esri &mdash; Esri, Maxar, NASA/USGS', maxZoom: 18 }}
         );
-
         const darkCanvasLayer = L.tileLayer(
             'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{{z}}/{{y}}/{{x}}',
-            {{
-                attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, FAO, NOAA',
-                maxZoom: 16
-            }}
+            {{ attribution: 'Tiles &copy; Esri', maxZoom: 16 }}
         );
-
         satelliteLayer.addTo(map);
-
-        L.control.layers(
-            {{
-                "Satellite Imagery (True Color)": satelliteLayer,
-                "Dark Tactical Base": darkCanvasLayer
-            }},
-            null,
-            {{ position: 'topright' }}
-        ).addTo(map);
+        L.control.layers({{ "Satellite Imagery (True Color)": satelliteLayer, "Dark Tactical Base": darkCanvasLayer }}, null, {{ position: 'topright' }}).addTo(map);
 
         let discoveryLayer = L.layerGroup().addTo(map);
         let exclusionLayer = L.layerGroup().addTo(map);
@@ -118,12 +92,7 @@ def main() -> None:
             const radiusMeters = (exclData.buffer_km || 50) * 1000;
             (exclData.flow_a_sites || []).forEach(s => {{
                 let circle = L.circle([s.latitude, s.longitude], {{
-                    radius: radiusMeters,
-                    color: '#ef4444',
-                    weight: 1.5,
-                    dashArray: '5, 5',
-                    fillColor: '#ef4444',
-                    fillOpacity: 0.12
+                    radius: radiusMeters, color: '#ef4444', weight: 1.5, dashArray: '5, 5', fillColor: '#ef4444', fillOpacity: 0.12
                 }});
                 circle.bindPopup(`<div class="popup-box">
                     <h3 style="color:#b91c1c;">Excluded Flow A Catalog Site</h3>
@@ -138,23 +107,37 @@ def main() -> None:
         function toggleExclusion() {{
             showExclusion = !showExclusion;
             document.getElementById('btn-excl').classList.toggle('active', showExclusion);
-            if (showExclusion) {{
-                exclusionLayer.addTo(map);
-            }} else {{
-                map.removeLayer(exclusionLayer);
-            }}
+            if (showExclusion) exclusionLayer.addTo(map); else map.removeLayer(exclusionLayer);
         }}
 
         function getColor(score) {{
-            return score > 65 ? '#10b981' : score > 45 ? '#f59e0b' : score > 25 ? '#f97316' : '#ef4444';
+            return score > 65 ? '#10b981' : score > 48 ? '#f59e0b' : score > 30 ? '#f97316' : '#ef4444';
         }}
 
-        function renderPoints(dataset) {{
-            discoveryLayer.clearLayers();
+        function populateTargetSelect(dataset) {{
+            const sel = document.getElementById('target-select');
+            sel.innerHTML = '';
             const meta = dataset.metadata || {{}};
-            const points = dataset.grid_points || [];
+            const targets = meta.available_targets || [meta.reference_target || 'Default'];
+            targets.forEach(t => {{
+                const opt = document.createElement('option');
+                opt.value = t;
+                opt.innerText = 'Target: ' + t.replaceAll('_', ' ');
+                if (t === meta.reference_target) opt.selected = true;
+                sel.appendChild(opt);
+            }});
+        }}
+
+        function renderCurrentSelection() {{
+            discoveryLayer.clearLayers();
+            const dataset = currentPlanet === 'lunar' ? lunarData : marsData;
+            const meta = dataset.metadata || {{}};
+            const chosenTarget = document.getElementById('target-select').value || meta.reference_target;
+            const tMap = dataset.targets_map || {{}};
+            const points = (tMap[chosenTarget] && tMap[chosenTarget].length) ? tMap[chosenTarget] : (dataset.grid_points || []);
+
             document.getElementById('target-info').innerText =
-                `Target: ${{meta.reference_target || 'N/A'}} | Evaluated New Candidates: ${{points.length}} | Excluded Flow A Sites: ${{meta.flow_a_sites_excluded_from_search || 31}}`;
+                `Reference Target: ${{chosenTarget.replaceAll('_', ' ')}} | Total Evaluated Abiotic Cells: ${{meta.total_evaluated_sites || points.length}} | Excluded Flow A Sites: ${{meta.flow_a_sites_excluded_from_search || 31}}`;
 
             points.forEach(p => {{
                 let color = getColor(p.similarity_score);
@@ -193,14 +176,21 @@ def main() -> None:
             }});
         }}
 
-        function switchLayer(type) {{
+        function switchPlanet(type) {{
+            currentPlanet = type;
             document.getElementById('btn-lunar').classList.toggle('active', type === 'lunar');
             document.getElementById('btn-mars').classList.toggle('active', type === 'mars');
-            renderPoints(type === 'lunar' ? lunarData : marsData);
+            populateTargetSelect(type === 'lunar' ? lunarData : marsData);
+            renderCurrentSelection();
+        }}
+
+        function onTargetChange() {{
+            renderCurrentSelection();
         }}
 
         renderExclusionZones();
-        renderPoints(lunarData);
+        populateTargetSelect(lunarData);
+        renderCurrentSelection();
     </script>
 </body>
 </html>
@@ -208,7 +198,7 @@ def main() -> None:
 
     output_html = results_dir / "perseus_local_viewer.html"
     output_html.write_text(html_content, encoding="utf-8")
-    print(f"Satellite local map successfully generated at: {output_html}")
+    print(f"Satellite discovery map successfully generated at: {output_html}")
 
 
 if __name__ == "__main__":

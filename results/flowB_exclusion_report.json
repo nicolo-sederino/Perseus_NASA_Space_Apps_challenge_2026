@@ -1,9 +1,9 @@
 {
   "buffer_km": 50.0,
-  "n_anchors": 31,
-  "cells_removed_by_buffer": 0,
-  "candidates_remaining": 1116,
-  "min_distance_to_any_flow_a_site_km_in_search_space": 81.46,
+  "n_anchors": 44,
+  "cells_removed_by_buffer": 2,
+  "candidates_remaining": 17902,
+  "min_distance_to_any_flow_a_site_km_in_search_space": 50.37,
   "flow_a_sites": [
     {
       "site_name": "Black Point Lava Flow",
@@ -46,7 +46,7 @@
       "longitude": -111.83
     },
     {
-      "site_name": "Nahuku (Thurston Lava Tube)",
+      "site_name": "Nahuku (Thurston Lava Tube) / Kilauea Volcano & East Rift Zone",
       "latitude": 19.41,
       "longitude": -155.24
     },
@@ -94,6 +94,31 @@
       "site_name": "Pinacate Volcanic Field",
       "latitude": 31.8,
       "longitude": -113.5
+    },
+    {
+      "site_name": "Harrat Khaybar & Harrat Rahat / Harrat Khaybar Volcanic Field",
+      "latitude": 25.68,
+      "longitude": 39.95
+    },
+    {
+      "site_name": "Ethiopian Afar Depression",
+      "latitude": 11.5,
+      "longitude": 40.5
+    },
+    {
+      "site_name": "Patagonian basalt plateaus (Payenia / Somuncura)",
+      "latitude": -38.5,
+      "longitude": -69.0
+    },
+    {
+      "site_name": "Barda Negra Volcanic Field",
+      "latitude": -39.0,
+      "longitude": -69.5
+    },
+    {
+      "site_name": "Deccan Traps margins (Lonar Crater)",
+      "latitude": 19.97,
+      "longitude": 76.51
     },
     {
       "site_name": "Qaidam Basin & Lenghu Desert",
@@ -156,9 +181,49 @@
       "longitude": -67.65
     },
     {
-      "site_name": "Harrat Khaybar Volcanic Field",
-      "latitude": 25.68,
-      "longitude": 39.95
+      "site_name": "Makgadikgadi Basin",
+      "latitude": -20.72,
+      "longitude": 25.22
+    },
+    {
+      "site_name": "Ibex Dune Field (Death Valley)",
+      "latitude": 35.69,
+      "longitude": -116.37
+    },
+    {
+      "site_name": "McMurdo Dry Valleys",
+      "latitude": -77.47,
+      "longitude": 162.52
+    },
+    {
+      "site_name": "Larsemann Hills",
+      "latitude": -69.4,
+      "longitude": 76.33
+    },
+    {
+      "site_name": "Tindouf Basin (Hamada du Dr\u00e2a)",
+      "latitude": 28.5,
+      "longitude": -8.5
+    },
+    {
+      "site_name": "Svalbard Archipelago (Bockfjorden)",
+      "latitude": 79.45,
+      "longitude": 13.28
+    },
+    {
+      "site_name": "Kr\u00fdsuv\u00edk Geothermal Area",
+      "latitude": 63.89,
+      "longitude": -22.06
+    },
+    {
+      "site_name": "N\u00e1mafjall Geothermal Field",
+      "latitude": 65.64,
+      "longitude": -16.81
+    },
+    {
+      "site_name": "M\u00e6lifellssandur",
+      "latitude": 63.8,
+      "longitude": -19.05
     }
   ]
 }

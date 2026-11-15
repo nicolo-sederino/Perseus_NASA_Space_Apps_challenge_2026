@@ -1,1772 +1,2022 @@
 {
   "Olympus_Mons_(Shield_Volcano_&_Basal_Scarp)": [
     {
-      "site_name": "PERSEUS_+034.50_+0083.64",
-      "lat": 34.5,
-      "lon": 83.6364,
-      "similarity_score": 52.72,
-      "distance_vs_flow_a_best": 3.626
+      "site_name": "PERSEUS_+034.88_+0079.56",
+      "region": "Barren",
+      "lat": 34.875,
+      "lon": 79.5597,
+      "similarity_score": 56.61,
+      "distance_vs_flow_a_best": 2.172
     },
     {
-      "site_name": "PERSEUS_+035.50_+0090.92",
-      "lat": 35.5,
-      "lon": 90.9215,
-      "similarity_score": 52.17,
-      "distance_vs_flow_a_best": 3.774
+      "site_name": "PERSEUS_+030.38_+0084.49",
+      "region": "Barren",
+      "lat": 30.375,
+      "lon": 84.4928,
+      "similarity_score": 55.49,
+      "distance_vs_flow_a_best": 2.146
     },
     {
-      "site_name": "PERSEUS_+030.50_+0086.52",
-      "lat": 30.5,
-      "lon": 86.5161,
-      "similarity_score": 52.06,
-      "distance_vs_flow_a_best": 3.777
+      "site_name": "PERSEUS_+031.12_+0082.34",
+      "region": "Barren",
+      "lat": 31.125,
+      "lon": 82.3358,
+      "similarity_score": 55.45,
+      "distance_vs_flow_a_best": 2.111
     },
     {
-      "site_name": "PERSEUS_+036.50_+0088.44",
-      "lat": 36.5,
-      "lon": 88.4429,
-      "similarity_score": 50.79,
-      "distance_vs_flow_a_best": 3.876
+      "site_name": "PERSEUS_+030.88_+0084.03",
+      "region": "Grassland",
+      "lat": 30.875,
+      "lon": 84.0291,
+      "similarity_score": 55.43,
+      "distance_vs_flow_a_best": 2.144
     },
     {
-      "site_name": "PERSEUS_+034.50_+0082.42",
-      "lat": 34.5,
-      "lon": 82.4242,
-      "similarity_score": 50.76,
-      "distance_vs_flow_a_best": 3.855
+      "site_name": "PERSEUS_+031.38_+0082.02",
+      "region": "Grassland",
+      "lat": 31.375,
+      "lon": 82.0179,
+      "similarity_score": 55.13,
+      "distance_vs_flow_a_best": 2.157
     },
     {
-      "site_name": "PERSEUS_+035.50_+0078.63",
-      "lat": 35.5,
-      "lon": 78.6348,
-      "similarity_score": 50.47,
-      "distance_vs_flow_a_best": 3.97
+      "site_name": "PERSEUS_+033.88_+0090.75",
+      "region": "Grassland",
+      "lat": 33.875,
+      "lon": 90.7525,
+      "similarity_score": 54.95,
+      "distance_vs_flow_a_best": 2.256
     },
     {
-      "site_name": "PERSEUS_+035.50_+0082.32",
-      "lat": 35.5,
-      "lon": 82.3208,
-      "similarity_score": 50.4,
-      "distance_vs_flow_a_best": 4.024
+      "site_name": "PERSEUS_+034.62_+0079.90",
+      "region": "Barren",
+      "lat": 34.625,
+      "lon": 79.8987,
+      "similarity_score": 54.93,
+      "distance_vs_flow_a_best": 2.301
     },
     {
-      "site_name": "PERSEUS_+036.50_+0085.95",
-      "lat": 36.5,
-      "lon": 85.9516,
-      "similarity_score": 50.37,
-      "distance_vs_flow_a_best": 3.829
+      "site_name": "PERSEUS_+030.38_+0084.78",
+      "region": "Grassland",
+      "lat": 30.375,
+      "lon": 84.7826,
+      "similarity_score": 54.92,
+      "distance_vs_flow_a_best": 2.204
     },
     {
-      "site_name": "PERSEUS_+034.50_+0088.48",
-      "lat": 34.5,
-      "lon": 88.4848,
-      "similarity_score": 50.31,
-      "distance_vs_flow_a_best": 3.772
+      "site_name": "PERSEUS_+031.62_+0081.19",
+      "region": "Barren",
+      "lat": 31.625,
+      "lon": 81.1909,
+      "similarity_score": 54.85,
+      "distance_vs_flow_a_best": 2.233
     },
     {
-      "site_name": "PERSEUS_+035.50_+0084.78",
-      "lat": 35.5,
-      "lon": 84.7782,
-      "similarity_score": 50.3,
-      "distance_vs_flow_a_best": 3.826
+      "site_name": "PERSEUS_+035.88_+0085.76",
+      "region": "Barren",
+      "lat": 35.875,
+      "lon": 85.7584,
+      "similarity_score": 54.47,
+      "distance_vs_flow_a_best": 2.312
     },
     {
-      "site_name": "PERSEUS_+035.50_+0087.24",
-      "lat": 35.5,
-      "lon": 87.2355,
-      "similarity_score": 50.09,
-      "distance_vs_flow_a_best": 3.871
+      "site_name": "PERSEUS_+036.38_+0086.04",
+      "region": "Barren",
+      "lat": 36.375,
+      "lon": 86.0397,
+      "similarity_score": 54.45,
+      "distance_vs_flow_a_best": 2.318
     },
     {
-      "site_name": "PERSEUS_+034.50_+0089.70",
-      "lat": 34.5,
-      "lon": 89.697,
-      "similarity_score": 49.94,
-      "distance_vs_flow_a_best": 3.921
+      "site_name": "PERSEUS_+030.62_+0083.97",
+      "region": "Grassland",
+      "lat": 30.625,
+      "lon": 83.9709,
+      "similarity_score": 54.37,
+      "distance_vs_flow_a_best": 2.288
     },
     {
-      "site_name": "PERSEUS_+033.50_+0082.20",
-      "lat": 33.5,
-      "lon": 82.2,
-      "similarity_score": 49.33,
-      "distance_vs_flow_a_best": 3.919
+      "site_name": "PERSEUS_+035.62_+0078.00",
+      "region": "Barren",
+      "lat": 35.625,
+      "lon": 78.0,
+      "similarity_score": 54.34,
+      "distance_vs_flow_a_best": 2.246
     },
     {
-      "site_name": "PERSEUS_+037.50_+0088.74",
-      "lat": 37.5,
-      "lon": 88.7413,
-      "similarity_score": 48.87,
-      "distance_vs_flow_a_best": 3.894
+      "site_name": "PERSEUS_+034.62_+0079.59",
+      "region": "Barren",
+      "lat": 34.625,
+      "lon": 79.5949,
+      "similarity_score": 54.22,
+      "distance_vs_flow_a_best": 2.292
     },
     {
-      "site_name": "PERSEUS_+034.50_+0084.85",
-      "lat": 34.5,
-      "lon": 84.8485,
-      "similarity_score": 48.59,
-      "distance_vs_flow_a_best": 4.003
+      "site_name": "PERSEUS_+037.62_+0088.97",
+      "region": "Barren",
+      "lat": 37.625,
+      "lon": 88.9746,
+      "similarity_score": 54.09,
+      "distance_vs_flow_a_best": 2.251
     },
     {
-      "site_name": "PERSEUS_+032.50_+0085.86",
-      "lat": 32.5,
-      "lon": 85.8553,
-      "similarity_score": 48.52,
-      "distance_vs_flow_a_best": 4.022
+      "site_name": "PERSEUS_+031.88_+0082.13",
+      "region": "Grassland",
+      "lat": 31.875,
+      "lon": 82.1259,
+      "similarity_score": 53.99,
+      "distance_vs_flow_a_best": 2.387
     },
     {
-      "site_name": "PERSEUS_+034.50_+0086.06",
-      "lat": 34.5,
-      "lon": 86.0606,
-      "similarity_score": 48.5,
-      "distance_vs_flow_a_best": 4.023
+      "site_name": "PERSEUS_+034.12_+0083.51",
+      "region": "Barren",
+      "lat": 34.125,
+      "lon": 83.5067,
+      "similarity_score": 53.52,
+      "distance_vs_flow_a_best": 2.332
     },
     {
-      "site_name": "PERSEUS_+034.50_+0087.27",
-      "lat": 34.5,
-      "lon": 87.2727,
-      "similarity_score": 48.46,
-      "distance_vs_flow_a_best": 3.978
+      "site_name": "PERSEUS_+036.38_+0085.73",
+      "region": "Barren",
+      "lat": 36.375,
+      "lon": 85.7291,
+      "similarity_score": 53.44,
+      "distance_vs_flow_a_best": 2.4
     },
     {
-      "site_name": "PERSEUS_+034.50_+0080.00",
-      "lat": 34.5,
-      "lon": 80.0,
-      "similarity_score": 48.26,
-      "distance_vs_flow_a_best": 4.029
+      "site_name": "PERSEUS_+035.62_+0089.69",
+      "region": "Barren",
+      "lat": 35.625,
+      "lon": 89.6923,
+      "similarity_score": 53.43,
+      "distance_vs_flow_a_best": 2.404
     },
     {
-      "site_name": "PERSEUS_+035.50_+0081.09",
-      "lat": 35.5,
-      "lon": 81.0922,
-      "similarity_score": 47.96,
-      "distance_vs_flow_a_best": 4.318
+      "site_name": "PERSEUS_+031.62_+0082.07",
+      "region": "Barren",
+      "lat": 31.625,
+      "lon": 82.0718,
+      "similarity_score": 53.42,
+      "distance_vs_flow_a_best": 2.284
     },
     {
-      "site_name": "PERSEUS_+035.50_+0083.55",
-      "lat": 35.5,
-      "lon": 83.5495,
-      "similarity_score": 47.88,
-      "distance_vs_flow_a_best": 3.97
+      "site_name": "PERSEUS_+033.88_+0087.44",
+      "region": "Barren",
+      "lat": 33.875,
+      "lon": 87.4415,
+      "similarity_score": 53.39,
+      "distance_vs_flow_a_best": 2.408
     },
     {
-      "site_name": "PERSEUS_+037.50_+0090.00",
-      "lat": 37.5,
-      "lon": 90.0,
-      "similarity_score": 47.48,
-      "distance_vs_flow_a_best": 4.228
+      "site_name": "PERSEUS_+034.62_+0078.99",
+      "region": "Barren",
+      "lat": 34.625,
+      "lon": 78.9873,
+      "similarity_score": 53.24,
+      "distance_vs_flow_a_best": 2.354
     },
     {
-      "site_name": "PERSEUS_+032.50_+0081.12",
-      "lat": 32.5,
-      "lon": 81.1184,
-      "similarity_score": 47.47,
-      "distance_vs_flow_a_best": 4.112
+      "site_name": "PERSEUS_+030.12_+0085.09",
+      "region": "Barren",
+      "lat": 30.125,
+      "lon": 85.0883,
+      "similarity_score": 53.01,
+      "distance_vs_flow_a_best": 2.303
     },
     {
-      "site_name": "PERSEUS_+033.50_+0085.80",
-      "lat": 33.5,
-      "lon": 85.8,
-      "similarity_score": 47.16,
-      "distance_vs_flow_a_best": 4.131
+      "site_name": "PERSEUS_+038.62_+0090.56",
+      "region": "Barren",
+      "lat": 38.625,
+      "lon": 90.56,
+      "similarity_score": 52.92,
+      "distance_vs_flow_a_best": 2.346
     },
     {
-      "site_name": "PERSEUS_+041.50_+0107.33",
-      "lat": 41.5,
-      "lon": 107.3333,
-      "similarity_score": 46.93,
-      "distance_vs_flow_a_best": 4.273
+      "site_name": "PERSEUS_+035.62_+0077.69",
+      "region": "Barren",
+      "lat": 35.625,
+      "lon": 77.6923,
+      "similarity_score": 52.91,
+      "distance_vs_flow_a_best": 2.474
     }
   ],
   "Arsia_Mons_(Tharsis_Shield_&_Collapse_Pits)": [
     {
-      "site_name": "PERSEUS_+041.50_+0107.33",
-      "lat": 41.5,
-      "lon": 107.3333,
-      "similarity_score": 53.4,
-      "distance_vs_flow_a_best": 3.918
-    },
-    {
-      "site_name": "PERSEUS_+036.50_+0088.44",
-      "lat": 36.5,
-      "lon": 88.4429,
-      "similarity_score": 50.99,
-      "distance_vs_flow_a_best": 4.062
-    },
-    {
-      "site_name": "PERSEUS_+035.50_+0090.92",
-      "lat": 35.5,
-      "lon": 90.9215,
-      "similarity_score": 50.93,
-      "distance_vs_flow_a_best": 4.041
-    },
-    {
-      "site_name": "PERSEUS_+044.50_+0099.46",
-      "lat": 44.5,
-      "lon": 99.4553,
-      "similarity_score": 50.68,
-      "distance_vs_flow_a_best": 4.022
-    },
-    {
-      "site_name": "PERSEUS_+034.50_+0083.64",
-      "lat": 34.5,
-      "lon": 83.6364,
-      "similarity_score": 50.67,
-      "distance_vs_flow_a_best": 3.99
-    },
-    {
-      "site_name": "PERSEUS_+034.50_+0088.48",
-      "lat": 34.5,
-      "lon": 88.4848,
-      "similarity_score": 50.55,
-      "distance_vs_flow_a_best": 3.994
-    },
-    {
-      "site_name": "PERSEUS_+041.50_+0096.67",
-      "lat": 41.5,
-      "lon": 96.6667,
-      "similarity_score": 50.29,
-      "distance_vs_flow_a_best": 4.1
-    },
-    {
-      "site_name": "PERSEUS_+034.50_+0082.42",
-      "lat": 34.5,
-      "lon": 82.4242,
-      "similarity_score": 50.05,
-      "distance_vs_flow_a_best": 4.1
-    },
-    {
-      "site_name": "PERSEUS_+037.50_+0088.74",
-      "lat": 37.5,
-      "lon": 88.7413,
-      "similarity_score": 49.9,
-      "distance_vs_flow_a_best": 4.034
-    },
-    {
-      "site_name": "PERSEUS_+036.50_+0085.95",
-      "lat": 36.5,
-      "lon": 85.9516,
-      "similarity_score": 49.83,
-      "distance_vs_flow_a_best": 4.103
-    },
-    {
-      "site_name": "PERSEUS_+046.50_+0090.73",
-      "lat": 46.5,
-      "lon": 90.7258,
-      "similarity_score": 49.79,
-      "distance_vs_flow_a_best": 4.047
-    },
-    {
-      "site_name": "PERSEUS_+038.50_+0092.55",
-      "lat": 38.5,
-      "lon": 92.5532,
-      "similarity_score": 49.7,
-      "distance_vs_flow_a_best": 3.949
-    },
-    {
-      "site_name": "PERSEUS_+044.50_+0091.05",
-      "lat": 44.5,
-      "lon": 91.0506,
-      "similarity_score": 49.66,
-      "distance_vs_flow_a_best": 4.116
-    },
-    {
-      "site_name": "PERSEUS_+045.50_+0096.43",
-      "lat": 45.5,
-      "lon": 96.4286,
-      "similarity_score": 49.63,
-      "distance_vs_flow_a_best": 4.183
-    },
-    {
-      "site_name": "PERSEUS_+044.50_+0095.25",
-      "lat": 44.5,
-      "lon": 95.2529,
-      "similarity_score": 49.6,
-      "distance_vs_flow_a_best": 4.185
-    },
-    {
-      "site_name": "PERSEUS_+045.50_+0097.86",
-      "lat": 45.5,
-      "lon": 97.8571,
-      "similarity_score": 49.55,
+      "site_name": "PERSEUS_+043.62_+0091.73",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 91.7274,
+      "similarity_score": 58.88,
       "distance_vs_flow_a_best": 4.107
     },
     {
-      "site_name": "PERSEUS_+035.50_+0078.63",
-      "lat": 35.5,
-      "lon": 78.6348,
-      "similarity_score": 49.52,
-      "distance_vs_flow_a_best": 4.191
+      "site_name": "PERSEUS_+043.88_+0096.94",
+      "region": "Barren",
+      "lat": 43.875,
+      "lon": 96.9364,
+      "similarity_score": 58.04,
+      "distance_vs_flow_a_best": 4.227
     },
     {
-      "site_name": "PERSEUS_+042.50_+0096.45",
-      "lat": 42.5,
-      "lon": 96.4528,
-      "similarity_score": 49.49,
-      "distance_vs_flow_a_best": 4.157
+      "site_name": "PERSEUS_+044.12_+0092.09",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 92.089,
+      "similarity_score": 57.95,
+      "distance_vs_flow_a_best": 4.123
     },
     {
-      "site_name": "PERSEUS_+036.50_+0056.06",
-      "lat": 36.5,
-      "lon": 56.0554,
-      "similarity_score": 49.34,
-      "distance_vs_flow_a_best": 4.089
+      "site_name": "PERSEUS_+043.38_+0091.46",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 91.4613,
+      "similarity_score": 57.7,
+      "distance_vs_flow_a_best": 4.082
     },
     {
-      "site_name": "PERSEUS_+040.50_+0105.77",
-      "lat": 40.5,
-      "lon": 105.7664,
-      "similarity_score": 49.22,
-      "distance_vs_flow_a_best": 4.289
+      "site_name": "PERSEUS_+045.12_+0094.07",
+      "region": "Barren",
+      "lat": 45.125,
+      "lon": 94.0748,
+      "similarity_score": 57.66,
+      "distance_vs_flow_a_best": 4.282
     },
     {
-      "site_name": "PERSEUS_+034.50_+0089.70",
-      "lat": 34.5,
-      "lon": 89.697,
-      "similarity_score": 49.2,
-      "distance_vs_flow_a_best": 4.18
+      "site_name": "PERSEUS_+044.12_+0091.74",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 91.7408,
+      "similarity_score": 57.5,
+      "distance_vs_flow_a_best": 4.117
     },
     {
-      "site_name": "PERSEUS_+033.50_+0081.00",
-      "lat": 33.5,
-      "lon": 81.0,
-      "similarity_score": 49.11,
-      "distance_vs_flow_a_best": 4.239
+      "site_name": "PERSEUS_+034.88_+0079.56",
+      "region": "Barren",
+      "lat": 34.875,
+      "lon": 79.5597,
+      "similarity_score": 56.5,
+      "distance_vs_flow_a_best": 4.363
     },
     {
-      "site_name": "PERSEUS_+033.50_+0059.40",
-      "lat": 33.5,
-      "lon": 59.4,
-      "similarity_score": 49.11,
-      "distance_vs_flow_a_best": 4.122
+      "site_name": "PERSEUS_+042.12_+0097.25",
+      "region": "Barren",
+      "lat": 42.125,
+      "lon": 97.2472,
+      "similarity_score": 55.98,
+      "distance_vs_flow_a_best": 4.551
     },
     {
-      "site_name": "PERSEUS_+034.50_+0084.85",
-      "lat": 34.5,
-      "lon": 84.8485,
-      "similarity_score": 48.97,
-      "distance_vs_flow_a_best": 4.142
+      "site_name": "PERSEUS_+045.88_+0091.53",
+      "region": "Barren",
+      "lat": 45.875,
+      "lon": 91.5254,
+      "similarity_score": 55.92,
+      "distance_vs_flow_a_best": 4.311
     },
     {
-      "site_name": "PERSEUS_+035.50_+0084.78",
-      "lat": 35.5,
-      "lon": 84.7782,
-      "similarity_score": 48.62,
-      "distance_vs_flow_a_best": 4.243
+      "site_name": "PERSEUS_+043.88_+0092.43",
+      "region": "Barren",
+      "lat": 43.875,
+      "lon": 92.4277,
+      "similarity_score": 55.83,
+      "distance_vs_flow_a_best": 4.364
+    },
+    {
+      "site_name": "PERSEUS_+043.62_+0091.38",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 91.382,
+      "similarity_score": 55.77,
+      "distance_vs_flow_a_best": 4.485
+    },
+    {
+      "site_name": "PERSEUS_+042.88_+0098.62",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 98.6161,
+      "similarity_score": 55.5,
+      "distance_vs_flow_a_best": 4.532
+    },
+    {
+      "site_name": "PERSEUS_+044.88_+0093.71",
+      "region": "Barren",
+      "lat": 44.875,
+      "lon": 93.7059,
+      "similarity_score": 55.5,
+      "distance_vs_flow_a_best": 4.386
+    },
+    {
+      "site_name": "PERSEUS_+043.62_+0092.07",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 92.0729,
+      "similarity_score": 55.47,
+      "distance_vs_flow_a_best": 4.546
+    },
+    {
+      "site_name": "PERSEUS_+033.12_+0061.34",
+      "region": "Barren",
+      "lat": 33.125,
+      "lon": 61.3433,
+      "similarity_score": 55.37,
+      "distance_vs_flow_a_best": 4.217
+    },
+    {
+      "site_name": "PERSEUS_+044.62_+0099.40",
+      "region": "Barren",
+      "lat": 44.625,
+      "lon": 99.3951,
+      "similarity_score": 55.08,
+      "distance_vs_flow_a_best": 4.563
+    },
+    {
+      "site_name": "PERSEUS_+043.38_+0091.12",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 91.1175,
+      "similarity_score": 54.81,
+      "distance_vs_flow_a_best": 4.337
+    },
+    {
+      "site_name": "PERSEUS_+043.12_+0100.36",
+      "region": "Barren",
+      "lat": 43.125,
+      "lon": 100.3616,
+      "similarity_score": 54.78,
+      "distance_vs_flow_a_best": 4.521
+    },
+    {
+      "site_name": "PERSEUS_+041.12_+0096.55",
+      "region": "Barren",
+      "lat": 41.125,
+      "lon": 96.553,
+      "similarity_score": 54.65,
+      "distance_vs_flow_a_best": 4.823
+    },
+    {
+      "site_name": "PERSEUS_+049.38_+0090.38",
+      "region": "Grassland",
+      "lat": 49.375,
+      "lon": 90.3838,
+      "similarity_score": 54.64,
+      "distance_vs_flow_a_best": 4.412
+    },
+    {
+      "site_name": "PERSEUS_+044.38_+0096.21",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 96.2099,
+      "similarity_score": 54.63,
+      "distance_vs_flow_a_best": 4.724
+    },
+    {
+      "site_name": "PERSEUS_+041.38_+0107.23",
+      "region": "Grassland",
+      "lat": 41.375,
+      "lon": 107.234,
+      "similarity_score": 54.59,
+      "distance_vs_flow_a_best": 4.348
+    },
+    {
+      "site_name": "PERSEUS_+038.38_+0089.60",
+      "region": "Barren",
+      "lat": 38.375,
+      "lon": 89.6014,
+      "similarity_score": 54.57,
+      "distance_vs_flow_a_best": 4.544
+    },
+    {
+      "site_name": "PERSEUS_+041.88_+0095.88",
+      "region": "Barren",
+      "lat": 41.875,
+      "lon": 95.8769,
+      "similarity_score": 54.57,
+      "distance_vs_flow_a_best": 4.597
+    },
+    {
+      "site_name": "PERSEUS_+043.12_+0096.59",
+      "region": "Barren",
+      "lat": 43.125,
+      "lon": 96.5937,
+      "similarity_score": 54.44,
+      "distance_vs_flow_a_best": 4.598
     }
   ],
   "Pavonis_Mons_(Equatorial_Shield_Volcano)": [
     {
-      "site_name": "PERSEUS_+031.50_+0068.01",
-      "lat": 31.5,
-      "lon": 68.013,
-      "similarity_score": 71.58,
-      "distance_vs_flow_a_best": 1.459
+      "site_name": "PERSEUS_-020.62_+0013.49",
+      "region": "Barren",
+      "lat": -20.625,
+      "lon": 13.4866,
+      "similarity_score": 80.23,
+      "distance_vs_flow_a_best": 1.92
     },
     {
-      "site_name": "PERSEUS_+044.50_+0095.25",
-      "lat": 44.5,
-      "lon": 95.2529,
-      "similarity_score": 70.89,
-      "distance_vs_flow_a_best": 1.48
+      "site_name": "PERSEUS_+044.62_+0092.37",
+      "region": "Barren",
+      "lat": 44.625,
+      "lon": 92.3707,
+      "similarity_score": 79.27,
+      "distance_vs_flow_a_best": 1.806
     },
     {
-      "site_name": "PERSEUS_+042.50_+0096.45",
-      "lat": 42.5,
-      "lon": 96.4528,
-      "similarity_score": 70.19,
-      "distance_vs_flow_a_best": 1.526
+      "site_name": "PERSEUS_+042.88_+0098.96",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 98.9573,
+      "similarity_score": 78.92,
+      "distance_vs_flow_a_best": 1.902
     },
     {
-      "site_name": "PERSEUS_-024.50_+0024.70",
-      "lat": -24.5,
-      "lon": 24.6951,
-      "similarity_score": 70.15,
-      "distance_vs_flow_a_best": 1.595
+      "site_name": "PERSEUS_+023.88_+0032.80",
+      "region": "Barren",
+      "lat": 23.875,
+      "lon": 32.8018,
+      "similarity_score": 78.82,
+      "distance_vs_flow_a_best": 1.874
     },
     {
-      "site_name": "PERSEUS_+026.50_+0017.33",
-      "lat": 26.5,
-      "lon": 17.3292,
-      "similarity_score": 69.68,
-      "distance_vs_flow_a_best": 1.6
+      "site_name": "PERSEUS_-019.88_+0013.16",
+      "region": "Barren",
+      "lat": -19.875,
+      "lon": 13.161,
+      "similarity_score": 78.77,
+      "distance_vs_flow_a_best": 2.08
     },
     {
-      "site_name": "PERSEUS_-021.50_+0013.97",
-      "lat": -21.5,
-      "lon": 13.9701,
-      "similarity_score": 69.51,
-      "distance_vs_flow_a_best": 1.649
+      "site_name": "PERSEUS_-020.38_+0013.47",
+      "region": "Barren",
+      "lat": -20.375,
+      "lon": 13.4667,
+      "similarity_score": 78.5,
+      "distance_vs_flow_a_best": 2.195
     },
     {
-      "site_name": "PERSEUS_+027.50_+0016.93",
-      "lat": 27.5,
-      "lon": 16.9279,
-      "similarity_score": 69.39,
-      "distance_vs_flow_a_best": 1.617
+      "site_name": "PERSEUS_-020.12_+0013.45",
+      "region": "Barren",
+      "lat": -20.125,
+      "lon": 13.4467,
+      "similarity_score": 78.47,
+      "distance_vs_flow_a_best": 2.146
     },
     {
-      "site_name": "PERSEUS_+043.50_+0096.55",
-      "lat": 43.5,
-      "lon": 96.5517,
-      "similarity_score": 69.3,
-      "distance_vs_flow_a_best": 1.573
+      "site_name": "PERSEUS_+044.38_+0092.36",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 92.3615,
+      "similarity_score": 78.12,
+      "distance_vs_flow_a_best": 2.046
     },
     {
-      "site_name": "PERSEUS_-030.50_+0019.16",
-      "lat": -30.5,
-      "lon": 19.1613,
-      "similarity_score": 69.21,
-      "distance_vs_flow_a_best": 1.675
+      "site_name": "PERSEUS_+042.88_+0095.55",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 95.545,
+      "similarity_score": 78.04,
+      "distance_vs_flow_a_best": 2.071
     },
     {
-      "site_name": "PERSEUS_+032.50_+0037.30",
-      "lat": 32.5,
-      "lon": 37.3026,
-      "similarity_score": 69.13,
-      "distance_vs_flow_a_best": 1.663
+      "site_name": "PERSEUS_+022.88_+0032.55",
+      "region": "Barren",
+      "lat": 22.875,
+      "lon": 32.5546,
+      "similarity_score": 77.99,
+      "distance_vs_flow_a_best": 1.934
     },
     {
-      "site_name": "PERSEUS_+034.50_+0058.18",
-      "lat": 34.5,
-      "lon": 58.1818,
-      "similarity_score": 68.98,
-      "distance_vs_flow_a_best": 1.626
+      "site_name": "PERSEUS_+042.62_+0108.17",
+      "region": "Barren",
+      "lat": 42.625,
+      "lon": 108.1698,
+      "similarity_score": 77.8,
+      "distance_vs_flow_a_best": 2.069
     },
     {
-      "site_name": "PERSEUS_+043.50_+0095.17",
-      "lat": 43.5,
-      "lon": 95.1724,
-      "similarity_score": 68.62,
-      "distance_vs_flow_a_best": 1.649
+      "site_name": "PERSEUS_+044.12_+0093.83",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 93.8298,
+      "similarity_score": 77.68,
+      "distance_vs_flow_a_best": 2.046
     },
     {
-      "site_name": "PERSEUS_+030.50_+0055.16",
-      "lat": 30.5,
-      "lon": 55.1613,
-      "similarity_score": 68.5,
-      "distance_vs_flow_a_best": 1.688
+      "site_name": "PERSEUS_+044.38_+0095.51",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 95.5102,
+      "similarity_score": 77.5,
+      "distance_vs_flow_a_best": 2.103
     },
     {
-      "site_name": "PERSEUS_+033.50_+0059.40",
-      "lat": 33.5,
-      "lon": 59.4,
-      "similarity_score": 68.5,
-      "distance_vs_flow_a_best": 1.651
+      "site_name": "PERSEUS_+043.62_+0097.95",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 97.9463,
+      "similarity_score": 77.43,
+      "distance_vs_flow_a_best": 2.041
     },
     {
-      "site_name": "PERSEUS_+024.50_+0011.52",
-      "lat": 24.5,
-      "lon": 11.5244,
-      "similarity_score": 68.36,
-      "distance_vs_flow_a_best": 1.713
+      "site_name": "PERSEUS_-021.38_+0013.96",
+      "region": "Barren",
+      "lat": -21.375,
+      "lon": 13.9597,
+      "similarity_score": 77.34,
+      "distance_vs_flow_a_best": 2.259
     },
     {
-      "site_name": "PERSEUS_+020.50_+0041.66",
-      "lat": 20.5,
-      "lon": 41.6617,
-      "similarity_score": 68.31,
-      "distance_vs_flow_a_best": 1.682
+      "site_name": "PERSEUS_+043.38_+0091.81",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 91.8052,
+      "similarity_score": 77.26,
+      "distance_vs_flow_a_best": 1.948
     },
     {
-      "site_name": "PERSEUS_+027.50_+0018.06",
-      "lat": 27.5,
-      "lon": 18.0564,
-      "similarity_score": 68.18,
-      "distance_vs_flow_a_best": 1.719
+      "site_name": "PERSEUS_+044.12_+0093.48",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 93.4816,
+      "similarity_score": 77.07,
+      "distance_vs_flow_a_best": 2.144
     },
     {
-      "site_name": "PERSEUS_+042.50_+0097.81",
-      "lat": 42.5,
-      "lon": 97.8113,
-      "similarity_score": 68.13,
-      "distance_vs_flow_a_best": 1.63
+      "site_name": "PERSEUS_+043.38_+0097.65",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 97.6504,
+      "similarity_score": 77.07,
+      "distance_vs_flow_a_best": 2.163
     },
     {
-      "site_name": "PERSEUS_+035.50_+0054.06",
-      "lat": 35.5,
-      "lon": 54.0614,
-      "similarity_score": 68.09,
-      "distance_vs_flow_a_best": 1.676
+      "site_name": "PERSEUS_+043.88_+0096.59",
+      "region": "Barren",
+      "lat": 43.875,
+      "lon": 96.5896,
+      "similarity_score": 76.99,
+      "distance_vs_flow_a_best": 2.119
     },
     {
-      "site_name": "PERSEUS_+021.50_+0041.91",
-      "lat": 21.5,
-      "lon": 41.9104,
-      "similarity_score": 67.93,
-      "distance_vs_flow_a_best": 1.71
+      "site_name": "PERSEUS_+044.12_+0092.79",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 92.7853,
+      "similarity_score": 76.93,
+      "distance_vs_flow_a_best": 2.195
     },
     {
-      "site_name": "PERSEUS_+033.50_+0061.80",
-      "lat": 33.5,
-      "lon": 61.8,
-      "similarity_score": 67.81,
-      "distance_vs_flow_a_best": 1.723
+      "site_name": "PERSEUS_+043.38_+0092.15",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 92.149,
+      "similarity_score": 76.92,
+      "distance_vs_flow_a_best": 2.254
     },
     {
-      "site_name": "PERSEUS_+035.50_+0055.29",
-      "lat": 35.5,
-      "lon": 55.2901,
-      "similarity_score": 67.78,
-      "distance_vs_flow_a_best": 1.704
+      "site_name": "PERSEUS_+042.12_+0099.27",
+      "region": "Barren",
+      "lat": 42.125,
+      "lon": 99.2697,
+      "similarity_score": 76.65,
+      "distance_vs_flow_a_best": 2.15
     },
     {
-      "site_name": "PERSEUS_+010.50_+0042.20",
-      "lat": 10.5,
-      "lon": 42.2034,
-      "similarity_score": 67.76,
-      "distance_vs_flow_a_best": 1.681
+      "site_name": "PERSEUS_+044.38_+0092.71",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 92.7114,
+      "similarity_score": 76.64,
+      "distance_vs_flow_a_best": 2.185
     },
     {
-      "site_name": "PERSEUS_+034.50_+0050.91",
-      "lat": 34.5,
-      "lon": 50.9091,
-      "similarity_score": 67.71,
-      "distance_vs_flow_a_best": 1.764
+      "site_name": "PERSEUS_+043.12_+0098.65",
+      "region": "Barren",
+      "lat": 43.125,
+      "lon": 98.6489,
+      "similarity_score": 76.63,
+      "distance_vs_flow_a_best": 2.192
     },
     {
-      "site_name": "PERSEUS_-027.50_+0134.29",
-      "lat": -27.5,
-      "lon": 134.2947,
-      "similarity_score": 67.64,
-      "distance_vs_flow_a_best": 1.773
+      "site_name": "PERSEUS_+022.12_+0031.44",
+      "region": "Barren",
+      "lat": 22.125,
+      "lon": 31.4393,
+      "similarity_score": 76.59,
+      "distance_vs_flow_a_best": 2.118
     }
   ],
   "Ascraeus_Mons_(Northern_Tharsis_Shield)": [
     {
-      "site_name": "PERSEUS_+044.50_+0095.25",
-      "lat": 44.5,
-      "lon": 95.2529,
-      "similarity_score": 65.65,
-      "distance_vs_flow_a_best": 1.585
+      "site_name": "PERSEUS_+043.88_+0093.81",
+      "region": "Barren",
+      "lat": 43.875,
+      "lon": 93.815,
+      "similarity_score": 72.86,
+      "distance_vs_flow_a_best": 2.776
     },
     {
-      "site_name": "PERSEUS_+044.50_+0099.46",
-      "lat": 44.5,
-      "lon": 99.4553,
-      "similarity_score": 64.95,
-      "distance_vs_flow_a_best": 1.579
+      "site_name": "PERSEUS_+043.62_+0105.89",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 105.8925,
+      "similarity_score": 71.4,
+      "distance_vs_flow_a_best": 2.873
     },
     {
-      "site_name": "PERSEUS_+045.50_+0097.86",
-      "lat": 45.5,
-      "lon": 97.8571,
-      "similarity_score": 64.69,
-      "distance_vs_flow_a_best": 1.654
+      "site_name": "PERSEUS_+044.62_+0092.37",
+      "region": "Barren",
+      "lat": 44.625,
+      "lon": 92.3707,
+      "similarity_score": 71.18,
+      "distance_vs_flow_a_best": 2.9
     },
     {
-      "site_name": "PERSEUS_+037.50_+0088.74",
-      "lat": 37.5,
-      "lon": 88.7413,
-      "similarity_score": 64.33,
-      "distance_vs_flow_a_best": 1.717
+      "site_name": "PERSEUS_+043.88_+0096.94",
+      "region": "Barren",
+      "lat": 43.875,
+      "lon": 96.9364,
+      "similarity_score": 71.17,
+      "distance_vs_flow_a_best": 2.858
     },
     {
-      "site_name": "PERSEUS_+041.50_+0096.67",
-      "lat": 41.5,
-      "lon": 96.6667,
-      "similarity_score": 63.87,
-      "distance_vs_flow_a_best": 1.687
+      "site_name": "PERSEUS_+043.38_+0092.15",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 92.149,
+      "similarity_score": 71.12,
+      "distance_vs_flow_a_best": 3.005
     },
     {
-      "site_name": "PERSEUS_+042.50_+0096.45",
-      "lat": 42.5,
-      "lon": 96.4528,
-      "similarity_score": 63.53,
-      "distance_vs_flow_a_best": 1.73
+      "site_name": "PERSEUS_+042.12_+0097.25",
+      "region": "Barren",
+      "lat": 42.125,
+      "lon": 97.2472,
+      "similarity_score": 71.07,
+      "distance_vs_flow_a_best": 2.887
     },
     {
-      "site_name": "PERSEUS_+043.50_+0096.55",
-      "lat": 43.5,
-      "lon": 96.5517,
-      "similarity_score": 63.02,
-      "distance_vs_flow_a_best": 1.719
+      "site_name": "PERSEUS_+044.38_+0096.21",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 96.2099,
+      "similarity_score": 70.99,
+      "distance_vs_flow_a_best": 2.882
     },
     {
-      "site_name": "PERSEUS_+040.50_+0078.18",
-      "lat": 40.5,
-      "lon": 78.1752,
-      "similarity_score": 62.5,
-      "distance_vs_flow_a_best": 1.865
+      "site_name": "PERSEUS_+044.38_+0092.36",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 92.3615,
+      "similarity_score": 70.78,
+      "distance_vs_flow_a_best": 2.941
     },
     {
-      "site_name": "PERSEUS_+048.50_+0091.88",
-      "lat": 48.5,
-      "lon": 91.8828,
-      "similarity_score": 62.43,
-      "distance_vs_flow_a_best": 1.845
+      "site_name": "PERSEUS_+045.12_+0094.07",
+      "region": "Barren",
+      "lat": 45.125,
+      "lon": 94.0748,
+      "similarity_score": 70.76,
+      "distance_vs_flow_a_best": 2.877
     },
     {
-      "site_name": "PERSEUS_+040.50_+0105.77",
-      "lat": 40.5,
-      "lon": 105.7664,
-      "similarity_score": 62.24,
-      "distance_vs_flow_a_best": 1.828
+      "site_name": "PERSEUS_+044.62_+0095.18",
+      "region": "Barren",
+      "lat": 44.625,
+      "lon": 95.1805,
+      "similarity_score": 70.72,
+      "distance_vs_flow_a_best": 2.978
     },
     {
-      "site_name": "PERSEUS_+045.50_+0095.00",
-      "lat": 45.5,
-      "lon": 95.0,
-      "similarity_score": 61.86,
-      "distance_vs_flow_a_best": 1.906
+      "site_name": "PERSEUS_+043.38_+0096.62",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 96.6189,
+      "similarity_score": 70.64,
+      "distance_vs_flow_a_best": 2.957
     },
     {
-      "site_name": "PERSEUS_+038.50_+0090.00",
-      "lat": 38.5,
-      "lon": 90.0,
-      "similarity_score": 61.74,
-      "distance_vs_flow_a_best": 1.868
+      "site_name": "PERSEUS_+042.88_+0105.78",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 105.782,
+      "similarity_score": 70.53,
+      "distance_vs_flow_a_best": 2.981
     },
     {
-      "site_name": "PERSEUS_+041.50_+0107.33",
-      "lat": 41.5,
-      "lon": 107.3333,
-      "similarity_score": 61.56,
-      "distance_vs_flow_a_best": 1.936
+      "site_name": "PERSEUS_+049.12_+0090.38",
+      "region": "Barren",
+      "lat": 49.125,
+      "lon": 90.3822,
+      "similarity_score": 70.46,
+      "distance_vs_flow_a_best": 2.989
     },
     {
-      "site_name": "PERSEUS_+044.50_+0091.05",
-      "lat": 44.5,
-      "lon": 91.0506,
-      "similarity_score": 61.51,
-      "distance_vs_flow_a_best": 1.858
+      "site_name": "PERSEUS_+044.88_+0098.65",
+      "region": "Barren",
+      "lat": 44.875,
+      "lon": 98.6471,
+      "similarity_score": 70.43,
+      "distance_vs_flow_a_best": 2.969
     },
     {
-      "site_name": "PERSEUS_+031.50_+0068.01",
-      "lat": 31.5,
-      "lon": 68.013,
-      "similarity_score": 61.5,
-      "distance_vs_flow_a_best": 1.844
+      "site_name": "PERSEUS_+043.38_+0096.96",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 96.9628,
+      "similarity_score": 70.37,
+      "distance_vs_flow_a_best": 2.99
     },
     {
-      "site_name": "PERSEUS_+045.50_+0090.71",
-      "lat": 45.5,
-      "lon": 90.7143,
-      "similarity_score": 60.84,
-      "distance_vs_flow_a_best": 1.925
+      "site_name": "PERSEUS_+044.12_+0092.09",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 92.089,
+      "similarity_score": 70.34,
+      "distance_vs_flow_a_best": 2.919
     },
     {
-      "site_name": "PERSEUS_+046.50_+0089.27",
-      "lat": 46.5,
-      "lon": 89.2742,
-      "similarity_score": 60.78,
-      "distance_vs_flow_a_best": 1.892
+      "site_name": "PERSEUS_+042.88_+0104.76",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 104.7583,
+      "similarity_score": 70.2,
+      "distance_vs_flow_a_best": 3.09
     },
     {
-      "site_name": "PERSEUS_+043.50_+0100.69",
-      "lat": 43.5,
-      "lon": 100.6897,
-      "similarity_score": 60.52,
-      "distance_vs_flow_a_best": 1.858
+      "site_name": "PERSEUS_+044.38_+0099.36",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 99.3586,
+      "similarity_score": 70.17,
+      "distance_vs_flow_a_best": 3.064
     },
     {
-      "site_name": "PERSEUS_+044.50_+0098.05",
-      "lat": 44.5,
-      "lon": 98.0545,
-      "similarity_score": 60.27,
-      "distance_vs_flow_a_best": 1.927
+      "site_name": "PERSEUS_+044.38_+0100.76",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 100.758,
+      "similarity_score": 70.14,
+      "distance_vs_flow_a_best": 3.057
     },
     {
-      "site_name": "PERSEUS_+035.50_+0084.78",
-      "lat": 35.5,
-      "lon": 84.7782,
-      "similarity_score": 59.81,
-      "distance_vs_flow_a_best": 1.959
+      "site_name": "PERSEUS_+042.88_+0098.96",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 98.9573,
+      "similarity_score": 70.1,
+      "distance_vs_flow_a_best": 3.085
     },
     {
-      "site_name": "PERSEUS_+040.50_+0108.39",
-      "lat": 40.5,
-      "lon": 108.3942,
-      "similarity_score": 59.68,
-      "distance_vs_flow_a_best": 1.968
+      "site_name": "PERSEUS_+044.38_+0095.51",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 95.5102,
+      "similarity_score": 70.04,
+      "distance_vs_flow_a_best": 3.046
     },
     {
-      "site_name": "PERSEUS_+041.50_+0091.33",
-      "lat": 41.5,
-      "lon": 91.3333,
-      "similarity_score": 59.67,
-      "distance_vs_flow_a_best": 1.918
+      "site_name": "PERSEUS_+043.62_+0105.55",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 105.547,
+      "similarity_score": 69.89,
+      "distance_vs_flow_a_best": 3.162
     },
     {
-      "site_name": "PERSEUS_+042.50_+0104.60",
-      "lat": 42.5,
-      "lon": 104.6038,
-      "similarity_score": 59.62,
-      "distance_vs_flow_a_best": 1.934
+      "site_name": "PERSEUS_+042.88_+0098.62",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 98.6161,
+      "similarity_score": 69.88,
+      "distance_vs_flow_a_best": 3.034
     },
     {
-      "site_name": "PERSEUS_+045.50_+0092.14",
-      "lat": 45.5,
-      "lon": 92.1429,
-      "similarity_score": 59.57,
-      "distance_vs_flow_a_best": 1.947
+      "site_name": "PERSEUS_+044.38_+0091.31",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 91.312,
+      "similarity_score": 69.82,
+      "distance_vs_flow_a_best": 3.051
     },
     {
-      "site_name": "PERSEUS_+042.50_+0097.81",
-      "lat": 42.5,
-      "lon": 97.8113,
-      "similarity_score": 59.54,
-      "distance_vs_flow_a_best": 1.939
+      "site_name": "PERSEUS_+044.12_+0092.79",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 92.7853,
+      "similarity_score": 69.77,
+      "distance_vs_flow_a_best": 3.087
     }
   ],
   "Elysium_Mons_&_Planitia_(Volcanic_Lava_Plains)": [
     {
-      "site_name": "PERSEUS_+044.50_+0095.25",
-      "lat": 44.5,
-      "lon": 95.2529,
-      "similarity_score": 71.19,
-      "distance_vs_flow_a_best": 1.354
+      "site_name": "PERSEUS_+044.62_+0092.37",
+      "region": "Barren",
+      "lat": 44.625,
+      "lon": 92.3707,
+      "similarity_score": 78.98,
+      "distance_vs_flow_a_best": 1.455
     },
     {
-      "site_name": "PERSEUS_+031.50_+0068.01",
-      "lat": 31.5,
-      "lon": 68.013,
-      "similarity_score": 70.05,
-      "distance_vs_flow_a_best": 1.448
+      "site_name": "PERSEUS_+042.88_+0098.96",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 98.9573,
+      "similarity_score": 77.75,
+      "distance_vs_flow_a_best": 1.639
     },
     {
-      "site_name": "PERSEUS_+042.50_+0096.45",
-      "lat": 42.5,
-      "lon": 96.4528,
-      "similarity_score": 69.71,
-      "distance_vs_flow_a_best": 1.431
+      "site_name": "PERSEUS_+043.88_+0093.81",
+      "region": "Barren",
+      "lat": 43.875,
+      "lon": 93.815,
+      "similarity_score": 77.38,
+      "distance_vs_flow_a_best": 1.743
     },
     {
-      "site_name": "PERSEUS_+043.50_+0096.55",
-      "lat": 43.5,
-      "lon": 96.5517,
-      "similarity_score": 69.05,
-      "distance_vs_flow_a_best": 1.465
+      "site_name": "PERSEUS_+044.38_+0092.36",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 92.3615,
+      "similarity_score": 77.26,
+      "distance_vs_flow_a_best": 1.675
     },
     {
-      "site_name": "PERSEUS_+041.50_+0096.67",
-      "lat": 41.5,
-      "lon": 96.6667,
-      "similarity_score": 68.2,
-      "distance_vs_flow_a_best": 1.519
+      "site_name": "PERSEUS_+042.62_+0108.17",
+      "region": "Barren",
+      "lat": 42.625,
+      "lon": 108.1698,
+      "similarity_score": 76.96,
+      "distance_vs_flow_a_best": 1.726
     },
     {
-      "site_name": "PERSEUS_+033.50_+0059.40",
-      "lat": 33.5,
-      "lon": 59.4,
-      "similarity_score": 67.61,
-      "distance_vs_flow_a_best": 1.6
+      "site_name": "PERSEUS_+043.38_+0092.15",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 92.149,
+      "similarity_score": 76.86,
+      "distance_vs_flow_a_best": 1.793
     },
     {
-      "site_name": "PERSEUS_+044.50_+0099.46",
-      "lat": 44.5,
-      "lon": 99.4553,
-      "similarity_score": 67.53,
-      "distance_vs_flow_a_best": 1.535
+      "site_name": "PERSEUS_+043.88_+0096.94",
+      "region": "Barren",
+      "lat": 43.875,
+      "lon": 96.9364,
+      "similarity_score": 76.81,
+      "distance_vs_flow_a_best": 1.661
     },
     {
-      "site_name": "PERSEUS_+034.50_+0058.18",
-      "lat": 34.5,
-      "lon": 58.1818,
-      "similarity_score": 67.28,
-      "distance_vs_flow_a_best": 1.622
+      "site_name": "PERSEUS_+044.38_+0095.51",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 95.5102,
+      "similarity_score": 76.51,
+      "distance_vs_flow_a_best": 1.749
     },
     {
-      "site_name": "PERSEUS_+030.50_+0055.16",
-      "lat": 30.5,
-      "lon": 55.1613,
-      "similarity_score": 67.2,
-      "distance_vs_flow_a_best": 1.65
+      "site_name": "PERSEUS_+043.38_+0097.65",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 97.6504,
+      "similarity_score": 76.49,
+      "distance_vs_flow_a_best": 1.777
     },
     {
-      "site_name": "PERSEUS_+044.50_+0091.05",
-      "lat": 44.5,
-      "lon": 91.0506,
-      "similarity_score": 67.1,
-      "distance_vs_flow_a_best": 1.6
+      "site_name": "PERSEUS_+044.12_+0093.83",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 93.8298,
+      "similarity_score": 76.48,
+      "distance_vs_flow_a_best": 1.735
     },
     {
-      "site_name": "PERSEUS_+043.50_+0095.17",
-      "lat": 43.5,
-      "lon": 95.1724,
-      "similarity_score": 66.7,
-      "distance_vs_flow_a_best": 1.619
+      "site_name": "PERSEUS_+043.38_+0096.96",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 96.9628,
+      "similarity_score": 76.42,
+      "distance_vs_flow_a_best": 1.743
     },
     {
-      "site_name": "PERSEUS_-024.50_+0024.70",
-      "lat": -24.5,
-      "lon": 24.6951,
-      "similarity_score": 66.62,
-      "distance_vs_flow_a_best": 1.684
+      "site_name": "PERSEUS_+042.12_+0097.25",
+      "region": "Barren",
+      "lat": 42.125,
+      "lon": 97.2472,
+      "similarity_score": 76.38,
+      "distance_vs_flow_a_best": 1.742
     },
     {
-      "site_name": "PERSEUS_+035.50_+0054.06",
-      "lat": 35.5,
-      "lon": 54.0614,
-      "similarity_score": 66.59,
-      "distance_vs_flow_a_best": 1.655
+      "site_name": "PERSEUS_+042.88_+0095.55",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 95.545,
+      "similarity_score": 76.36,
+      "distance_vs_flow_a_best": 1.803
     },
     {
-      "site_name": "PERSEUS_+042.50_+0097.81",
-      "lat": 42.5,
-      "lon": 97.8113,
-      "similarity_score": 66.56,
-      "distance_vs_flow_a_best": 1.588
+      "site_name": "PERSEUS_+044.38_+0096.21",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 96.2099,
+      "similarity_score": 76.3,
+      "distance_vs_flow_a_best": 1.74
     },
     {
-      "site_name": "PERSEUS_+040.50_+0105.77",
-      "lat": 40.5,
-      "lon": 105.7664,
-      "similarity_score": 66.14,
-      "distance_vs_flow_a_best": 1.669
+      "site_name": "PERSEUS_+044.12_+0092.79",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 92.7853,
+      "similarity_score": 76.23,
+      "distance_vs_flow_a_best": 1.792
     },
     {
-      "site_name": "PERSEUS_+034.50_+0061.82",
-      "lat": 34.5,
-      "lon": 61.8182,
-      "similarity_score": 66.12,
-      "distance_vs_flow_a_best": 1.683
+      "site_name": "PERSEUS_+043.62_+0105.89",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 105.8925,
+      "similarity_score": 76.18,
+      "distance_vs_flow_a_best": 1.819
     },
     {
-      "site_name": "PERSEUS_+033.50_+0061.80",
-      "lat": 33.5,
-      "lon": 61.8,
-      "similarity_score": 66.04,
-      "distance_vs_flow_a_best": 1.716
+      "site_name": "PERSEUS_+044.12_+0093.48",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 93.4816,
+      "similarity_score": 76.06,
+      "distance_vs_flow_a_best": 1.779
     },
     {
-      "site_name": "PERSEUS_+041.50_+0091.33",
-      "lat": 41.5,
-      "lon": 91.3333,
-      "similarity_score": 65.8,
-      "distance_vs_flow_a_best": 1.626
+      "site_name": "PERSEUS_+043.12_+0098.65",
+      "region": "Barren",
+      "lat": 43.125,
+      "lon": 98.6489,
+      "similarity_score": 75.83,
+      "distance_vs_flow_a_best": 1.811
     },
     {
-      "site_name": "PERSEUS_+045.50_+0097.86",
-      "lat": 45.5,
-      "lon": 97.8571,
-      "similarity_score": 65.8,
-      "distance_vs_flow_a_best": 1.699
+      "site_name": "PERSEUS_+044.38_+0091.31",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 91.312,
+      "similarity_score": 75.8,
+      "distance_vs_flow_a_best": 1.787
     },
     {
-      "site_name": "PERSEUS_+030.50_+0069.10",
-      "lat": 30.5,
-      "lon": 69.0968,
-      "similarity_score": 65.79,
-      "distance_vs_flow_a_best": 1.785
+      "site_name": "PERSEUS_+043.38_+0096.62",
+      "region": "Barren",
+      "lat": 43.375,
+      "lon": 96.6189,
+      "similarity_score": 75.68,
+      "distance_vs_flow_a_best": 1.834
     },
     {
-      "site_name": "PERSEUS_+044.50_+0098.05",
-      "lat": 44.5,
-      "lon": 98.0545,
-      "similarity_score": 65.75,
-      "distance_vs_flow_a_best": 1.697
+      "site_name": "PERSEUS_+043.62_+0105.55",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 105.547,
+      "similarity_score": 75.58,
+      "distance_vs_flow_a_best": 1.947
     },
     {
-      "site_name": "PERSEUS_+041.50_+0064.67",
-      "lat": 41.5,
-      "lon": 64.6667,
-      "similarity_score": 65.73,
-      "distance_vs_flow_a_best": 1.705
+      "site_name": "PERSEUS_+043.62_+0096.56",
+      "region": "Barren",
+      "lat": 43.625,
+      "lon": 96.5643,
+      "similarity_score": 75.49,
+      "distance_vs_flow_a_best": 1.789
     },
     {
-      "site_name": "PERSEUS_+040.50_+0108.39",
-      "lat": 40.5,
-      "lon": 108.3942,
-      "similarity_score": 65.65,
-      "distance_vs_flow_a_best": 1.693
+      "site_name": "PERSEUS_+042.88_+0104.76",
+      "region": "Barren",
+      "lat": 42.875,
+      "lon": 104.7583,
+      "similarity_score": 75.48,
+      "distance_vs_flow_a_best": 1.937
     },
     {
-      "site_name": "PERSEUS_+045.50_+0095.00",
-      "lat": 45.5,
-      "lon": 95.0,
-      "similarity_score": 65.5,
-      "distance_vs_flow_a_best": 1.79
+      "site_name": "PERSEUS_+042.12_+0099.27",
+      "region": "Barren",
+      "lat": 42.125,
+      "lon": 99.2697,
+      "similarity_score": 75.44,
+      "distance_vs_flow_a_best": 1.835
     },
     {
-      "site_name": "PERSEUS_+034.50_+0050.91",
-      "lat": 34.5,
-      "lon": 50.9091,
-      "similarity_score": 65.41,
-      "distance_vs_flow_a_best": 1.784
+      "site_name": "PERSEUS_+022.88_+0032.55",
+      "region": "Barren",
+      "lat": 22.875,
+      "lon": 32.5546,
+      "similarity_score": 75.42,
+      "distance_vs_flow_a_best": 1.788
     }
   ],
   "Deuteronilus_Mensae_(Lobate_Debris_Aprons_-_85%_Ice)": [
     {
-      "site_name": "PERSEUS_+057.50_+0160.41",
-      "lat": 57.5,
-      "lon": 160.4145,
-      "similarity_score": 58.57,
-      "distance_vs_flow_a_best": 2.936
+      "site_name": "PERSEUS_+078.75_-0101.57",
+      "region": "Arctic Polar Desert",
+      "lat": 78.75,
+      "lon": -101.5714,
+      "similarity_score": 78.13,
+      "distance_vs_flow_a_best": 1.479
     },
     {
-      "site_name": "PERSEUS_+048.50_+0057.24",
-      "lat": 48.5,
-      "lon": 57.2385,
-      "similarity_score": 55.62,
-      "distance_vs_flow_a_best": 3.134
+      "site_name": "PERSEUS_+073.25_-0104.71",
+      "region": "Arctic Polar Desert",
+      "lat": 73.25,
+      "lon": -104.7115,
+      "similarity_score": 77.05,
+      "distance_vs_flow_a_best": 1.518
     },
     {
-      "site_name": "PERSEUS_+045.50_+0072.14",
-      "lat": 45.5,
-      "lon": 72.1429,
-      "similarity_score": 54.45,
-      "distance_vs_flow_a_best": 3.274
+      "site_name": "PERSEUS_+073.75_-0098.51",
+      "region": "Arctic Polar Desert",
+      "lat": 73.75,
+      "lon": -98.5075,
+      "similarity_score": 73.0,
+      "distance_vs_flow_a_best": 1.854
     },
     {
-      "site_name": "PERSEUS_+042.50_+0074.72",
-      "lat": 42.5,
-      "lon": 74.717,
-      "similarity_score": 53.58,
-      "distance_vs_flow_a_best": 3.396
+      "site_name": "PERSEUS_+080.75_-0076.03",
+      "region": "Arctic Polar Desert",
+      "lat": 80.75,
+      "lon": -76.0345,
+      "similarity_score": 72.45,
+      "distance_vs_flow_a_best": 1.858
     },
     {
-      "site_name": "PERSEUS_+046.50_+0064.60",
-      "lat": 46.5,
-      "lon": 64.5968,
-      "similarity_score": 53.1,
-      "distance_vs_flow_a_best": 3.396
+      "site_name": "PERSEUS_+080.25_-0084.10",
+      "region": "Arctic Polar Desert",
+      "lat": 80.25,
+      "lon": -84.0984,
+      "similarity_score": 71.59,
+      "distance_vs_flow_a_best": 1.892
     },
     {
-      "site_name": "PERSEUS_+046.50_+0061.69",
-      "lat": 46.5,
-      "lon": 61.6935,
-      "similarity_score": 52.71,
-      "distance_vs_flow_a_best": 3.468
+      "site_name": "PERSEUS_+078.75_-0083.57",
+      "region": "Arctic Polar Desert",
+      "lat": 78.75,
+      "lon": -83.5714,
+      "similarity_score": 71.03,
+      "distance_vs_flow_a_best": 2.023
     },
     {
-      "site_name": "PERSEUS_+046.50_+0089.27",
-      "lat": 46.5,
-      "lon": 89.2742,
-      "similarity_score": 52.38,
-      "distance_vs_flow_a_best": 3.447
+      "site_name": "PERSEUS_+079.75_-0088.59",
+      "region": "Arctic Polar Desert",
+      "lat": 79.75,
+      "lon": -88.5938,
+      "similarity_score": 70.48,
+      "distance_vs_flow_a_best": 2.04
     },
     {
-      "site_name": "PERSEUS_+046.50_+0073.31",
-      "lat": 46.5,
-      "lon": 73.3065,
-      "similarity_score": 51.9,
-      "distance_vs_flow_a_best": 3.505
+      "site_name": "PERSEUS_+068.25_-0052.58",
+      "region": "Arctic Polar Desert",
+      "lat": 68.25,
+      "lon": -52.5843,
+      "similarity_score": 69.19,
+      "distance_vs_flow_a_best": 1.855
     },
     {
-      "site_name": "PERSEUS_+046.50_+0090.73",
-      "lat": 46.5,
-      "lon": 90.7258,
-      "similarity_score": 51.2,
-      "distance_vs_flow_a_best": 3.479
+      "site_name": "PERSEUS_+073.75_-0080.60",
+      "region": "Arctic Polar Desert",
+      "lat": 73.75,
+      "lon": -80.597,
+      "similarity_score": 68.89,
+      "distance_vs_flow_a_best": 2.07
     },
     {
-      "site_name": "PERSEUS_+045.50_+0089.29",
-      "lat": 45.5,
-      "lon": 89.2857,
-      "similarity_score": 51.02,
-      "distance_vs_flow_a_best": 3.64
+      "site_name": "PERSEUS_+077.75_-0101.18",
+      "region": "Arctic Polar Desert",
+      "lat": 77.75,
+      "lon": -101.1765,
+      "similarity_score": 68.6,
+      "distance_vs_flow_a_best": 2.219
     },
     {
-      "site_name": "PERSEUS_+041.50_+0052.67",
-      "lat": 41.5,
-      "lon": 52.6667,
-      "similarity_score": 50.91,
-      "distance_vs_flow_a_best": 3.664
+      "site_name": "PERSEUS_+081.25_-0073.64",
+      "region": "Arctic Polar Desert",
+      "lat": 81.25,
+      "lon": -73.6364,
+      "similarity_score": 68.36,
+      "distance_vs_flow_a_best": 2.211
     },
     {
-      "site_name": "PERSEUS_+046.50_+0086.37",
-      "lat": 46.5,
-      "lon": 86.371,
-      "similarity_score": 50.67,
-      "distance_vs_flow_a_best": 3.658
+      "site_name": "PERSEUS_+078.25_-0100.41",
+      "region": "Arctic Polar Desert",
+      "lat": 78.25,
+      "lon": -100.4082,
+      "similarity_score": 68.01,
+      "distance_vs_flow_a_best": 2.235
     },
     {
-      "site_name": "PERSEUS_+043.50_+0093.79",
-      "lat": 43.5,
-      "lon": 93.7931,
-      "similarity_score": 50.48,
-      "distance_vs_flow_a_best": 3.573
+      "site_name": "PERSEUS_+080.25_-0081.15",
+      "region": "Arctic Polar Desert",
+      "lat": 80.25,
+      "lon": -81.1475,
+      "similarity_score": 67.74,
+      "distance_vs_flow_a_best": 2.266
     },
     {
-      "site_name": "PERSEUS_+035.50_+0088.46",
-      "lat": 35.5,
-      "lon": 88.4642,
-      "similarity_score": 50.34,
-      "distance_vs_flow_a_best": 3.83
+      "site_name": "PERSEUS_+078.75_-0086.14",
+      "region": "Arctic Polar Desert",
+      "lat": 78.75,
+      "lon": -86.1429,
+      "similarity_score": 67.05,
+      "distance_vs_flow_a_best": 2.307
     },
     {
-      "site_name": "PERSEUS_+043.50_+0052.41",
-      "lat": 43.5,
-      "lon": 52.4138,
-      "similarity_score": 50.24,
-      "distance_vs_flow_a_best": 3.747
+      "site_name": "PERSEUS_+074.75_-0085.71",
+      "region": "Arctic Polar Desert",
+      "lat": 74.75,
+      "lon": -85.7143,
+      "similarity_score": 66.95,
+      "distance_vs_flow_a_best": 2.359
     },
     {
-      "site_name": "PERSEUS_+045.50_+0087.86",
-      "lat": 45.5,
-      "lon": 87.8571,
-      "similarity_score": 49.98,
-      "distance_vs_flow_a_best": 3.75
+      "site_name": "PERSEUS_+066.75_-0050.07",
+      "region": "Arctic Polar Desert",
+      "lat": 66.75,
+      "lon": -50.0704,
+      "similarity_score": 66.9,
+      "distance_vs_flow_a_best": 2.173
     },
     {
-      "site_name": "PERSEUS_+045.50_+0065.00",
-      "lat": 45.5,
-      "lon": 65.0,
-      "similarity_score": 49.98,
-      "distance_vs_flow_a_best": 3.846
+      "site_name": "PERSEUS_+072.25_-0084.27",
+      "region": "Arctic Polar Desert",
+      "lat": 72.25,
+      "lon": -84.2727,
+      "similarity_score": 66.8,
+      "distance_vs_flow_a_best": 2.304
     },
     {
-      "site_name": "PERSEUS_+044.50_+0054.63",
-      "lat": 44.5,
-      "lon": 54.6304,
-      "similarity_score": 49.93,
-      "distance_vs_flow_a_best": 3.783
+      "site_name": "PERSEUS_+078.25_-0090.61",
+      "region": "Arctic Polar Desert",
+      "lat": 78.25,
+      "lon": -90.6122,
+      "similarity_score": 66.29,
+      "distance_vs_flow_a_best": 2.368
     },
     {
-      "site_name": "PERSEUS_+045.50_+0059.29",
-      "lat": 45.5,
-      "lon": 59.2857,
-      "similarity_score": 49.81,
-      "distance_vs_flow_a_best": 3.724
+      "site_name": "PERSEUS_+069.25_-0050.82",
+      "region": "Arctic Polar Desert",
+      "lat": 69.25,
+      "lon": -50.8235,
+      "similarity_score": 65.8,
+      "distance_vs_flow_a_best": 2.359
     },
     {
-      "site_name": "PERSEUS_+047.50_+0094.81",
-      "lat": 47.5,
-      "lon": 94.8148,
-      "similarity_score": 49.8,
-      "distance_vs_flow_a_best": 3.746
+      "site_name": "PERSEUS_+081.75_-0090.87",
+      "region": "Arctic Polar Desert",
+      "lat": 81.75,
+      "lon": -90.8738,
+      "similarity_score": 65.69,
+      "distance_vs_flow_a_best": 2.383
     },
     {
-      "site_name": "PERSEUS_+047.50_+0093.33",
-      "lat": 47.5,
-      "lon": 93.3333,
-      "similarity_score": 49.51,
-      "distance_vs_flow_a_best": 3.77
+      "site_name": "PERSEUS_+076.25_-0103.16",
+      "region": "Arctic Polar Desert",
+      "lat": 76.25,
+      "lon": -103.1579,
+      "similarity_score": 65.31,
+      "distance_vs_flow_a_best": 2.455
     },
     {
-      "site_name": "PERSEUS_+045.50_+0090.71",
-      "lat": 45.5,
-      "lon": 90.7143,
-      "similarity_score": 49.31,
-      "distance_vs_flow_a_best": 3.751
+      "site_name": "PERSEUS_+075.25_-0092.46",
+      "region": "Arctic Polar Desert",
+      "lat": 75.25,
+      "lon": -92.459,
+      "similarity_score": 65.06,
+      "distance_vs_flow_a_best": 2.479
     },
     {
-      "site_name": "PERSEUS_+048.50_+0091.88",
-      "lat": 48.5,
-      "lon": 91.8828,
-      "similarity_score": 49.18,
-      "distance_vs_flow_a_best": 3.756
+      "site_name": "PERSEUS_+077.75_+0023.53",
+      "region": "Arctic Polar Desert",
+      "lat": 77.75,
+      "lon": 23.5294,
+      "similarity_score": 64.75,
+      "distance_vs_flow_a_best": 2.439
     },
     {
-      "site_name": "PERSEUS_+040.50_+0075.55",
-      "lat": 40.5,
-      "lon": 75.5474,
-      "similarity_score": 48.99,
-      "distance_vs_flow_a_best": 3.782
+      "site_name": "PERSEUS_+069.75_-0050.60",
+      "region": "Arctic Polar Desert",
+      "lat": 69.75,
+      "lon": -50.6024,
+      "similarity_score": 64.57,
+      "distance_vs_flow_a_best": 2.47
     },
     {
-      "site_name": "PERSEUS_+046.50_+0084.92",
-      "lat": 46.5,
-      "lon": 84.9194,
-      "similarity_score": 48.95,
-      "distance_vs_flow_a_best": 3.779
+      "site_name": "PERSEUS_+079.75_-0071.72",
+      "region": "Arctic Polar Desert",
+      "lat": 79.75,
+      "lon": -71.7188,
+      "similarity_score": 64.16,
+      "distance_vs_flow_a_best": 2.595
     }
   ],
   "Phlegra_Montes_(Glacial_Belts_-_Shallow_20m_Ice)": [
     {
-      "site_name": "PERSEUS_+038.50_+0092.55",
-      "lat": 38.5,
-      "lon": 92.5532,
-      "similarity_score": 56.28,
-      "distance_vs_flow_a_best": 1.944
+      "site_name": "PERSEUS_+033.62_+0061.85",
+      "region": "Barren",
+      "lat": 33.625,
+      "lon": 61.8515,
+      "similarity_score": 56.18,
+      "distance_vs_flow_a_best": 1.613
     },
     {
-      "site_name": "PERSEUS_+034.50_+0061.82",
-      "lat": 34.5,
-      "lon": 61.8182,
-      "similarity_score": 53.72,
-      "distance_vs_flow_a_best": 2.131
+      "site_name": "PERSEUS_+076.25_-0103.16",
+      "region": "Arctic Polar Desert",
+      "lat": 76.25,
+      "lon": -103.1579,
+      "similarity_score": 56.13,
+      "distance_vs_flow_a_best": 1.732
     },
     {
-      "site_name": "PERSEUS_+041.50_+0091.33",
-      "lat": 41.5,
-      "lon": 91.3333,
-      "similarity_score": 53.15,
-      "distance_vs_flow_a_best": 2.165
+      "site_name": "PERSEUS_+033.88_+0061.86",
+      "region": "Barren",
+      "lat": 33.875,
+      "lon": 61.8562,
+      "similarity_score": 56.0,
+      "distance_vs_flow_a_best": 1.654
     },
     {
-      "site_name": "PERSEUS_+043.50_+0100.69",
-      "lat": 43.5,
-      "lon": 100.6897,
-      "similarity_score": 52.72,
-      "distance_vs_flow_a_best": 2.193
+      "site_name": "PERSEUS_+033.88_+0061.25",
+      "region": "Barren",
+      "lat": 33.875,
+      "lon": 61.2542,
+      "similarity_score": 55.99,
+      "distance_vs_flow_a_best": 1.629
     },
     {
-      "site_name": "PERSEUS_+033.50_+0060.60",
-      "lat": 33.5,
-      "lon": 60.6,
-      "similarity_score": 52.59,
-      "distance_vs_flow_a_best": 2.211
+      "site_name": "PERSEUS_+033.88_+0061.56",
+      "region": "Barren",
+      "lat": 33.875,
+      "lon": 61.5552,
+      "similarity_score": 55.76,
+      "distance_vs_flow_a_best": 1.642
     },
     {
-      "site_name": "PERSEUS_+037.50_+0088.74",
-      "lat": 37.5,
-      "lon": 88.7413,
-      "similarity_score": 52.15,
-      "distance_vs_flow_a_best": 2.197
+      "site_name": "PERSEUS_+046.12_+0097.94",
+      "region": "Grassland",
+      "lat": 46.125,
+      "lon": 97.9359,
+      "similarity_score": 55.65,
+      "distance_vs_flow_a_best": 1.637
     },
     {
-      "site_name": "PERSEUS_+033.50_+0061.80",
-      "lat": 33.5,
-      "lon": 61.8,
-      "similarity_score": 52.01,
-      "distance_vs_flow_a_best": 2.231
+      "site_name": "PERSEUS_+033.62_+0061.55",
+      "region": "Barren",
+      "lat": 33.625,
+      "lon": 61.5513,
+      "similarity_score": 55.35,
+      "distance_vs_flow_a_best": 1.652
     },
     {
-      "site_name": "PERSEUS_+043.50_+0096.55",
-      "lat": 43.5,
-      "lon": 96.5517,
-      "similarity_score": 51.99,
-      "distance_vs_flow_a_best": 2.243
+      "site_name": "PERSEUS_+041.88_+0107.63",
+      "region": "Barren",
+      "lat": 41.875,
+      "lon": 107.6306,
+      "similarity_score": 55.14,
+      "distance_vs_flow_a_best": 1.657
     },
     {
-      "site_name": "PERSEUS_+044.50_+0099.46",
-      "lat": 44.5,
-      "lon": 99.4553,
-      "similarity_score": 51.98,
-      "distance_vs_flow_a_best": 2.176
+      "site_name": "PERSEUS_+043.12_+0091.80",
+      "region": "Barren",
+      "lat": 43.125,
+      "lon": 91.7983,
+      "similarity_score": 54.94,
+      "distance_vs_flow_a_best": 1.701
     },
     {
-      "site_name": "PERSEUS_+044.50_+0095.25",
-      "lat": 44.5,
-      "lon": 95.2529,
-      "similarity_score": 51.65,
-      "distance_vs_flow_a_best": 2.245
+      "site_name": "PERSEUS_+034.88_+0061.27",
+      "region": "Barren",
+      "lat": 34.875,
+      "lon": 61.2701,
+      "similarity_score": 54.92,
+      "distance_vs_flow_a_best": 1.708
     },
     {
-      "site_name": "PERSEUS_+041.50_+0096.67",
-      "lat": 41.5,
-      "lon": 96.6667,
-      "similarity_score": 51.64,
-      "distance_vs_flow_a_best": 2.248
+      "site_name": "PERSEUS_+034.38_+0060.56",
+      "region": "Barren",
+      "lat": 34.375,
+      "lon": 60.5551,
+      "similarity_score": 54.84,
+      "distance_vs_flow_a_best": 1.651
     },
     {
-      "site_name": "PERSEUS_+045.50_+0097.86",
-      "lat": 45.5,
-      "lon": 97.8571,
-      "similarity_score": 51.62,
-      "distance_vs_flow_a_best": 2.258
+      "site_name": "PERSEUS_+034.62_+0061.37",
+      "region": "Barren",
+      "lat": 34.625,
+      "lon": 61.3671,
+      "similarity_score": 54.77,
+      "distance_vs_flow_a_best": 1.703
     },
     {
-      "site_name": "PERSEUS_+035.50_+0083.55",
-      "lat": 35.5,
-      "lon": 83.5495,
-      "similarity_score": 51.53,
-      "distance_vs_flow_a_best": 2.25
+      "site_name": "PERSEUS_+034.38_+0061.16",
+      "region": "Barren",
+      "lat": 34.375,
+      "lon": 61.1606,
+      "similarity_score": 54.69,
+      "distance_vs_flow_a_best": 1.703
     },
     {
-      "site_name": "PERSEUS_+034.50_+0088.48",
-      "lat": 34.5,
-      "lon": 88.4848,
-      "similarity_score": 51.52,
-      "distance_vs_flow_a_best": 2.262
+      "site_name": "PERSEUS_+034.12_+0061.16",
+      "region": "Barren",
+      "lat": 34.125,
+      "lon": 61.1577,
+      "similarity_score": 54.63,
+      "distance_vs_flow_a_best": 1.7
     },
     {
-      "site_name": "PERSEUS_+045.50_+0092.14",
-      "lat": 45.5,
-      "lon": 92.1429,
-      "similarity_score": 51.32,
-      "distance_vs_flow_a_best": 2.317
+      "site_name": "PERSEUS_+042.12_+0108.03",
+      "region": "Barren",
+      "lat": 42.125,
+      "lon": 108.0337,
+      "similarity_score": 54.55,
+      "distance_vs_flow_a_best": 1.707
     },
     {
-      "site_name": "PERSEUS_+034.50_+0087.27",
-      "lat": 34.5,
-      "lon": 87.2727,
-      "similarity_score": 51.29,
-      "distance_vs_flow_a_best": 2.309
+      "site_name": "PERSEUS_+069.75_-0052.05",
+      "region": "Arctic Polar Desert",
+      "lat": 69.75,
+      "lon": -52.0482,
+      "similarity_score": 54.53,
+      "distance_vs_flow_a_best": 1.722
     },
     {
-      "site_name": "PERSEUS_+042.50_+0096.45",
-      "lat": 42.5,
-      "lon": 96.4528,
-      "similarity_score": 51.18,
-      "distance_vs_flow_a_best": 2.3
+      "site_name": "PERSEUS_+077.75_-0101.18",
+      "region": "Arctic Polar Desert",
+      "lat": 77.75,
+      "lon": -101.1765,
+      "similarity_score": 54.52,
+      "distance_vs_flow_a_best": 1.842
     },
     {
-      "site_name": "PERSEUS_+040.50_+0090.00",
-      "lat": 40.5,
-      "lon": 90.0,
-      "similarity_score": 50.93,
-      "distance_vs_flow_a_best": 2.327
+      "site_name": "PERSEUS_+041.88_+0107.29",
+      "region": "Barren",
+      "lat": 41.875,
+      "lon": 107.2948,
+      "similarity_score": 54.5,
+      "distance_vs_flow_a_best": 1.69
     },
     {
-      "site_name": "PERSEUS_+034.50_+0089.70",
-      "lat": 34.5,
-      "lon": 89.697,
-      "similarity_score": 50.9,
-      "distance_vs_flow_a_best": 2.395
+      "site_name": "PERSEUS_+042.12_+0107.70",
+      "region": "Barren",
+      "lat": 42.125,
+      "lon": 107.6966,
+      "similarity_score": 54.5,
+      "distance_vs_flow_a_best": 1.698
     },
     {
-      "site_name": "PERSEUS_+032.50_+0060.99",
-      "lat": 32.5,
-      "lon": 60.9868,
-      "similarity_score": 50.78,
-      "distance_vs_flow_a_best": 2.276
+      "site_name": "PERSEUS_+077.25_+0022.64",
+      "region": "Arctic Polar Desert",
+      "lat": 77.25,
+      "lon": 22.6415,
+      "similarity_score": 54.2,
+      "distance_vs_flow_a_best": 1.722
     },
     {
-      "site_name": "PERSEUS_+039.50_+0088.70",
-      "lat": 39.5,
-      "lon": 88.705,
-      "similarity_score": 50.67,
-      "distance_vs_flow_a_best": 2.339
+      "site_name": "PERSEUS_+034.12_+0060.55",
+      "region": "Barren",
+      "lat": 34.125,
+      "lon": 60.5537,
+      "similarity_score": 54.17,
+      "distance_vs_flow_a_best": 1.719
     },
     {
-      "site_name": "PERSEUS_+036.50_+0097.16",
-      "lat": 36.5,
-      "lon": 97.1626,
-      "similarity_score": 50.59,
-      "distance_vs_flow_a_best": 2.344
+      "site_name": "PERSEUS_+046.12_+0099.02",
+      "region": "Grassland",
+      "lat": 46.125,
+      "lon": 99.018,
+      "similarity_score": 54.05,
+      "distance_vs_flow_a_best": 1.737
     },
     {
-      "site_name": "PERSEUS_+034.50_+0080.00",
-      "lat": 34.5,
-      "lon": 80.0,
-      "similarity_score": 50.07,
-      "distance_vs_flow_a_best": 2.396
+      "site_name": "PERSEUS_+034.12_+0061.46",
+      "region": "Barren",
+      "lat": 34.125,
+      "lon": 61.4597,
+      "similarity_score": 54.03,
+      "distance_vs_flow_a_best": 1.725
     },
     {
-      "site_name": "PERSEUS_+036.50_+0085.95",
-      "lat": 36.5,
-      "lon": 85.9516,
-      "similarity_score": 50.04,
-      "distance_vs_flow_a_best": 2.401
+      "site_name": "PERSEUS_+044.38_+0092.01",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 92.0117,
+      "similarity_score": 53.95,
+      "distance_vs_flow_a_best": 1.717
     },
     {
-      "site_name": "PERSEUS_+046.50_+0089.27",
-      "lat": 46.5,
-      "lon": 89.2742,
-      "similarity_score": 49.96,
-      "distance_vs_flow_a_best": 2.384
+      "site_name": "PERSEUS_+044.38_+0100.06",
+      "region": "Barren",
+      "lat": 44.375,
+      "lon": 100.0583,
+      "similarity_score": 53.93,
+      "distance_vs_flow_a_best": 1.738
     }
   ],
   "Eastern_Hellas_Basin_(Southern_Ice-Rich_Aprons)": [
     {
-      "site_name": "PERSEUS_+035.50_+0088.46",
-      "lat": 35.5,
-      "lon": 88.4642,
-      "similarity_score": 51.42,
-      "distance_vs_flow_a_best": 2.337
+      "site_name": "PERSEUS_+041.38_+0107.23",
+      "region": "Grassland",
+      "lat": 41.375,
+      "lon": 107.234,
+      "similarity_score": 54.6,
+      "distance_vs_flow_a_best": 1.371
     },
     {
-      "site_name": "PERSEUS_+035.50_+0090.92",
-      "lat": 35.5,
-      "lon": 90.9215,
-      "similarity_score": 51.15,
-      "distance_vs_flow_a_best": 2.356
+      "site_name": "PERSEUS_+045.12_+0094.07",
+      "region": "Barren",
+      "lat": 45.125,
+      "lon": 94.0748,
+      "similarity_score": 54.23,
+      "distance_vs_flow_a_best": 1.554
     },
     {
-      "site_name": "PERSEUS_+041.50_+0107.33",
-      "lat": 41.5,
-      "lon": 107.3333,
-      "similarity_score": 50.22,
-      "distance_vs_flow_a_best": 2.464
+      "site_name": "PERSEUS_+044.62_+0099.40",
+      "region": "Barren",
+      "lat": 44.625,
+      "lon": 99.3951,
+      "similarity_score": 53.62,
+      "distance_vs_flow_a_best": 1.563
     },
     {
-      "site_name": "PERSEUS_+034.50_+0088.48",
-      "lat": 34.5,
-      "lon": 88.4848,
-      "similarity_score": 50.13,
-      "distance_vs_flow_a_best": 2.334
+      "site_name": "PERSEUS_+047.38_+0091.94",
+      "region": "Barren",
+      "lat": 47.375,
+      "lon": 91.9385,
+      "similarity_score": 53.56,
+      "distance_vs_flow_a_best": 1.382
     },
     {
-      "site_name": "PERSEUS_+036.50_+0088.44",
-      "lat": 36.5,
-      "lon": 88.4429,
-      "similarity_score": 49.71,
-      "distance_vs_flow_a_best": 2.44
+      "site_name": "PERSEUS_+036.88_+0095.16",
+      "region": "Barren",
+      "lat": 36.875,
+      "lon": 95.1562,
+      "similarity_score": 53.52,
+      "distance_vs_flow_a_best": 1.619
     },
     {
-      "site_name": "PERSEUS_+037.50_+0088.74",
-      "lat": 37.5,
-      "lon": 88.7413,
-      "similarity_score": 49.67,
-      "distance_vs_flow_a_best": 2.339
+      "site_name": "PERSEUS_+044.12_+0091.74",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 91.7408,
+      "similarity_score": 53.52,
+      "distance_vs_flow_a_best": 1.546
     },
     {
-      "site_name": "PERSEUS_+034.50_+0083.64",
-      "lat": 34.5,
-      "lon": 83.6364,
-      "similarity_score": 49.59,
-      "distance_vs_flow_a_best": 2.387
+      "site_name": "PERSEUS_+033.12_+0061.34",
+      "region": "Barren",
+      "lat": 33.125,
+      "lon": 61.3433,
+      "similarity_score": 53.27,
+      "distance_vs_flow_a_best": 1.467
     },
     {
-      "site_name": "PERSEUS_+036.50_+0085.95",
-      "lat": 36.5,
-      "lon": 85.9516,
-      "similarity_score": 49.47,
-      "distance_vs_flow_a_best": 2.389
+      "site_name": "PERSEUS_+037.62_+0088.97",
+      "region": "Barren",
+      "lat": 37.625,
+      "lon": 88.9746,
+      "similarity_score": 53.22,
+      "distance_vs_flow_a_best": 1.448
     },
     {
-      "site_name": "PERSEUS_+044.50_+0099.46",
-      "lat": 44.5,
-      "lon": 99.4553,
-      "similarity_score": 49.09,
-      "distance_vs_flow_a_best": 2.455
+      "site_name": "PERSEUS_+043.12_+0100.36",
+      "region": "Barren",
+      "lat": 43.125,
+      "lon": 100.3616,
+      "similarity_score": 53.2,
+      "distance_vs_flow_a_best": 1.555
     },
     {
-      "site_name": "PERSEUS_+034.50_+0089.70",
-      "lat": 34.5,
-      "lon": 89.697,
-      "similarity_score": 49.02,
-      "distance_vs_flow_a_best": 2.449
+      "site_name": "PERSEUS_+031.38_+0067.66",
+      "region": "Barren",
+      "lat": 31.375,
+      "lon": 67.6648,
+      "similarity_score": 52.97,
+      "distance_vs_flow_a_best": 1.626
     },
     {
-      "site_name": "PERSEUS_+035.50_+0087.24",
-      "lat": 35.5,
-      "lon": 87.2355,
-      "similarity_score": 48.88,
-      "distance_vs_flow_a_best": 2.417
+      "site_name": "PERSEUS_+032.62_+0059.95",
+      "region": "Barren",
+      "lat": 32.625,
+      "lon": 59.9505,
+      "similarity_score": 52.9,
+      "distance_vs_flow_a_best": 1.511
     },
     {
-      "site_name": "PERSEUS_+035.50_+0084.78",
-      "lat": 35.5,
-      "lon": 84.7782,
-      "similarity_score": 48.73,
-      "distance_vs_flow_a_best": 2.432
+      "site_name": "PERSEUS_+035.88_+0059.23",
+      "region": "Barren",
+      "lat": 35.875,
+      "lon": 59.2288,
+      "similarity_score": 52.81,
+      "distance_vs_flow_a_best": 1.626
     },
     {
-      "site_name": "PERSEUS_+033.50_+0059.40",
-      "lat": 33.5,
-      "lon": 59.4,
-      "similarity_score": 48.64,
-      "distance_vs_flow_a_best": 2.491
+      "site_name": "PERSEUS_+033.12_+0059.25",
+      "region": "Barren",
+      "lat": 33.125,
+      "lon": 59.2537,
+      "similarity_score": 52.74,
+      "distance_vs_flow_a_best": 1.645
     },
     {
-      "site_name": "PERSEUS_+034.50_+0087.27",
-      "lat": 34.5,
-      "lon": 87.2727,
-      "similarity_score": 48.49,
-      "distance_vs_flow_a_best": 2.437
+      "site_name": "PERSEUS_+044.88_+0093.71",
+      "region": "Barren",
+      "lat": 44.875,
+      "lon": 93.7059,
+      "similarity_score": 52.68,
+      "distance_vs_flow_a_best": 1.489
     },
     {
-      "site_name": "PERSEUS_+036.50_+0056.06",
-      "lat": 36.5,
-      "lon": 56.0554,
-      "similarity_score": 48.4,
-      "distance_vs_flow_a_best": 2.537
+      "site_name": "PERSEUS_+034.62_+0062.28",
+      "region": "Grassland",
+      "lat": 34.625,
+      "lon": 62.2785,
+      "similarity_score": 52.66,
+      "distance_vs_flow_a_best": 1.483
     },
     {
-      "site_name": "PERSEUS_+033.50_+0082.20",
-      "lat": 33.5,
-      "lon": 82.2,
-      "similarity_score": 48.35,
-      "distance_vs_flow_a_best": 2.553
+      "site_name": "PERSEUS_+035.12_+0061.27",
+      "region": "Open Shrubland",
+      "lat": 35.125,
+      "lon": 61.2733,
+      "similarity_score": 52.61,
+      "distance_vs_flow_a_best": 1.579
     },
     {
-      "site_name": "PERSEUS_+036.50_+0075.99",
-      "lat": 36.5,
-      "lon": 75.9862,
-      "similarity_score": 48.34,
-      "distance_vs_flow_a_best": 2.604
+      "site_name": "PERSEUS_+033.38_+0059.55",
+      "region": "Barren",
+      "lat": 33.375,
+      "lon": 59.5511,
+      "similarity_score": 52.58,
+      "distance_vs_flow_a_best": 1.671
     },
     {
-      "site_name": "PERSEUS_+034.50_+0084.85",
-      "lat": 34.5,
-      "lon": 84.8485,
-      "similarity_score": 47.8,
-      "distance_vs_flow_a_best": 2.497
+      "site_name": "PERSEUS_+039.12_+0092.82",
+      "region": "Barren",
+      "lat": 39.125,
+      "lon": 92.8201,
+      "similarity_score": 52.56,
+      "distance_vs_flow_a_best": 1.466
     },
     {
-      "site_name": "PERSEUS_+032.50_+0085.86",
-      "lat": 32.5,
-      "lon": 85.8553,
-      "similarity_score": 47.78,
-      "distance_vs_flow_a_best": 2.496
+      "site_name": "PERSEUS_+039.12_+0091.85",
+      "region": "Barren",
+      "lat": 39.125,
+      "lon": 91.8532,
+      "similarity_score": 52.55,
+      "distance_vs_flow_a_best": 1.499
     },
     {
-      "site_name": "PERSEUS_+034.50_+0082.42",
-      "lat": 34.5,
-      "lon": 82.4242,
-      "similarity_score": 47.66,
-      "distance_vs_flow_a_best": 2.547
+      "site_name": "PERSEUS_+033.88_+0062.46",
+      "region": "Grassland",
+      "lat": 33.875,
+      "lon": 62.4582,
+      "similarity_score": 52.53,
+      "distance_vs_flow_a_best": 1.57
     },
     {
-      "site_name": "PERSEUS_+037.50_+0090.00",
-      "lat": 37.5,
-      "lon": 90.0,
-      "similarity_score": 47.63,
-      "distance_vs_flow_a_best": 2.667
+      "site_name": "PERSEUS_+044.12_+0092.09",
+      "region": "Barren",
+      "lat": 44.125,
+      "lon": 92.089,
+      "similarity_score": 52.44,
+      "distance_vs_flow_a_best": 1.626
     },
     {
-      "site_name": "PERSEUS_+030.50_+0055.16",
-      "lat": 30.5,
-      "lon": 55.1613,
-      "similarity_score": 47.58,
-      "distance_vs_flow_a_best": 2.618
+      "site_name": "PERSEUS_+039.88_+0075.58",
+      "region": "Barren",
+      "lat": 39.875,
+      "lon": 75.5837,
+      "similarity_score": 52.44,
+      "distance_vs_flow_a_best": 1.565
     },
     {
-      "site_name": "PERSEUS_+031.50_+0068.01",
-      "lat": 31.5,
-      "lon": 68.013,
-      "similarity_score": 47.54,
-      "distance_vs_flow_a_best": 2.563
+      "site_name": "PERSEUS_+039.38_+0094.45",
+      "region": "Barren",
+      "lat": 39.375,
+      "lon": 94.4474,
+      "similarity_score": 52.43,
+      "distance_vs_flow_a_best": 1.45
     },
     {
-      "site_name": "PERSEUS_+040.50_+0105.77",
-      "lat": 40.5,
-      "lon": 105.7664,
-      "similarity_score": 47.33,
-      "distance_vs_flow_a_best": 2.631
+      "site_name": "PERSEUS_+032.62_+0061.14",
+      "region": "Barren",
+      "lat": 32.625,
+      "lon": 61.1377,
+      "similarity_score": 52.4,
+      "distance_vs_flow_a_best": 1.522
     },
     {
-      "site_name": "PERSEUS_+035.50_+0078.63",
-      "lat": 35.5,
-      "lon": 78.6348,
-      "similarity_score": 47.24,
-      "distance_vs_flow_a_best": 2.595
+      "site_name": "PERSEUS_+049.38_+0090.38",
+      "region": "Grassland",
+      "lat": 49.375,
+      "lon": 90.3838,
+      "similarity_score": 52.39,
+      "distance_vs_flow_a_best": 1.488
     }
   ],
   "Valles_Marineris_(Equatorial_Rift_&_Sulfate_Beds)": [
     {
-      "site_name": "PERSEUS_+041.50_+0052.67",
-      "lat": 41.5,
-      "lon": 52.6667,
-      "similarity_score": 57.63,
-      "distance_vs_flow_a_best": 1.576
+      "site_name": "PERSEUS_+002.62_+0046.19",
+      "region": "Barren",
+      "lat": 2.625,
+      "lon": 46.1892,
+      "similarity_score": 69.41,
+      "distance_vs_flow_a_best": 1.345
     },
     {
-      "site_name": "PERSEUS_+043.50_+0052.41",
-      "lat": 43.5,
-      "lon": 52.4138,
-      "similarity_score": 56.14,
-      "distance_vs_flow_a_best": 1.682
+      "site_name": "PERSEUS_+010.38_+0050.97",
+      "region": "Barren",
+      "lat": 10.375,
+      "lon": 50.9746,
+      "similarity_score": 61.75,
+      "distance_vs_flow_a_best": 1.795
     },
     {
-      "site_name": "PERSEUS_+034.50_+0061.82",
-      "lat": 34.5,
-      "lon": 61.8182,
-      "similarity_score": 55.83,
-      "distance_vs_flow_a_best": 1.622
+      "site_name": "PERSEUS_+041.12_+0054.75",
+      "region": "Barren",
+      "lat": 41.125,
+      "lon": 54.7465,
+      "similarity_score": 61.11,
+      "distance_vs_flow_a_best": 1.975
     },
     {
-      "site_name": "PERSEUS_+031.50_+0036.35",
-      "lat": 31.5,
-      "lon": 36.3518,
-      "similarity_score": 55.8,
-      "distance_vs_flow_a_best": 1.616
+      "site_name": "PERSEUS_+040.62_+0090.25",
+      "region": "Barren",
+      "lat": 40.625,
+      "lon": 90.247,
+      "similarity_score": 60.26,
+      "distance_vs_flow_a_best": 1.981
     },
     {
-      "site_name": "PERSEUS_+033.50_+0060.60",
-      "lat": 33.5,
-      "lon": 60.6,
-      "similarity_score": 55.15,
-      "distance_vs_flow_a_best": 1.644
+      "site_name": "PERSEUS_+040.62_+0090.58",
+      "region": "Barren",
+      "lat": 40.625,
+      "lon": 90.5764,
+      "similarity_score": 60.03,
+      "distance_vs_flow_a_best": 1.994
     },
     {
-      "site_name": "PERSEUS_+034.50_+0037.58",
-      "lat": 34.5,
-      "lon": 37.5758,
-      "similarity_score": 55.11,
-      "distance_vs_flow_a_best": 1.665
+      "site_name": "PERSEUS_+006.88_+0049.22",
+      "region": "Barren",
+      "lat": 6.875,
+      "lon": 49.2168,
+      "similarity_score": 59.88,
+      "distance_vs_flow_a_best": 1.895
     },
     {
-      "site_name": "PERSEUS_+035.50_+0040.55",
-      "lat": 35.5,
-      "lon": 40.5461,
-      "similarity_score": 54.91,
-      "distance_vs_flow_a_best": 1.649
+      "site_name": "PERSEUS_+040.38_+0090.25",
+      "region": "Barren",
+      "lat": 40.375,
+      "lon": 90.2461,
+      "similarity_score": 59.47,
+      "distance_vs_flow_a_best": 2.047
     },
     {
-      "site_name": "PERSEUS_+040.50_+0090.00",
-      "lat": 40.5,
-      "lon": 90.0,
-      "similarity_score": 54.68,
-      "distance_vs_flow_a_best": 1.681
+      "site_name": "PERSEUS_+004.12_+0047.51",
+      "region": "Barren",
+      "lat": 4.125,
+      "lon": 47.507,
+      "similarity_score": 59.45,
+      "distance_vs_flow_a_best": 1.935
     },
     {
-      "site_name": "PERSEUS_+045.50_+0059.29",
-      "lat": 45.5,
-      "lon": 59.2857,
-      "similarity_score": 54.56,
-      "distance_vs_flow_a_best": 1.753
+      "site_name": "PERSEUS_+016.38_+0052.23",
+      "region": "Barren",
+      "lat": 16.375,
+      "lon": 52.2287,
+      "similarity_score": 59.16,
+      "distance_vs_flow_a_best": 2.085
     },
     {
-      "site_name": "PERSEUS_+030.50_+0027.29",
-      "lat": 30.5,
-      "lon": 27.2903,
-      "similarity_score": 54.53,
-      "distance_vs_flow_a_best": 1.718
+      "site_name": "PERSEUS_+024.38_+0031.42",
+      "region": "Barren",
+      "lat": 24.375,
+      "lon": 31.4177,
+      "similarity_score": 59.1,
+      "distance_vs_flow_a_best": 2.044
     },
     {
-      "site_name": "PERSEUS_+025.50_+0031.02",
-      "lat": 25.5,
-      "lon": 31.0154,
-      "similarity_score": 54.52,
-      "distance_vs_flow_a_best": 1.69
+      "site_name": "PERSEUS_+029.62_+0024.87",
+      "region": "Barren",
+      "lat": 29.625,
+      "lon": 24.8722,
+      "similarity_score": 59.01,
+      "distance_vs_flow_a_best": 2.105
     },
     {
-      "site_name": "PERSEUS_-029.50_+0120.77",
-      "lat": -29.5,
-      "lon": 120.7668,
-      "similarity_score": 54.48,
-      "distance_vs_flow_a_best": 1.676
+      "site_name": "PERSEUS_+009.62_+0049.82",
+      "region": "Barren",
+      "lat": 9.625,
+      "lon": 49.8169,
+      "similarity_score": 58.98,
+      "distance_vs_flow_a_best": 1.941
     },
     {
-      "site_name": "PERSEUS_-028.50_+0137.28",
-      "lat": -28.5,
-      "lon": 137.2785,
-      "similarity_score": 54.37,
-      "distance_vs_flow_a_best": 1.693
+      "site_name": "PERSEUS_+023.38_+0035.54",
+      "region": "Barren",
+      "lat": 23.375,
+      "lon": 35.5371,
+      "similarity_score": 58.82,
+      "distance_vs_flow_a_best": 2.087
     },
     {
-      "site_name": "PERSEUS_+044.50_+0058.83",
-      "lat": 44.5,
-      "lon": 58.8327,
-      "similarity_score": 54.23,
-      "distance_vs_flow_a_best": 1.768
+      "site_name": "PERSEUS_-028.38_+0137.24",
+      "region": "Barren",
+      "lat": -28.375,
+      "lon": 137.2376,
+      "similarity_score": 58.78,
+      "distance_vs_flow_a_best": 2.083
     },
     {
-      "site_name": "PERSEUS_+041.50_+0091.33",
-      "lat": 41.5,
-      "lon": 91.3333,
-      "similarity_score": 54.17,
-      "distance_vs_flow_a_best": 1.704
+      "site_name": "PERSEUS_+025.38_+0030.99",
+      "region": "Barren",
+      "lat": 25.375,
+      "lon": 30.9915,
+      "similarity_score": 58.75,
+      "distance_vs_flow_a_best": 2.067
     },
     {
-      "site_name": "PERSEUS_+045.50_+0065.00",
-      "lat": 45.5,
-      "lon": 65.0,
-      "similarity_score": 54.15,
-      "distance_vs_flow_a_best": 1.752
+      "site_name": "PERSEUS_+004.88_+0048.17",
+      "region": "Barren",
+      "lat": 4.875,
+      "lon": 48.1672,
+      "similarity_score": 58.48,
+      "distance_vs_flow_a_best": 1.983
     },
     {
-      "site_name": "PERSEUS_+042.50_+0052.98",
-      "lat": 42.5,
-      "lon": 52.9811,
-      "similarity_score": 54.13,
-      "distance_vs_flow_a_best": 1.788
+      "site_name": "PERSEUS_+026.12_+0031.18",
+      "region": "Barren",
+      "lat": 26.125,
+      "lon": 31.1833,
+      "similarity_score": 58.47,
+      "distance_vs_flow_a_best": 2.086
     },
     {
-      "site_name": "PERSEUS_+045.50_+0072.14",
-      "lat": 45.5,
-      "lon": 72.1429,
-      "similarity_score": 54.01,
-      "distance_vs_flow_a_best": 1.689
+      "site_name": "PERSEUS_+029.62_+0033.50",
+      "region": "Barren",
+      "lat": 29.625,
+      "lon": 33.4984,
+      "similarity_score": 58.41,
+      "distance_vs_flow_a_best": 2.181
     },
     {
-      "site_name": "PERSEUS_-031.50_+0136.03",
-      "lat": -31.5,
-      "lon": 136.0261,
-      "similarity_score": 53.77,
-      "distance_vs_flow_a_best": 1.76
+      "site_name": "PERSEUS_-027.88_+0015.84",
+      "region": "Barren",
+      "lat": -27.875,
+      "lon": 15.8366,
+      "similarity_score": 58.4,
+      "distance_vs_flow_a_best": 2.088
     },
     {
-      "site_name": "PERSEUS_+030.50_+0028.45",
-      "lat": 30.5,
-      "lon": 28.4516,
-      "similarity_score": 53.65,
-      "distance_vs_flow_a_best": 1.766
+      "site_name": "PERSEUS_+031.88_+0015.31",
+      "region": "Barren",
+      "lat": 31.875,
+      "lon": 15.3066,
+      "similarity_score": 58.35,
+      "distance_vs_flow_a_best": 2.103
     },
     {
-      "site_name": "PERSEUS_+032.50_+0068.09",
-      "lat": 32.5,
-      "lon": 68.0921,
-      "similarity_score": 53.56,
-      "distance_vs_flow_a_best": 1.746
+      "site_name": "PERSEUS_+045.38_+0053.54",
+      "region": "Barren",
+      "lat": 45.375,
+      "lon": 53.5375,
+      "similarity_score": 58.19,
+      "distance_vs_flow_a_best": 2.139
     },
     {
-      "site_name": "PERSEUS_+040.50_+0053.21",
-      "lat": 40.5,
-      "lon": 53.2117,
-      "similarity_score": 53.47,
-      "distance_vs_flow_a_best": 1.779
+      "site_name": "PERSEUS_+041.62_+0054.03",
+      "region": "Barren",
+      "lat": 41.625,
+      "lon": 54.0335,
+      "similarity_score": 58.18,
+      "distance_vs_flow_a_best": 2.133
     },
     {
-      "site_name": "PERSEUS_+040.50_+0063.72",
-      "lat": 40.5,
-      "lon": 63.7226,
-      "similarity_score": 53.36,
-      "distance_vs_flow_a_best": 1.786
+      "site_name": "PERSEUS_+025.88_+0028.75",
+      "region": "Barren",
+      "lat": 25.875,
+      "lon": 28.75,
+      "similarity_score": 58.1,
+      "distance_vs_flow_a_best": 2.141
     },
     {
-      "site_name": "PERSEUS_+026.50_+0029.63",
-      "lat": 26.5,
-      "lon": 29.6273,
-      "similarity_score": 53.3,
-      "distance_vs_flow_a_best": 1.758
+      "site_name": "PERSEUS_+024.62_+0031.35",
+      "region": "Barren",
+      "lat": 24.625,
+      "lon": 31.3522,
+      "similarity_score": 58.08,
+      "distance_vs_flow_a_best": 2.117
     },
     {
-      "site_name": "PERSEUS_+015.50_+0015.56",
-      "lat": 15.5,
-      "lon": 15.562,
-      "similarity_score": 53.3,
-      "distance_vs_flow_a_best": 1.685
+      "site_name": "PERSEUS_-028.38_+0137.52",
+      "region": "Barren",
+      "lat": -28.375,
+      "lon": 137.5217,
+      "similarity_score": 58.05,
+      "distance_vs_flow_a_best": 2.123
     }
   ],
   "Medusae_Fossae_&_Paleolakes_(Yardangs_&_Evaporites)": [
     {
-      "site_name": "PERSEUS_+032.50_+0060.99",
-      "lat": 32.5,
-      "lon": 60.9868,
-      "similarity_score": 61.66,
-      "distance_vs_flow_a_best": 1.463
+      "site_name": "PERSEUS_-021.88_+0014.15",
+      "region": "Barren",
+      "lat": -21.875,
+      "lon": 14.1467,
+      "similarity_score": 70.4,
+      "distance_vs_flow_a_best": 1.094
     },
     {
-      "site_name": "PERSEUS_+033.50_+0060.60",
-      "lat": 33.5,
-      "lon": 60.6,
-      "similarity_score": 60.55,
-      "distance_vs_flow_a_best": 1.559
+      "site_name": "PERSEUS_+026.12_+0051.23",
+      "region": "Barren",
+      "lat": 26.125,
+      "lon": 51.2297,
+      "similarity_score": 68.0,
+      "distance_vs_flow_a_best": 1.2
     },
     {
-      "site_name": "PERSEUS_+040.50_+0090.00",
-      "lat": 40.5,
-      "lon": 90.0,
-      "similarity_score": 58.98,
-      "distance_vs_flow_a_best": 1.7
+      "site_name": "PERSEUS_+018.88_+0057.05",
+      "region": "Barren",
+      "lat": 18.875,
+      "lon": 57.0506,
+      "similarity_score": 67.3,
+      "distance_vs_flow_a_best": 1.23
     },
     {
-      "site_name": "PERSEUS_+041.50_+0091.33",
-      "lat": 41.5,
-      "lon": 91.3333,
-      "similarity_score": 58.19,
-      "distance_vs_flow_a_best": 1.692
+      "site_name": "PERSEUS_+004.88_+0048.17",
+      "region": "Barren",
+      "lat": 4.875,
+      "lon": 48.1672,
+      "similarity_score": 67.27,
+      "distance_vs_flow_a_best": 1.247
     },
     {
-      "site_name": "PERSEUS_+033.50_+0061.80",
-      "lat": 33.5,
-      "lon": 61.8,
-      "similarity_score": 58.14,
-      "distance_vs_flow_a_best": 1.632
+      "site_name": "PERSEUS_+007.12_+0049.38",
+      "region": "Barren",
+      "lat": 7.125,
+      "lon": 49.3772,
+      "similarity_score": 67.16,
+      "distance_vs_flow_a_best": 1.253
     },
     {
-      "site_name": "PERSEUS_+031.50_+0060.98",
-      "lat": 31.5,
-      "lon": 60.9772,
-      "similarity_score": 58.07,
-      "distance_vs_flow_a_best": 1.637
+      "site_name": "PERSEUS_+028.12_+0035.01",
+      "region": "Barren",
+      "lat": 28.125,
+      "lon": 35.0079,
+      "similarity_score": 66.96,
+      "distance_vs_flow_a_best": 1.233
     },
     {
-      "site_name": "PERSEUS_+038.50_+0092.55",
-      "lat": 38.5,
-      "lon": 92.5532,
-      "similarity_score": 57.86,
-      "distance_vs_flow_a_best": 1.786
+      "site_name": "PERSEUS_+006.38_+0049.06",
+      "region": "Barren",
+      "lat": 6.375,
+      "lon": 49.0566,
+      "similarity_score": 66.59,
+      "distance_vs_flow_a_best": 1.317
     },
     {
-      "site_name": "PERSEUS_+041.50_+0052.67",
-      "lat": 41.5,
-      "lon": 52.6667,
-      "similarity_score": 57.38,
-      "distance_vs_flow_a_best": 1.799
+      "site_name": "PERSEUS_+031.62_+0061.52",
+      "region": "Barren",
+      "lat": 31.625,
+      "lon": 61.5171,
+      "similarity_score": 66.18,
+      "distance_vs_flow_a_best": 1.395
     },
     {
-      "site_name": "PERSEUS_+045.50_+0059.29",
-      "lat": 45.5,
-      "lon": 59.2857,
-      "similarity_score": 57.07,
-      "distance_vs_flow_a_best": 1.876
+      "site_name": "PERSEUS_+015.12_+0050.89",
+      "region": "Barren",
+      "lat": 15.125,
+      "lon": 50.8921,
+      "similarity_score": 66.1,
+      "distance_vs_flow_a_best": 1.307
     },
     {
-      "site_name": "PERSEUS_+039.50_+0088.70",
-      "lat": 39.5,
-      "lon": 88.705,
-      "similarity_score": 56.9,
-      "distance_vs_flow_a_best": 1.787
+      "site_name": "PERSEUS_+025.12_+0061.43",
+      "region": "Barren",
+      "lat": 25.125,
+      "lon": 61.4264,
+      "similarity_score": 65.8,
+      "distance_vs_flow_a_best": 1.287
     },
     {
-      "site_name": "PERSEUS_+034.50_+0061.82",
-      "lat": 34.5,
-      "lon": 61.8182,
-      "similarity_score": 56.43,
-      "distance_vs_flow_a_best": 1.79
+      "site_name": "PERSEUS_+027.88_+0035.35",
+      "region": "Barren",
+      "lat": 27.875,
+      "lon": 35.3496,
+      "similarity_score": 65.12,
+      "distance_vs_flow_a_best": 1.325
     },
     {
-      "site_name": "PERSEUS_+035.50_+0040.55",
-      "lat": 35.5,
-      "lon": 40.5461,
-      "similarity_score": 56.38,
-      "distance_vs_flow_a_best": 1.823
+      "site_name": "PERSEUS_+031.12_+0061.31",
+      "region": "Barren",
+      "lat": 31.125,
+      "lon": 61.3139,
+      "similarity_score": 64.81,
+      "distance_vs_flow_a_best": 1.464
     },
     {
-      "site_name": "PERSEUS_+044.50_+0093.85",
-      "lat": 44.5,
-      "lon": 93.8521,
-      "similarity_score": 56.29,
-      "distance_vs_flow_a_best": 1.795
+      "site_name": "PERSEUS_+031.88_+0061.23",
+      "region": "Barren",
+      "lat": 31.875,
+      "lon": 61.2265,
+      "similarity_score": 64.42,
+      "distance_vs_flow_a_best": 1.44
     },
     {
-      "site_name": "PERSEUS_+043.50_+0097.93",
-      "lat": 43.5,
-      "lon": 97.931,
-      "similarity_score": 56.06,
-      "distance_vs_flow_a_best": 1.898
+      "site_name": "PERSEUS_+031.38_+0061.51",
+      "region": "Barren",
+      "lat": 31.375,
+      "lon": 61.5134,
+      "similarity_score": 64.25,
+      "distance_vs_flow_a_best": 1.474
     },
     {
-      "site_name": "PERSEUS_+008.50_+0048.03",
-      "lat": 8.5,
-      "lon": 48.0337,
-      "similarity_score": 55.95,
-      "distance_vs_flow_a_best": 1.836
+      "site_name": "PERSEUS_+006.88_+0049.22",
+      "region": "Barren",
+      "lat": 6.875,
+      "lon": 49.2168,
+      "similarity_score": 63.5,
+      "distance_vs_flow_a_best": 1.577
     },
     {
-      "site_name": "PERSEUS_+034.50_+0054.55",
-      "lat": 34.5,
-      "lon": 54.5455,
-      "similarity_score": 55.52,
-      "distance_vs_flow_a_best": 1.818
+      "site_name": "PERSEUS_+031.12_+0061.61",
+      "region": "Barren",
+      "lat": 31.125,
+      "lon": 61.6058,
+      "similarity_score": 63.49,
+      "distance_vs_flow_a_best": 1.55
     },
     {
-      "site_name": "PERSEUS_+043.50_+0052.41",
-      "lat": 43.5,
-      "lon": 52.4138,
-      "similarity_score": 55.24,
-      "distance_vs_flow_a_best": 1.958
+      "site_name": "PERSEUS_+034.12_+0060.55",
+      "region": "Barren",
+      "lat": 34.125,
+      "lon": 60.5537,
+      "similarity_score": 63.46,
+      "distance_vs_flow_a_best": 1.505
     },
     {
-      "site_name": "PERSEUS_+034.50_+0055.76",
-      "lat": 34.5,
-      "lon": 55.7576,
-      "similarity_score": 54.92,
-      "distance_vs_flow_a_best": 1.836
+      "site_name": "PERSEUS_+033.12_+0061.04",
+      "region": "Barren",
+      "lat": 33.125,
+      "lon": 61.0448,
+      "similarity_score": 63.31,
+      "distance_vs_flow_a_best": 1.514
     },
     {
-      "site_name": "PERSEUS_+022.50_+0015.14",
-      "lat": 22.5,
-      "lon": 15.1351,
-      "similarity_score": 54.84,
-      "distance_vs_flow_a_best": 1.89
+      "site_name": "PERSEUS_+016.88_+0039.06",
+      "region": "Barren",
+      "lat": 16.875,
+      "lon": 39.0566,
+      "similarity_score": 63.11,
+      "distance_vs_flow_a_best": 1.438
     },
     {
-      "site_name": "PERSEUS_+043.50_+0100.69",
-      "lat": 43.5,
-      "lon": 100.6897,
-      "similarity_score": 54.75,
-      "distance_vs_flow_a_best": 1.921
+      "site_name": "PERSEUS_+010.38_+0044.62",
+      "region": "Barren",
+      "lat": 10.375,
+      "lon": 44.6186,
+      "similarity_score": 62.89,
+      "distance_vs_flow_a_best": 1.446
     },
     {
-      "site_name": "PERSEUS_+043.50_+0096.55",
-      "lat": 43.5,
-      "lon": 96.5517,
-      "similarity_score": 54.64,
-      "distance_vs_flow_a_best": 1.903
+      "site_name": "PERSEUS_+031.38_+0061.22",
+      "region": "Barren",
+      "lat": 31.375,
+      "lon": 61.2205,
+      "similarity_score": 62.8,
+      "distance_vs_flow_a_best": 1.548
     },
     {
-      "site_name": "PERSEUS_+025.50_+0031.02",
-      "lat": 25.5,
-      "lon": 31.0154,
-      "similarity_score": 54.59,
-      "distance_vs_flow_a_best": 1.934
+      "site_name": "PERSEUS_+032.88_+0060.74",
+      "region": "Barren",
+      "lat": 32.875,
+      "lon": 60.7444,
+      "similarity_score": 62.57,
+      "distance_vs_flow_a_best": 1.538
     },
     {
-      "site_name": "PERSEUS_+031.50_+0036.35",
-      "lat": 31.5,
-      "lon": 36.3518,
-      "similarity_score": 54.57,
-      "distance_vs_flow_a_best": 1.932
+      "site_name": "PERSEUS_+018.88_+0041.20",
+      "region": "Barren",
+      "lat": 18.875,
+      "lon": 41.2032,
+      "similarity_score": 62.43,
+      "distance_vs_flow_a_best": 1.488
     },
     {
-      "site_name": "PERSEUS_+031.50_+0062.15",
-      "lat": 31.5,
-      "lon": 62.1498,
-      "similarity_score": 54.55,
-      "distance_vs_flow_a_best": 1.85
+      "site_name": "PERSEUS_+033.62_+0061.55",
+      "region": "Barren",
+      "lat": 33.625,
+      "lon": 61.5513,
+      "similarity_score": 62.43,
+      "distance_vs_flow_a_best": 1.555
     },
     {
-      "site_name": "PERSEUS_+010.50_+0049.32",
-      "lat": 10.5,
-      "lon": 49.322,
-      "similarity_score": 54.5,
-      "distance_vs_flow_a_best": 1.918
+      "site_name": "PERSEUS_+030.88_+0061.31",
+      "region": "Barren",
+      "lat": 30.875,
+      "lon": 61.3107,
+      "similarity_score": 62.21,
+      "distance_vs_flow_a_best": 1.617
     }
   ]
 }
