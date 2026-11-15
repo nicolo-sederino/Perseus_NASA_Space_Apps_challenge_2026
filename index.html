@@ -3,15 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Perseus | SYBIL &amp; IRIS Planetary Analogue Discovery System</title>
+    <title>Team Perseus | Planetary Analogue Discovery System</title>
     <style>
-        /* Reset & Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.65;
@@ -167,7 +160,7 @@
             position: absolute;
             right: 0;
             top: calc(100% + 10px);
-            min-width: 285px;
+            min-width: 270px;
             background-color: #071326;
             border: 1px solid rgba(56, 189, 248, 0.35);
             border-radius: 10px;
@@ -229,6 +222,15 @@
             flex: 1;
         }
 
+        /* Allarga la vista della dashboard SYBIL nella sezione ML */
+        .sybil-wide-card {
+            width: 95vw;
+            max-width: 1480px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         .hero {
             background: linear-gradient(135deg, rgba(12, 36, 66, 0.84) 0%, rgba(7, 22, 46, 0.92) 100%);
             border: 1px solid rgba(56, 189, 248, 0.35);
@@ -251,12 +253,6 @@
             padding: 0.3rem 0.85rem;
             border-radius: 999px;
             margin-bottom: 1rem;
-        }
-
-        .badge-iris {
-            background-color: rgba(16, 185, 129, 0.15);
-            color: #6ee7b7;
-            border-color: rgba(16, 185, 129, 0.45);
         }
 
         h1 {
@@ -329,33 +325,6 @@
             color: #ffffff;
         }
 
-        /* Planetary Sub-Tabs inside SYBIL */
-        .subtab-bar {
-            display: flex;
-            gap: 0.75rem;
-            margin: 1.75rem 0 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .subtab-btn {
-            background: rgba(9, 22, 43, 0.9);
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            color: #bae6fd;
-            padding: 0.65rem 1.25rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .subtab-btn.active, .subtab-btn:hover {
-            background: rgba(2, 132, 199, 0.35);
-            border-color: #38bdf8;
-            color: #ffffff;
-            box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
-        }
-
         /* Grid & Cards */
         .grid {
             display: grid;
@@ -378,6 +347,10 @@
         .card:hover {
             transform: translateY(-3px);
             border-color: #38bdf8;
+        }
+
+        .sybil-wide-card:hover {
+            transform: translateX(-50%);
         }
 
         .card-link {
@@ -541,557 +514,562 @@
             h1 { font-size: 1.9rem; }
             .hero { padding: 2rem 1.4rem; }
             nav { flex-direction: column; gap: 0.75rem; }
-            .dropdown-menu { right: auto; left: 0; min-width: 250px; }
+            .dropdown-menu { right: auto; left: 0; min-width: 240px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a class="logo" onclick="switchSection('home')">TEAM <span>PERSEUS</span></a>
-            <ul class="nav-links">
-                <li><button onclick="switchSection('home')" id="nav-home" class="active">Home</button></li>
-                <li><button onclick="switchSection('sybil')" id="nav-sybil">SYBIL</button></li>
-                <li><button onclick="switchSection('iris')" id="nav-iris">IRIS</button></li>
-                <li><a href="https://github.com/nicolo-sederino/Perseus_NASA_Space_Apps_challenge_2026" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a></li>
-                <li class="dropdown" id="directoryDropdown">
-                    <button class="dropdown-toggle" id="dropdownToggle" aria-expanded="false">
-                        System Architecture <span class="arrow">&#9662;</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <button onclick="switchSection('home')" id="drop-home">
-                                Overview &amp; NASA Datasets
-                                <span>Mission Context &amp; Data Sources</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchSection('sybil')" id="drop-sybil">
-                                SYBIL &bull; Curated Catalog Engine
-                                <span>Moon (5 Targets) &amp; Mars (10 Targets)</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchSection('iris')" id="drop-iris">
-                                IRIS &bull; Global Discovery Engine
-                                <span>GEE Cloud Pipeline &amp; Interactive Map</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchSection('ml')" id="drop-ml">
-                                Core ML &amp; MATLAB Pipeline
-                                <span>SVD-PCA &bull; K-Means &bull; Multi-Test Finder</span>
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <a class="logo" onclick="switchSection('home')">TEAM <span>PERSEUS</span></a>
+        <ul class="nav-links">
+            <li><button onclick="switchSection('home')" id="nav-home" class="active">Home</button></li>
+            <li><a href="https://github.com/nicolo-sederino/Perseus_NASA_Space_Apps_challenge_2026" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a></li>
+            <li class="dropdown" id="directoryDropdown">
+                <button class="dropdown-toggle" id="dropdownToggle" aria-expanded="false">
+                    Project Directory <span class="arrow">&#9662;</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <button onclick="switchSection('home')" id="drop-home">
+                            Overview &amp; NASA Datasets
+                            <span>Home Page &amp; Mission Context</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="switchSection('lunar')" id="drop-lunar">
+                            Lunar Module (Flow A)
+                            <span>5 Targets &bull; 24 Features &bull; Google Earth</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="switchSection('flow-b')" id="drop-flow-b">
+                            Global Discovery (Flow B)
+                            <span>GEE Cloud-Native Pipeline &bull; Interactive Map</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="switchSection('mars')" id="drop-mars">
+                            Mars Module (Flow C)
+                            <span>10 Targets &bull; 15 Features &bull; Google Earth</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="switchSection('ml')" id="drop-ml">
+                            ML &amp; MATLAB Architecture
+                            <span>SYBIL AI Control Center &bull; SVD-PCA &bull; K-Means</span>
+                        </button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-    <main>
-        <!-- ==================== SECTION 1: HOME ==================== -->
-        <section id="section-home" class="page-section active-section">
-            <div class="hero">
-                <span class="badge">NASA Space Apps Challenge 2026</span>
-                <h1>Planetary Analogue Discovery System</h1>
-                <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> combining two coupled engines—<strong>SYBIL</strong> (curated multi-domain calibration) and <strong>IRIS</strong> (cloud-native global planetary analog discovery)—to identify high-fidelity terrestrial testbeds for permanent Lunar and Martian surface bases.</p>
-                <div class="btn-group">
-                    <button class="btn" onclick="switchSection('sybil')">Explore SYBIL (Moon &amp; Mars Catalogs) &rarr;</button>
-                    <button class="btn" onclick="switchSection('iris')">Explore IRIS (Global Discovery Map) &rarr;</button>
-                    <button class="btn btn-outline" onclick="switchSection('ml')">ML &amp; MATLAB Architecture &rarr;</button>
+<main>
+    <!-- ==================== SECTION 1: HOME ==================== -->
+    <section id="section-home" class="page-section active-section">
+        <div class="hero">
+            <span class="badge">NASA Space Apps Challenge 2026</span>
+            <h1>Planetary Analogue Discovery System</h1>
+            <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> to transform static location lists into a <strong>Task-Specific, Bidirectional Planetary Analogue Discovery System</strong> for permanent Lunar and Martian surface bases.</p>
+            <div class="btn-group">
+                <button class="btn" onclick="switchSection('lunar')">Lunar Module (Flow A) &rarr;</button>
+                <button class="btn" onclick="switchSection('flow-b')">Global Discovery (Flow B) &rarr;</button>
+                <button class="btn" onclick="switchSection('mars')">Mars Module (Flow C) &rarr;</button>
+                <button class="btn btn-outline" onclick="switchSection('ml')">SYBIL AI &amp; Code Architecture &rarr;</button>
+            </div>
+        </div>
+
+        <section>
+            <h2>About the Engineering Problem</h2>
+            <p>Selecting future landing sites and permanent surface bases on the Moon and Mars requires matching complex planetary constraints—topography, geology, thermophysics, radiation, and resource availability—with terrestrial testbeds. However, <strong>no single site on Earth is a universal planetary analogue</strong>:</p>
+            <div class="grid" style="margin-bottom: 1.5rem;">
+                <div class="card">
+                    <h3>Volcanic &amp; Geotechnical Fidelity</h3>
+                    <p>An environment ideal for rover traction on loose basaltic lapilli (e.g., <strong>Mount Etna</strong>) replicates slope stability and regolith abrasion, yet cannot simulate cryogenic temperatures or ultra-high vacuum.</p>
+                </div>
+                <div class="card">
+                    <h3>Hyperarid &amp; Radiative Fidelity</h3>
+                    <p>A hyperarid desert (e.g., <strong>Atacama Desert</strong>) replicates UV stress and low biomass for astrobiology, yet lacks permafrost or subsurface basaltic lava tubes.</p>
                 </div>
             </div>
-
-            <section>
-                <h2>About the Engineering Problem</h2>
-                <p>Selecting future landing sites and permanent surface bases on the Moon and Mars requires matching complex planetary constraints—topography, geology, thermophysics, radiation, and resource availability—with terrestrial testbeds. However, <strong>no single site on Earth is a universal planetary analogue</strong>:</p>
-                <div class="grid" style="margin-bottom: 1.5rem;">
-                    <div class="card">
-                        <h3>Volcanic &amp; Geotechnical Fidelity</h3>
-                        <p>An environment ideal for rover traction on loose basaltic lapilli (e.g., <strong>Mount Etna</strong>) replicates slope stability and regolith abrasion, yet cannot simulate cryogenic temperatures or ultra-high vacuum.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Hyperarid &amp; Radiative Fidelity</h3>
-                        <p>A hyperarid desert (e.g., <strong>Atacama Desert</strong>) replicates UV stress and low biomass for astrobiology, yet lacks permafrost or subsurface basaltic lava tubes.</p>
-                    </div>
-                </div>
-                <p><strong>Perseus</strong> bridges this gap by filtering and matching environments based on concrete operational objectives: <em>Rover Mobility &amp; Abrasion, Subsurface Lava-Tube Habitation, ISRU Water-Ice Extraction, High-Altitude Radiative Stress, and Astrobiology</em>.</p>
-            </section>
-
-            <section>
-                <h2>Engineering Thresholds &amp; Parameters</h2>
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <span class="metric-value">&le; 5&deg;</span>
-                        <span class="metric-label">Max Touchdown Slope (5m baseline)</span>
-                    </div>
-                    <div class="metric-box">
-                        <span class="metric-value">&lt; 0.3 m</span>
-                        <span class="metric-label">Critical Boulder Obstacle Limit</span>
-                    </div>
-                    <div class="metric-box">
-                        <span class="metric-value">1 – 3 km</span>
-                        <span class="metric-label">Plume Ejecta Safety Buffer</span>
-                    </div>
-                    <div class="metric-box">
-                        <span class="metric-value">&gt; 65–75%</span>
-                        <span class="metric-label">South Pole Solar Illumination</span>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>NASA &amp; Space Agency Partner Data Integration</h2>
-                <p>Our quantitative catalogs (<code>data/</code>) integrate open datasets and peer-reviewed retrievals from NASA and international Space Agency Partners:</p>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Domain</th>
-                                <th>Missions, Instruments &amp; Open Datasets</th>
-                                <th>Extracted Physical Parameters</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Moon</strong></td>
-                                <td><strong>NASA LRO</strong> (<em>Diviner, LOLA, LROC NAC, Mini-RF</em>), <strong>LCROSS</strong>, <strong>ISRO Chandrayaan-1</strong> (<em>M&sup3;</em>), <strong>JAXA Kaguya</strong> (<em>TC/MI</em>)</td>
-                                <td>Multiscale slopes (1 m / 5 m / 25 m), Hurst roughness, boulder size-frequency, PSR temperatures (&lt;110 K), thermal inertia, FeO/TiO<sub>2</sub> wt%, water-ice absorption bands, skylight geometry</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mars</strong></td>
-                                <td><strong>NASA MRO</strong> (<em>HiRISE, SHARAD</em>), <strong>MSL Curiosity</strong> (<em>REMS/RAD</em>), <strong>Phoenix</strong>, <strong>Mars Odyssey</strong>, <strong>NASA Mars Fact Sheet</strong></td>
-                                <td>Diurnal thermal swings, surface pressure cycles (~6.36 mbar), buried glacier ice fraction (&gt;80%) &amp; depth, perchlorate/sulfate/borate chemistry, regolith internal friction angle</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Earth &amp; Partners</strong></td>
-                                <td><strong>NASA</strong> (<em>Landsat TIRS, ECOSTRESS</em>), <strong>Copernicus DEM</strong>, <strong>ESA</strong> (<em>PANGAEA, LUNA, Etna, Lanzarote, Nusfjord</em>), <strong>CSA</strong> (<em>Haughton</em>), <strong>JAXA</strong> (<em>Miyake-jima</em>), <strong>CONAE</strong> (<em>Andean Salars</em>)</td>
-                                <td>Lava-tube morphometry, anorthositic/basaltic mineralogy, hyperarid evaporite crusts, wind yardang deflation, high-altitude UV radiative thinning</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section>
-                <h2>Core System Modules: SYBIL &amp; IRIS</h2>
-                <div class="grid">
-                    <div class="card">
-                        <div>
-                            <span class="badge">Engine 01 &bull; SYBIL</span>
-                            <h3>Curated Catalog &amp; Calibration Engine</h3>
-                            <p>Bidirectional matching engine evaluating <strong>5 Lunar targets</strong> (24 features vs. 23 Earth sites) and <strong>10 Martian targets</strong> (15 features vs. 25 Earth sites) with Domain-Adapted scaling and interactive Google Earth 3D views.</p>
-                        </div>
-                        <button class="card-link" onclick="switchSection('sybil')">Open SYBIL Module &rarr;</button>
-                    </div>
-
-                    <div class="card">
-                        <div>
-                            <span class="badge badge-iris">Engine 02 &bull; IRIS</span>
-                            <h3>Global Planetary Analog Discovery</h3>
-                            <p>Cloud-native Google Earth Engine pipeline scanning Earth&rsquo;s emerged landmass across 28 variables, excluding SYBIL sites within 50 km, and projecting novel candidates into SYBIL&rsquo;s SVD-PCA latent space.</p>
-                        </div>
-                        <button class="card-link" onclick="switchSection('iris')">Open IRIS Global Discovery &rarr;</button>
-                    </div>
-
-                    <div class="card">
-                        <div>
-                            <span class="badge">Engine 03 &bull; Computational Core</span>
-                            <h3>MATLAB ML &amp; Multi-Test Architecture</h3>
-                            <p>Built in MATLAB (<code>core_matlab/ProvaHackaton7.m</code>) with automated CSV feature intersection, <strong>SVD-PCA</strong>, <strong>K-Means</strong>, Multi-Test engineering filtering, and fidelity warnings.</p>
-                        </div>
-                        <button class="card-link" onclick="switchSection('ml')">Open Technical Architecture &rarr;</button>
-                    </div>
-                </div>
-            </section>
+            <p><strong>Perseus</strong> bridges this gap by filtering and matching environments based on concrete operational objectives: <em>Rover Mobility &amp; Abrasion, Subsurface Lava-Tube Habitation, ISRU Water-Ice Extraction, High-Altitude Radiative Stress, and Astrobiology</em>.</p>
         </section>
 
-        <!-- ==================== SECTION 2: SYBIL (MOON & MARS CATALOGS) ==================== -->
-        <section id="section-sybil" class="page-section">
-            <span class="badge">SYBIL &bull; Curated Catalog &amp; Bidirectional Matching Engine</span>
-            <h1>SYBIL: Lunar &amp; Martian Analogue Catalogs</h1>
-            <p><strong>SYBIL</strong> serves as Perseus&rsquo;s calibrated reference engine. By ingesting quantitative SI geomorphological, thermophysical, geotechnical, and geochemical catalogs, SYBIL performs bidirectional matching (<strong>Planet &harr; Earth</strong>) across both <strong>Lunar</strong> and <strong>Martian</strong> exploration targets and defines the reference latent space used by <strong>IRIS</strong>.</p>
-
-            <div class="subtab-bar">
-                <button class="subtab-btn active" id="btn-sybil-all" onclick="filterSybilDomain('all')">All Planetary Domains (Moon + Mars)</button>
-                <button class="subtab-btn" id="btn-sybil-moon" onclick="filterSybilDomain('moon')">Lunar Domain (5 Targets &bull; 24 Features)</button>
-                <button class="subtab-btn" id="btn-sybil-mars" onclick="filterSybilDomain('mars')">Martian Domain (10 Targets &bull; 15 Features)</button>
-            </div>
-
-            <!-- LUNAR SUBSECTION -->
-            <div id="sybil-moon-block">
-                <h2>Lunar Module: Landing Sites &amp; Permanent Bases</h2>
-                <p>Cross-references <strong>5 high-priority lunar exploration sites</strong> against <strong>23 terrestrial volcanic, polar, and impact environments</strong> across <strong>24 quantitative parameters</strong>.</p>
-
-                <div class="card" style="margin-bottom: 1.5rem; border-color: #38bdf8;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <h3>Explore SYBIL Lunar Targets on Google Earth 3D</h3>
-                            <p style="margin-bottom: 0;">Inspect 3D topography, craters, lava tube skylights, and coordinates of our 5 lunar targets paired with their closest terrestrial analogues.</p>
-                        </div>
-                        <a href="https://earth.google.com/earth/d/1DsQszjspXXG4ZXTwXqa_EM_18nI1BKvX?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Moon &nearr;</a>
-                    </div>
-                </div>
-
-                <div class="table-toolbar">
-                    <input type="text" class="search-input" placeholder="Filter lunar target or analogue..." onkeyup="filterTable('lunarTable', this.value)">
-                    <button class="btn btn-outline" onclick="exportTableToCSV('lunarTable', 'sybil_lunar_analogs.csv')">Download Lunar CSV &darr;</button>
-                </div>
-                <div class="table-container">
-                    <table id="lunarTable">
-                        <thead>
-                            <tr>
-                                <th>Lunar Target</th>
-                                <th>Mission Context</th>
-                                <th>Best SYBIL Terrestrial Analogue</th>
-                                <th>Coordinates</th>
-                                <th>Euclidean Dist.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Marius Hills Skylight</strong></td><td>Lava Tube / Volcanic Dome</td><td>Jingpo Lake Volcanic Field (China)</td><td>44.15&deg; N, 128.85&deg; E</td><td>4.213</td></tr>
-                            <tr><td><strong>Descartes Highlands</strong></td><td>Apollo 16 Pure Anorthosite Crust</td><td>Miyake-jima (Japan)</td><td>34.08&deg; N, 139.53&deg; E</td><td>4.550</td></tr>
-                            <tr><td><strong>Oceanus Procellarum</strong></td><td>Apollo 12 Basaltic Maria Plain</td><td>Askja Caldera (Iceland)</td><td>65.03&deg; N, 16.75&deg; W</td><td>5.994</td></tr>
-                            <tr><td><strong>Mare Tranquillitatis Pit</strong></td><td>Apollo 11 &amp; Subsurface Conduit</td><td>Black Point Lava Flow (USA)</td><td>35.68&deg; N, 111.33&deg; W</td><td>6.412</td></tr>
-                            <tr><td><strong>Shackleton Rim</strong></td><td>Artemis Base / South Pole</td><td>Antarctic Dry Valleys – McMurdo (Antarctica)</td><td>77.82&deg; S, 160.67&deg; E</td><td>7.309</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- MARS SUBSECTION -->
-            <div id="sybil-mars-block" style="margin-top: 3rem;">
-                <h2>Martian Module: Exploration &amp; Surface Analogues</h2>
-                <p>Evaluates <strong>10 diverse Martian geological targets</strong> against <strong>25 terrestrial analogue sites</strong> across <strong>15 quantitative features</strong>, applying <strong>Domain-Adapted Scaling</strong> to decouple extreme atmospheric pressure baselines (~6.36 mbar vs. 1013 mbar on Earth).</p>
-
-                <div class="card" style="margin-bottom: 1.5rem; border-color: #38bdf8;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <h3>Explore SYBIL Martian Targets on Google Earth 3D</h3>
-                            <p style="margin-bottom: 0;">Navigate across Tharsis shield volcanoes, glacial debris aprons, and Valles Marineris alongside their top terrestrial matches.</p>
-                        </div>
-                        <a href="https://earth.google.com/earth/d/13Q3qytAkaue5ByixkJnJAP0JT5mvkCCc?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Mars &nearr;</a>
-                    </div>
-                </div>
-
-                <div class="table-toolbar">
-                    <input type="text" class="search-input" placeholder="Filter Martian target, geology, or analogue..." onkeyup="filterTable('marsTable', this.value)">
-                    <button class="btn btn-outline" onclick="exportTableToCSV('marsTable', 'sybil_mars_analogs.csv')">Download Mars CSV &darr;</button>
-                </div>
-                <div class="table-container">
-                    <table id="marsTable">
-                        <thead>
-                            <tr>
-                                <th>Martian Target</th>
-                                <th>Geological Setting</th>
-                                <th>Best SYBIL Terrestrial Analogue</th>
-                                <th>Euclidean Dist.</th>
-                                <th>Cosine Sim.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Arsia Mons</strong></td><td>Tharsis Shield &amp; Collapse Pits</td><td>Mount Etna – Summit Craters (Italy)</td><td>1.146</td><td>0.9694</td></tr>
-                            <tr><td><strong>Pavonis Mons</strong></td><td>Equatorial Shield Volcano</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.355</td><td>0.9171</td></tr>
-                            <tr><td><strong>Elysium Mons &amp; Planitia</strong></td><td>Volcanic Lava Plains</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.369</td><td>0.9163</td></tr>
-                            <tr><td><strong>Ascraeus Mons</strong></td><td>Northern Tharsis Shield</td><td>Craters of the Moon (USA)</td><td>1.453</td><td>0.8291</td></tr>
-                            <tr><td><strong>Deuteronilus Mensae</strong></td><td>Lobate Debris Aprons (85% Ice)</td><td>Stenkul Fjord, Ellesmere Island (Canada)</td><td>1.711</td><td>0.9455</td></tr>
-                            <tr><td><strong>Medusae Fossae &amp; Paleolakes</strong></td><td>Yardangs &amp; Evaporites</td><td>Ustyurt Plateau (Kazakhstan / Uzbekistan)</td><td>2.323</td><td>0.7715</td></tr>
-                            <tr><td><strong>Valles Marineris</strong></td><td>Equatorial Rift &amp; Sulfate Beds</td><td>Makgadikgadi Basin (Botswana)</td><td>2.344</td><td>0.8517</td></tr>
-                            <tr><td><strong>Phlegra Montes</strong></td><td>Glacial Belts (Shallow 20m Ice)</td><td>Larsemann Hills (Antarctica)</td><td>2.355</td><td>0.6224</td></tr>
-                            <tr><td><strong>Olympus Mons</strong></td><td>Shield Volcano &amp; Basal Scarp</td><td>Llullaillaco Volcano Slopes (Chile / Argentina)</td><td>2.356</td><td>0.9551</td></tr>
-                            <tr><td><strong>Eastern Hellas Basin</strong></td><td>Southern Ice-Rich Aprons</td><td>Kilimanjaro Caldera &amp; Glaciers (Tanzania)</td><td>2.756</td><td>0.8796</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="btn-group" style="margin-top: 2.5rem;">
-                <button class="btn" onclick="switchSection('home')">&larr; Back to Home</button>
-                <button class="btn" onclick="switchSection('iris')">Next: IRIS Global Discovery &rarr;</button>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION 3: IRIS - GLOBAL DISCOVERY ==================== -->
-        <section id="section-iris" class="page-section">
-            <span class="badge badge-iris">IRIS &bull; Global Planetary Discovery Engine</span>
-            <h1>IRIS: Global Planetary Analog Discovery</h1>
-            <p><strong>IRIS (<code>IRIS_Flow_B/</code>)</strong> extends <strong>SYBIL</strong>&rsquo;s selection engine from a closed catalog of documented literature sites to an automated <strong>global planetary discovery system</strong>. Operating on <strong>Google Earth Engine (GEE)</strong> over a 4-year climatological window (<strong>2021&ndash;2024</strong>), the four-module Python pipeline (<code>perseus_common.py</code>, <code>gee_global_extract.py</code>, <code>run_flow_B_discovery.py</code>, and <code>generate_local_viewer.py</code>) scans Earth&rsquo;s emerged landmass, derives <strong>28 physical and geotechnical variables</strong> from NASA, ESA, and ECMWF missions (NASADEM, Copernicus GLO-30/CryoSat-2, Landsat 8 &amp; 9, MODIS Aqua, ERA5-Land, and OpenLandMap), and projects abiotic candidate cells into SYBIL&rsquo;s calibrated latent space to uncover novel Lunar and Martian analogues.</p>
-
-            <div class="grid" style="margin-bottom: 2rem;">
-                <div class="card">
-                    <div>
-                        <span class="badge badge-iris">01 &bull; Cascade Filtering</span>
-                        <h3>4-Barrier Global Screening</h3>
-                        <p>Starts from an equal-area global grid (<code>0.25&deg;</code> step, ~656k cells), excludes known <strong>SYBIL</strong> sites within a <strong>50 km Haversine radius</strong>, masks vegetated and urban areas at 1 km (<code>MODIS NDVI &lt; 0.20</code>), enforces strict 30 m abiotic thresholds (<code>Landsat NDVI &lt; 0.15</code>), and flags <strong>Lander</strong> (slope &le; 5&deg;) and <strong>Rover</strong> (traverse slope &le; 12&deg;) suitability.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <span class="badge badge-iris">02 &bull; Latent Space &amp; Score</span>
-                        <h3>SVD-PCA &amp; Hybrid Scoring</h3>
-                        <p>Aligns <strong>13 shared orbital features</strong> with SYBIL&rsquo;s MATLAB calibration matrix via Z-Score / Domain-Adapted standardization, projects candidates onto <strong>SVD-PCA axes</strong> (&ge; 95% variance) with <strong>K-Means (K = 3)</strong> geological archetypes, and computes <strong>Score<sub>IRIS</sub></strong> blending exponential latent distance (75%) and 4-axis Radar Sub-Scores (25%).</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <span class="badge badge-iris">03 &bull; Diagnostic Criterion</span>
-                        <h3>Novel Analogue Discovery</h3>
-                        <p>Evaluates the diagnostic ratio <code>d / d_best,SYBIL &lt; 1.0</code> to isolate newly discovered terrestrial terrains closer to a Lunar or Martian target than the best documented analog in SYBIL, exporting Top-25 ranked GeoJSON layers and the interactive viewer below.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>IRIS Interactive Global Discovery Viewer</h2>
-            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <h3>Explore Newly Discovered Planetary Analog Sites</h3>
-                        <p style="margin-bottom: 0;">Interactive Leaflet map displaying IRIS global candidates across all <strong>5 Lunar</strong> and <strong>10 Martian targets</strong>, multi-sensor reductions (Landsat, MODIS, NASADEM, ERA5-Land), and K-Means archetypes.</p>
-                    </div>
-                    <a href="results/perseus_local_viewer.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Open Fullscreen Map &nearr;</a>
-                </div>
-                
-                <div class="map-container" style="margin-top: 20px; border-radius: 8px; overflow: hidden; border: 1px solid #334155;">
-                    <iframe src="results/perseus_local_viewer.html" title="IRIS Global Discovery Viewer" width="100%" height="750px" style="border: none; display: block;"></iframe>
-                </div>
-            </div>
-
-            <div class="btn-group" style="margin-top: 2.5rem;">
-                <button class="btn" onclick="switchSection('sybil')">&larr; Previous: SYBIL Catalogs</button>
-                <button class="btn" onclick="switchSection('ml')">Next: ML &amp; MATLAB Architecture &rarr;</button>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION 4: ML & ARCHITECTURE ==================== -->
-        <section id="section-ml" class="page-section">
-            <span class="badge">Computational Core &bull; SYBIL &amp; IRIS Mathematical Pipeline</span>
-            <h1>ML &amp; MATLAB Architecture</h1>
-            <p>Our core computational engine (<code>core_matlab/ProvaHackaton7.m</code>) powers <strong>SYBIL</strong> and calibrates the latent space used by <strong>IRIS</strong>, ingesting 4 agnostic CSV catalogs (<code>Lunar_Targets_Catalog.csv</code>, <code>Earth_Lunar_Analogs_Catalog.csv</code>, <code>Mars_Targets_Catalog.csv</code>, <code>Earth_Mars_Analogs_Catalog.csv</code>) with zero hardcoded feature matrices.</p>
-
+        <section>
+            <h2>Engineering Thresholds &amp; Parameters</h2>
             <div class="metrics-grid">
                 <div class="metric-box">
-                    <span class="metric-value">4 CSVs</span>
-                    <span class="metric-label">SYBIL Planetary &amp; Earth Catalogs</span>
+                    <span class="metric-value">&le; 5&deg;</span>
+                    <span class="metric-label">Max Touchdown Slope (5m baseline)</span>
                 </div>
                 <div class="metric-box">
-                    <span class="metric-value">SVD-PCA</span>
-                    <span class="metric-label">Shared Cubic Latent Space</span>
+                    <span class="metric-value">&lt; 0.3 m</span>
+                    <span class="metric-label">Critical Boulder Obstacle Limit</span>
                 </div>
                 <div class="metric-box">
-                    <span class="metric-value">K-Means</span>
-                    <span class="metric-label">Unsupervised Geological Regimes</span>
+                    <span class="metric-value">1 – 3 km</span>
+                    <span class="metric-label">Plume Ejecta Safety Buffer</span>
                 </div>
                 <div class="metric-box">
-                    <span class="metric-value">Bidirectional</span>
-                    <span class="metric-label">Planet &harr; Earth Dual-Metric Matching</span>
+                    <span class="metric-value">&gt; 65–75%</span>
+                    <span class="metric-label">South Pole Solar Illumination</span>
                 </div>
-            </div>
-
-            <div class="warning-box">
-                <h3>Engineering Fidelity &amp; Limitation Warnings</h3>
-                <p>Every analogue match automatically flags unsimulated planetary environmental gaps—including reduced surface gravity (<strong>1/6g</strong> on the Moon, <strong>0.38g</strong> on Mars), ultra-high vacuum, and galactic cosmic radiation—guiding mission planners on when to pair field analog campaigns with cryogenic vacuum chambers or regolith simulants.</p>
-            </div>
-
-            <h2>How the Coupled SYBIL &ndash; IRIS Architecture Works</h2>
-            <div class="grid" style="margin-bottom: 2rem;">
-                <div class="card">
-                    <div>
-                        <span class="badge">01 &bull; SYBIL Calibration</span>
-                        <h3>Domain-Adapted Harmonization</h3>
-                        <p>Using <code>intersect(..., 'stable')</code> and <code>setdiff</code>, MATLAB isolates qualitative metadata and aligns shared numerical parameters (<strong>24 features for the Moon</strong>, <strong>15 for Mars</strong>). For Mars, domain-adapted scaling decouples barometric baselines (~6.36 mbar vs. 1013 mbar) so atmospheric pressure does not mask surface geology.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <span class="badge">02 &bull; Bidirectional Matching</span>
-                        <h3>Dual-Metric Latent Space</h3>
-                        <p>Computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> in full PCA space: matching target landing sites to their closest Earth testbed (Planet &rarr; Earth) and mapping terrestrial locations back to their extraterrestrial equivalents (Earth &rarr; Planet).</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <span class="badge badge-iris">03 &bull; IRIS Projection</span>
-                        <h3>Global Out-of-Sample Scoring</h3>
-                        <p><strong>IRIS</strong> standardizes global remote-sensing cells using SYBIL&rsquo;s exact calibration parameters (<code>&mu;, &sigma;</code>) and projects them onto SYBIL&rsquo;s right singular vectors (<code>V</code>), guaranteeing strict mathematical parity between literature analogs and newly discovered sites.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Multi-Test Engineering Site Finder (Part III)</h2>
-            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
-                <h3>Interactive Mission-Constraint Filtering</h3>
-                <p>Beyond global similarity, SYBIL includes an interactive command-line engine that filters terrestrial sites against strict engineering thresholds—supporting both single-role and combined <strong>Multi-Test</strong> mission scenarios (with automatic Best-Fit ranking when constraints conflict):</p>
-                <div class="grid" style="margin-top: 0.75rem;">
-                    <div>
-                        <p style="margin-bottom: 0.4rem;"><strong>Lunar Mission Filters (6 Modes):</strong></p>
-                        <p style="font-size: 0.92rem;">&bull; <strong>Touchdown / EDL:</strong> Safe area &ge; 200k m&sup2;, 5m slope &le; 5&deg;, boulders &le; 0.35 m, bearing capacity &ge; 5 kPa.<br>
-                        &bull; <strong>Rover Mobility:</strong> Traverse slope &le; 8&deg;, cohesion &ge; 0.44 kPa, thermal inertia &ge; 200.<br>
-                        &bull; <strong>Permanent Base &amp; Habitats:</strong> 25m slope &le; 4.6&deg;, solar visibility &ge; 70%, DTE &ge; 90%, plume separation &ge; 2 km.<br>
-                        &bull; <strong>Lava Tubes (EVA) &amp; ISRU:</strong> Pit depth &ge; 20 m, diameter &ge; 35 m, FeO/TiO&sub2; or water-ice content.</p>
-                    </div>
-                    <div>
-                        <p style="margin-bottom: 0.4rem;"><strong>Martian Mission Filters (7 Modes):</strong></p>
-                        <p style="font-size: 0.92rem;">&bull; <strong>EDL &amp; Surface Base:</strong> Safe area &ge; 500k m&sup2;, slope &le; 5&deg;&ndash;10&deg;, thermal inertia &ge; 180, albedo &le; 0.26.<br>
-                        &bull; <strong>UAV / Drone Flight:</strong> High-altitude thin-air analogs (&ge; 2,500 m elevation, wind &le; 10 m/s).<br>
-                        &bull; <strong>Extreme EVA &amp; ISRU:</strong> Hyper-arid cryogenic sites (T<sub>min</sub> &le; 255 K, RH &le; 15%) and subsurface permafrost/hydrated sulfates.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Core MATLAB Implementation Snippet</h2>
-            <div class="step-card" style="overflow-x: auto;">
-                <p style="margin-bottom: 0.6rem; font-size: 0.9rem; color: #7dd3fc;"><strong>Excerpt from <code>core_matlab/ProvaHackaton7.m</code> &mdash; SYBIL Feature Alignment &amp; SVD-PCA Calibration:</strong></p>
-<pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; line-height: 1.5; color: #e0f2fe;"><code>% 1. Dynamic quantitative feature intersection (zero hardcoded matrices)
-lunar_feats = intersect(T_moon.Properties.VariableNames, T_earth.Properties.VariableNames, 'stable');
-lunar_feats = setdiff(lunar_feats, meta_cols, 'stable');
-
-X_Moon  = table2array(T_moon(:, lunar_feats));
-X_Earth = table2array(T_earth(:, lunar_feats));
-
-% 2. Z-Score Standardization &amp; SVD Principal Component Analysis
-all_data = [X_Earth; X_Moon];
-mu = mean(all_data, 1);
-sigma = std(all_data, 0, 1); sigma(sigma == 0) = 1e-5;
-all_data_norm = (all_data - mu) ./ sigma;
-
-[~, S, V] = svd(all_data_norm - mean(all_data_norm, 1), 'econ');
-score_all = all_data_norm * V;</code></pre>
-            </div>
-
-            <div class="btn-group" style="margin-top: 2.5rem;">
-                <button class="btn" onclick="switchSection('iris')">&larr; Previous: IRIS Global Discovery</button>
-                <button class="btn" onclick="switchSection('home')">Back to Overview &rarr;</button>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project &bull; Sapienza University of Rome &amp; Roma Tre University.</p>
-    </footer>
+        <section>
+            <h2>NASA &amp; Space Agency Partner Data Integration</h2>
+            <p>Our quantitative catalogs (<code>data/</code>) integrate open datasets and peer-reviewed retrievals from NASA and international Space Agency Partners:</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Domain</th>
+                            <th>Missions, Instruments &amp; Open Datasets</th>
+                            <th>Extracted Physical Parameters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Moon</strong></td>
+                            <td><strong>NASA LRO</strong> (<em>Diviner, LOLA, LROC NAC, Mini-RF</em>), <strong>LCROSS</strong>, <strong>ISRO Chandrayaan-1</strong> (<em>M&sup3;</em>), <strong>JAXA Kaguya</strong> (<em>TC/MI</em>)</td>
+                            <td>Multiscale slopes (1 m / 5 m / 25 m), Hurst roughness, boulder size-frequency, PSR temperatures (&lt;110 K), thermal inertia, FeO/TiO<sub>2</sub> wt%, water-ice absorption bands, skylight geometry</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mars</strong></td>
+                            <td><strong>NASA MRO</strong> (<em>HiRISE, SHARAD</em>), <strong>MSL Curiosity</strong> (<em>REMS/RAD</em>), <strong>Phoenix</strong>, <strong>Mars Odyssey</strong>, <strong>NASA Mars Fact Sheet</strong></td>
+                            <td>Diurnal thermal swings, surface pressure cycles (~6.36 mbar), buried glacier ice fraction (&gt;80%) &amp; depth, perchlorate/sulfate/borate chemistry, regolith internal friction angle</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Earth &amp; Partners</strong></td>
+                            <td><strong>NASA</strong> (<em>Landsat TIRS, ECOSTRESS</em>), <strong>Copernicus DEM</strong>, <strong>ESA</strong> (<em>PANGAEA, LUNA, Etna, Lanzarote, Nusfjord</em>), <strong>CSA</strong> (<em>Haughton</em>), <strong>JAXA</strong> (<em>Miyake-jima</em>), <strong>CONAE</strong> (<em>Andean Salars</em>)</td>
+                            <td>Lava-tube morphometry, anorthositic/basaltic mineralogy, hyperarid evaporite crusts, wind yardang deflation, high-altitude UV radiative thinning</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-    <script>
-        function switchSection(sectionId, updateHash = true) {
-            const target = document.getElementById('section-' + sectionId);
-            if (!target) sectionId = 'home';
+        <section>
+            <h2>Implemented Project Modules</h2>
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <span class="badge">Module 01 &bull; Flow A</span>
+                        <h3>Lunar Analogue Discovery</h3>
+                        <p>Evaluates <strong>5 key lunar targets</strong> against <strong>23 terrestrial sites</strong> across <strong>24 quantitative geophysical, thermal, and regolith parameters</strong>.</p>
+                    </div>
+                    <button class="card-link" onclick="switchSection('lunar')">Open Lunar Module &rarr;</button>
+                </div>
 
-            document.querySelectorAll('.page-section').forEach(sec => {
-                sec.classList.remove('active-section');
-            });
+                <div class="card">
+                    <div>
+                        <span class="badge">Module 02 &bull; Flow B</span>
+                        <h3>Global Planetary Discovery</h3>
+                        <p>Cloud-native scale pipeline using Google Earth Engine to discover novel uncatalogued analogue sites with 50 km Haversine spatial exclusion filters.</p>
+                    </div>
+                    <button class="card-link" onclick="switchSection('flow-b')">Open Global Discovery &rarr;</button>
+                </div>
 
-            document.getElementById('section-' + sectionId).classList.add('active-section');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                <div class="card">
+                    <div>
+                        <span class="badge">Module 03 &bull; Flow C</span>
+                        <h3>Mars Analogue Discovery</h3>
+                        <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong>, Domain-Adapted scaling, and Cosine Similarity.</p>
+                    </div>
+                    <button class="card-link" onclick="switchSection('mars')">Open Mars Module &rarr;</button>
+                </div>
 
-            if (updateHash && window.location.hash !== '#' + sectionId) {
-                history.pushState(null, '', '#' + sectionId);
-            }
+                <div class="card">
+                    <div>
+                        <span class="badge">Module 04 &bull; Core Engine</span>
+                        <h3>SYBIL AI Control Center</h3>
+                        <p>Interactive web dashboard &amp; MATLAB engine (<code>core_matlab/ProvaHackaton7.m</code>) with <strong>SVD-PCA</strong>, <strong>K-Means</strong>, and Multi-Test mission filtering.</p>
+                    </div>
+                    <button class="card-link" onclick="switchSection('ml')">Open SYBIL AI Control Center &rarr;</button>
+                </div>
+            </div>
+        </section>
+    </section>
 
-            // Close dropdown if open
-            const dropdown = document.getElementById('directoryDropdown');
-            const toggleBtn = document.getElementById('dropdownToggle');
-            if (dropdown && toggleBtn) {
-                dropdown.classList.remove('open');
-                toggleBtn.setAttribute('aria-expanded', 'false');
-            }
+    <!-- ==================== SECTION 2: LUNAR MODULE ==================== -->
+    <section id="section-lunar" class="page-section">
+        <span class="badge">Flow A &bull; 24 Quantitative Features</span>
+        <h1>Lunar Landing Sites &amp; Permanent Bases</h1>
+        <p>Our Lunar Module cross-references <strong>5 high-priority lunar exploration sites</strong> against a curated database of <strong>23 terrestrial volcanic, polar, and impact environments</strong> using 24 quantitative parameters.</p>
 
-            // Update active state on navigation buttons
-            document.querySelectorAll('.nav-links button, .dropdown-menu button').forEach(btn => btn.classList.remove('active'));
-            const activeNav = document.getElementById('nav-' + sectionId);
-            const activeDrop = document.getElementById('drop-' + sectionId);
-            if (activeNav) activeNav.classList.add('active');
-            if (activeDrop) activeDrop.classList.add('active');
-        }
+        <h2>Interactive 3D Map: Moon &amp; Earth Analogues</h2>
+        <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+            <h3>Explore the Lunar Targets on Google Earth</h3>
+            <p>Inspect the 3D topography, craters, lava tube skylights, and coordinates of our 5 lunar targets paired with their best terrestrial analogues.</p>
+            <div class="btn-group" style="margin-top: 0.75rem;">
+                <a href="https://earth.google.com/earth/d/1DsQszjspXXG4ZXTwXqa_EM_18nI1BKvX?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Moon Project &nearr;</a>
+            </div>
+        </div>
 
-        // Filter Moon / Mars blocks inside SYBIL
-        function filterSybilDomain(domain) {
-            const moonBlock = document.getElementById('sybil-moon-block');
-            const marsBlock = document.getElementById('sybil-mars-block');
+        <h2>Best Terrestrial Matches (Flow A Output)</h2>
+        <div class="table-toolbar">
+            <input type="text" class="search-input" placeholder="Filter lunar target or analogue..." onkeyup="filterTable('lunarTable', this.value)">
+            <button class="btn btn-outline" onclick="exportTableToCSV('lunarTable', 'perseus_lunar_analogs.csv')">Download CSV &darr;</button>
+        </div>
+        <div class="table-container">
+            <table id="lunarTable">
+                <thead>
+                    <tr>
+                        <th>Lunar Target</th>
+                        <th>Mission Context</th>
+                        <th>Best Terrestrial Analogue</th>
+                        <th>Coordinates</th>
+                        <th>Euclidean Dist.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Marius Hills Skylight</strong></td><td>Lava Tube / Volcanic Dome</td><td>Jingpo Lake Volcanic Field (China)</td><td>44.15&deg; N, 128.85&deg; E</td><td>4.213</td></tr>
+                    <tr><td><strong>Descartes Highlands</strong></td><td>Apollo 16 Pure Anorthosite Crust</td><td>Miyake-jima (Japan)</td><td>34.08&deg; N, 139.53&deg; E</td><td>4.550</td></tr>
+                    <tr><td><strong>Oceanus Procellarum</strong></td><td>Apollo 12 Basaltic Maria Plain</td><td>Askja Caldera (Iceland)</td><td>65.03&deg; N, 16.75&deg; W</td><td>5.994</td></tr>
+                    <tr><td><strong>Mare Tranquillitatis Pit</strong></td><td>Apollo 11 &amp; Subsurface Conduit</td><td>Black Point Lava Flow (USA)</td><td>35.68&deg; N, 111.33&deg; W</td><td>6.412</td></tr>
+                    <tr><td><strong>Shackleton Rim</strong></td><td>Artemis Base / South Pole</td><td>Antarctic Dry Valleys – McMurdo (Antarctica)</td><td>77.82&deg; S, 160.67&deg; E</td><td>7.309</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-            document.querySelectorAll('.subtab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-sybil-' + domain).classList.add('active');
+        <div class="btn-group" style="margin-top: 2.5rem;">
+            <button class="btn" onclick="switchSection('home')">&larr; Back to Home</button>
+            <button class="btn" onclick="switchSection('flow-b')">Next: Global Discovery (Flow B) &rarr;</button>
+        </div>
+    </section>
 
-            if (domain === 'all') {
-                moonBlock.style.display = 'block';
-                marsBlock.style.display = 'block';
-                marsBlock.style.marginTop = '3rem';
-            } else if (domain === 'moon') {
-                moonBlock.style.display = 'block';
-                marsBlock.style.display = 'none';
-            } else if (domain === 'mars') {
-                moonBlock.style.display = 'none';
-                marsBlock.style.display = 'block';
-                marsBlock.style.marginTop = '0';
-            }
-        }
+    <!-- ==================== SECTION 3: FLOW B - GLOBAL DISCOVERY ==================== -->
+    <section id="section-flow-b" class="page-section">
+        <span class="badge">Flow B &bull; Global Planetary Discovery Engine</span>
+        <h1>Global Planetary Analog Discovery</h1>
+        <p><strong>Flow B (<code>flow_B_global_discovery</code>)</strong> extends Flow A&rsquo;s selection engine from a closed catalog of documented literature sites to an automated <strong>global planetary discovery system</strong>. Operating on <strong>Google Earth Engine (GEE)</strong> over a 4-year climatological window (<strong>2021&ndash;2024</strong>), the four-module Python pipeline (<code>perseus_common.py</code>, <code>gee_global_extract.py</code>, <code>run_flow_B_discovery.py</code>, and <code>generate_local_viewer.py</code>) scans Earth&rsquo;s emerged landmass, derives <strong>28 physical and geotechnical variables</strong> from NASA, ESA, and ECMWF missions (NASADEM, Copernicus GLO-30/CryoSat-2, Landsat 8 &amp; 9, MODIS Aqua, ERA5-Land, and OpenLandMap), and projects abiotic candidate cells into Flow A&rsquo;s calibrated latent space to uncover novel Lunar and Martian analogues.</p>
 
-        // Live table search filter
-        function filterTable(tableId, query) {
-            const filter = query.toLowerCase();
-            const rows = document.querySelectorAll(`#${tableId} tbody tr`);
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(filter) ? '' : 'none';
-            });
-        }
+        <div class="grid" style="margin-bottom: 2rem;">
+            <div class="card">
+                <div>
+                    <span class="badge">01 &bull; Cascade Filtering</span>
+                    <h3>4-Barrier Global Screening</h3>
+                    <p>Starts from an equal-area global grid (<code>0.25&deg;</code> step, ~656k cells), excludes known Flow A sites within a <strong>50 km Haversine radius</strong>, masks vegetated and urban areas at 1 km (<code>MODIS NDVI &lt; 0.20</code>), enforces strict 30 m abiotic thresholds (<code>Landsat NDVI &lt; 0.15</code>), and flags <strong>Lander</strong> (slope &le; 5&deg;) and <strong>Rover</strong> (traverse slope &le; 12&deg;) suitability.</p>
+                </div>
+            </div>
 
-        // Export HTML table to CSV
-        function exportTableToCSV(tableId, filename) {
-            const rows = document.querySelectorAll(`#${tableId} tr`);
-            const csv = [];
-            rows.forEach(row => {
-                if (row.style.display === 'none') return;
-                const cols = row.querySelectorAll('th, td');
-                const rowData = Array.from(cols).map(col => `"${col.innerText.replace(/"/g, '""').trim()}"`);
-                csv.push(rowData.join(','));
-            });
-            const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = filename;
-            link.click();
-        }
+            <div class="card">
+                <div>
+                    <span class="badge">02 &bull; Latent Space</span>
+                    <h3>SVD-PCA &amp; Hybrid Scoring</h3>
+                    <p>Aligns <strong>13 shared orbital features</strong> with Flow A&rsquo;s MATLAB core via Z-Score / Domain-Adapted standardization, projects candidates onto <strong>SVD-PCA axes</strong> (~95% variance) with <strong>K-Means (K = 3)</strong> geological archetypes, and computes a hybrid score combining exponential PCA distance (75%) and 4-axis Radar similarity (25%).</p>
+                </div>
+            </div>
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const initialHash = window.location.hash.replace('#', '');
-            if (initialHash) {
-                switchSection(initialHash, false);
-            }
+            <div class="card">
+                <div>
+                    <span class="badge">03 &bull; Data Products</span>
+                    <h3>GIS &amp; Web Telemetry</h3>
+                    <p>Exports ranked Top-25 targets and full heatmaps for all <strong>5 Lunar</strong> and <strong>10 Martian targets</strong> as RFC 7946 <code>.geojson</code> layers, parity audit reports, and the standalone interactive Leaflet map below (<code>perseus_local_viewer.html</code>).</p>
+                </div>
+            </div>
+        </div>
 
-            window.addEventListener('popstate', () => {
-                const hash = window.location.hash.replace('#', '') || 'home';
-                switchSection(hash, false);
-            });
+        <h2>Interactive Global Discovery Viewer</h2>
+        <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h3>Explore New Planetary Analog Sites</h3>
+                    <p style="margin-bottom: 0;">Interactive Leaflet map illustrating planetary telemetry clustering, multi-sensor reductions (Landsat, MODIS, NASADEM, ERA5-Land), and K-Means archetypes (K = 3).</p>
+                </div>
+                <a href="results/perseus_local_viewer.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Open Fullscreen Map &nearr;</a>
+            </div>
+            
+            <div class="map-container" style="margin-top: 20px; border-radius: 8px; overflow: hidden; border: 1px solid #334155;">
+                <iframe src="results/perseus_local_viewer.html" title="Perseus Global Discovery Viewer" width="100%" height="750px" style="border: none; display: block;"></iframe>
+            </div>
+        </div>
 
-            const dropdown = document.getElementById("directoryDropdown");
-            const toggleBtn = document.getElementById("dropdownToggle");
+        <div class="btn-group" style="margin-top: 2.5rem;">
+            <button class="btn" onclick="switchSection('lunar')">&larr; Previous: Lunar Module</button>
+            <button class="btn" onclick="switchSection('mars')">Next: Mars Module (Flow C) &rarr;</button>
+        </div>
+    </section>
 
-            if (dropdown && toggleBtn) {
-                toggleBtn.addEventListener("click", (event) => {
-                    event.stopPropagation();
-                    const isOpen = dropdown.classList.toggle("open");
-                    toggleBtn.setAttribute("aria-expanded", isOpen);
-                });
+    <!-- ==================== SECTION 4: MARS MODULE ==================== -->
+    <section id="section-mars" class="page-section">
+        <span class="badge">Flow C &bull; 15 Quantitative Features &bull; Domain-Adapted Scaling</span>
+        <h1>Martian Exploration &amp; Analogue Discovery</h1>
+        <p>Extending our discovery engine to Mars, <strong>Flow C</strong> evaluates <strong>10 diverse Martian geological targets</strong> against <strong>25 terrestrial analogue sites</strong> across <strong>15 quantitative features</strong>, utilizing domain-adapted scaling to decouple extreme atmospheric pressure baselines (~6.36 mbar vs. 1013 mbar on Earth).</p>
 
-                document.addEventListener("click", (event) => {
-                    if (!dropdown.contains(event.target)) {
-                        dropdown.classList.remove("open");
-                        toggleBtn.setAttribute("aria-expanded", "false");
-                    }
-                });
+        <h2>Interactive 3D Map: Mars &amp; Earth Analogues</h2>
+        <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+            <h3>Explore the Martian Targets on Google Earth</h3>
+            <p>Navigate across Tharsis shield volcanoes, glacial debris aprons, and Valles Marineris alongside their top terrestrial matches.</p>
+            <div class="btn-group" style="margin-top: 0.75rem;">
+                <a href="https://earth.google.com/earth/d/13Q3qytAkaue5ByixkJnJAP0JT5mvkCCc?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Mars Project &nearr;</a>
+            </div>
+        </div>
 
-                document.addEventListener("keydown", (event) => {
-                    if (event.key === "Escape") {
-                        dropdown.classList.remove("open");
-                        toggleBtn.setAttribute("aria-expanded", "false");
-                    }
-                });
-            }
+        <h2>Best Terrestrial Matches (Flow C Output)</h2>
+        <div class="table-toolbar">
+            <input type="text" class="search-input" placeholder="Filter Martian target, geology, or analogue..." onkeyup="filterTable('marsTable', this.value)">
+            <button class="btn btn-outline" onclick="exportTableToCSV('marsTable', 'perseus_mars_analogs.csv')">Download CSV &darr;</button>
+        </div>
+        <div class="table-container">
+            <table id="marsTable">
+                <thead>
+                    <tr>
+                        <th>Martian Target</th>
+                        <th>Geological Setting</th>
+                        <th>Best Terrestrial Analogue</th>
+                        <th>Euclidean Dist.</th>
+                        <th>Cosine Sim.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Arsia Mons</strong></td><td>Tharsis Shield &amp; Collapse Pits</td><td>Mount Etna – Summit Craters (Italy)</td><td>1.146</td><td>0.9694</td></tr>
+                    <tr><td><strong>Pavonis Mons</strong></td><td>Equatorial Shield Volcano</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.355</td><td>0.9171</td></tr>
+                    <tr><td><strong>Elysium Mons &amp; Planitia</strong></td><td>Volcanic Lava Plains</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.369</td><td>0.9163</td></tr>
+                    <tr><td><strong>Ascraeus Mons</strong></td><td>Northern Tharsis Shield</td><td>Craters of the Moon (USA)</td><td>1.453</td><td>0.8291</td></tr>
+                    <tr><td><strong>Deuteronilus Mensae</strong></td><td>Lobate Debris Aprons (85% Ice)</td><td>Stenkul Fjord, Ellesmere Island (Canada)</td><td>1.711</td><td>0.9455</td></tr>
+                    <tr><td><strong>Medusae Fossae &amp; Paleolakes</strong></td><td>Yardangs &amp; Evaporites</td><td>Ustyurt Plateau (Kazakhstan / Uzbekistan)</td><td>2.323</td><td>0.7715</td></tr>
+                    <tr><td><strong>Valles Marineris</strong></td><td>Equatorial Rift &amp; Sulfate Beds</td><td>Makgadikgadi Basin (Botswana)</td><td>2.344</td><td>0.8517</td></tr>
+                    <tr><td><strong>Phlegra Montes</strong></td><td>Glacial Belts (Shallow 20m Ice)</td><td>Larsemann Hills (Antarctica)</td><td>2.355</td><td>0.6224</td></tr>
+                    <tr><td><strong>Olympus Mons</strong></td><td>Shield Volcano &amp; Basal Scarp</td><td>Llullaillaco Volcano Slopes (Chile / Argentina)</td><td>2.356</td><td>0.9551</td></tr>
+                    <tr><td><strong>Eastern Hellas Basin</strong></td><td>Southern Ice-Rich Aprons</td><td>Kilimanjaro Caldera &amp; Glaciers (Tanzania)</td><td>2.756</td><td>0.8796</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="btn-group" style="margin-top: 2.5rem;">
+            <button class="btn" onclick="switchSection('flow-b')">&larr; Previous: Global Discovery</button>
+            <button class="btn" onclick="switchSection('ml')">Next: ML &amp; Code Pipeline &rarr;</button>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 5: ML & ARCHITECTURE ==================== -->
+    <section id="section-ml" class="page-section">
+        <span class="badge">MATLAB Engine &bull; Unsupervised ML &amp; Multi-Test Finder</span>
+        <h1>Planetary Analogue AI Discovery System</h1>
+        <p>Our core computational engine (<code>core_matlab/ProvaHackaton7.m</code>) is a 100% data-driven MATLAB environment engineered to ingest 4 agnostic CSV catalogs (<code>Lunar_Targets_Catalog.csv</code>, <code>Earth_Lunar_Analogs_Catalog.csv</code>, <code>Mars_Targets_Catalog.csv</code>, <code>Earth_Mars_Analogs_Catalog.csv</code>) with zero hardcoded feature matrices.</p>
+
+        <div class="metrics-grid">
+            <div class="metric-box">
+                <span class="metric-value">4 CSVs</span>
+                <span class="metric-label">Agnostic Planetary &amp; Earth Catalogs</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-value">SVD-PCA</span>
+                <span class="metric-label">3D Cubic Latent Space Projection</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-value">K-Means</span>
+                <span class="metric-label">Unsupervised Geological Clustering</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-value">Bidirectional</span>
+                <span class="metric-label">Planet &harr; Earth Dual-Metric Matching</span>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <h3>Engineering Fidelity &amp; Limitation Warnings</h3>
+            <p>Every analogue match automatically flags unsimulated planetary environmental gaps—including reduced surface gravity (<strong>1/6g</strong> on the Moon, <strong>0.38g</strong> on Mars), ultra-high vacuum, and galactic cosmic radiation—guiding mission planners on when to pair field analog campaigns with cryogenic vacuum chambers or regolith simulants.</p>
+        </div>
+
+        <h2>How the MATLAB Architecture Works</h2>
+        <div class="grid" style="margin-bottom: 2rem;">
+            <div class="card">
+                <div>
+                    <span class="badge">01 &bull; Data Pipeline</span>
+                    <h3>Domain-Adapted Harmonization</h3>
+                    <p>Using <code>intersect(..., 'stable')</code> and <code>setdiff</code>, the script isolates qualitative metadata and aligns shared numerical parameters (<strong>24 features for the Moon</strong>, <strong>15 for Mars</strong>). For Mars, domain-adapted scaling decouples barometric baselines (~6.36 mbar vs. 1013 mbar) so atmospheric pressure does not mask surface geology.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="badge">02 &bull; Matching Engine</span>
+                    <h3>Bidirectional Matching</h3>
+                    <p>Computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> in full PCA space: matching target landing sites to their closest Earth testbed (Planet &rarr; Earth) and mapping terrestrial locations back to their extraterrestrial equivalents (Earth &rarr; Planet).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="badge">03 &bull; Visual Analytics</span>
+                    <h3>3D PCA Cube &amp; Interactive Radar</h3>
+                    <p>Generates a synchronized multi-panel dashboard combining an interactive <strong>3D cubic PCA scatter plot</strong>, real <strong>NASA photogrammetric basemaps</strong>, and dynamic <strong>Polar Radar Charts</strong> (<code>updateRadarPlot</code>) with custom SI-unit DataTips on click.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Interactive SYBIL AI Control Center (Live Web App)</h2>
+        <div class="card sybil-wide-card" style="margin-bottom: 2.5rem; border-color: #38bdf8; padding: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                    <h3 style="margin-bottom: 0.25rem;">Planetary Analogue Control Center (Moon &amp; Mars)</h3>
+                    <p style="margin-bottom: 0; font-size: 0.94rem;">Interactive 3D SVD-PCA latent space, K-Means clusters, comparative geophysical radar charts, and Multi-Test mission planner.</p>
+                </div>
+                <a href="sybil/sybil_web.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Open Fullscreen App &nearr;</a>
+            </div>
+
+            <div style="width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.35); background: #171a21;">
+                <iframe 
+                    src="sybil/sybil_web.html" 
+                    title="SYBIL AI - Planetary Analogue Control Center" 
+                    width="100%" 
+                    height="860px" 
+                    style="border: none; display: block;"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+
+        <h2>Multi-Test Engineering Site Finder (Part III)</h2>
+        <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+            <h3>Interactive Mission-Constraint Filtering</h3>
+            <p>Beyond global similarity, our script includes an interactive command-line engine that filters terrestrial sites against strict engineering thresholds—supporting both single-role and combined <strong>Multi-Test</strong> mission scenarios (with automatic Best-Fit ranking when constraints conflict):</p>
+            <div class="grid" style="margin-top: 0.75rem;">
+                <div>
+                    <p style="margin-bottom: 0.4rem;"><strong>Lunar Mission Filters (6 Modes):</strong></p>
+                    <p style="font-size: 0.92rem;">&bull; <strong>Touchdown / EDL:</strong> Safe area &ge; 200k m&sup2;, 5m slope &le; 5&deg;, boulders &le; 0.35 m, bearing capacity &ge; 5 kPa.<br>
+                    &bull; <strong>Rover Mobility:</strong> Traverse slope &le; 8&deg;, cohesion &ge; 0.44 kPa, thermal inertia &ge; 200.<br>
+                    &bull; <strong>Permanent Base &amp; Habitats:</strong> 25m slope &le; 4.6&deg;, solar visibility &ge; 70%, DTE &ge; 90%, plume separation &ge; 2 km.<br>
+                    &bull; <strong>Lava Tubes (EVA) &amp; ISRU:</strong> Pit depth &ge; 20 m, diameter &ge; 35 m, FeO/TiO&sub2; or water-ice content.</p>
+                </div>
+                <div>
+                    <p style="margin-bottom: 0.4rem;"><strong>Martian Mission Filters (7 Modes):</strong></p>
+                    <p style="font-size: 0.92rem;">&bull; <strong>EDL &amp; Surface Base:</strong> Safe area &ge; 500k m&sup2;, slope &le; 5&deg;&ndash;10&deg;, thermal inertia &ge; 180, albedo &le; 0.26.<br>
+                    &bull; <strong>UAV / Drone Flight:</strong> High-altitude thin-air analogs (&ge; 2,500 m elevation, wind &le; 10 m/s).<br>
+                    &bull; <strong>Extreme EVA &amp; ISRU:</strong> Hyper-arid cryogenic sites (T<sub>min</sub> &le; 255 K, RH &le; 15%) and subsurface permafrost/hydrated sulfates.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Core MATLAB Implementation Snippet</h2>
+        <div class="step-card" style="overflow-x: auto;">
+            <p style="margin-bottom: 0.6rem; font-size: 0.9rem; color: #7dd3fc;"><strong>Excerpt from <code>core_matlab/ProvaHackaton7.m</code> &mdash; Automated Feature Alignment &amp; SVD-PCA:</strong></p>
+            <pre style="color: #e0f2fe; font-family: ui-monospace, monospace; font-size: 0.85rem; line-height: 1.5; margin: 0;"><code>% Agnostic alignment of shared numerical parameters
+feats = setdiff(intersect(T_planet.Properties.VariableNames, T_earth.Properties.VariableNames, 'stable'), meta_cols, 'stable');
+X_P = table2array(T_planet(:, feats));
+X_E = table2array(T_earth(:, feats));
+
+% Z-Score Standardization &amp; SVD-PCA Latent Space Projection
+all_norm = ([X_E; X_P] - mu) ./ sd;
+[~, S, V] = svd(all_norm - mean(all_norm, 1), 'econ');
+score = all_norm * V;</code></pre>
+        </div>
+
+        <div class="btn-group" style="margin-top: 2.5rem;">
+            <button class="btn" onclick="switchSection('mars')">&larr; Previous: Mars Module</button>
+            <button class="btn" onclick="switchSection('home')">Back to Overview &rarr;</button>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project &bull; Sapienza University of Rome &amp; Roma Tre University.</p>
+</footer>
+
+<script>
+    function switchSection(sectionId, updateHash = true) {
+        const target = document.getElementById('section-' + sectionId);
+        if (!target) sectionId = 'home';
+
+        document.querySelectorAll('.page-section').forEach(sec => {
+            sec.classList.remove('active-section');
         });
-    </script>
+
+        document.getElementById('section-' + sectionId).classList.add('active-section');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.dispatchEvent(new Event('resize'));
+
+        if (updateHash && window.location.hash !== '#' + sectionId) {
+            history.pushState(null, '', '#' + sectionId);
+        }
+
+        // Close dropdown if open
+        const dropdown = document.getElementById('directoryDropdown');
+        const toggleBtn = document.getElementById('dropdownToggle');
+        if (dropdown && toggleBtn) {
+            dropdown.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        // Update active state on navigation buttons
+        document.querySelectorAll('.nav-links button, .dropdown-menu button').forEach(btn => btn.classList.remove('active'));
+        const activeNav = document.getElementById('nav-' + sectionId);
+        const activeDrop = document.getElementById('drop-' + sectionId);
+        if (activeNav) activeNav.classList.add('active');
+        if (activeDrop) activeDrop.classList.add('active');
+    }
+
+    // Live table search filter
+    function filterTable(tableId, query) {
+        const filter = query.toLowerCase();
+        const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(filter) ? '' : 'none';
+        });
+    }
+
+    // Export HTML table to CSV
+    function exportTableToCSV(tableId, filename) {
+        const rows = document.querySelectorAll(`#${tableId} tr`);
+        const csv = [];
+        rows.forEach(row => {
+            if (row.style.display === 'none') return;
+            const cols = row.querySelectorAll('th, td');
+            const rowData = Array.from(cols).map(col => `"${col.innerText.replace(/"/g, '""').trim()}"`);
+            csv.push(rowData.join(','));
+        });
+        const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Load section from URL hash on initial load
+        const initialHash = window.location.hash.replace('#', '');
+        if (initialHash) {
+            switchSection(initialHash, false);
+        }
+
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            switchSection(hash, false);
+        });
+
+        const dropdown = document.getElementById("directoryDropdown");
+        const toggleBtn = document.getElementById("dropdownToggle");
+
+        if (dropdown && toggleBtn) {
+            toggleBtn.addEventListener("click", (event) => {
+                event.stopPropagation();
+                const isOpen = dropdown.classList.toggle("open");
+                toggleBtn.setAttribute("aria-expanded", isOpen);
+            });
+
+            document.addEventListener("click", (event) => {
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove("open");
+                    toggleBtn.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    dropdown.classList.remove("open");
+                    toggleBtn.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
