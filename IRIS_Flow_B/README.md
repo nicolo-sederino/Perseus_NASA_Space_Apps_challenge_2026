@@ -122,14 +122,13 @@ Singular Value Decomposition is fitted **exclusively** on the SYBIL calibration 
 
 ### 5.4 Hybrid Similarity Score
 
-For any reference planetary target $\mathbf{s}_t$, Euclidean latent distance $d = \| \mathbf{S}_g - \mathbf{s}_t \|_2$ is converted into a normalized score calibrated on SYBIL's median distance $d_{\text{median,SYBIL}}$ and blended ($75\% / 25\%$) with the 4-axis **Radar Sub-Scores** (`Morphometry`, `Thermophysics`, `Geochemistry`, `Environment`):
+For any reference planetary target $`\mathbf{s}_t`$, Euclidean latent distance $`d = \lVert \mathbf{S}_g - \mathbf{s}_t \rVert_2`$ is converted into a normalized score calibrated on SYBIL's median distance $`d_{\text{median,SYBIL}}`$ and blended (75% / 25%) with the 4-axis **Radar Sub-Scores** (`Morphometry`, `Thermophysics`, `Geochemistry`, `Environment`):
 
-$$\text{Score}_{\text{IRIS}} = 0.75 \cdot \left[100 \exp\left(-\ln(2)\frac{d}{d_{\text{median,SYBIL}}}\right)\right] + 0.25 \cdot \frac{1}{4}\sum_{c=1}^{4} 100 \exp\left(-\frac{\overline{| \mathbf{Z}_{g,c} - \mathbf{z}_{t,c} |}}{\tau}\right)$$
+$$
+\text{Score}_{\text{IRIS}} = 0.75 \cdot \left[100 \exp\left(-\ln(2)\frac{d}{d_{\text{median,SYBIL}}}\right)\right] + 0.25 \cdot \frac{1}{4}\sum_{c=1}^{4} 100 \exp\left(-\frac{\overline{\lvert \mathbf{Z}_{g,c} - \mathbf{z}_{t,c} \rvert}}{\tau}\right)
+$$
 
-The diagnostic ratio $d / d_{\text{best,SYBIL}} < 1.0$ directly identifies newly discovered terrestrial terrains closer to the planetary target than the best existing analog in the SYBIL catalog.
-
----
-
+The diagnostic ratio $`d / d_{\text{best,SYBIL}} < 1.0`$ directly identifies newly discovered terrestrial terrains closer to the planetary target than the best existing analog in the SYBIL catalog.
 ## 6. How to Run
 
 ```bash
