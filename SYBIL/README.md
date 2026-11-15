@@ -165,145 +165,136 @@ Grounded in Apollo Lunar Module landing-gear specifications (mean slope $\le 6^\
 
 Grounded in Amazonian Mars physics ($6.36\text{ mbar}$ mean pressure, $95.1\%\ \text{CO}_2$, $3.73\text{ m/s}^2$ gravity, $24\text{ h } 37\text{ min}$ sol, $0.67\text{ mSv/day}$ GCR dose rate), Mars Science Laboratory (REMS), Mars Reconnaissance Orbiter (SHARAD/HiRISE/CRISM), and Martian debris-covered glacier inventories (lobate debris aprons, lineated valley fill, and concentric crater fill in the $30^\circ\text{--}50^\circ$ latitude belts):
 
-* **Atmospheric & Radiative Parameters:** Elevation (`Elevation_m`), surface barometric pressure (`Surface_Pressure_mbar`), ultraviolet flux index (`UV_Flux_Index`), and mean/peak wind speed (`Wind_Speed_ms`).
-* **Thermal & Hydrological Parameters:** Mean, minimum, and maximum temperatures (`Mean_Temp_C` / `T_min_K`), diurnal thermal swing, relative humidity (`Humidity_pct`), and water-ice/permafrost mass fraction (`Water_Ice_wt_pct`, exceeding $80\%$ in mid-latitude debris-covered glaciers such as *Deuteronilus Mensae* and *Eastern Hellas*).
-* **Geological & Geotechnical Parameters:** Basaltic abundance index, sulfate/evaporite and perchlorate content ($0.4\text{--}0.6\text{ wt}\%$ on Mars), mean/traverse slope (`Mean_Slope_deg` / `Slope_deg` / `Traverse_Slope_deg`), soil cohesion (`Soil_Cohesion_kPa`, $0.2\text{--}10\text{ kPa}$), internal friction angle (`Friction_Angle_deg`, $18^\circ\text{--}39^\circ$), albedo, and thermal inertia (`Thermal_Inertia`).
+* **Atmospheric & Radiative Parameters:** Elevation (`Altitude_m` / `Elevation_m`), surface barometric pressure (`Surface_Pressure_mbar`), ultraviolet flux index (`UV_Flux_Index`), mean and peak gust wind speeds (`Wind_Mean_mps`, `Wind_Gust_mps`).
+* **Thermal & Hydrological Parameters:** Minimum and maximum surface temperatures (`T_min_K`, `T_max_K`), relative humidity (`Humidity_pct`), and subsurface water-ice/permafrost mass fraction (`Water_Ice_wt_pct`).
+* **Geological, Geochemical & Geotechnical Parameters:** Mafic basaltic index (`Mafic_Basalt_Idx`), evaporite/sulfate/chloride salt content (`Salts_Evaporites_wt_pct`), eolian deflation index (`Eolian_Deflation_Idx`), mean and maximum slopes (`Mean_Slope_deg`, `Max_Slope_deg`), soil cohesion (`Soil_Cohesion_kPa`), internal friction angle (`Friction_Angle_deg`), and thermal inertia (`Thermal_Inertia`).
 
 ---
 
-## 6. Multi-Test Mission Planner & Rule-Based Expert Engine
+## 6. Multi-Test Decision Engine (Multi-Feature Engineering)
 
-Part III (`evaluateMoonTests` and `evaluateMarsTests`) translates operational test requirements into Boolean suitability masks $m_k \in \{0, 1\}^N$ and continuous engineering scores $s_k \in [0, 100]^N$.
+Beyond statistical similarity, mission planners require deterministic pass/fail screening against operational hardware limits. SYBIL implements a rule-based expert system (`evaluateMoonTests` and `evaluateMarsTests` in `SYBIL_app.m`; Part III interactive `while` loop in `Sybil_Machine_Learning.m`) that evaluates Boolean suitability masks $M_{i,k} \in \{0, 1\}$ and normalized engineering scores $S_{i,k} \in [0, 100]$ across $N$ terrestrial sites and $K$ user-selected mission tests.
 
-### 6.1 Lunar Engineering Test Scenarios (Tests 1–6)
+### 6.1 Lunar Operational Test Scenarios (Tests 1–6)
 
-1. **Test 1 — Spacecraft Landing / Lunar Touchdown:**
-   * *Engineering Rationale:* Prevents lander tip-over, ensures engine nozzle clearance above rocks, verifies footpad bearing capacity, and enforces Plume-Surface Interaction (PSI) ejecta separation.
+1. **Test 1 — Spacecraft Landing / Lunar Touchdown (`Landing`):**
+   * *Engineering Rationale:* Prevents lander tip-over, ensures engine nozzle clearance above rocks, verifies footpad bearing support, and enforces Plume-Surface Interaction (PSI) ejecta safety separation.
    * *Boolean Mask ($m_1$):*
+     $$\text{Area} \ge 200{,}000\text{ m}^2 \;\land\; \theta_{5\text{m}} \le 5.0^\circ \;\land\; \theta_{1\text{m}} \le 4.0^\circ \;\land\; D_{\text{sep}} \ge 2{,}000\text{ m} \;\land\; h_{\text{boulders}} \le 0.35\text{ m} \;\land\; f_{\text{boulders}} \le 0.05 \;\land\; C_b \ge 5.0\text{ kPa}$$
+   * *Scoring Equation ($s_1$):*
+     $$s_1 = 30 \cdot \frac{\text{Area}}{\max(\text{Area})} + 25 \cdot \left(1 - \frac{\theta_{5\text{m}}}{10}\right) + 25 \cdot \left(1 - \frac{f_{\text{boulders}}}{0.10}\right) + 20 \cdot \frac{C_b}{\max(C_b)}$$
 
-$$\text{Safe\_Area} \ge 200{,}000\text{ m}^2 \;\land\; \theta_{5\text{m}} \le 5.0^\circ \;\land\; \theta_{1\text{m}} \le 4.0^\circ \;\land\; D_{\text{sep}} \ge 2{,}000\text{ m} \;\land\; h_{\text{boulder}} \le 0.35\text{ m} \;\land\; f_{\text{boulder}} \le 0.05 \;\land\; C_b \ge 5.0\text{ kPa}$$
-
-   * *Score ($s_1$):*
-
-$$s_1 = 30\frac{\text{Safe\_Area}}{\max(\text{Safe\_Area})} + 25\left(1 - \frac{\theta_{5\text{m}}}{10}\right) + 25\left(1 - \frac{f_{\text{boulder}}}{0.10}\right) + 20\frac{C_b}{\max(C_b)}$$
-
-2. **Test 2 — Lunar Rover Mobility:**
-   * *Engineering Rationale:* Ensures wheel traction via the Mohr-Coulomb criterion ($\tau_{\max} = c + \sigma \tan\phi$), maintains chassis clearance ($\le 0.38\text{ m}$), and prevents sinkage in low-thermal-inertia dust.
+2. **Test 2 — Lunar Rover Mobility (`Rover`):**
+   * *Engineering Rationale:* Guarantees wheel-regolith traction under the Mohr-Coulomb shear failure criterion ($\tau_{\max} = c + \sigma \tan\phi$), maintains clearance beneath rocker-bogie suspensions ($0.38\text{ m}$), and prevents wheel sinkage in low-thermal-inertia dust.
    * *Boolean Mask ($m_2$):*
+     $$\theta_{\text{trav}} \le 8.0^\circ \;\land\; \phi \ge 38.0^\circ \;\land\; h_{\text{boulders}} \le 0.38\text{ m} \;\land\; c \ge 0.44\text{ kPa} \;\land\; I_{\text{therm}} \ge 200\text{ TIU}$$
+   * *Scoring Equation ($s_2$):*
+     $$s_2 = 35 \cdot \left(1 - \frac{\theta_{\text{trav}}}{15}\right) + 25 \cdot \left(1 - \frac{h_{\text{boulders}}}{0.50}\right) + 20 \cdot \frac{c}{\max(c)} + 20 \cdot \frac{I_{\text{therm}}}{\max(I_{\text{therm}})}$$
 
-$$\theta_{\text{trav}} \le 8.0^\circ \;\land\; \phi \ge 38.0^\circ \;\land\; h_{\text{boulder}} \le 0.38\text{ m} \;\land\; c \ge 0.44\text{ kPa} \;\land\; I_{\text{therm}} \ge 200$$
-
-   * *Score ($s_2$):*
-
-$$s_2 = 35\left(1 - \frac{\theta_{\text{trav}}}{15}\right) + 25\left(1 - \frac{h_{\text{boulder}}}{0.50}\right) + 20\frac{c}{\max(c)} + 20\frac{I_{\text{therm}}}{\max(I_{\text{therm}})}$$
-
-3. **Test 3 — Full Lunar Base (Extended Outpost):**
-   * *Engineering Rationale:* Permanent surface bases require gentle $25\text{ m}$ baseline terrain, high bearing capacity, prolonged solar power availability, continuous DTE communications, and safe pad separation.
+3. **Test 3 — Full Lunar Base (`Full Base`):**
+   * *Engineering Rationale:* Screens for an extended surface outpost requiring low $25\text{ m}$-baseline inclination, high bearing capacity for multi-module habitats, sustained solar illumination ($\ge 70\%$), near-continuous Direct-to-Earth (DTE) telemetry ($\ge 90\%$), and safe pad-to-habitat separation.
    * *Boolean Mask ($m_3$):*
+     $$\theta_{25\text{m}} \le 4.6^\circ \;\land\; \text{Area} \ge 250\text{ m}^2 \;\land\; C_b \ge 5.5\text{ kPa} \;\land\; \text{Sun}_{\text{vis}} \ge 70\% \;\land\; \text{DTE} \ge 90\% \;\land\; D_{\text{sep}} \ge 2{,}000\text{ m}$$
+   * *Scoring Equation ($s_3$):*
+     $$s_3 = 30 \cdot \frac{C_b}{\max(C_b)} + 30 \cdot \frac{\text{Sun}_{\text{vis}}}{100} + 25 \cdot \frac{D_{\text{sep}}}{\max(D_{\text{sep}})} + 15 \cdot \left(1 - \frac{\theta_{25\text{m}}}{10}\right)$$
 
-$$\theta_{25\text{m}} \le 4.6^\circ \;\land\; \text{Safe\_Area} \ge 250\text{ m}^2 \;\land\; C_b \ge 5.5\text{ kPa} \;\land\; \text{Sun}_{\text{vis}} \ge 70\% \;\land\; \text{DTE} \ge 90\% \;\land\; D_{\text{sep}} \ge 2{,}000\text{ m}$$
+4. **Test 4 — Single Lunar Habitat Module for 2–4 Crew (`2-4p Habitat`):**
+   * *Engineering Rationale:* Evaluates the exact same 6 parameters and scoring function ($s_4 = s_3$) as Test 3 while relaxing topographic and footprint thresholds for an initial standalone habitat module ($\ge 25\text{ m}^2$):
+     $$\theta_{25\text{m}} < 7.0^\circ \;\land\; \text{Area} \ge 25\text{ m}^2 \;\land\; C_b \ge 5.0\text{ kPa} \;\land\; \text{Sun}_{\text{vis}} \ge 60\% \;\land\; \text{DTE} \ge 90\% \;\land\; D_{\text{sep}} \ge 1{,}400\text{ m}$$
 
-   * *Score ($s_3$):*
-
-$$s_3 = 30\frac{C_b}{\max(C_b)} + 30\frac{\text{Sun}_{\text{vis}}}{100} + 25\frac{D_{\text{sep}}}{\max(D_{\text{sep}})} + 15\left(1 - \frac{\theta_{25\text{m}}}{10}\right)$$
-
-4. **Test 4 — Single Lunar Habitat Module (2–4 Crew):**
-   * *Engineering Rationale:* Evaluates the exact same six parameters and scoring equation ($s_4 = s_3$) as Test 3, relaxing slope, area ($\ge 25\text{ m}^2$), illumination ($\ge 60\%$), and separation ($\ge 1{,}400\text{ m}$) thresholds to match an initial small-footprint crew module.
-   * *Boolean Mask ($m_4$):*
-
-$$\theta_{25\text{m}} < 7.0^\circ \;\land\; \text{Safe\_Area} \ge 25\text{ m}^2 \;\land\; C_b \ge 5.0\text{ kPa} \;\land\; \text{Sun}_{\text{vis}} \ge 60\% \;\land\; \text{DTE} \ge 90\% \;\land\; D_{\text{sep}} \ge 1{,}400\text{ m}$$
-
-5. **Test 5 — Spacesuit (EVA) Testing & Lava Tubes:**
-   * *Engineering Rationale:* Validates EVA operations and natural radiation/micrometeorite shielding inside deep volcanic skylights and lava tubes experiencing large diurnal thermal swings ($\Delta T = T_{\max} - T_{\min}$).
+5. **Test 5 — Spacesuit (EVA) Testing & Subsurface Lava Tubes (`EVA/Lava Tubes`):**
+   * *Engineering Rationale:* Validates spacesuit mobility, subterranean communications, and radiation/micrometeorite shielding inside deep volcanic skylights and lava tubes subject to strong diurnal thermal gradients ($\Delta T = T_{\max} - T_{\min}$).
    * *Boolean Mask ($m_5$):*
+     $$Z_{\text{pit}} \ge 20\text{ m} \;\land\; D_{\text{pit}} \ge 35\text{ m} \;\land\; c \ge 0.44\text{ kPa} \;\land\; \Delta T \ge 35\text{ K}$$
+   * *Scoring Equation ($s_5$):*
+     $$s_5 = 40 \cdot \min\left(\frac{Z_{\text{pit}}}{50}, 1\right) + 35 \cdot \min\left(\frac{\Delta T}{60}, 1\right) + 25 \cdot \frac{c}{\max(c)}$$
 
-$$Z_{\text{pit}} \ge 20\text{ m} \;\land\; D_{\text{pit}} \ge 35\text{ m} \;\land\; c \ge 0.44\text{ kPa} \;\land\; (T_{\max} - T_{\min}) \ge 35\text{ K}$$
-
-   * *Score ($s_5$):*
-
-$$s_5 = 40\min\left(\frac{Z_{\text{pit}}}{50}, 1\right) + 35\min\left(\frac{\Delta T}{60}, 1\right) + 25\frac{c}{\max(c)}$$
-
-6. **Test 6 — Power Systems & Lunar ISRU:**
-   * *Engineering Rationale:* Couples photovoltaic solar availability ($\ge 70\%$) with extractable feedstock (ilmenite-rich regolith with $\text{FeO} \ge 13.5\text{ wt}\%$ and $\text{TiO}_2 \ge 3.0\text{ wt}\%$, or polar water ice $> 0\text{ wt}\%$) and excavatable subsurface bulk density ($\rho_{0\text{--}60\text{cm}} \le 1{,}710\text{ kg/m}^3$).
+6. **Test 6 — Power Systems & Lunar ISRU (`Power/ISRU`):**
+   * *Engineering Rationale:* Couples high solar irradiance ($\ge 70\%$) with extractable feedstock—either ilmenite-rich mare basalt ($\text{FeO} \ge 13.5\text{ wt}\%$ and $\text{TiO}_2 \ge 3.0\text{ wt}\%$) for oxygen reduction or polar water ice ($> 0\text{ wt}\%$)—within excavatable subsurface regolith ($\rho_{0\text{--}60} \le 1{,}710\text{ kg/m}^3$).
    * *Boolean Mask ($m_6$):*
+     $$\text{Sun}_{\text{vis}} \ge 70\% \;\land\; \Big((\text{FeO} \ge 13.5 \;\land\; \text{TiO}_2 \ge 3.0) \;\lor\; \text{Water\_Ice} > 0\Big) \;\land\; \rho_{0\text{--}60} \le 1{,}710\text{ kg/m}^3 \;\land\; \theta_{5\text{m}} \le 6.5^\circ$$
+   * *Scoring Equation ($s_6$):*
+     $$s_6 = 45 \cdot \frac{\text{Sun}_{\text{vis}}}{100} + 35 \cdot \min\left(\max\left(\frac{\text{FeO}}{16}, \frac{\text{Water\_Ice}}{5}\right), 1\right) + 20 \cdot \left(1 - \frac{\theta_{5\text{m}}}{10}\right)$$
 
-$$\text{Sun}_{\text{vis}} \ge 70\% \;\land\; \left((\text{FeO} \ge 13.5 \land \text{TiO}_2 \ge 3.0) \lor \text{Ice} > 0\right) \;\land\; \rho_{0\text{--}60\text{cm}} \le 1{,}710\text{ kg/m}^3 \;\land\; \theta_{5\text{m}} \le 6.5^\circ$$
+### 6.2 Martian Operational Test Scenarios (Tests 1–7)
 
-   * *Score ($s_6$):*
+In the Martian module, semantic category filtering (`contains(cat_m, ...)`) is combined with adaptive `ismember(..., vars_m)` column guards so the engine remains resilient across heterogeneous catalog schemas:
 
-$$s_6 = 45\frac{\text{Sun}_{\text{vis}}}{100} + 35\min\left(\max\left(\frac{\text{FeO}}{16}, \frac{\text{Ice}}{5}\right), 1\right) + 20\left(1 - \frac{\theta_{5\text{m}}}{10}\right)$$
-
-### 6.2 Martian Engineering Test Scenarios (Tests 1–7)
-
-Using adaptive `ismember(..., vars_m)` column guards and semantic category filtering on `T_mars_earth`:
-
-1. **Test 1 — Spacecraft Landing / Martian EDL:** Desert basins, salt flats (playas), plains, or plateaus with $\text{Safe\_Area} \ge 500{,}000\text{ m}^2$, $\text{Thermal\_Inertia} \ge 150\text{ TIU}$ (avoiding thick radar-attenuating dust), $\text{Albedo} \le 0.26$, and $\text{Slope} \le 10^\circ$.
-2. **Test 2 — Rover Mobility:** Volcanic, desert, dune, or plateau terrains (excluding coastal/glacio-marine settings) with $\text{Boulder\_Area\_frac} \le 0.07$, $\text{Thermal\_Inertia} \ge 150\text{ TIU}$, and $\text{Traverse\_Slope} \le 20^\circ$.
-3. **Test 3 — Full Martian Base:** Compact salt, volcanic, desert, or plateau substrates (excluding mobile dunes, glacio-marine settings, active fumaroles, and extreme high-altitude peaks) with $\text{Safe\_Area} \ge 500\text{ m}^2$, $\text{Slope} \le 5^\circ$, $\text{Thermal\_Inertia} \ge 180\text{ TIU}$, and $\text{Bearing\_Capacity} \ge 5.5\text{ kPa}$.
-4. **Test 4 — Single Martian Habitat Module (2–4 Crew):** Evaluates the exact same physical parameters as Test 3 while relaxing constraints to $\text{Safe\_Area} \ge 40\text{ m}^2$, $\text{Slope} \le 8^\circ$, $\text{Thermal\_Inertia} \ge 160\text{ TIU}$, and $\text{Bearing\_Capacity} \ge 4.5\text{ kPa}$, permitting high-altitude volcanic plateaus.
-5. **Test 5 — Drone / UAV Testing (Ingenuity-Class Aerodynamics):** High-altitude mountain ridges and plateaus ($\text{Elevation} \ge 2{,}500\text{ m}$ a.s.l.) where low air density approximates Mars's low-Reynolds-number rotorcraft regime, with $\text{Wind\_Speed} \le 10\text{ m/s}$.
-6. **Test 6 — Extreme EVA Testing:** Cold, polar, Arctic, or hyper-arid deserts with $T_{\min} \le 255\text{ K}$ ($-18^\circ\text{C}$) and $\text{Humidity} \le 15\%$.
-7. **Test 7 — Power Systems & Martian ISRU:** Polar, periglacial, salt-crust, or gypsum environments (excluding massive un-drillable basalt flows) with subsurface water ice ($\text{Water\_Ice} > 0\text{ wt}\%$) or hydrated evaporites.
+| ID | Test Scenario | Geological & Environmental Constraints |
+| :- | :--- | :--- |
+| **1** | **Landing / Martian EDL** | Desert basins, salt flats, plains, or plateaus; $\text{Area} \ge 500{,}000\text{ m}^2$; $I_{\text{therm}} \ge 150\text{ TIU}$ (prevents radar altimetry attenuation in thick dust); $\text{Albedo} \le 0.26$; $\theta \le 10^\circ$. |
+| **2** | **Martian Rover Mobility** | Volcanic fields, deserts, dunes, or plateaus (excluding coastal glacial zones); $f_{\text{boulders}} \le 0.07$ ($7\%$ ExoMars standard); $I_{\text{therm}} \ge 150\text{ TIU}$; $\theta_{\text{trav}} \le 20^\circ$. |
+| **3** | **Full Martian Base** | Compact salt/sulfate, volcanic, desert, or plateau substrates (excluding mobile dunes, glaciers, active fumaroles, and extreme peaks); $\text{Area} \ge 500\text{ m}^2$; $\theta \le 5^\circ$; $I_{\text{therm}} \ge 180\text{ TIU}$; $C_b \ge 5.5\text{ kPa}$. |
+| **4** | **Single Habitat (2–4 Crew)** | Same lithological filter as Test 3 (allowing high-altitude plateaus); $\text{Area} \ge 40\text{ m}^2$; $\theta \le 8^\circ$; $I_{\text{therm}} \ge 160\text{ TIU}$; $C_b \ge 4.5\text{ kPa}$. |
+| **5** | **Drone / UAV Testing** | High-altitude mountains and plateaus ($\text{Elevation} \ge 2{,}500\text{ m}$) replicating Mars's low-Reynolds-number aerodynamic regime, with wind speed $\le 10\text{ m/s}$. |
+| **6** | **Extreme EVA Testing** | Cold, polar, Arctic, or hyper-arid environments with $T_{\min} \le 255\text{ K}$ ($-18^\circ\text{C}$) and relative humidity $\le 15\%$. |
+| **7** | **Power Systems & ISRU** | Polar, periglacial, salt-crust, or gypsum environments (excluding un-drillable massive basalt flows) or subsurface water ice $> 0\text{ wt}\%$. |
 
 ### 6.3 Multi-Test Combination Logic (`AND` Intersection & Best-Fit Fallback)
 
-When $K$ tests are selected simultaneously, SYBIL constructs $M \in \{0, 1\}^{N \times K}$ and $S \in [0, 100]^{N \times K}$:
+When $K$ tests are evaluated simultaneously (e.g., `1 2 4` in CLI or `Ctrl+Click` in the UI), SYBIL constructs the Boolean matrix $M \in \{0, 1\}^{N \times K}$ and score matrix $S \in [0, 100]^{N \times K}$:
 
-$$\text{mask\_all}(i) = \bigwedge_{k=1}^{K} M_{i,k}, \qquad \overline{S}_i = \frac{1}{K}\sum_{k=1}^{K} S_{i,k}$$
+$$\text{mask\_all}(i) = \bigwedge_{k=1}^{K} M_{i,k}, \qquad \bar{S}_i = \frac{1}{K}\sum_{k=1}^{K} S_{i,k}$$
 
-* **Exact Conjunction (`any(mask_all) == true`):** Extracts all terrestrial sites passing $100\%$ of selected tests and ranks them by descending combined mean score $\overline{S}_i$.
-* **Best-Fit Fallback (`any(mask_all) == false`):** If the user combines physically mutually exclusive tests (e.g., *Test 1: Flat Open-Plain Landing* + *Test 5: Deep Lava Tube Skylight*), no single site can satisfy both simultaneously. Instead of returning an empty result, SYBIL computes $P_i = \sum_{k=1}^{K} M_{i,k}$, identifies $P_{\max} = \max_i(P_i)$ (e.g., $2/3$ tests passed), and highlights the Top 5 multi-role sites ranked by $\overline{S}_i$.
-
----
-
-## 7. Interactive Visualization & UI Architecture
-
-Both `SYBIL_app.m` and `Sybil_Machine_Learning.m` implement a synchronized 4-quadrant analytical dashboard:
-
-1. **Cubic 3D PCA Latent Space (`ax1` / `App.Ax3D`):** Equal-aspect (`pbaspect([1 1 1])`, `axis vis3d`) 3D scatter cube displaying terrestrial sites colored by K-Means cluster ($k=5$), planetary targets (pentagrams), and optimal analogue rings.
-2. **Comparative Geophysical Signature — Polar Radar Chart (`polaraxes`):** Topologically closed $360^\circ$ polygon (`linspace(0, 360, num_f + 1)`) comparing the selected planetary target against its matched Earth analogue.
-   * *Dual-Layer DataTips:* Hovering over any vertex displays both the **Actual Physical Value in SI units** and the **Normalized Level ($0\text{--}100\%$)**.
-   * *Domain-Aware Scaling:* On the Moon, joint min-max scaling (`[X_E; X_P]`) highlights direct physical overlap; on Mars, intra-domain scaling (`X_E` and `X_P` normalized within their respective planetary bounds) prevents extreme planetary pressure/temperature offsets ($6\text{ mbar}$ vs. $1{,}013\text{ mbar}$) from collapsing terrestrial profiles into the origin.
-3. **Earth Topographic Map (`geoaxes`):** Interactive geographic basemap (`colorterrain`) plotting all terrestrial catalog sites, red best-match markers, green/cyan multi-test winner stars, and collision-avoiding text labels (`placed_e`).
-   > **Technical Fix for `GeographicAxes` Lifecycle:** Because calling `geoscatter` on a standard Cartesian `subplot` destroys the underlying `Axes` handle and replaces it with a `GeographicAxes` instance, SYBIL explicitly captures `ax3 = gca;` immediately after `geoscatter` so subsequent multi-test layers plot cleanly without throwing `Attempt to plot into deleted Axes`.
-4. **2D Planetary Surface Target Map:** Equirectangular projection ($[-180^\circ, 180^\circ] \times [-90^\circ, 90^\circ]$) overlaid on `moon_map.jpg` or `mars_map.jpg` with anti-overlap label placement (`placed_boxes`).
-5. **Polymorphic Click-to-Radar Callbacks (`findClickedIdx`):** A unified click handler inspects `isprop(src, 'LatitudeData')` and `isprop(src, 'ZData')` to resolve mouse clicks across 3D scatter cubes, 2D planetary maps, and geographic maps, dynamically refreshing the Radar Chart and telemetry panel in real time.
+* **Exact Logical Intersection (`any(mask_all) == true`):** Extracts every terrestrial site passing all $K$ tests simultaneously and ranks them in descending order of combined mean score $\bar{S}_i$.
+* **Best-Fit Fallback (`any(mask_all) == false`):** When the user combines geologically mutually exclusive tests (e.g., *Test 1: Open-Plain Landing* + *Test 5: Deep Lava Tube EVA*), no single location can simultaneously offer a flat boulder-free plain and a $\ge 20\text{ m}$ volcanic chasm. Rather than returning an empty result, SYBIL computes the pass count $P_i = \sum_{k=1}^{K} M_{i,k}$, isolates all sites achieving $P_{\max} = \max_i(P_i)$, and outputs the Top 5 ranked by $\bar{S}_i$.
 
 ---
 
-## 8. Terrestrial Analogue Portfolio & Physical Fidelity Boundaries
+## 7. Interactive UI Control Center & Callback Architecture
 
-SYBIL's catalogs synthesize established NASA/ESA analogue testbeds alongside newly characterized international sites:
+### 7.1 `SYBIL_app.m` (App Designer `uifigure` Control Center)
 
-* **Lunar Maria & Basaltic Plains:** *Black Point Lava Flow* (Arizona, BP-1 simulant), *Mount Etna* (Italy, ESA/DLR ARCHES & Analog-1), *Jingpo Lake Volcanic Field* (NE China, Marius Hills rille/skylight continuum), *Askja* (Iceland), *Pinacate* (Mexico), *Potrillo Volcanic Field* (New Mexico).
-* **Lunar Highlands & Anorthositic Crust:** *Nusfjord / Flakstadøy* (Lofoten Islands, Norway, ESA PANGAEA), *Miyake-jima* (Japan, high-calcic $\sim 95\%$ anorthite megacrysts), *Kamestastin / Mistastin* (Labrador, Canada, impact-shocked anorthosite), *Nördlinger Ries* (Germany, impact breccia/suevite).
-* **Lunar & Martian Lava Tubes / Subsurface Shelters:** *Craters of the Moon* (Idaho), *Lava River Cave* (Arizona), *Nāhuku* (Hawai'i), *Natal Cave, Terceira* (Azores, CAMões mission), *Lanzarote / Corona Tube* (Canary Islands, HULC camera trials), *Jingpo Lake* ($>20\text{ km}$ tube network).
-* **Martian Eolian, Evaporitic, Radiative & Astrobiological Analogues:** *Qaidam Basin & Lenghu* (China, Medusae Fossae yardangs), *Ustyurt Plateau* (Kazakhstan/Uzbekistan, wind deflation pavement), *Trans-Altai Gobi* (Mongolia, thermoclasm), *Badwater Basin* (Death Valley, halite/sulfate polygons), *Salar de Arizaro & Salar de Antofalla* (Argentina), *Etosha Pan* (Namibia), *Llullaillaco Volcano* ($>6{,}700\text{ m}$, extreme UV & low pressure), *Kilimanjaro Caldera* ($5{,}895\text{ m}$), *Eastern Pamir Plateau* (Tajikistan), *Haughton Crater* & *Stenkul Fjord* (Canadian Arctic), *McMurdo Dry Valleys* (Antarctica), *Atacama Desert* (Chile), *Harrat Khaybar* (Saudi Arabia).
+`SYBIL_app.m` encapsulates the entire dual-planet engine inside a dark-themed single-window mission control dashboard (`1500 × 880 px`):
+* **Left Control Column (`330 px`):** Celestial body toggle (`MOON (24 Feat.)` / `MARS (15 Feat.)`), target selector dropdown, live telemetry card (coordinates, best Earth match, geological category, PCA Euclidean distance), multi-select test planner listbox, `RUN MULTI-TEST SITE FINDER` and `Clear Test Stars from Map` controls, and a real-time ranking log.
+* **Right `2 × 2` Visualization Grid:**
+  1. **Top-Left — Cubic 3D PCA Latent Space:** Interactive 3D scatter cube displaying K-Means clusters (`C1`–`C5`), planetary target stars, and best-match rings with calibrated axis margins (`PC1`, `PC2`, `PC3`).
+  2. **Top-Right — Comparative Geophysical Radar Chart (`polaraxes`):** Closed spider polygon overlaying the active planetary target against its matched Earth analogue, with dual-layer `DataTipRows` showing both raw SI values and normalized $[0, 100\%]$ levels.
+     * *Domain-Adapted Radar Scaling:* Lunar radar axes use joint min-max scaling across Earth + Moon (`[X_E; X_P]`), whereas Martian radar axes use **intra-domain normalization** (scaling Earth against Earth and Mars against Mars) so extreme Martian barometric baselines ($\sim 6.36\text{ mbar}$ vs. $1013\text{ mbar}$ on Earth) do not compress terrestrial atmospheric variations to zero.
+  3. **Bottom-Left — Earth Topographic Map (`geoaxes`):** Displays all terrestrial sites, highlighted best AI matches with collision-avoiding text labels, and dynamic green/cyan stars (`TestLayer`) for multi-test search results.
+  4. **Bottom-Right — Planetary Surface Map (`uiaxes`):** Equirectangular Moon/Mars surface map with clickable target markers and smart label placement.
+* **Collapsible Legends:** Each quadrant features a `Legend` toggle button (`onToggleLegendTag`) and interactive legend item click handlers so dense labels never obscure data points.
 
-**Physical Fidelity Limitations:** No terrestrial location simultaneously reproduces lunar/Martian gravity ($1.62\text{ m/s}^2$ and $3.73\text{ m/s}^2$), ultra-high lunar vacuum, unshielded galactic cosmic rays ($1.369\text{ mSv/day}$ on the Moon; $0.67\text{ mSv/day}$ on Mars), or cryogenic PSR temperatures ($<30\text{ K}$). SYBIL explicitly enforces domain-specific test constraints so analogue sites are validated strictly for the physical processes they faithfully represent.
+### 7.2 Local Callback Subsystem
+
+Four modular local functions enable real-time **Click-to-Radar** exploration across 3D, 2D, and geographic coordinate systems:
+* `shortName` / `shortSiteName`: Strips parenthetical descriptors (e.g., `"Olympus Mons (Shield Volcano & Basal Scarp)"` $\to$ `"Olympus Mons"`) to prevent Radar Chart titles from overflowing adjacent panels.
+* `updateRadarPlot` / `updateSelectedTargetView`: Closes the polar polygon by appending the first vertex (`[vec(:)', vec(1)]`) across `linspace(0, 360, num_f + 1)` angles and attaches custom SI + normalized tooltips.
+* `findClickedIdx` / `findClickedIndex`: Polymorphically inspects `evt.IntersectionPoint` using `isprop(src, 'LatitudeData')` and `isprop(src, 'ZData')` so a single nearest-neighbor Euclidean lookup resolves clicks across 3D scatter cubes, 2D planetary maps, and geographic maps.
+* `onClickPlanet` / `onClickEarth` (`clickPlanetPoint` / `clickEarthPoint`): Maps cluster-local marker indices back to global catalog row indices via `idx_map(raw_idx)` and refreshes the Radar Chart and telemetry readout instantaneously.
+* **GeographicAxes Handle Preservation (`Sybil_Machine_Learning.m`):** Calling `geoscatter` inside a standard `subplot` replaces the Cartesian `Axes` with a `GeographicAxes` object; `Sybil_Machine_Learning.m` explicitly captures `ax3 = gca` immediately after `geoscatter` so subsequent multi-test star overlays never reference a deleted handle.
 
 ---
 
-## 9. Judging Alignment, Open Data Attribution & Transparency
+## 8. Terrestrial Analogue Portfolio & Fidelity Boundaries
 
-* **Impact & Relevance:** Directly solves the challenge by turning qualitative site lists into a quantitative, bidirectional engineering decision tool grounded in NASA and partner agency measurements.
-* **Creativity:** Introduces bidirectional matching (Streams A–D), dual Euclidean/Cosine Martian metrics, automated semantic cluster naming, and a Multi-Test Decision Engine with Best-Fit Fallback.
-* **Validity & Presentation:** Built on peer-reviewed planetary geotechnics, thermophysics, and mission-architecture standards, delivered through a zero-dependency interactive GUI (`SYBIL_app.m`) and complete mathematical documentation.
-* **NASA & Space Agency Partner Data Attribution:** Utilizes open data and mission results from **NASA** (LRO LOLA, LROC NAC, Diviner, Mini-RF, LCROSS, LADEE, Apollo Lunar Sourcebook, Mars Fact Sheet, MSL REMS, MRO HiRISE/SHARAD/CRISM), **ESA** (PANGAEA, ARCHES, Mars Express, LUNA), **CSA** (Kamestastin lunar training), **JAXA** (Kaguya/SELENE), **DLR** (Deuteronilus Mensae & ARCHES), **ISRO** (Chandrayaan-1 $\text{M}^3$), and **ASI**.
-* **Super Intelligence (SI) Disclosure:** Generative AI/LLM tools were used solely to assist with technical documentation formatting and UI code refactoring; all scientific methodology, feature engineering, scoring equations, and planetary datasets were designed and curated by the Project Perseus team.
+SYBIL's catalogs synthesize both heritage NASA/ESA testbeds and newly characterized international sites:
+* **Lunar Maria & Basaltic Regolith Mechanics:** *Black Point Lava Flow* (USA — BP-1 simulant source), *Mount Etna* (Italy — Cisternazza crater & lava tubes, ESA ARCHES/Analog-1), *Jingpo Lake Volcanic Field* (China — $>20\text{ km}$ lava tube & skylight continuum matching *Marius Hills*), *Askja Caldera* (Iceland — Apollo 15/17 astronaut training), *Pinacate Volcanic Field* (Mexico), and *Moses Lake Sand Dunes* (USA).
+* **Lunar Highlands & Anorthositic Crust:** *Nusfjord / Flakstadøy* (Lofoten Islands, Norway — glacially exposed pure anorthosite used in ESA PANGAEA) and *Miyake-jima* (Japan — megacrystic high-calcic $\sim 95\%$ anorthite crustal material analogue).
+* **Lunar Lava Tubes & Subsurface Shelters:** *Craters of the Moon* (Idaho, USA), *Lava River Cave* (Arizona, USA), *Nāhuku* (Hawai'i, USA), *Terceira Island / Natal Cave* (Azores, Portugal — CAMões mission), *Jeju Island* (South Korea), and *Chongqing Karst Caves* (China — structural layout/human-factors proxy).
+* **Lunar & Martian Polar Cryosphere / Isolation:** *Haughton Impact Crater* (Devon Island, Canada — TRIDENT drill testing), *McMurdo Dry Valleys* (Antarctica), and *Stenkul Fjord* (Ellesmere Island, Canada — sub-zero hypersaline permafrost springs).
+* **Martian Eolian, Evaporitic, Radiative & Volcanic Regimes:** *Qaidam Basin & Lenghu Desert* (China — yardangs matching *Medusae Fossae*), *Ustyurt Plateau* (Kazakhstan/Uzbekistan), *Trans-Altai Gobi Desert* (Mongolia), *Badwater Basin* (Death Valley, USA), *Salar de Arizaro* & *Salar de Antofalla* (Argentina), *Etosha Pan* (Namibia), *Atacama Desert* (Chile), *Llullaillaco Volcano* (Chile/Argentina, $6{,}739\text{ m}$ UV/hypobaric), *Eastern Pamir Plateau* (Tajikistan), *Kilimanjaro Caldera* (Tanzania), *Bardenas Reales* (Spain), and *Harrat Khaybar* (Saudi Arabia).
+
+> **Engineering Fidelity Limits:** No terrestrial site simultaneously replicates lunar/Martian gravity ($1/6\,g$ or $0.38\,g$), ultra-high vacuum or $6.36\text{ mbar}$ $\text{CO}_2$ atmosphere, unshielded galactic cosmic radiation, or $25\text{ K}$ permanently shadowed cold traps. SYBIL treats terrestrial analogues as **task-specific process testbeds** rather than total environmental replicas.
 
 ---
 
-## 10. Primary References
+## 9. NASA Space Apps Challenge 2026 Compliance & References
 
-1. **Rogers, W. F. (1972).** *Apollo Experience Report—Lunar Module Landing Gear Subsystem.* NASA TN D-6850 (NTRS 19720018253).
-2. **Carrier, W. D. III, Olhoeft, G. R., & Mendell, W. (1991).** *Physical Properties of the Lunar Surface.* Chapter 9 in *Lunar Sourcebook*, Cambridge University Press / LPI.
-3. **NASA (2024).** *Lunar Site Selection.* Moon to Mars Architecture White Paper; *NASA Provides Update on Artemis III Moon Landing Regions* (2024); *Artemis IV* (2026).
-4. **Hayne, P. O., et al. (2017).** *Global Regolith Thermophysical Properties of the Moon from the Diviner Lunar Radiometer Experiment.* *J. Geophys. Res. Planets*, 122, 2371–2400.
-5. **Mazarico, E., et al. (2011) & Gläser, P., et al. (2018).** *Illumination Conditions of the Lunar Polar Regions Using LOLA Topography.* *Icarus*, 211, 1066–1081; *Planet. Space Sci.*, 162, 170–178.
-6. **Li, S., et al. (2018) & Colaprete, A., et al. (2010).** *Direct Evidence of Surface Exposed Water Ice in the Lunar Polar Regions.* *PNAS*, 115(36); *Detection of Water in the LCROSS Ejecta Plume.* *Science*, 330, 463–468.
-7. **Carrer, L., et al. (2024).** *Radar Evidence of an Accessible Cave Conduit on the Moon Below the Mare Tranquillitatis Pit.* *Nature Astronomy*, 8, 1119–1126.
-8. **Haberle, R. M., et al. (2017) & Martínez, G. M., et al. (2017).** *The Atmosphere and Climate of Mars.* Cambridge University Press; *Space Science Reviews*, 212, 503–538.
-9. **Hecht, M. H., et al. (2009) & Navarro-González, R., et al. (2003).** *Detection of Perchlorate and the Soluble Chemistry of Martian Soil at the Phoenix Landing Site.* *Science*, 325, 64–67; *Science*, 302, 1018–1021.
-10. **Levy, J. S., et al. (2014), Karlsson, N. B., et al. (2015), & Steinberg, et al. (2025).** Martian debris-covered glacier inventory, radar ice fraction ($>80\%$), and global water equivalent volume ($1.55 \times 10^5\text{ km}^3$).
-11. **Wang, X., et al. (2011), Cabrol, N. A., et al. (2014), & Camp, V. E., et al. (1991).** Terrestrial Mars analogues: Qaidam Basin yardangs, high-altitude Andean volcanoes, and Harrat Khaybar volcanic plains.
+### 9.1 Judging Criteria Alignment
+
+| Criterion | How SYBIL Delivers |
+| :--- | :--- |
+| **Impact** | Replaces subjective, single-site analogue selection with quantitative multi-test mission planning, enabling mission teams to identify multi-role Earth testbeds or optimal complementary site pairs. |
+| **Creativity** | Combines schema-agnostic SVD-PCA, zero-toolbox Lloyd's K-Means with automated regex cluster naming, intra-domain Martian radar normalization, bidirectional matching, and Best-Fit Fallback logic. |
+| **Validity** | Grounded in peer-reviewed planetary engineering thresholds (Apollo LM landing-gear specs, LRO LOLA/Diviner/Mini-RF, LCROSS, MSL REMS, SHARAD/HiRISE) with full mathematical transparency. |
+| **Relevance** | Directly answers the 2026 challenge by integrating open NASA and Space Agency Partner datasets across deserts, polar regions, volcanic fields, and lava tubes into an interactive exploration tool. |
+| **Presentation** | Provides both a dark-mode interactive `uifigure` Control Center (`SYBIL_app.m`) with real-time Click-to-Radar inspection and automated CLI diagnostic reports (`Sybil_Machine_Learning.m`). |
+
+### 9.2 Primary NASA & Space Agency Partner Data Sources
+
+1. **NASA Lunar Reconnaissance Orbiter (LRO):** LOLA global topography and multiscale slope/roughness models; LROC NAC boulder size-frequency distributions and pit/skylight stereo morphometry (*Marius Hills*, *Mare Tranquillitatis*); Diviner Lunar Radiometer thermophysical properties (Hayne et al., 2017) and polar cold-trap temperatures; Mini-RF radar observations.
+2. **NASA LCROSS & Moon Mineralogy Mapper ($\text{M}^3$ / Chandrayaan-1 ISRO):** Cabeus polar water-ice concentration ($5.6 \pm 2.9\text{ wt}\%$) and polar surface water-ice spectral detections.
+3. **NASA Apollo & Artemis Architecture Baselines:** *Lunar Sourcebook* (Carrier et al., 1991), *Apollo LM Landing Gear Subsystem* (NASA TN D-6850), *Moon to Mars Architecture: Lunar Site Selection* (NASA, 2024), *Artemis III Science Definition Team Report* (NASA/SP-20205009602), and *Lunar Regolith Simulant User's Guide* (NASA/TM-20240011783).
+4. **NASA Mars Exploration & Planetary Data:** *Mars Fact Sheet* (NSSDCA), Mars Science Laboratory (MSL) REMS environmental monitoring, Mars Reconnaissance Orbiter (MRO) HiRISE/CRISM/SHARAD mid-latitude debris-covered glacier datasets, and Phoenix perchlorate soil chemistry.
+5. **International Space Agency Partner & Academic Baselines:** ESA PANGAEA / PANGAEA-X (*Nusfjord*, *Lanzarote*, *Nördlinger Ries*), ESA/DLR *ARCHES* & *LUNA* analogue baselines (*Mount Etna*), CSA lunar geology training (*Kamestastin / Mistastin*), JAXA SELENE/Kaguya terrain data, and recent peer-reviewed morphometric/mineralogical studies (*Jingpo Lake*, *Miyake-jima*, *CAMões Terceira*).
