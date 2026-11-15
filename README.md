@@ -7,7 +7,7 @@
 
 🗺️ [**Interactive Global Discovery Map**](https://nicolo-sederino.github.io/Perseus_NASA_Space_Apps_challenge_2026/results/perseus_local_viewer.html) | Explore the identified Earth analog sites on a global map (`perseus_local_viewer.html`) |
 
-🎥 **Project Demo / Pitch Deck (`report/`):** [Team Perseus Pitch Deck (PDF)](https://github.com/nicolo-sederino/Perseus_NASA_Space_Apps_challenge_2026/blob/main/report/demoPerseus.pptx.pdf)
+🎥 [**Project Demo / Pitch Deck**](https://github.com/nicolo-sederino/Perseus_NASA_Space_Apps_challenge_2026/blob/main/report/demoPerseus.pptx.pdf) | Team Perseus presentation slides (`demoPerseus.pptx.pdf`) |
 
 
 > **AI-Assistance Disclosure (NASA Space Apps Submission Guidelines):**  
