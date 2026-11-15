@@ -1,943 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Perseus | Planetary Analogue Discovery System</title>
-    <style>
-        /* Reset & Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.65;
-            color: #e0f2fe;
-            background-color: #030712;
-            background-image: 
-                radial-gradient(ellipse at top, #0c2442 0%, #050d1a 55%, #02040a 100%);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Sfondo Cielo Stellato */
-        body::before,
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        body::before {
-            background-image:
-                radial-gradient(1.5px 1.5px at 12% 18%, #ffffff, transparent),
-                radial-gradient(1px 1px at 28% 42%, #bae6fd, transparent),
-                radial-gradient(2px 2px at 45% 15%, #7dd3fc, transparent),
-                radial-gradient(1px 1px at 63% 33%, #ffffff, transparent),
-                radial-gradient(1.5px 1.5px at 78% 12%, #e0f2fe, transparent),
-                radial-gradient(1px 1px at 89% 48%, #38bdf8, transparent),
-                radial-gradient(1.5px 1.5px at 18% 72%, #ffffff, transparent),
-                radial-gradient(2px 2px at 36% 84%, #bae6fd, transparent),
-                radial-gradient(1px 1px at 54% 66%, #ffffff, transparent),
-                radial-gradient(1.5px 1.5px at 71% 79%, #7dd3fc, transparent),
-                radial-gradient(1px 1px at 92% 88%, #ffffff, transparent),
-                radial-gradient(1.5px 1.5px at 8% 52%, #38bdf8, transparent);
-            background-size: 550px 550px;
-            opacity: 0.85;
-        }
-
-        body::after {
-            background-image:
-                radial-gradient(1px 1px at 22% 27%, #ffffff, transparent),
-                radial-gradient(1.5px 1.5px at 49% 51%, #38bdf8, transparent),
-                radial-gradient(1px 1px at 81% 63%, #bae6fd, transparent),
-                radial-gradient(1px 1px at 67% 91%, #ffffff, transparent),
-                radial-gradient(1.5px 1.5px at 15% 89%, #7dd3fc, transparent);
-            background-size: 380px 380px;
-            opacity: 0.55;
-        }
-
-        /* Header & Navigazione */
-        header {
-            background-color: rgba(6, 16, 33, 0.88);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.25);
-            padding: 1rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(12px);
-        }
-
-        nav {
-            max-width: 1060px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: #ffffff;
-            text-decoration: none;
-            letter-spacing: 0.8px;
-            cursor: pointer;
-        }
-
-        .logo span {
-            color: #38bdf8;
-            text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-links li a, .nav-links li button {
-            text-decoration: none;
-            background: none;
-            border: none;
-            color: #bae6fd;
-            font-weight: 500;
-            font-size: 0.96rem;
-            cursor: pointer;
-            font-family: inherit;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links li a:hover,
-        .nav-links li a.active,
-        .nav-links li button:hover,
-        .nav-links li button.active {
-            color: #38bdf8;
-        }
-
-        /* Menu a tendina (Dropdown) */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            background: rgba(14, 116, 144, 0.22) !important;
-            color: #e0f2fe !important;
-            border: 1px solid rgba(56, 189, 248, 0.4) !important;
-            padding: 0.48rem 1rem !important;
-            border-radius: 8px !important;
-            font-size: 0.95rem !important;
-            font-weight: 600 !important;
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-toggle:hover,
-        .dropdown-toggle.active-parent {
-            background: rgba(2, 132, 199, 0.35) !important;
-            border-color: #38bdf8 !important;
-            color: #ffffff !important;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
-        }
-
-        .arrow {
-            font-size: 0.75rem;
-            transition: transform 0.25s ease;
-        }
-
-        .dropdown.open .arrow {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            right: 0;
-            top: calc(100% + 10px);
-            min-width: 260px;
-            background-color: #071326;
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            border-radius: 10px;
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(14, 165, 233, 0.15);
-            list-style: none;
-            padding: 0.5rem;
-            display: none;
-            z-index: 1100;
-        }
-
-        .dropdown.open .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu li button {
-            width: 100%;
-            text-align: left;
-            display: block;
-            padding: 0.65rem 0.9rem;
-            color: #bae6fd;
-            border-radius: 6px;
-            font-size: 0.92rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .dropdown-menu li button span {
-            display: block;
-            font-size: 0.76rem;
-            color: #7dd3fc;
-            opacity: 0.8;
-        }
-
-        .dropdown-menu li button:hover,
-        .dropdown-menu li button.active {
-            background-color: rgba(2, 132, 199, 0.3);
-            color: #ffffff;
-        }
-
-        /* Gestione Sezioni (Tab Content) */
-        .page-section {
-            display: none;
-        }
-
-        .page-section.active-section {
-            display: block;
-            animation: fadeIn 0.25s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Main Content */
-        main {
-            max-width: 1060px;
-            width: 92%;
-            margin: 2.75rem auto;
-            flex: 1;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, rgba(12, 36, 66, 0.82) 0%, rgba(7, 22, 46, 0.9) 100%);
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            border-radius: 14px;
-            padding: 3rem 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 12px 32px rgba(2, 6, 23, 0.65);
-            backdrop-filter: blur(6px);
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: rgba(56, 189, 248, 0.15);
-            color: #7dd3fc;
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 0.3rem 0.85rem;
-            border-radius: 999px;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: 1.65rem;
-            color: #f0f9ff;
-            margin: 2.5rem 0 1rem;
-            border-left: 4px solid #38bdf8;
-            padding-left: 0.85rem;
-        }
-
-        h3 {
-            font-size: 1.15rem;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            color: #cbd5e1;
-            font-size: 1.02rem;
-        }
-
-        /* Pulsanti luminosi uniformi */
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-            color: #ffffff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
-        }
-
-        /* Grid & Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.25rem;
-        }
-
-        .card {
-            background-color: rgba(9, 22, 43, 0.82);
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            border-radius: 12px;
-            padding: 1.65rem;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: #38bdf8;
-        }
-
-        .card-link {
-            background: none;
-            border: none;
-            padding: 0;
-            text-align: left;
-            margin-top: 1rem;
-            color: #38bdf8;
-            font-weight: 600;
-            font-size: 0.94rem;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .card-link:hover {
-            color: #7dd3fc;
-            text-decoration: underline;
-        }
-
-        /* Metrics Box */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .metric-box {
-            background-color: rgba(9, 22, 43, 0.82);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            border-radius: 10px;
-            padding: 1.25rem;
-            text-align: center;
-        }
-
-        .metric-value {
-            display: block;
-            font-size: 1.55rem;
-            font-weight: 700;
-            color: #38bdf8;
-            margin-bottom: 0.25rem;
-        }
-
-        .metric-label {
-            font-size: 0.85rem;
-            color: #bae6fd;
-        }
-
-        /* Tabelle Dati */
-        .table-container {
-            overflow-x: auto;
-            margin-top: 1.25rem;
-            border-radius: 10px;
-            border: 1px solid rgba(56, 189, 248, 0.28);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: rgba(9, 22, 43, 0.88);
-            text-align: left;
-        }
-
-        th, td {
-            padding: 0.9rem 1.1rem;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
-            font-size: 0.95rem;
-        }
-
-        th {
-            background-color: rgba(14, 49, 88, 0.9);
-            color: #7dd3fc;
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background-color: rgba(2, 132, 199, 0.15);
-        }
-
-        /* Step Cards */
-        .step-card {
-            background-color: rgba(9, 22, 43, 0.82);
-            border-left: 4px solid #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.18);
-            border-left-width: 4px;
-            padding: 1.25rem 1.5rem;
-            border-radius: 0 10px 10px 0;
-            margin-bottom: 1.2rem;
-        }
-
-        code {
-            background-color: rgba(14, 116, 144, 0.28);
-            color: #7dd3fc;
-            padding: 0.15rem 0.45rem;
-            border-radius: 4px;
-            font-family: ui-monospace, monospace;
-            font-size: 0.9em;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: rgba(4, 11, 24, 0.92);
-            border-top: 1px solid rgba(56, 189, 248, 0.2);
-            color: #7dd3fc;
-            font-size: 0.9rem;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 650px) {
-            h1 { font-size: 1.9rem; }
-            .hero { padding: 2rem 1.4rem; }
-            nav { flex-direction: column; gap: 0.75rem; }
-            .dropdown-menu { left: 50%; transform: translateX(-50%); right: auto; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perseus - Flow B Global Planetary Analog Discovery</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-color: #1a1a2e;
+      --accent-color: #e94560;
+      --bg-color: #0f0f1a;
+      --text-color: #e0e0e0;
+      --card-bg: #16213e;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background-color: var(--primary-color);
+      padding: 1.5rem 2rem;
+      border-bottom: 2px solid var(--accent-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #ffffff;
+    }
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: var(--accent-color);
+    }
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    .flow-b-documentation {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .flow-b-documentation h2 {
+      color: #ffffff;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+    }
+    .flow-b-documentation h3 {
+      color: #f05454;
+      margin-top: 2rem;
+    }
+    .flow-b-documentation code {
+      background-color: #0f0f1a;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+      color: #ff8787;
+    }
+    .flow-b-documentation ul, .flow-b-documentation ol {
+      padding-left: 1.5rem;
+    }
+    .flow-b-documentation li {
+      margin-bottom: 0.8rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a class="logo" onclick="switchSection('home')">TEAM <span>PERSEUS</span></a>
-            <ul class="nav-links">
-                <li><button onclick="switchSection('home')" id="nav-home">Home</button></li>
-                <li class="dropdown" id="directoryDropdown">
-                    <button class="dropdown-toggle" id="dropdownToggle" aria-expanded="false">
-                        Project Directory <span class="arrow">&#9662;</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <button onclick="switchSection('home')" id="drop-home">
-                                Overview &amp; Challenge
-                                <span>Home Page</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchSection('lunar')" id="drop-lunar">
-                                Lunar Module (Flow A)
-                                <span>5 Targets &bull; 24 Features &bull; Google Earth</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchSection('flow-b')" id="drop-flow-b">
-                                Global Discovery (Flow B)
-                                <span>GEE Cloud-Native Pipeline &bull; Interactive Map</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchSection('mars')" id="drop-mars">
-                                Mars Module (Flow C)
-                                <span>10 Targets &bull; 15 Features &bull; Google Earth</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchSection('ml')" id="drop-ml">
-                                ML &amp; MATLAB Architecture
-                                <span>SVD-PCA &bull; K-Means &bull; 3D Dashboard</span>
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>Perseus &mdash; NASA Space Apps Challenge 2026</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="flow_a.html">Flow A</a>
+      <a href="discovery_map.html" style="color: var(--accent-color);">Flow B Map</a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub Repo</a>
+    </nav>
+  </header>
 
-    <main>
-        <!-- ==================== SEZIONE 1: HOME ==================== -->
-        <section id="section-home" class="page-section active-section">
-            <div class="hero">
-                <span class="badge">NASA Space Apps Challenge 2026</span>
-                <h1>Planetary Analogue Discovery System</h1>
-                <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> to identify high-fidelity terrestrial geological analogues for permanent Lunar and Martian surface bases.</p>
-                <!-- Tutti i pulsanti della Hero convertiti nella classe .btn luminosa -->
-                <div class="btn-group">
-                    <button class="btn" onclick="switchSection('lunar')">Explore Lunar Module &rarr;</button>
-                    <button class="btn" onclick="switchSection('flow-b')">Explore Flow B: Global Discovery &rarr;</button>
-                    <button class="btn" onclick="switchSection('mars')">Explore Mars Module &rarr;</button>
-                    <button class="btn" onclick="switchSection('ml')">ML &amp; Code Pipeline &rarr;</button>
-                </div>
-            </div>
+  <main>
+    <section class="flow-b-documentation">
+      <h2>Global Planetary Analog Discovery &mdash; Flow B Architecture</h2>
+      <p>
+        <strong>Flow B (<code>flow_B_global_discovery</code>)</strong> extends the selection engine of Flow A from a closed catalog of known terrestrial sites to an automated global planetary discovery system. While Flow A evaluates analogs already documented in scientific literature, Flow B scans the entire emerged Earth surface using <strong>Google Earth Engine (GEE)</strong>, geographically excludes Flow A sites, extracts multi-sensor telemetry from NASA and ESA orbital missions, and projects abiotic cells into the latent space calibrated on Flow A&rsquo;s MATLAB core to discover novel lunar and Martian analogs[cite: 5].
+      </p>
 
-            <section>
-                <h2>About the Team</h2>
-                <p>We are a multidisciplinary team of Aerospace and Computer Science Engineering students from <strong>Sapienza University of Rome</strong> and <strong>Roma Tre University</strong>. Combining expertise in Space, Aeronautics, Control Systems, and AI for space applications, we aim to build innovative careers in the aerospace industry.</p>
+      <h3>1. Module Architecture: Inputs &amp; Outputs</h3>
+      <p>The pipeline is structured into four active Python modules (alongside the initial STAC prototype archived in <code>legacy/</code>):</p>
+      <ul>
+        <li>
+          <strong><code>perseus_common.py</code></strong><br>
+          <em>Role:</em> Shared utilities, Haversine geodetic distance calculations, and loading calibration anchors.<br>
+          <em>Inputs:</em> <code>data/Earth_Lunar_Analogs_Catalog.csv</code>, <code>data/Earth_Mars_Analogs_Catalog.csv</code>.<br>
+          <em>Outputs:</em> Deduplicated Flow A anchor DataFrame and minimum distance vectors <em>d</em><sub>min</sub> (km).
+        </li>
+        <li>
+          <strong><code>gee_global_extract.py</code></strong><br>
+          <em>Role:</em> Server-side extractor on Google Earth Engine across two stages, plus physical and geotechnical derivation.<br>
+          <em>Inputs:</em> Global equal-area grid (0.25&deg;), NASA/ESA/ECMWF satellite collections, Flow A anchors.<br>
+          <em>Outputs:</em> <code>cache/global_abiotic_grid.csv</code>, <code>cache/extraction_metadata.json</code>.
+        </li>
+        <li>
+          <strong><code>run_flow_B_discovery.py</code></strong><br>
+          <em>Role:</em> Mathematical engine for standardization, PCA/SVD projection, K-Means clustering, and multi-criteria scoring.<br>
+          <em>Inputs:</em> <code>cache/global_abiotic_grid.csv</code>, target catalogs <code>Lunar_Targets_Catalog.csv</code> (5 targets) and <code>Mars_Targets_Catalog.csv</code> (10 targets).<br>
+          <em>Outputs:</em> <code>results/flowB_{lunar,mars}_heatmap.json</code>, <code>results/flowB_{lunar,mars}_discoveries.geojson</code>, <code>results/flowB_exclusion_report.json</code>, <code>results/flowB_*_feature_parity_report.csv</code>.
+        </li>
+        <li>
+          <strong><code>generate_local_viewer.py</code></strong><br>
+          <em>Role:</em> Standalone cartographic web-app generator for local visualization and GitHub Pages deployment.<br>
+          <em>Inputs:</em> Heatmap and exclusion JSON files in <code>results/</code>.<br>
+          <em>Outputs:</em> <code>results/perseus_local_viewer.html</code> (deployed as <code>discovery_map.html</code>)[cite: 5].
+        </li>
+      </ul>
 
-                <h2>About the Challenge</h2>
-                <p>Selecting future landing sites and lunar base locations depends on many factors, including topography, geology, environment, and available resources, to name a few. Places on Earth that have analogous characteristics to the Moon or Mars – the Atacama Desert, Haughton Crater, Death Valley – allow mission teams to test equipment and methods before they fly; however, such terrestrial analog sites are not entirely well characterized.</p>
-                <p>Our challenge is to use open Earth, Moon, and Mars data from NASA and other space agencies to identify and characterize new terrestrial analogs for future bases or landing sites, drawing on deserts, polar regions, volcanic and arid terrains, caves, and other environments that share conditions with the lunar or Martian surface, then present our findings as a map, visualization, or other tool.</p>
-            </section>
+      <h3>2. NASA &amp; Orbital Partners Data Processing</h3>
+      <p>
+        Radiometric and topographic processing executes server-side on Google Earth Engine datacenters over a multi-seasonal climatological window of <strong>4 years (2021&ndash;2024)</strong>. Raw orbital imagery is transformed into <strong>28 physical and engineering variables</strong> across four processing chains:
+      </p>
+      <ul>
+        <li>
+          <strong>A. Multi-Scale Topography &amp; Morphometry (NASA NASADEM + Copernicus GLO-30 / CryoSat-2)</strong><br>
+          <em>Sources:</em> <code>NASA/NASADEM_HGT/001</code> (30 m native resolution, derived from SRTM) fused seamlessly with <code>COPERNICUS/DEM/GLO30</code> and <code>CPOM/CryoSat2/ANTARCTICA_DEM</code> to cover polar latitudes beyond &plusmn;60&deg;.<br>
+          <em>Geometric Treatment:</em> To eliminate longitudinal distortion near the poles (&Delta;<em>x</em> &prop; cos &phi;), neighborhood statistics are computed over a <strong>metric circular kernel</strong> (<code>ee.Kernel.circle(radius=win_px * 30.0, units="meters")</code>, 480 m radius, area &approx; 0.72 km&sup2;).<br>
+          <em>Derived Quantities:</em> Elevation (<code>Altitude_m</code>), local slope at 30 m (<code>Slope_30m_deg</code>), smoothed slopes at 90 m and 270 m, mean landing slope (<code>Mean_Slope_deg</code>), 75th-percentile rover traversability (<code>Traverse_Slope_deg</code>), safe landing fraction (<code>Safe_Landing_Frac</code>, slope &le; 5&deg;), ultra-flat fraction (<code>Ultra_Flat_Frac</code>, &le; 2&deg;), and root-mean-square surface roughness (<code>RMS_Roughness_m</code>).
+        </li>
+        <li>
+          <strong>B. Optical Spectroscopy &amp; Mineralogy (NASA/USGS Landsat 8 &amp; 9 Collection 2 Level-2)</strong><br>
+          <em>Sources:</em> <code>LANDSAT/LC08/C02/T1_L2</code> and <code>LANDSAT/LC09/C02/T1_L2</code> (plus <code>T2_L2</code> collections for Antarctic orbits) at 30 m resolution.<br>
+          <em>Cloud Masking &amp; Radiometric Calibration:</em> Bit-masking on <code>QA_PIXEL</code> (<code>qa.bitwiseAnd(30).eq(0)</code>) removes clouds, cloud shadows, cirrus, and snow/ice. Digital Numbers (DN) across six bands (<code>SR_B2</code>&ndash;<code>SR_B7</code>) are converted to physical surface reflectance (&rho;<sub>&lambda;</sub> = DN<sub>&lambda;</sub> &middot; 0.0000275 &minus; 0.2) and aggregated via <strong>multi-year median</strong>.<br>
+          <em>Geochemical &amp; Spectral Proxies:</em> Normalized difference indices (NDVI, NDWI, NDSI), broadband albedo (<code>Albedo</code>), ferric oxide index (<code>Ferric_Oxide_Idx</code>), mafic/basaltic index (<code>Mafic_Basalt_Idx</code>), FeO and TiO<sub>2</sub> weight percentages, salts and evaporites (<code>Salts_Evaporites_wt_pct</code>), and water ice (<code>Water_Ice_wt_pct</code>) constrained thermodynamically by <em>T</em><sub>min</sub> &lt; 273.15 K.
+        </li>
+        <li>
+          <strong>C. Thermophysics &amp; Thermal Inertia (NASA MODIS Aqua MYD11A2)</strong><br>
+          <em>Source:</em> <code>MODIS/061/MYD11A2</code> (8-day composites at 1 km resolution, 13:30 and 01:30 local solar time).<br>
+          <em>Thermal Treatment:</em> Scaled to Kelvin (&times; 0.02) to derive mean temperature, 5th percentile (<em>T</em><sub>min</sub>), 95th percentile (<em>T</em><sub>max</sub>), and clear-sky fraction (<code>Sun_Visibility_pct</code>).<br>
+          <em>Empirical Thermal Inertia Calibration:</em> Apparent Thermal Inertia ATI = (1 &minus; <em>A</em>) / &Delta;<em>T</em> is computed from diurnal temperature amplitude &Delta;<em>T</i> and albedo, then calibrated against Flow A anchors via median scaling factor <em>k</em><sub>TI</sub> to yield TI = <em>k</em><sub>TI</sub> &middot; ATI.
+        </li>
+        <li>
+          <strong>D. Atmosphere &amp; Soil Geotechnics (ECMWF ERA5-Land + OpenLandMap)</strong><br>
+          <em>Atmosphere (<code>ECMWF/ERA5_LAND/MONTHLY_AGGR</code>):</em> Mean and peak monthly 10 m wind speeds, surface pressure (<code>Surface_Pressure_mbar</code>), solar UV flux proxy (<code>UV_Flux_Index</code>), and volumetric soil moisture (<code>swvl1</code>).<br>
+          <em>Regolith Mechanics (<code>OpenLandMap</code>):</em> Granulometric fractions (<code>sand_pct</code>, <code>clay_pct</code>) and bulk density yield internal friction angle &phi;, cohesion <em>c</i>, Terzaghi bearing capacity (<code>Bearing_Capacity_kPa</code>), and eolian deflation index (<code>Eolian_Deflation_Idx</code>)[cite: 5].
+        </li>
+      </ul>
 
-            <section>
-                <h2>Engineering Thresholds &amp; Parameters</h2>
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <span class="metric-value">&le; 5&deg;</span>
-                        <span class="metric-label">Max Touchdown Slope (5m baseline)</span>
-                    </div>
-                    <div class="metric-box">
-                        <span class="metric-value">&lt; 0.3 m</span>
-                        <span class="metric-label">Critical Boulder Obstacle Limit</span>
-                    </div>
-                    <div class="metric-box">
-                        <span class="metric-value">1 – 3 km</span>
-                        <span class="metric-label">Plume Ejecta Safety Buffer</span>
-                    </div>
-                    <div class="metric-box">
-                        <span class="metric-value">&gt; 65–75%</span>
-                        <span class="metric-label">South Pole Solar Illumination</span>
-                    </div>
-                </div>
-            </section>
+      <h3>3. Four-Level Cascade Filtering Pipeline</h3>
+      <ol>
+        <li>
+          <strong>Barrier 1 &mdash; Equal-Area Grid &amp; Flow A Geographic Exclusion (50 km):</strong> <code>build_grid()</code> generates a global equal-area sampling grid (&Delta;&phi; = 0.25&deg;, &approx; 27.8 km spacing). <code>min_distance_to_sites_km()</code> removes every cell within 50 km of known Flow A sites (<em>d</em><sub>min</sub> &ge; 50.0 km).
+        </li>
+        <li>
+          <strong>Barrier 2 &mdash; Server-Side Coarse Mask (Stage 1 at 1 km):</strong> Queries <code>MODIS/061/MCD12Q1</code> (IGBP land cover) and <code>MODIS/061/MOD13A3</code> (monthly NDVI). Eliminates forests, wetlands, croplands, urban centers, water bodies (<code>LC_EXCLUDE</code>), and vegetated regions with NDVI<sub>max</sub> &ge; 0.20.
+        </li>
+        <li>
+          <strong>Barrier 3 &mdash; Strict Abiotic Filter &amp; Telemetry Integrity (Stage 2 at 30 m):</strong> Parallelized via <code>ThreadPoolExecutor</code> with incremental disk checkpoints. Enforces a strict abiotic threshold of NDVI<sub>Landsat</sub> &lt; 0.15 (while preserving Flow A calibration anchors with <code>is_known_site=True</code>).
+        </li>
+        <li>
+          <strong>Barrier 4 &mdash; Lander &amp; Rover Engineering Constraints (<code>run_flow_B_discovery.py</code>):</strong> Evaluates operational feasibility flags: <code>Lander_Suitable</code> (<code>Mean_Slope_deg</code> &le; 5.0&deg; and <code>Safe_Landing_Frac</code> &ge; 0.50) and <code>Rover_Suitable</code> (<code>Traverse_Slope_deg</code> &le; 12.0&deg;)[cite: 5].
+        </li>
+      </ol>
 
-            <section>
-                <h2>Implemented Project Modules</h2>
-                <div class="grid">
-                    <div class="card">
-                        <div>
-                            <span class="badge">Module 01 &bull; Flow A</span>
-                            <h3>Lunar Analogue Discovery</h3>
-                            <p>Evaluates <strong>5 key lunar targets</strong> against <strong>23 terrestrial sites</strong> across <strong>24 quantitative geophysical, thermal, and regolith parameters</strong>.</p>
-                        </div>
-                        <button class="card-link" onclick="switchSection('lunar')">Open Lunar Module &rarr;</button>
-                    </div>
+      <h3>4. Classification &amp; Scoring in Latent Space</h3>
+      <ul>
+        <li>
+          <strong>Feature Intersection &amp; Cross-Domain Alignment:</strong> <code>build_calibration_space()</code> isolates <strong>13 shared numerical features</strong> across terrestrial catalogs, planetary targets, and satellite grids, aligning physical scales via median ratios derived from Flow A anchors.
+        </li>
+        <li>
+          <strong>Dual-Mode Standardization:</strong> Applies standard Z-score normalization for the Moon (<code>lunar</code>) and <strong>Domain-Adapted Z-Score</strong> for Mars (<code>mars</code>), standardizing terrestrial cells and Martian targets against their respective planetary distributions. Z-scores are clipped to [&minus;4.5&sigma;, +4.5&sigma;].
+        </li>
+        <li>
+          <strong>SVD/PCA Projection &amp; K-Means Clustering:</strong> Singular Value Decomposition (SVD) on the Flow A reference matrix (<strong>Z</strong><sub>ref</sub>) retains ~95% cumulative variance (6 principal components for the Moon, 7 for Mars). Global candidate cells are projected via <strong>S</strong><sub><em>g</em></sub> = <strong>Z</strong><sub><em>g</em></sub><strong>V</strong>, and a <strong>K-Means (<em>K</em> = 3)</strong> model assigns geological archetypes (<code>Cluster_ID</code> and <code>Cluster_Label</code>).
+        </li>
+        <li>
+          <strong>Hybrid Similarity Index:</strong> Euclidean distance in PCA space <em>d</em> = &Vert;<strong>S</strong><sub><em>g</em></sub> &minus; <strong>s</strong><sub><em>t</em></sub>&Vert;<sub>2</sub> is mapped via exponential decay: Score<sub>latent</sub> = 100 &middot; exp(&minus;ln(2) &middot; <em>d</em> / <em>d</em><sub>median,FlowA</sub>), then fused (75% weight) with the 4-axis Radar Chart sub-score mean (25% weight)[cite: 5].
+        </li>
+      </ul>
 
-                    <div class="card">
-                        <div>
-                            <span class="badge">Module 02 &bull; Flow B</span>
-                            <h3>Global Planetary Discovery</h3>
-                            <p>Cloud-native scale pipeline using Google Earth Engine to discover novel uncatalogued analogue sites with Haversine spatial exclusion filters.</p>
-                        </div>
-                        <button class="card-link" onclick="switchSection('flow-b')">Open Global Discovery &rarr;</button>
-                    </div>
+      <h3>5. Exported Artifacts &amp; Web Visualization</h3>
+      <ul>
+        <li><strong>JSON Heatmaps &amp; Top-25 Rankings:</strong> <code>flowB_{lunar,mars}_heatmap.json</code> and <code>flowB_{lunar,mars}_all_targets_top25.json</code> covering all 5 lunar and 10 Martian targets.</li>
+        <li><strong>GeoJSON Discoveries:</strong> Standard RFC 7946 vector layers (<code>flowB_{lunar,mars}_discoveries.geojson</code>) ready for QGIS and ArcGIS integration.</li>
+        <li><strong>Audit Reports:</strong> <code>flowB_exclusion_report.json</code> and feature parity CSV reports verifying cross-domain consistency.</li>
+        <li><strong>Interactive Web Viewer:</strong> <code>perseus_local_viewer.html</code> (<code>discovery_map.html</code>), a standalone Leaflet satellite map featuring planet/target selectors, 50 km exclusion rings, engineering suitability badges, and full telemetry popups[cite: 5].</li>
+      </ul>
+    </section>
+  </main>
 
-                    <div class="card">
-                        <div>
-                            <span class="badge">Module 03 &bull; Flow C</span>
-                            <h3>Mars Analogue Discovery</h3>
-                            <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong> and Cosine Similarity.</p>
-                        </div>
-                        <button class="card-link" onclick="switchSection('mars')">Open Mars Module &rarr;</button>
-                    </div>
+  <footer>
+    <p>Team Perseus &mdash; NASA Space Apps Challenge 2026. All rights reserved.</p>
+  </footer>
 
-                    <div class="card">
-                        <div>
-                            <span class="badge">Module 04 &bull; Core Engine</span>
-                            <h3>Data-Driven ML Pipeline</h3>
-                            <p>Built in MATLAB without hardcoded matrices: automated CSV feature intersection, Z-Score standardization, <strong>SVD-PCA</strong>, and <strong>K-Means</strong>.</p>
-                        </div>
-                        <button class="card-link" onclick="switchSection('ml')">Open Technical Architecture &rarr;</button>
-                    </div>
-                </div>
-            </section>
-        </section>
-
-        <!-- ==================== SEZIONE 2: LUNAR MODULE ==================== -->
-        <section id="section-lunar" class="page-section">
-            <span class="badge">Flow A &bull; 24 Quantitative Features</span>
-            <h1>Lunar Landing Sites &amp; Permanent Bases</h1>
-            <p>Our Lunar Module cross-references <strong>5 high-priority lunar exploration sites</strong> against a curated database of <strong>23 terrestrial volcanic, polar, and impact environments</strong> using 24 quantitative parameters.</p>
-
-            <h2>Interactive 3D Map: Moon &amp; Earth Analogues</h2>
-            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
-                <h3>Explore the Lunar Targets on Google Earth</h3>
-                <p>Inspect the 3D topography, craters, lava tube skylights, and coordinates of our 5 lunar targets paired with their best terrestrial analogues.</p>
-                <div class="btn-group" style="margin-top: 0.75rem;">
-                    <a href="https://earth.google.com/earth/d/1DsQszjspXXG4ZXTwXqa_EM_18nI1BKvX?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Moon Project &nearr;</a>
-                </div>
-            </div>
-
-            <h2>Best Terrestrial Matches (Flow A Output)</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Lunar Target</th>
-                            <th>Mission Context</th>
-                            <th>Best Terrestrial Analogue</th>
-                            <th>Coordinates</th>
-                            <th>Euclidean Dist.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>Marius Hills Skylight</strong></td><td>Lava Tube / Volcanic Dome</td><td>Jingpo Lake Volcanic Field (China)</td><td>44.15&deg; N, 128.85&deg; E</td><td>4.213</td></tr>
-                        <tr><td><strong>Descartes Highlands</strong></td><td>Apollo 16 Pure Anorthosite Crust</td><td>Miyake-jima (Japan)</td><td>34.08&deg; N, 139.53&deg; E</td><td>4.550</td></tr>
-                        <tr><td><strong>Oceanus Procellarum</strong></td><td>Apollo 12 Basaltic Maria Plain</td><td>Askja Caldera (Iceland)</td><td>65.03&deg; N, 16.75&deg; W</td><td>5.994</td></tr>
-                        <tr><td><strong>Mare Tranquillitatis Pit</strong></td><td>Apollo 11 &amp; Subsurface Conduit</td><td>Black Point Lava Flow (USA)</td><td>35.68&deg; N, 111.33&deg; W</td><td>6.412</td></tr>
-                        <tr><td><strong>Shackleton Rim</strong></td><td>Artemis Base / South Pole</td><td>Antarctic Dry Valleys – McMurdo (Antarctica)</td><td>77.82&deg; S, 160.67&deg; E</td><td>7.309</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="btn-group" style="margin-top: 2.5rem;">
-                <button class="btn" onclick="switchSection('home')">&larr; Back to Home</button>
-                <button class="btn" onclick="switchSection('flow-b')">Next: Global Discovery (Flow B) &rarr;</button>
-            </div>
-        </section>
-
-        <!-- ==================== SEZIONE 3: IRIS - GLOBAL DISCOVERY ==================== -->
-  <section class="flow-b-documentation">
-  <h2>Global Planetary Analog Discovery &mdash; Flow B Architecture</h2>
-  <p>
-    <strong>Flow B (<code>flow_B_global_discovery</code>)</strong> extends the selection engine of Flow A from a closed catalog of known terrestrial sites to an automated global planetary discovery system. While Flow A evaluates analogs already documented in scientific literature, Flow B scans the entire emerged Earth surface using <strong>Google Earth Engine (GEE)</strong>, geographically excludes Flow A sites, extracts multi-sensor telemetry from NASA and ESA orbital missions, and projects abiotic cells into the latent space calibrated on Flow A&rsquo;s MATLAB core to discover novel lunar and Martian analogs.
-  </p>
-
-  <h3>1. Module Architecture: Inputs &amp; Outputs</h3>
-  <p>The pipeline is structured into four active Python modules (alongside the initial STAC prototype archived in <code>legacy/</code>):</p>
-  <ul>
-    <li>
-      <strong><code>perseus_common.py</code></strong><br>
-      <em>Role:</em> Shared utilities, Haversine geodetic distance calculations, and loading calibration anchors.<br>
-      <em>Inputs:</em> <code>data/Earth_Lunar_Analogs_Catalog.csv</code>, <code>data/Earth_Mars_Analogs_Catalog.csv</code>.<br>
-      <em>Outputs:</em> Deduplicated Flow A anchor DataFrame and minimum distance vectors <em>d</em><sub>min</sub> (km).
-    </li>
-    <li>
-      <strong><code>gee_global_extract.py</code></strong><br>
-      <em>Role:</em> Server-side extractor on Google Earth Engine across two stages, plus physical and geotechnical derivation.<br>
-      <em>Inputs:</em> Global equal-area grid (0.25&deg;), NASA/ESA/ECMWF satellite collections, Flow A anchors.<br>
-      <em>Outputs:</em> <code>cache/global_abiotic_grid.csv</code>, <code>cache/extraction_metadata.json</code>.
-    </li>
-    <li>
-      <strong><code>run_flow_B_discovery.py</code></strong><br>
-      <em>Role:</em> Mathematical engine for standardization, PCA/SVD projection, K-Means clustering, and multi-criteria scoring.<br>
-      <em>Inputs:</em> <code>cache/global_abiotic_grid.csv</code>, target catalogs <code>Lunar_Targets_Catalog.csv</code> (5 targets) and <code>Mars_Targets_Catalog.csv</code> (10 targets).<br>
-      <em>Outputs:</em> <code>results/flowB_{lunar,mars}_heatmap.json</code>, <code>results/flowB_{lunar,mars}_discoveries.geojson</code>, <code>results/flowB_exclusion_report.json</code>, <code>results/flowB_*_feature_parity_report.csv</code>.
-    </li>
-    <li>
-      <strong><code>generate_local_viewer.py</code></strong><br>
-      <em>Role:</em> Standalone cartographic web-app generator for local visualization and GitHub Pages deployment.<br>
-      <em>Inputs:</em> Heatmap and exclusion JSON files in <code>results/</code>.<br>
-      <em>Outputs:</em> <code>results/perseus_local_viewer.html</code> (deployed as <code>discovery_map.html</code>).
-    </li>
-  </ul>
-
-  <h3>2. NASA &amp; Orbital Partners Data Processing</h3>
-  <p>
-    Radiometric and topographic processing executes server-side on Google Earth Engine datacenters over a multi-seasonal climatological window of <strong>4 years (2021&ndash;2024)</strong>. Raw orbital imagery is transformed into <strong>28 physical and engineering variables</strong> across four processing chains:
-  </p>
-  <ul>
-    <li>
-      <strong>A. Multi-Scale Topography &amp; Morphometry (NASA NASADEM + Copernicus GLO-30 / CryoSat-2)</strong><br>
-      <em>Sources:</em> <code>NASA/NASADEM_HGT/001</code> (30 m native resolution, derived from SRTM) fused seamlessly with <code>COPERNICUS/DEM/GLO30</code> and <code>CPOM/CryoSat2/ANTARCTICA_DEM</code> to cover polar latitudes beyond &plusmn;60&deg;.<br>
-      <em>Geometric Treatment:</em> To eliminate longitudinal distortion near the poles (&Delta;<em>x</em> &prop; cos &phi;), neighborhood statistics are computed over a <strong>metric circular kernel</strong> (<code>ee.Kernel.circle(radius=win_px * 30.0, units="meters")</code>, 480 m radius, area &approx; 0.72 km&sup2;).<br>
-      <em>Derived Quantities:</em> Elevation (<code>Altitude_m</code>), local slope at 30 m (<code>Slope_30m_deg</code>), smoothed slopes at 90 m and 270 m, mean landing slope (<code>Mean_Slope_deg</code>), 75th-percentile rover traversability (<code>Traverse_Slope_deg</code>), safe landing fraction (<code>Safe_Landing_Frac</code>, slope &le; 5&deg;), ultra-flat fraction (<code>Ultra_Flat_Frac</code>, &le; 2&deg;), and root-mean-square surface roughness (<code>RMS_Roughness_m</code>).
-    </li>
-    <li>
-      <strong>B. Optical Spectroscopy &amp; Mineralogy (NASA/USGS Landsat 8 &amp; 9 Collection 2 Level-2)</strong><br>
-      <em>Sources:</em> <code>LANDSAT/LC08/C02/T1_L2</code> and <code>LANDSAT/LC09/C02/T1_L2</code> (plus <code>T2_L2</code> collections for Antarctic orbits) at 30 m resolution.<br>
-      <em>Cloud Masking &amp; Radiometric Calibration:</em> Bit-masking on <code>QA_PIXEL</code> (<code>qa.bitwiseAnd(30).eq(0)</code>) removes clouds, cloud shadows, cirrus, and snow/ice. Digital Numbers (DN) across six bands (<code>SR_B2</code>&ndash;<code>SR_B7</code>) are converted to physical surface reflectance (&rho;<sub>&lambda;</sub> = DN<sub>&lambda;</sub> &middot; 0.0000275 &minus; 0.2) and aggregated via <strong>multi-year median</strong>.<br>
-      <em>Geochemical &amp; Spectral Proxies:</em> Normalized difference indices (NDVI, NDWI, NDSI), broadband albedo (<code>Albedo</code>), ferric oxide index (<code>Ferric_Oxide_Idx</code>), mafic/basaltic index (<code>Mafic_Basalt_Idx</code>), FeO and TiO<sub>2</sub> weight percentages, salts and evaporites (<code>Salts_Evaporites_wt_pct</code>), and water ice (<code>Water_Ice_wt_pct</code>) constrained thermodynamically by <em>T</em><sub>min</sub> &lt; 273.15 K.
-    </li>
-    <li>
-      <strong>C. Thermophysics &amp; Thermal Inertia (NASA MODIS Aqua MYD11A2)</strong><br>
-      <em>Source:</em> <code>MODIS/061/MYD11A2</code> (8-day composites at 1 km resolution, 13:30 and 01:30 local solar time).<br>
-      <em>Thermal Treatment:</em> Scaled to Kelvin (&times; 0.02) to derive mean temperature, 5th percentile (<em>T</em><sub>min</sub>), 95th percentile (<em>T</em><sub>max</sub>), and clear-sky fraction (<code>Sun_Visibility_pct</code>).<br>
-      <em>Empirical Thermal Inertia Calibration:</em> Apparent Thermal Inertia ATI = (1 &minus; <em>A</em>) / &Delta;<em>T</em> is computed from diurnal temperature amplitude &Delta;<em>T</em> and albedo, then calibrated against Flow A anchors via median scaling factor <em>k</em><sub>TI</sub> to yield TI = <em>k</em><sub>TI</sub> &middot; ATI.
-    </li>
-    <li>
-      <strong>D. Atmosphere &amp; Soil Geotechnics (ECMWF ERA5-Land + OpenLandMap)</strong><br>
-      <em>Atmosphere (<code>ECMWF/ERA5_LAND/MONTHLY_AGGR</code>):</em> Mean and peak monthly 10 m wind speeds, surface pressure (<code>Surface_Pressure_mbar</code>), solar UV flux proxy (<code>UV_Flux_Index</code>), and volumetric soil moisture (<code>swvl1</code>).<br>
-      <em>Regolith Mechanics (<code>OpenLandMap</code>):</em> Granulometric fractions (<code>sand_pct</code>, <code>clay_pct</code>) and bulk density yield internal friction angle &phi;, cohesion <em>c</em>, Terzaghi bearing capacity (<code>Bearing_Capacity_kPa</code>), and eolian deflation index (<code>Eolian_Deflation_Idx</code>).
-    </li>
-  </ul>
-
-  <h3>3. Four-Level Cascade Filtering Pipeline</h3>
-  <ol>
-    <li>
-      <strong>Barrier 1 &mdash; Equal-Area Grid &amp; Flow A Geographic Exclusion (50 km):</strong> <code>build_grid()</code> generates a global equal-area sampling grid (&Delta;&phi; = 0.25&deg;, &approx; 27.8 km spacing). <code>min_distance_to_sites_km()</code> removes every cell within 50 km of known Flow A sites (<em>d</em><sub>min</sub> &ge; 50.0 km).
-    </li>
-    <li>
-      <strong>Barrier 2 &mdash; Server-Side Coarse Mask (Stage 1 at 1 km):</strong> Queries <code>MODIS/061/MCD12Q1</code> (IGBP land cover) and <code>MODIS/061/MOD13A3</code> (monthly NDVI). Eliminates forests, wetlands, croplands, urban centers, water bodies (<code>LC_EXCLUDE</code>), and vegetated regions with NDVI<sub>max</sub> &ge; 0.20.
-    </li>
-    <li>
-      <strong>Barrier 3 &mdash; Strict Abiotic Filter &amp; Telemetry Integrity (Stage 2 at 30 m):</strong> Parallelized via <code>ThreadPoolExecutor</code> with incremental disk checkpoints. Enforces a strict abiotic threshold of NDVI<sub>Landsat</sub> &lt; 0.15 (while preserving Flow A calibration anchors with <code>is_known_site=True</code>).
-    </li>
-    <li>
-      <strong>Barrier 4 &mdash; Lander &amp; Rover Engineering Constraints (<code>run_flow_B_discovery.py</code>):</strong> Evaluates operational feasibility flags: <code>Lander_Suitable</code> (<code>Mean_Slope_deg</code> &le; 5.0&deg; and <code>Safe_Landing_Frac</code> &ge; 0.50) and <code>Rover_Suitable</code> (<code>Traverse_Slope_deg</code> &le; 12.0&deg;).
-    </li>
-  </ol>
-
-  <h3>4. Classification &amp; Scoring in Latent Space</h3>
-  <ul>
-    <li>
-      <strong>Feature Intersection &amp; Cross-Domain Alignment:</strong> <code>build_calibration_space()</code> isolates <strong>13 shared numerical features</strong> across terrestrial catalogs, planetary targets, and satellite grids, aligning physical scales via median ratios derived from Flow A anchors.
-    </li>
-    <li>
-      <strong>Dual-Mode Standardization:</strong> Applies standard Z-score normalization for the Moon (<code>lunar</code>) and <strong>Domain-Adapted Z-Score</strong> for Mars (<code>mars</code>), standardizing terrestrial cells and Martian targets against their respective planetary distributions. Z-scores are clipped to [&minus;4.5&sigma;, +4.5&sigma;].
-    </li>
-    <li>
-      <strong>SVD/PCA Projection &amp; K-Means Clustering:</strong> Singular Value Decomposition (SVD) on the Flow A reference matrix (<strong>Z</strong><sub>ref</sub>) retains ~95% cumulative variance (6 principal components for the Moon, 7 for Mars). Global candidate cells are projected via <strong>S</strong><sub><em>g</em></sub> = <strong>Z</strong><sub><em>g</em></sub><strong>V</strong>, and a <strong>K-Means (<em>K</em> = 3)</strong> model assigns geological archetypes (<code>Cluster_ID</code> and <code>Cluster_Label</code>).
-    </li>
-    <li>
-      <strong>Hybrid Similarity Index:</strong> Euclidean distance in PCA space <em>d</em> = &Vert;<strong>S</strong><sub><em>g</em></sub> &minus; <strong>s</strong><sub><em>t</em></sub>&Vert;<sub>2</sub> is mapped via exponential decay: Score<sub>latent</sub> = 100 &middot; exp(&minus;ln(2) &middot; <em>d</em> / <em>d</em><sub>median,FlowA</sub>), then fused (75% weight) with the 4-axis Radar Chart sub-score mean (25% weight).
-    </li>
-  </ul>
-
-  <h3>5. Exported Artifacts &amp; Web Visualization</h3>
-  <ul>
-    <li><strong>JSON Heatmaps &amp; Top-25 Rankings:</strong> <code>flowB_{lunar,mars}_heatmap.json</code> and <code>flowB_{lunar,mars}_all_targets_top25.json</code> covering all 5 lunar and 10 Martian targets.</li>
-    <li><strong>GeoJSON Discoveries:</strong> Standard RFC 7946 vector layers (<code>flowB_{lunar,mars}_discoveries.geojson</code>) ready for QGIS and ArcGIS integration.</li>
-    <li><strong>Audit Reports:</strong> <code>flowB_exclusion_report.json</code> and feature parity CSV reports verifying cross-domain consistency.</li>
-    <li><strong>Interactive Web Viewer:</strong> <code>perseus_local_viewer.html</code> (<code>discovery_map.html</code>), a standalone Leaflet satellite map featuring planet/target selectors, 50 km exclusion rings, engineering suitability badges, and full telemetry popups.</li>
-  </ul>
-</section>
-
-        <!-- ==================== SEZIONE 4: MARS MODULE ==================== -->
-        <section id="section-mars" class="page-section">
-            <span class="badge">Flow C &bull; 15 Quantitative Features</span>
-            <h1>Martian Exploration &amp; Analogue Discovery</h1>
-            <p>Extending our discovery engine to Mars, <strong>Flow C</strong> evaluates <strong>10 diverse Martian geological targets</strong> against <strong>25 terrestrial analogue sites</strong> across <strong>15 quantitative features</strong>.</p>
-
-            <h2>Interactive 3D Map: Mars &amp; Earth Analogues</h2>
-            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
-                <h3>Explore the Martian Targets on Google Earth</h3>
-                <p>Navigate across Tharsis shield volcanoes, glacial debris aprons, and Valles Marineris alongside their top terrestrial matches.</p>
-                <div class="btn-group" style="margin-top: 0.75rem;">
-                    <a href="https://earth.google.com/earth/d/13Q3qytAkaue5ByixkJnJAP0JT5mvkCCc?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn">Launch Google Earth: Mars Project &nearr;</a>
-                </div>
-            </div>
-
-            <h2>Best Terrestrial Matches (Flow C Output)</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Martian Target</th>
-                            <th>Geological Setting</th>
-                            <th>Best Terrestrial Analogue</th>
-                            <th>Euclidean Dist.</th>
-                            <th>Cosine Sim.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>Arsia Mons</strong></td><td>Tharsis Shield &amp; Collapse Pits</td><td>Mount Etna – Summit Craters (Italy)</td><td>1.146</td><td>0.9694</td></tr>
-                        <tr><td><strong>Pavonis Mons</strong></td><td>Equatorial Shield Volcano</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.355</td><td>0.9171</td></tr>
-                        <tr><td><strong>Elysium Mons &amp; Planitia</strong></td><td>Volcanic Lava Plains</td><td>Harrat Khaybar Volcanic Field (Saudi Arabia)</td><td>1.369</td><td>0.9163</td></tr>
-                        <tr><td><strong>Ascraeus Mons</strong></td><td>Northern Tharsis Shield</td><td>Craters of the Moon (USA)</td><td>1.453</td><td>0.8291</td></tr>
-                        <tr><td><strong>Deuteronilus Mensae</strong></td><td>Lobate Debris Aprons (85% Ice)</td><td>Stenkul Fjord, Ellesmere Island (Canada)</td><td>1.711</td><td>0.9455</td></tr>
-                        <tr><td><strong>Medusae Fossae &amp; Paleolakes</strong></td><td>Yardangs &amp; Evaporites</td><td>Ustyurt Plateau (Kazakhstan / Uzbekistan)</td><td>2.323</td><td>0.7715</td></tr>
-                        <tr><td><strong>Valles Marineris</strong></td><td>Equatorial Rift &amp; Sulfate Beds</td><td>Makgadikgadi Basin (Botswana)</td><td>2.344</td><td>0.8517</td></tr>
-                        <tr><td><strong>Phlegra Montes</strong></td><td>Glacial Belts (Shallow 20m Ice)</td><td>Larsemann Hills (Antarctica)</td><td>2.355</td><td>0.6224</td></tr>
-                        <tr><td><strong>Olympus Mons</strong></td><td>Shield Volcano &amp; Basal Scarp</td><td>Llullaillaco Volcano Slopes (Chile / Argentina)</td><td>2.356</td><td>0.9551</td></tr>
-                        <tr><td><strong>Eastern Hellas Basin</strong></td><td>Southern Ice-Rich Aprons</td><td>Kilimanjaro Caldera &amp; Glaciers (Tanzania)</td><td>2.756</td><td>0.8796</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="btn-group" style="margin-top: 2.5rem;">
-                <button class="btn" onclick="switchSection('flow-b')">&larr; Previous: Global Discovery</button>
-                <button class="btn" onclick="switchSection('ml')">Next: ML &amp; Code Pipeline &rarr;</button>
-            </div>
-        </section>
-
-        <!-- ==================== SEZIONE 5: ML & ARCHITECTURE ==================== -->
-        <section id="section-ml" class="page-section">
-            <span class="badge">MATLAB Engine &bull; Unsupervised ML &amp; Multi-Test Finder</span>
-            <h1>Planetary Analogue AI Discovery System</h1>
-            <p>Our core computational engine (<code>analog_site_matcher.m</code>) is a 100% data-driven MATLAB environment engineered to ingest 4 agnostic CSV catalogs (Moon, Earth-Moon, Mars, Earth-Mars) with zero hardcoded feature matrices.</p>
-
-            <div class="metrics-grid">
-                <div class="metric-box">
-                    <span class="metric-value">4 CSVs</span>
-                    <span class="metric-label">Agnostic Planetary &amp; Earth Catalogs</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-value">SVD-PCA</span>
-                    <span class="metric-label">3D Cubic Latent Space Projection</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-value">K-Means</span>
-                    <span class="metric-label">Unsupervised Geological Clustering</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-value">Flows A–D</span>
-                    <span class="metric-label">Bidirectional Dual-Metric Matching</span>
-                </div>
-            </div>
-
-            <h2>How the MATLAB Architecture Works</h2>
-            <div class="grid" style="margin-bottom: 2rem;">
-                <div class="card">
-                    <div>
-                        <span class="badge">01 &bull; Data Pipeline</span>
-                        <h3>Dynamic Feature Harmonization</h3>
-                        <p>Using <code>intersect(..., 'stable')</code> and <code>setdiff</code>, the script automatically isolates qualitative metadata (coordinates, country, dominant mineral) and aligns shared numerical parameters (<strong>24 features for the Moon</strong>, <strong>15 for Mars</strong>), followed by Z-Score standardization.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <span class="badge">02 &bull; Matching Engine</span>
-                        <h3>Bidirectional Flows (A, B, C, D)</h3>
-                        <p>Computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> in full PCA space: matching target landing sites to their closest Earth analogue (Flows A &amp; C) and mapping terrestrial sites back to their extraterrestrial equivalents (Flows B &amp; D).</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <span class="badge">03 &bull; Visual Analytics</span>
-                        <h3>3D PCA Cube &amp; Interactive Radar</h3>
-                        <p>Generates a synchronized multi-panel dashboard combining an interactive <strong>3D cubic PCA scatter plot</strong>, real <strong>NASA photogrammetric basemaps</strong>, and dynamic <strong>Polar Radar Charts</strong> (<code>updateRadarPlot</code>) with custom SI-unit DataTips on click.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Multi-Test Engineering Site Finder (Part III)</h2>
-            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
-                <h3>Interactive Mission-Constraint Filtering</h3>
-                <p>Beyond global similarity, our script includes an interactive command-line engine that filters terrestrial sites against strict engineering thresholds—supporting both single-role and combined <strong>Multi-Test</strong> mission scenarios (with automatic Best-Fit ranking when constraints conflict):</p>
-                <div class="grid" style="margin-top: 0.75rem;">
-                    <div>
-                        <p style="margin-bottom: 0.4rem;"><strong>Lunar Mission Filters (6 Modes):</strong></p>
-                        <p style="font-size: 0.92rem;">&bull; <strong>Touchdown / EDL:</strong> Safe area &ge; 200k m&sup2;, 5m slope &le; 5&deg;, boulders &le; 0.35 m, bearing capacity &ge; 5 kPa.<br>
-                        &bull; <strong>Rover Mobility:</strong> Traverse slope &le; 8&deg;, cohesion &ge; 0.44 kPa, thermal inertia &ge; 200.<br>
-                        &bull; <strong>Permanent Base &amp; Habitats:</strong> 25m slope &le; 4.6&deg;, solar visibility &ge; 70%, DTE &ge; 90%, plume separation &ge; 2 km.<br>
-                        &bull; <strong>Lava Tubes (EVA) &amp; ISRU:</strong> Pit depth &ge; 20 m, diameter &ge; 35 m, FeO/TiO&sub2; or water-ice content.</p>
-                    </div>
-                    <div>
-                        <p style="margin-bottom: 0.4rem;"><strong>Martian Mission Filters (7 Modes):</strong></p>
-                        <p style="font-size: 0.92rem;">&bull; <strong>EDL &amp; Surface Base:</strong> Safe area &ge; 500k m&sup2;, slope &le; 5&deg;&ndash;10&deg;, thermal inertia &ge; 180, albedo &le; 0.26.<br>
-                        &bull; <strong>UAV / Drone Flight:</strong> High-altitude thin-air analogs (&ge; 2,500 m elevation, wind &le; 10 m/s).<br>
-                        &bull; <strong>Extreme EVA &amp; ISRU:</strong> Hyper-arid cryogenic sites (T<sub>min</sub> &le; 255 K, RH &le; 15%) and subsurface permafrost/hydrated sulfates.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Core MATLAB Implementation Snippet</h2>
-            <div class="step-card" style="overflow-x: auto;">
-                <p style="margin-bottom: 0.6rem; font-size: 0.9rem; color: #7dd3fc;"><strong>Excerpt from <code>analog_site_matcher.m</code> &mdash; Automated Feature Alignment &amp; SVD-PCA:</strong></p>
-<pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; line-height: 1.5; color: #e0f2fe;"><code>% 1. Dynamic quantitative feature intersection (zero hardcoded matrices)
-lunar_feats = intersect(T_moon.Properties.VariableNames, T_earth.Properties.VariableNames, 'stable');
-lunar_feats = setdiff(lunar_feats, meta_cols, 'stable');
-
-X_Moon  = table2array(T_moon(:, lunar_feats));
-X_Earth = table2array(T_earth(:, lunar_feats));
-
-% 2. Z-Score Standardization &amp; SVD Principal Component Analysis
-all_data = [X_Earth; X_Moon];
-mu = mean(all_data, 1);
-sigma = std(all_data, 0, 1); sigma(sigma == 0) = 1e-5;
-all_data_norm = (all_data - mu) ./ sigma;
-
-[~, S, V] = svd(all_data_norm - mean(all_data_norm, 1), 'econ');
-score_all = all_data_norm * V;</code></pre>
-            </div>
-
-            <div class="btn-group" style="margin-top: 2.5rem;">
-                <button class="btn" onclick="switchSection('mars')">&larr; Previous: Mars Module</button>
-                <button class="btn" onclick="switchSection('home')">Back to Overview &rarr;</button>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project. Hosted on GitHub Pages.</p>
-    </footer>
-
-    <script>
-        function switchSection(sectionId) {
-            // Nascondi tutte le sezioni
-            document.querySelectorAll('.page-section').forEach(sec => {
-                sec.classList.remove('active-section');
-            });
-
-            // Mostra la sezione desiderata
-            const target = document.getElementById('section-' + sectionId);
-            if (target) {
-                target.classList.add('active-section');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            // Chiudi il menu a tendina se aperto
-            document.getElementById('directoryDropdown').classList.remove('open');
-            document.getElementById('dropdownToggle').setAttribute('aria-expanded', 'false');
-
-            // Aggiorna classi active nei pulsanti del menu
-            document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
-            const activeNav = document.getElementById('nav-' + sectionId);
-            if (activeNav) activeNav.classList.add('active');
-        }
-
-        // Script per gestire il dropdown in JavaScript puro
-        document.addEventListener("DOMContentLoaded", () => {
-            const dropdown = document.getElementById("directoryDropdown");
-            const toggleBtn = document.getElementById("dropdownToggle");
-
-            if (dropdown && toggleBtn) {
-                toggleBtn.addEventListener("click", (event) => {
-                    event.stopPropagation();
-                    const isOpen = dropdown.classList.toggle("open");
-                    toggleBtn.setAttribute("aria-expanded", isOpen);
-                });
-
-                document.addEventListener("click", (event) => {
-                    if (!dropdown.contains(event.target)) {
-                        dropdown.classList.remove("open");
-                        toggleBtn.setAttribute("aria-expanded", "false");
-                    }
-                });
-
-                document.addEventListener("keydown", (event) => {
-                    if (event.key === "Escape") {
-                        dropdown.classList.remove("open");
-                        toggleBtn.setAttribute("aria-expanded", "false");
-                    }
-                });
-            }
-        });
-    </script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </body>
 </html>
