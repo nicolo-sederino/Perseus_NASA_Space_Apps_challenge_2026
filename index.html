@@ -167,7 +167,7 @@
             position: absolute;
             right: 0;
             top: calc(100% + 10px);
-            min-width: 250px;
+            min-width: 260px;
             background-color: #071326;
             border: 1px solid rgba(56, 189, 248, 0.35);
             border-radius: 10px;
@@ -491,6 +491,12 @@
                             </button>
                         </li>
                         <li>
+                            <button onclick="switchSection('flow-b')" id="drop-flow-b">
+                                Global Discovery (Flow B)
+                                <span>GEE Cloud-Native Pipeline &bull; Interactive Map</span>
+                            </button>
+                        </li>
+                        <li>
                             <button onclick="switchSection('mars')" id="drop-mars">
                                 Mars Module (Flow C)
                                 <span>10 Targets &bull; 15 Features &bull; Google Earth</span>
@@ -517,6 +523,7 @@
                 <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> to identify high-fidelity terrestrial geological analogues for permanent Lunar and Martian surface bases.</p>
                 <div class="btn-group">
                     <button class="btn" onclick="switchSection('lunar')">Explore Lunar Module &rarr;</button>
+                    <button class="btn-outline" onclick="switchSection('flow-b')">Explore Flow B: Global Discovery &rarr;</button>
                     <button class="btn-outline" onclick="switchSection('mars')">Explore Mars Module &rarr;</button>
                     <button class="btn-outline" onclick="switchSection('ml')">ML &amp; Code Pipeline &rarr;</button>
                 </div>
@@ -567,7 +574,16 @@
 
                     <div class="card">
                         <div>
-                            <span class="badge">Module 02 &bull; Flow C</span>
+                            <span class="badge">Module 02 &bull; Flow B</span>
+                            <h3>Global Planetary Discovery</h3>
+                            <p>Cloud-native scale pipeline using Google Earth Engine to discover novel uncatalogued analogue sites with Haversine spatial exclusion filters[cite: 2].</p>
+                        </div>
+                        <button class="card-link" onclick="switchSection('flow-b')">Open Global Discovery &rarr;</button>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <span class="badge">Module 03 &bull; Flow C</span>
                             <h3>Mars Analogue Discovery</h3>
                             <p>Analyzes <strong>10 Martian exploration targets</strong> against <strong>25 terrestrial sites</strong> using <strong>15 quantitative features</strong> and Cosine Similarity.</p>
                         </div>
@@ -576,7 +592,7 @@
 
                     <div class="card">
                         <div>
-                            <span class="badge">Module 03 &bull; Core Engine</span>
+                            <span class="badge">Module 04 &bull; Core Engine</span>
                             <h3>Data-Driven ML Pipeline</h3>
                             <p>Built in MATLAB without hardcoded matrices: automated CSV feature intersection, Z-Score standardization, <strong>SVD-PCA</strong>, and <strong>K-Means</strong>.</p>
                         </div>
@@ -625,11 +641,33 @@
 
             <div class="btn-group" style="margin-top: 2.5rem;">
                 <button class="btn-outline" onclick="switchSection('home')">&larr; Back to Home</button>
-                <button class="btn" onclick="switchSection('mars')">Next: Mars Module &rarr;</button>
+                <button class="btn" onclick="switchSection('flow-b')">Next: Global Discovery (Flow B) &rarr;</button>
             </div>
         </section>
 
-        <!-- ==================== SEZIONE 3: MARS MODULE ==================== -->
+        <!-- ==================== SEZIONE 3: FLOW B - GLOBAL DISCOVERY ==================== -->
+        <section id="section-flow-b" class="page-section">
+            <span class="badge">Flow B &bull; Global Planetary Discovery Engine</span>
+            <h1>Global Planetary Analog Discovery</h1>
+            <p>A cloud-native planetary scale discovery engine utilizing <strong>Google Earth Engine (GEE)</strong> to scan and identify novel, uncatalogued terrestrial analogues for lunar (e.g., Shackleton Rim) and Martian environments, incorporating strict Haversine spatial exclusion filters ($50\text{ km}$) relative to the curated Flow A sites[cite: 2].</p>
+
+            <h2>Interactive Global Discovery Viewer</h2>
+            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+                <h3>Explore New Planetary Analog Sites</h3>
+                <p>Interactive Leaflet map illustrating planetary telemetry clustering, multi-sensor reductions (Landsat, MODIS, NASADEM, ERA5-Land), and K-Means archetypes ($K=3$)[cite: 2].</p>
+                
+                <div class="map-container" style="margin-top: 20px; border-radius: 8px; overflow: hidden; border: 1px solid #334155;">
+                    <iframe src="results/perseus_local_viewer.html" title="Perseus Global Discovery Viewer" width="100%" height="750px" style="border: none; display: block;"></iframe>
+                </div>
+            </div>
+
+            <div class="btn-group" style="margin-top: 2.5rem;">
+                <button class="btn-outline" onclick="switchSection('lunar')">&larr; Previous: Lunar Module</button>
+                <button class="btn" onclick="switchSection('mars')">Next: Mars Module (Flow C) &rarr;</button>
+            </div>
+        </section>
+
+        <!-- ==================== SEZIONE 4: MARS MODULE ==================== -->
         <section id="section-mars" class="page-section">
             <span class="badge">Flow C &bull; 15 Quantitative Features</span>
             <h1>Martian Exploration &amp; Analogue Discovery</h1>
@@ -672,11 +710,12 @@
             </div>
 
             <div class="btn-group" style="margin-top: 2.5rem;">
-                <button class="btn-outline" onclick="switchSection('lunar')">&larr; Previous: Lunar Module</button>
+                <button class="btn-outline" onclick="switchSection('flow-b')">&larr; Previous: Global Discovery</button>
                 <button class="btn" onclick="switchSection('ml')">Next: ML &amp; Code Pipeline &rarr;</button>
             </div>
         </section>
-        <!-- ==================== SEZIONE 4: ML & ARCHITECTURE ==================== -->
+
+        <!-- ==================== SEZIONE 5: ML & ARCHITECTURE ==================== -->
         <section id="section-ml" class="page-section">
             <span class="badge">MATLAB Engine &bull; Unsupervised ML &amp; Multi-Test Finder</span>
             <h1>Planetary Analogue AI Discovery System</h1>
@@ -774,6 +813,8 @@ score_all = all_data_norm * V;</code></pre>
                 <button class="btn" onclick="switchSection('home')">Back to Overview &rarr;</button>
             </div>
         </section>
+    </main>
+
     <footer>
         <p>&copy; 2026 Team Perseus &bull; NASA Space Apps Challenge Project. Hosted on GitHub Pages.</p>
     </footer>
