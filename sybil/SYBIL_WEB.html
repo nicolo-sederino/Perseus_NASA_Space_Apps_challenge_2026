@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SYBIL AI - NASA Planetary Analogue Control Center</title>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: #171a21; color: #e6ecf5; height: 100vh; overflow: hidden; display: flex; padding: 10px; gap: 10px; }
+
+    /* Pannello Sinistro */
+    .sidebar {
+      width: 330px; min-width: 330px; background: #212630; border: 1px solid #343b48;
+      border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 7px;
+    }
+    .sidebar-header {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid #343b48; padding-bottom: 6px;
+    }
+    .sidebar-header h1 { color: #59d9ff; font-size: 17px; letter-spacing: 0.5px; }
+
+    /* Pulsanti Cronologia (Undo / Redo / Reset) */
+    .history-bar { display: flex; gap: 4px; }
+    .hist-btn {
+      background: #2e3442; color: #e6ecf5; border: 1px solid #454e61; border-radius: 4px;
+      padding: 4px 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: 0.15s;
+    }
+    .hist-btn:hover:not(:disabled) { background: #3f485c; border-color: #59d9ff; color: #fff; }
+    .hist-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+
+    .lbl { font-size: 11px; font-weight: 700; color: #d8e0eb; margin-top: 2px; display: flex; justify-content: space-between; align-items: center; }
+    .lbl-green { color: #73f2a6; }
+
+    .btn-group { display: flex; gap: 6px; }
+    .body-btn {
+      flex: 1; padding: 7px; background: #2e3442; color: #fff; border: 1px solid #454e61;
+      border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; transition: 0.2s;
+    }
+    .body-btn.active { background: #2b7de9; border-color: #59d9ff; }
+
+    select {
+      width: 100%; background: #2e3442; color: #fff; border: 1px solid #454e61;
+      border-radius: 4px; padding: 6px; font-size: 11px;
+    }
+
+    /* Lista Checkbox Multi-Test */
+    .test-checklist {
+      background: #2e3442; border: 1px solid #454e61; border-radius: 4px;
+      padding: 6px 8px; height: 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 5px;
+    }
+    .test-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: #fff; cursor: pointer; user-select: none; }
+    .test-item input { accent-color: #26a661; width: 14px; height: 14px; cursor: pointer; }
+    .mini-link { font-size: 10px; color: #59d9ff; cursor: pointer; text-decoration: underline; margin-left: 6px; }
+
+    .info-box {
+      background: #14171c; border: 1px solid #2e3442; border-radius: 4px; padding: 8px;
+      font-family: Consolas, monospace; font-size: 10.5px; line-height: 1.38; color: #ebf2fa;
+      height: 145px; overflow-y: auto; white-space: pre-wrap;
+    }
+    .log-box {
+      background: #14171c; border: 1px solid #2e3442; border-radius: 4px; padding: 8px;
+      font-family: Consolas, monospace; font-size: 10.5px; line-height: 1.35; color: #bff2d1;
+      flex: 1; overflow-y: auto; white-space: pre-wrap;
+    }
+
+    .run-btn {
+      background: #26a661; color: #fff; border: none; border-radius: 4px; padding: 8px;
+      font-weight: bold; font-size: 11.5px; cursor: pointer;
+    }
+    .run-btn:hover { background: #2ec272; }
+    .clear-btn {
+      background: #474d5c; color: #fff; border: none; border-radius: 4px; padding: 6px;
+      font-size: 10.5px; cursor: pointer;
+    }
+    .clear-btn:hover { background: #5a6173; }
+
+    /* Griglia Grafici 2x2 */
+    .dashboard {
+      flex: 1; display: grid; grid-template-columns: 1.05fr 0.95fr;
+      grid-template-rows: 1.06fr 0.94fr; gap: 8px;
+    }
+    .card {
+      background: #212630; border: 1px solid #343b48; border-radius: 6px;
+      display: flex; flex-direction: column; position: relative; overflow: hidden;
+    }
+    .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 5px 10px; background: #1c2029; border-bottom: 1px solid #2f3644;
+      font-size: 11px; font-weight: 700; color: #ffffff;
+    }
+    .header-actions { display: flex; gap: 5px; align-items: center; }
+    .lgd-btn {
+      background: #333c4d; color: #bfe6ff; border: 1px solid #4d5a73; border-radius: 3px;
+      padding: 2px 8px; font-size: 10px; font-weight: bold; cursor: pointer;
+    }
+    .lgd-btn:hover { background: #435066; }
+    .lgd-btn.active-spin { background: #1f5c43; border-color: #45d196; color: #9effd3; }
+    .plot-area { flex: 1; width: 100%; height: 100%; }
+
+    @media (max-width: 1050px) {
+      body { flex-direction: column; height: auto; overflow-y: auto; }
+      .sidebar { width: 100%; }
+      .dashboard { grid-template-columns: 1fr; grid-template-rows: repeat(4, 420px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PANNELLO CONTROLLI -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>SYBIL AI</h1>
+      <div class="history-bar">
+        <button id="btnUndo" class="hist-btn" onclick="undoAction()" title="Torna indietro (Ctrl+Z)" disabled>↶ Indietro</button>
+        <button id="btnRedo" class="hist-btn" onclick="redoAction()" title="Ripristina (Ctrl+Y)" disabled>↷ Avanti</button>
+        <button id="btnReset" class="hist-btn" onclick="resetInitialState()" title="Ripristina vista iniziale">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="lbl">1. CELESTIAL BODY:</div>
+    <div class="btn-group">
+      <button id="btnMoon" class="body-btn active" onclick="switchPlanet('MOON')">MOON (24 Feat.)</button>
+      <button id="btnMars" class="body-btn" onclick="switchPlanet('MARS')">MARS (15 Feat.)</button>
+    </div>
+
+    <div class="lbl">2. TARGET SITE (Or click on maps/3D):</div>
+    <select id="targetDropdown" onchange="onDropdownChange()"></select>
+
+    <div id="matchInfoBox" class="info-box">Loading SYBIL AI telemetry...</div>
+
+    <div class="lbl lbl-green">
+      <span>3. MULTI-TEST PLANNER:</span>
+      <span>
+        <span class="mini-link" onclick="setAllTests(true)">All</span>
+        <span class="mini-link" onclick="setAllTests(false)">None</span>
+      </span>
+    </div>
+    <div id="testCheckList" class="test-checklist"></div>
+
+    <button class="run-btn" onclick="runMultiTest()">RUN MULTI-TEST SITE FINDER</button>
+    <button class="clear-btn" onclick="clearTests()">Clear Test Stars from Map</button>
+
+    <div id="testLogBox" class="log-box">Select any combination of mission tests above and click RUN to highlight optimal Earth sites on the map.</div>
+  </aside>
+
+  <!-- DASHBOARD 2x2 -->
+  <main class="dashboard">
+    <section class="card">
+      <div class="card-header">
+        <span>1. CUBIC 3D PCA LATENT SPACE &amp; K-MEANS CLUSTERS</span>
+        <div class="header-actions">
+          <button id="btnSpin3D" class="lgd-btn active-spin" onclick="toggleSpin3D()" title="Attiva/Disattiva rotazione continua">⟳ Auto-Rotate</button>
+          <button class="lgd-btn" onclick="toggleLegend('plot3D')">Legend</button>
+        </div>
+      </div>
+      <div id="plot3D" class="plot-area"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <span>2. COMPARATIVE GEOPHYSICAL SIGNATURE (RADAR CHART)</span>
+        <button class="lgd-btn" onclick="toggleLegend('plotRadar')">Legend</button>
+      </div>
+      <div id="plotRadar" class="plot-area"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <span>3. EARTH ANALOGS &amp; MISSION TEST SITES (Click sites for info)</span>
+        <button class="lgd-btn" onclick="toggleLegend('plotEarth')">Legend</button>
+      </div>
+      <div id="plotEarth" class="plot-area"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <span>4. PLANETARY SURFACE TARGET MAP (Click sites for info)</span>
+        <button class="lgd-btn" onclick="toggleLegend('plotPlanet')">Legend</button>
+      </div>
+      <div id="plotPlanet" class="plot-area"></div>
+    </section>
+  </main>
+
+<script>
+let sybilDB = null;
+let state = {
+  planet: 'MOON',
+  targetIdx: 0,
+  eIdx: null,
+  distVal: null,
+  selectedTests: [0],
+  testActive: false,
+  testLog: 'Select any combination of mission tests above and click RUN to highlight optimal Earth sites on the map.',
+  legends: { plot3D: false, plotRadar: false, plotEarth: false, plotPlanet: false }
+};
+
+// Variabili per rotazione continua del grafico 3D
+let spinEnabled = true;
+let userInteracting3D = false;
+let interactionTimeout = null;
+let cameraAngle = Math.PI / 4;
+const cameraRadius = 2.25;
+const cameraZ = 1.15;
+let spinAnimId = null;
+
+// Immagine satellitare equirettangolare della Terra (usa earth_map.jpg se presente, altrimenti texture Blue Marble NASA)
+let earthMapSource = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png';
+(function preloadLocalEarthMap() {
+  const testImg = new Image();
+  testImg.onload = () => {
+    earthMapSource = 'earth_map.jpg';
+    if (sybilDB) renderEarthMap();
+  };
+  testImg.src = 'earth_map.jpg';
+})();
+
+// Stack Cronologia Undo/Redo
+let historyStack = [];
+let historyIndex = -1;
+
+const clusterColors = ['#3d26a8', '#2796eb', '#18bfb5', '#a5be6a', '#f9fb15'];
+
+function shortName(str) {
+  const idx = str.indexOf('(');
+  return idx !== -1 ? str.substring(0, idx).trim() : str;
+}
+
+function cloneState(s) {
+  return JSON.parse(JSON.stringify(s));
+}
+
+function pushHistory() {
+  historyStack = historyStack.slice(0, historyIndex + 1);
+  historyStack.push(cloneState(state));
+  historyIndex = historyStack.length - 1;
+  updateHistoryButtons();
+}
+
+function updateHistoryButtons() {
+  document.getElementById('btnUndo').disabled = historyIndex <= 0;
+  document.getElementById('btnRedo').disabled = historyIndex >= historyStack.length - 1;
+}
+
+function undoAction() {
+  if (historyIndex > 0) {
+    historyIndex--;
+    restoreState(historyStack[historyIndex]);
+  }
+}
+
+function redoAction() {
+  if (historyIndex < historyStack.length - 1) {
+    historyIndex++;
+    restoreState(historyStack[historyIndex]);
+  }
+}
+
+function resetInitialState() {
+  if (historyStack.length > 0) {
+    state = cloneState(historyStack[0]);
+    pushHistory();
+    restoreState(state);
+  }
+}
+
+function restoreState(targetState) {
+  const prevPlanet = state.planet;
+  state = cloneState(targetState);
+
+  document.getElementById('btnMoon').classList.toggle('active', state.planet === 'MOON');
+  document.getElementById('btnMars').classList.toggle('active', state.planet === 'MARS');
+
+  if (prevPlanet !== state.planet) {
+    initControls();
+  }
+
+  document.getElementById('targetDropdown').value = state.targetIdx;
+  document.querySelectorAll('#testCheckList input[type="checkbox"]').forEach(cb => {
+    cb.checked = state.selectedTests.includes(parseInt(cb.value, 10));
+  });
+  document.getElementById('testLogBox').textContent = state.testLog;
+
+  renderAll();
+  updateHistoryButtons();
+}
+
+// Scorciatoie da tastiera Ctrl+Z / Ctrl+Y
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z' && !e.shiftKey) {
+    e.preventDefault();
+    undoAction();
+  } else if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'y' || (e.shiftKey && e.key.toLowerCase() === 'z'))) {
+    e.preventDefault();
+    redoAction();
+  }
+});
+
+// Gestione Rotazione Continua 3D
+function toggleSpin3D() {
+  spinEnabled = !spinEnabled;
+  const btn = document.getElementById('btnSpin3D');
+  btn.classList.toggle('active-spin', spinEnabled);
+  btn.textContent = spinEnabled ? '⟳ Auto-Rotate' : '⏸ Paused';
+}
+
+function startContinuous3DSpin() {
+  if (spinAnimId) cancelAnimationFrame(spinAnimId);
+  let lastTime = performance.now();
+
+  function animate(now) {
+    const dt = (now - lastTime) / 1000;
+    lastTime = now;
+
+    const plotDiv = document.getElementById('plot3D');
+    if (spinEnabled && !userInteracting3D && plotDiv && plotDiv._fullLayout && plotDiv._fullLayout.scene) {
+      cameraAngle += dt * 0.22; // Velocità rotazione lenta e fluida (rad/s)
+      const eyeX = cameraRadius * Math.cos(cameraAngle);
+      const eyeY = cameraRadius * Math.sin(cameraAngle);
+      Plotly.relayout(plotDiv, {
+        'scene.camera.eye': { x: eyeX, y: eyeY, z: cameraZ }
+      });
+    }
+    spinAnimId = requestAnimationFrame(animate);
+  }
+  spinAnimId = requestAnimationFrame(animate);
+}
+
+fetch('sybil_data.json')
+  .then(res => res.json())
+  .then(data => {
+    sybilDB = data;
+    const d = sybilDB[state.planet];
+    state.eIdx = d.p2e_best[0];
+    state.distVal = d.p2e_dist[0];
+    initControls();
+    pushHistory();
+    renderAll();
+    startContinuous3DSpin();
+  })
+  .catch(err => {
+    document.getElementById('matchInfoBox').textContent =
+      'Error loading sybil_data.json.\nCarica sybil_web.html, sybil_data.json, moon_map.jpg e mars_map.jpg nella stessa cartella del tuo sito web.';
+    console.error(err);
+  });
+
+function initControls() {
+  const d = sybilDB[state.planet];
+  const dd = document.getElementById('targetDropdown');
+  dd.innerHTML = '';
+  d.names.forEach((name, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = name;
+    dd.appendChild(opt);
+  });
+  dd.value = state.targetIdx;
+
+  const cl = document.getElementById('testCheckList');
+  cl.innerHTML = '';
+  d.testNames.forEach((tName, i) => {
+    const label = document.createElement('label');
+    label.className = 'test-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = i;
+    cb.checked = state.selectedTests.includes(i);
+    cb.onchange = () => {
+      state.selectedTests = Array.from(document.querySelectorAll('#testCheckList input[type="checkbox"]:checked'))
+        .map(el => parseInt(el.value, 10));
+      pushHistory();
+    };
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(tName));
+    cl.appendChild(label);
+  });
+}
+
+function setAllTests(checked) {
+  document.querySelectorAll('#testCheckList input[type="checkbox"]').forEach(cb => cb.checked = checked);
+  state.selectedTests = checked ? sybilDB[state.planet].testNames.map((_, i) => i) : [];
+  pushHistory();
+}
+
+function switchPlanet(p) {
+  if (state.planet === p) return;
+  state.planet = p;
+  state.targetIdx = 0;
+  const d = sybilDB[p];
+  state.eIdx = d.p2e_best[0];
+  state.distVal = d.p2e_dist[0];
+  state.selectedTests = [0];
+  state.testActive = false;
+  state.testLog = 'Switched celestial body. Select any test combination and click RUN.';
+
+  document.getElementById('btnMoon').classList.toggle('active', p === 'MOON');
+  document.getElementById('btnMars').classList.toggle('active', p === 'MARS');
+  document.getElementById('testLogBox').textContent = state.testLog;
+  initControls();
+  pushHistory();
+  renderAll();
+}
+
+function onDropdownChange() {
+  const idx = parseInt(document.getElementById('targetDropdown').value, 10);
+  const d = sybilDB[state.planet];
+  selectTargetAndSave(idx, d.p2e_best[idx], d.p2e_dist[idx]);
+}
+
+function selectTargetAndSave(pIdx, eIdx, distVal) {
+  if (state.targetIdx === pIdx && state.eIdx === eIdx) return;
+  state.targetIdx = pIdx;
+  state.eIdx = eIdx;
+  state.distVal = distVal;
+  pushHistory();
+  updateSelectedTarget(pIdx, eIdx, distVal);
+}
+
+function toggleLegend(divId) {
+  state.legends[divId] = !state.legends[divId];
+  pushHistory();
+  Plotly.relayout(divId, { showlegend: state.legends[divId] });
+}
+
+function renderAll() {
+  const d = sybilDB[state.planet];
+  const isMoon = state.planet === 'MOON';
+  const colTarget = isMoon ? '#ffe01a' : '#ff6b1a';
+  const bestUnique = [...new Set(d.p2e_best)];
+  const revNames = d.e2p_best.map(idx => d.names[idx]);
+
+  // --- 1. CUBO 3D PCA ---
+  const traces3D = [];
+  for (let c = 1; c <= 5; c++) {
+    const idxC = d.cluster_idx.map((val, idx) => val === c ? idx : -1).filter(idx => idx !== -1);
+    if (!idxC.length) continue;
+    traces3D.push({
+      type: 'scatter3d', mode: 'markers', name: d.cluster_labels[c - 1],
+      x: idxC.map(i => d.score_E_3D[i][0]),
+      y: idxC.map(i => d.score_E_3D[i][1]),
+      z: idxC.map(i => d.score_E_3D[i][2]),
+      customdata: idxC,
+      text: idxC.map(i => `<b>${d.earth_names[i]}</b> (${d.earth_country[i]})<br>${d.cluster_labels[c - 1]}<br>Best Match: ${revNames[i]}`),
+      hoverinfo: 'text',
+      marker: { size: 5.5, color: clusterColors[c - 1], line: { color: '#000', width: 0.8 } }
+    });
+  }
+
+  traces3D.push({
+    type: 'scatter3d', mode: 'markers', name: 'Planetary Targets',
+    x: d.score_P_3D.map(r => r[0]),
+    y: d.score_P_3D.map(r => r[1]),
+    z: d.score_P_3D.map(r => r[2]),
+    text: d.names.map((n, i) => `<b>Target: ${n}</b><br>Best Analog: ${d.earth_names[d.p2e_best[i]]}<br>PCA Dist: ${d.p2e_dist[i].toFixed(3)}`),
+    hoverinfo: 'text',
+    marker: { size: 8, symbol: 'diamond', color: colTarget, line: { color: '#000', width: 1.2 } }
+  });
+
+  traces3D.push({
+    type: 'scatter3d', mode: 'markers', name: 'Best Matches',
+    x: bestUnique.map(i => d.score_E_3D[i][0]),
+    y: bestUnique.map(i => d.score_E_3D[i][1]),
+    z: bestUnique.map(i => d.score_E_3D[i][2]),
+    customdata: bestUnique,
+    hoverinfo: 'skip',
+    marker: { size: 9.5, color: 'rgba(0,0,0,0)', line: { color: '#ff2b2b', width: 2.5 } }
+  });
+
+  const layout3D = {
+    paper_bgcolor: '#191d24', plot_bgcolor: '#191d24',
+    margin: { l: 10, r: 10, t: 10, b: 10 },
+    showlegend: state.legends.plot3D,
+    legend: { x: 0.02, y: 0.98, bgcolor: 'rgba(20,24,32,0.85)', font: { color: '#fff', size: 10 } },
+    scene: {
+      aspectmode: 'cube',
+      xaxis: { title: `PC1 (${d.explained[0].toFixed(1)}%)`, color: '#fff', gridcolor: '#4d5566', backgroundcolor: '#191d24', showbackground: true },
+      yaxis: { title: `PC2 (${d.explained[1].toFixed(1)}%)`, color: '#fff', gridcolor: '#4d5566', backgroundcolor: '#191d24', showbackground: true },
+      zaxis: { title: `PC3 (${d.explained[2].toFixed(1)}%)`, color: '#fff', gridcolor: '#4d5566', backgroundcolor: '#191d24', showbackground: true },
+      camera: {
+        eye: {
+          x: cameraRadius * Math.cos(cameraAngle),
+          y: cameraRadius * Math.sin(cameraAngle),
+          z: cameraZ
+        }
+      }
+    }
+  };
+
+  const plot3DEl = document.getElementById('plot3D');
+  Plotly.newPlot(plot3DEl, traces3D, layout3D, { responsive: true, displayModeBar: false });
+
+  // Pausa temporanea della rotazione se l'utente trascina il cubo con il mouse
+  plot3DEl.onmousedown = () => {
+    userInteracting3D = true;
+    clearTimeout(interactionTimeout);
+  };
+  window.addEventListener('mouseup', () => {
+    if (userInteracting3D) {
+      clearTimeout(interactionTimeout);
+      interactionTimeout = setTimeout(() => {
+        const curEye = plot3DEl._fullLayout?.scene?.camera?.eye;
+        if (curEye) {
+          cameraAngle = Math.atan2(curEye.y, curEye.x);
+        }
+        userInteracting3D = false;
+      }, 2200);
+    }
+  });
+
+  plot3DEl.on('plotly_click', ev => {
+    const pt = ev.points[0];
+    if (pt.data.name === 'Planetary Targets') {
+      const pIdx = pt.pointNumber;
+      selectTargetAndSave(pIdx, d.p2e_best[pIdx], d.p2e_dist[pIdx]);
+    } else if (Array.isArray(pt.data.customdata)) {
+      const eIdx = pt.data.customdata[pt.pointNumber];
+      selectTargetAndSave(d.e2p_best[eIdx], eIdx, d.e2p_dist[eIdx]);
+    }
+  });
+
+  // --- 3. MAPPA TERRESTRE SATELLITARE 2D (PANNELLO 3 IN BASSO A SINISTRA) ---
+  renderEarthMap();
+
+  // --- 4. MAPPA PLANETARIA 2D (PANNELLO 4 IN BASSO A DESTRA) ---
+  const mapImgUrl = isMoon ? 'moon_map.jpg' : 'mars_map.jpg';
+  const tracePlanetMap = [{
+    type: 'scatter', mode: 'markers+text', name: 'Planetary Targets',
+    x: d.coords_P.map(c => c[1]),
+    y: d.coords_P.map(c => c[0]),
+    text: d.names.map(n => shortName(n)),
+    textposition: d.coords_P.map(c => c[1] > 95 ? 'middle left' : 'middle right'),
+    textfont: { color: '#ffff59', size: 10, family: 'Segoe UI' },
+    hovertext: d.names.map((n, i) => `<b>${n}</b><br>Lat: ${d.coords_P[i][0].toFixed(2)}°, Lon: ${d.coords_P[i][1].toFixed(2)}°<br>Best Earth Analog: ${d.earth_names[d.p2e_best[i]]}<br>PCA Dist: ${d.p2e_dist[i].toFixed(3)}`),
+    hoverinfo: 'text',
+    marker: { size: 13, symbol: 'star', color: colTarget, line: { color: '#000', width: 1.2 } }
+  }];
+
+  const layoutPlanetMap = {
+    paper_bgcolor: '#191d24', plot_bgcolor: '#191d24',
+    margin: { l: 55, r: 15, t: 15, b: 44 },
+    showlegend: state.legends.plotPlanet,
+    legend: { x: 0.02, y: 0.98, bgcolor: 'rgba(20,24,32,0.85)', font: { color: '#fff', size: 10 } },
+    xaxis: { title: 'Longitude (°)', range: [-180, 180], dtick: 60, color: '#fff', gridcolor: 'rgba(255,255,255,0.2)' },
+    yaxis: { title: 'Latitude (°)', range: [-90, 90], dtick: 30, color: '#fff', gridcolor: 'rgba(255,255,255,0.2)' },
+    images: [{
+      source: mapImgUrl, xref: 'x', yref: 'y',
+      x: -180, y: 90, sizex: 360, sizey: 180,
+      sizing: 'stretch', opacity: 1, layer: 'below'
+    }]
+  };
+
+  Plotly.newPlot('plotPlanet', tracePlanetMap, layoutPlanetMap, { responsive: true, displayModeBar: false });
+  document.getElementById('plotPlanet').on('plotly_click', ev => {
+    const pIdx = ev.points[0].pointNumber;
+    selectTargetAndSave(pIdx, d.p2e_best[pIdx], d.p2e_dist[pIdx]);
+  });
+
+  const activeE = state.eIdx !== null ? state.eIdx : d.p2e_best[state.targetIdx];
+  const activeDist = state.distVal !== null ? state.distVal : d.p2e_dist[state.targetIdx];
+  updateSelectedTarget(state.targetIdx, activeE, activeDist);
+}
+
+function buildTestLayerFromState() {
+  if (!state.testActive || !state.selectedTests.length) return null;
+  const d = sybilDB[state.planet];
+  const selected = state.selectedTests;
+  const N_E = d.earth_names.length;
+  const numPassed = new Array(N_E).fill(0);
+  const scoreComb = new Array(N_E).fill(0);
+
+  for (let i = 0; i < N_E; i++) {
+    let sumS = 0;
+    selected.forEach(tIdx => {
+      if (d.test_masks[i][tIdx]) numPassed[i]++;
+      sumS += d.test_scores[i][tIdx];
+    });
+    scoreComb[i] = sumS / selected.length;
+  }
+
+  const allOk = numPassed.some(p => p === selected.length);
+  let validIdx = [];
+  if (allOk) {
+    validIdx = numPassed.map((p, i) => p === selected.length ? i : -1).filter(i => i !== -1);
+    validIdx.sort((a, b) => scoreComb[b] - scoreComb[a]);
+  } else {
+    const maxP = Math.max(...numPassed);
+    validIdx = numPassed.map((p, i) => p === maxP ? i : -1).filter(i => i !== -1);
+    validIdx.sort((a, b) => scoreComb[b] - scoreComb[a]);
+    validIdx = validIdx.slice(0, 5);
+  }
+
+  const testTitle = selected.map(tIdx => d.test_short[tIdx]).join(' + ');
+  const starCol = state.planet === 'MOON' ? '#26e676' : '#26e6ff';
+  const revNames = d.e2p_best.map(idx => d.names[idx]);
+
+  const header = allOk
+    ? `SUCCESS: ${validIdx.length} sites match ALL ${selected.length} tests:`
+    : `BEST-FIT (${Math.max(...numPassed)}/${selected.length} tests passed):`;
+  const lines = [header, `[${testTitle}]`];
+  validIdx.forEach((id, rank) => {
+    lines.push(`${rank + 1}) ${d.earth_names[id]} (${d.earth_country[id]}) - Score: ${scoreComb[id].toFixed(1)}/100`);
+  });
+
+  return {
+    logText: lines.join('\n'),
+    trace: {
+      type: 'scatter', mode: 'markers', name: `Test: ${testTitle}`,
+      x: validIdx.map(i => d.coords_E[i][1]),
+      y: validIdx.map(i => d.coords_E[i][0]),
+      customdata: validIdx,
+      text: validIdx.map(i => `<b>Test Site: ${d.earth_names[i]}</b> (${d.earth_country[i]})<br>Equivalent: ${revNames[i]}<br>Score: ${scoreComb[i].toFixed(1)}/100`),
+      hoverinfo: 'text',
+      marker: { size: 15, symbol: 'star', color: starCol, line: { color: '#000', width: 1.3 } }
+    }
+  };
+}
+
+function renderEarthMap() {
+  const d = sybilDB[state.planet];
+  const bestUnique = [...new Set(d.p2e_best)];
+  const revNames = d.e2p_best.map(idx => d.names[idx]);
+
+  const tracesEarth = [
+    {
+      type: 'scatter', mode: 'markers', name: 'All Earth Sites',
+      x: d.coords_E.map(c => c[1]), y: d.coords_E.map(c => c[0]),
+      customdata: d.earth_names.map((_, i) => i),
+      text: d.earth_names.map((n, i) => `<b>${n}</b> (${d.earth_country[i]})<br>Lat: ${d.coords_E[i][0].toFixed(2)}°, Lon: ${d.coords_E[i][1].toFixed(2)}°<br>Best Match: ${revNames[i]}<br>PCA Dist: ${d.e2p_dist[i].toFixed(3)}`),
+      hoverinfo: 'text',
+      marker: { size: 7.5, color: '#2b323d', line: { color: '#ffffff', width: 0.8 } }
+    },
+    {
+      type: 'scatter', mode: 'markers+text', name: 'Best AI Matches',
+      x: bestUnique.map(i => d.coords_E[i][1]), y: bestUnique.map(i => d.coords_E[i][0]),
+      customdata: bestUnique,
+      text: bestUnique.map(i => shortName(d.earth_names[i])),
+      textposition: bestUnique.map(i => d.coords_E[i][1] > 115 ? 'middle left' : 'middle right'),
+      textfont: { color: '#ffffff', size: 9.5, family: 'Segoe UI' },
+      hovertext: bestUnique.map(i => `<b>Best Match: ${d.earth_names[i]}</b> (${d.earth_country[i]})<br>Equivalent: ${revNames[i]}<br>PCA Dist: ${d.e2p_dist[i].toFixed(3)}`),
+      hoverinfo: 'text',
+      marker: { size: 12, color: '#f22626', line: { color: '#ffffff', width: 1.5 } }
+    }
+  ];
+
+  const built = buildTestLayerFromState();
+  if (built) {
+    tracesEarth.push(built.trace);
+  }
+
+  const layoutEarth = {
+    paper_bgcolor: '#191d24', plot_bgcolor: '#191d24',
+    margin: { l: 55, r: 15, t: 15, b: 44 },
+    showlegend: state.legends.plotEarth,
+    legend: { x: 0.02, y: 0.98, bgcolor: 'rgba(20,24,32,0.85)', font: { color: '#fff', size: 10 } },
+    xaxis: { title: 'Longitude (°)', range: [-180, 180], dtick: 60, color: '#fff', gridcolor: 'rgba(255,255,255,0.22)' },
+    yaxis: { title: 'Latitude (°)', range: [-90, 90], dtick: 30, color: '#fff', gridcolor: 'rgba(255,255,255,0.22)' },
+    images: [{
+      source: earthMapSource, xref: 'x', yref: 'y',
+      x: -180, y: 90, sizex: 360, sizey: 180,
+      sizing: 'stretch', opacity: 1, layer: 'below'
+    }]
+  };
+
+  Plotly.newPlot('plotEarth', tracesEarth, layoutEarth, { responsive: true, displayModeBar: false });
+  document.getElementById('plotEarth').on('plotly_click', ev => {
+    const pt = ev.points[0];
+    const eIdx = pt.data.customdata[pt.pointNumber];
+    selectTargetAndSave(d.e2p_best[eIdx], eIdx, d.e2p_dist[eIdx]);
+  });
+}
+
+function updateSelectedTarget(pIdx, eIdx, distVal) {
+  const d = sybilDB[state.planet];
+  const isMoon = state.planet === 'MOON';
+  const colP = isMoon ? '#ffd91a' : '#ff7300';
+
+  document.getElementById('targetDropdown').value = pIdx;
+
+  document.getElementById('matchInfoBox').textContent =
+`[ ${state.planet} TARGET ]
+Site: ${d.names[pIdx]}
+Coords: ${d.coords_P[pIdx][0].toFixed(2)}°, ${d.coords_P[pIdx][1].toFixed(2)}°
+----------------------------------------
+[ OPTIMAL EARTH ANALOG ]
+Site: ${d.earth_names[eIdx]} (${d.earth_country[eIdx]})
+Category: ${d.earth_cat[eIdx]}
+GPS: ${d.coords_E[eIdx][0].toFixed(2)}°, ${d.coords_E[eIdx][1].toFixed(2)}°
+PCA Euclidean Dist: ${distVal.toFixed(3)}`;
+
+  const theta = [...d.labels, d.labels[0]];
+  const rP = [...d.X_P_rad[pIdx], d.X_P_rad[pIdx][0]];
+  const rE = [...d.X_E_rad[eIdx], d.X_E_rad[eIdx][0]];
+  const rawP = [...d.X_P_raw[pIdx], d.X_P_raw[pIdx][0]];
+  const rawE = [...d.X_E_raw[eIdx], d.X_E_raw[eIdx][0]];
+
+  const tracesRadar = [
+    {
+      type: 'scatterpolar', mode: 'lines+markers', name: shortName(d.names[pIdx]),
+      r: rP, theta: theta,
+      text: theta.map((lbl, i) => `<b>${d.names[pIdx]}</b><br>${lbl}: ${rawP[i].toFixed(2)} (${(rP[i]*100).toFixed(1)}%)`),
+      hoverinfo: 'text',
+      line: { color: colP, width: 2.5 }, marker: { size: 6, color: colP }
+    },
+    {
+      type: 'scatterpolar', mode: 'lines+markers', name: shortName(d.earth_names[eIdx]),
+      r: rE, theta: theta,
+      text: theta.map((lbl, i) => `<b>${d.earth_names[eIdx]}</b><br>${lbl}: ${rawE[i].toFixed(2)} (${(rE[i]*100).toFixed(1)}%)`),
+      hoverinfo: 'text',
+      line: { color: '#ff3b3b', width: 2.2 }, marker: { size: 6, symbol: 'square', color: '#ff3b3b' }
+    }
+  ];
+
+  const layoutRadar = {
+    paper_bgcolor: '#191d24', plot_bgcolor: '#191d24',
+    margin: { l: 55, r: 55, t: 38, b: 25 },
+    title: { text: `${shortName(d.names[pIdx])} vs ${shortName(d.earth_names[eIdx])} (Dist: ${distVal.toFixed(2)})`, font: { color: '#fff', size: 12 } },
+    showlegend: state.legends.plotRadar,
+    legend: { x: 0.02, y: 0.98, bgcolor: 'rgba(20,24,32,0.85)', font: { color: '#fff', size: 10 } },
+    polar: {
+      bgcolor: '#191d24',
+      angularaxis: { color: '#e6ecf5', tickfont: { size: 9 }, gridcolor: '#4d5566' },
+      radialaxis: { range: [0, 1], tickvals: [0.25, 0.5, 0.75, 1.0], ticktext: ['25%', '50%', '75%', '100%'], color: '#bfc8d6', tickfont: { size: 9 }, gridcolor: '#4d5566' }
+    }
+  };
+
+  Plotly.newPlot('plotRadar', tracesRadar, layoutRadar, { responsive: true, displayModeBar: false });
+}
+
+function runMultiTest() {
+  const selected = Array.from(document.querySelectorAll('#testCheckList input[type="checkbox"]:checked'))
+    .map(cb => parseInt(cb.value, 10));
+
+  if (!selected.length) {
+    state.testLog = 'Please select at least one test from the list!';
+    document.getElementById('testLogBox').textContent = state.testLog;
+    return;
+  }
+
+  state.selectedTests = selected;
+  state.testActive = true;
+  const built = buildTestLayerFromState();
+  state.testLog = built.logText;
+  document.getElementById('testLogBox').textContent = state.testLog;
+
+  pushHistory();
+  renderEarthMap();
+}
+
+function clearTests() {
+  state.testActive = false;
+  state.testLog = 'Test markers cleared from Earth map.';
+  document.getElementById('testLogBox').textContent = state.testLog;
+  pushHistory();
+  renderEarthMap();
+}
+</script>
+</body>
+</html>
