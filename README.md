@@ -3,8 +3,10 @@
 **NASA Space Apps Challenge 2026 — Team Perseus**  
 **Challenge:** *Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars*
 
-🔗 **Live Web Platform (`index.html`):** `[https://nicolo-sederino.github.io/Perseus_NASA_Space_Apps_challenge_2026/]`  
-🗺️ **Interactive Global Discovery Map (`perseus_local_viewer.html`):** `[file:///C:/Users/Lucrezia/Downloads/perseus_local_viewer%20(3).html]`  
+🌐 [**Live Web Platform**](https://nicolo-sederino.github.io/Perseus_NASA_Space_Apps_challenge_2026/) | Main web application (`index.html`) |
+
+🗺️ [**Interactive Global Discovery Map**](https://nicolo-sederino.github.io/Perseus_NASA_Space_Apps_challenge_2026/results/perseus_local_viewer.html) | Explore the identified Earth analog sites on a global map (`perseus_local_viewer.html`) |
+
 🎥 **Project Demo / Pitch Deck (`docs/`):** `[INSERT_PUBLIC_DEMO_LINK_HERE]`
 
 > **AI-Assistance Disclosure (NASA Space Apps Submission Guidelines):**  
