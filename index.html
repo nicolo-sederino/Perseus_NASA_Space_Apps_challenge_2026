@@ -678,26 +678,95 @@
         </section>
         <!-- ==================== SEZIONE 4: ML & ARCHITECTURE ==================== -->
         <section id="section-ml" class="page-section">
-            <span class="badge">MATLAB Engine &bull; Unsupervised Learning</span>
-            <h1>Data-Driven Machine Learning Architecture</h1>
-            <p>The computational core of the <strong>Planetary Analogue Discovery System</strong> is engineered entirely in MATLAB with zero hardcoded feature matrices. The software dynamically ingests raw planetary and terrestrial CSV catalogs, harmonizes geophysical metrics, and maps multi-dimensional similarities.</p>
+            <span class="badge">MATLAB Engine &bull; Unsupervised ML &amp; Multi-Test Finder</span>
+            <h1>Planetary Analogue AI Discovery System</h1>
+            <p>Our core computational engine (<code>analog_site_matcher.m</code>) is a 100% data-driven MATLAB environment engineered to ingest 4 agnostic CSV catalogs (Moon, Earth-Moon, Mars, Earth-Mars) with zero hardcoded feature matrices.</p>
 
-            <h2>Program Overview &amp; How It Works</h2>
-            <div class="card" style="margin-bottom: 2rem;">
-                <h3>Automated Planetary Analogue Matching Pipeline</h3>
-                <p>Designed to eliminate manual data curation, our MATLAB program operates through a fully automated, data-driven workflow:</p>
-                <p style="margin-top: 0.75rem;">
-                    <strong>1. Data Ingestion &amp; Harmonization:</strong> The script reads raw CSV datasets containing physical, thermal, and geological parameters for both planetary targets (Moon/Mars) and Earth analogues. It automatically intersects feature columns to align datasets without modifying source files.
-                </p>
-                <p style="margin-top: 0.5rem;">
-                    <strong>2. Mathematical Normalization &amp; Dimensionality Reduction:</strong> Variables with diverse scales (such as slope angles, thermal inertia, and regolith density) are standardized via <strong>Z-Score</strong>. The system then applies <strong>SVD-PCA (Singular Value Decomposition &amp; Principal Component Analysis)</strong> to project high-dimensional geophysical data into an interpretable 3D latent space while preserving maximum variance.
-                </p>
-                <p style="margin-top: 0.5rem;">
-                    <strong>3. Clustering &amp; Bidirectional Spatial Matching:</strong> Using unsupervised <strong>K-Means clustering</strong>, the program groups terrestrial sites into distinct geological families. It then computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> bidirectionally to rank the best Earth analogues for any given lunar or Martian landing site.
-                </p>
-                <p style="margin-top: 0.5rem;">
-                    <strong>4. Interactive Multi-View Dashboard:</strong> Finally, the software compiles the results into an interactive visual environment featuring 3D latent scatter plots, NASA photogrammetric basemaps, and dynamic Radar Charts with custom DataTips for side-by-side comparison.
-                </p>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <span class="metric-value">4 CSVs</span>
+                    <span class="metric-label">Agnostic Planetary &amp; Earth Catalogs</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">SVD-PCA</span>
+                    <span class="metric-label">3D Cubic Latent Space Projection</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">K-Means</span>
+                    <span class="metric-label">Unsupervised Geological Clustering</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">Flows A–D</span>
+                    <span class="metric-label">Bidirectional Dual-Metric Matching</span>
+                </div>
+            </div>
+
+            <h2>How the MATLAB Architecture Works</h2>
+            <div class="grid" style="margin-bottom: 2rem;">
+                <div class="card">
+                    <div>
+                        <span class="badge">01 &bull; Data Pipeline</span>
+                        <h3>Dynamic Feature Harmonization</h3>
+                        <p>Using <code>intersect(..., 'stable')</code> and <code>setdiff</code>, the script automatically isolates qualitative metadata (coordinates, country, dominant mineral) and aligns shared numerical parameters (<strong>24 features for the Moon</strong>, <strong>15 for Mars</strong>), followed by Z-Score standardization.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="badge">02 &bull; Matching Engine</span>
+                        <h3>Bidirectional Flows (A, B, C, D)</h3>
+                        <p>Computes multi-dimensional <strong>Euclidean Distances</strong> and <strong>Cosine Similarities</strong> in full PCA space: matching target landing sites to their closest Earth analogue (Flows A &amp; C) and mapping terrestrial sites back to their extraterrestrial equivalents (Flows B &amp; D).</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="badge">03 &bull; Visual Analytics</span>
+                        <h3>3D PCA Cube &amp; Interactive Radar</h3>
+                        <p>Generates a synchronized multi-panel dashboard combining an interactive <strong>3D cubic PCA scatter plot</strong>, real <strong>NASA photogrammetric basemaps</strong>, and dynamic <strong>Polar Radar Charts</strong> (<code>updateRadarPlot</code>) with custom SI-unit DataTips on click.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Multi-Test Engineering Site Finder (Part III)</h2>
+            <div class="card" style="margin-bottom: 2rem; border-color: #38bdf8;">
+                <h3>Interactive Mission-Constraint Filtering</h3>
+                <p>Beyond global similarity, our script includes an interactive command-line engine that filters terrestrial sites against strict engineering thresholds—supporting both single-role and combined <strong>Multi-Test</strong> mission scenarios (with automatic Best-Fit ranking when constraints conflict):</p>
+                <div class="grid" style="margin-top: 0.75rem;">
+                    <div>
+                        <p style="margin-bottom: 0.4rem;"><strong>Lunar Mission Filters (6 Modes):</strong></p>
+                        <p style="font-size: 0.92rem;">&bull; <strong>Touchdown / EDL:</strong> Safe area &ge; 200k m&sup2;, 5m slope &le; 5&deg;, boulders &le; 0.35 m, bearing capacity &ge; 5 kPa.<br>
+                        &bull; <strong>Rover Mobility:</strong> Traverse slope &le; 8&deg;, cohesion &ge; 0.44 kPa, thermal inertia &ge; 200.<br>
+                        &bull; <strong>Permanent Base &amp; Habitats:</strong> 25m slope &le; 4.6&deg;, solar visibility &ge; 70%, DTE &ge; 90%, plume separation &ge; 2 km.<br>
+                        &bull; <strong>Lava Tubes (EVA) &amp; ISRU:</strong> Pit depth &ge; 20 m, diameter &ge; 35 m, FeO/TiO&sub2; or water-ice content.</p>
+                    </div>
+                    <div>
+                        <p style="margin-bottom: 0.4rem;"><strong>Martian Mission Filters (7 Modes):</strong></p>
+                        <p style="font-size: 0.92rem;">&bull; <strong>EDL &amp; Surface Base:</strong> Safe area &ge; 500k m&sup2;, slope &le; 5&deg;–10&deg;, thermal inertia &ge; 180, albedo &le; 0.26.<br>
+                        &bull; <strong>UAV / Drone Flight:</strong> High-altitude thin-air analogs (&ge; 2,500 m elevation, wind &le; 10 m/s).<br>
+                        &bull; <strong>Extreme EVA &amp; ISRU:</strong> Hyper-arid cryogenic sites (T<sub>min</sub> &le; 255 K, RH &le; 15%) and subsurface permafrost/hydrated sulfates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Core MATLAB Implementation Snippet</h2>
+            <div class="step-card" style="overflow-x: auto;">
+                <p style="margin-bottom: 0.6rem; font-size: 0.9rem; color: #7dd3fc;"><strong>Excerpt from <code>analog_site_matcher.m</code> — Automated Feature Alignment &amp; SVD-PCA:</strong></p>
+<pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; line-height: 1.5; color: #e0f2fe;"><code>% 1. Dynamic quantitative feature intersection (zero hardcoded matrices)
+lunar_feats = intersect(T_moon.Properties.VariableNames, T_earth.Properties.VariableNames, 'stable');
+lunar_feats = setdiff(lunar_feats, meta_cols, 'stable');
+
+X_Moon  = table2array(T_moon(:, lunar_feats));
+X_Earth = table2array(T_earth(:, lunar_feats));
+
+% 2. Z-Score Standardization &amp; SVD Principal Component Analysis
+all_data = [X_Earth; X_Moon];
+mu = mean(all_data, 1);
+sigma = std(all_data, 0, 1); sigma(sigma == 0) = 1e-5;
+all_data_norm = (all_data - mu) ./ sigma;
+
+[~, S, V] = svd(all_data_norm - mean(all_data_norm, 1), 'econ');
+score_all = all_data_norm * V;</code></pre>
             </div>
 
             <div class="btn-group" style="margin-top: 2.5rem;">
