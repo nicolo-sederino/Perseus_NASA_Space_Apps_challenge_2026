@@ -232,14 +232,11 @@ In the Martian module, semantic category filtering (`contains(cat_m, ...)`) is c
 
 ### 6.3 Multi-Test Combination Logic (`AND` Intersection & Best-Fit Fallback)
 
-When $K$ tests are evaluated simultaneously (e.g., `1 2 4` in CLI or `Ctrl+Click` in the UI), SYBIL constructs the Boolean matrix $M \in \{0, 1\}^{N \times K}$ and score matrix $S \in [0, 100]^{N \times K}$:
+When $K$ operational tests are evaluated simultaneously (e.g., entering `1 2 4` in the CLI or using `Ctrl+Click` in the UI listbox), SYBIL constructs the Boolean suitability matrix $M \in \{0, 1\}^{N \times K}$ and the normalized score matrix $S \in [0, 100]^{N \times K}$ across all $N$ terrestrial sites:
 
-$$\text{mask\_all}(i) = \bigwedge_{k=1}^{K} M_{i,k}, \qquad \bar{S}_i = \frac{1}{K}\sum_{k=1}^{K} S_{i,k}$$
-
-* **Exact Logical Intersection (`any(mask_all) == true`):** Extracts every terrestrial site passing all $K$ tests simultaneously and ranks them in descending order of combined mean score $\bar{S}_i$.
-* **Best-Fit Fallback (`any(mask_all) == false`):** When the user combines geologically mutually exclusive tests (e.g., *Test 1: Open-Plain Landing* + *Test 5: Deep Lava Tube EVA*), no single location can simultaneously offer a flat boulder-free plain and a $\ge 20\text{ m}$ volcanic chasm. Rather than returning an empty result, SYBIL computes the pass count $P_i = \sum_{k=1}^{K} M_{i,k}$, isolates all sites achieving $P_{\max} = \max_i(P_i)$, and outputs the Top 5 ranked by $\bar{S}_i$.
-
----
+```math
+\mathrm{mask}_{\mathrm{all}}(i) = \bigwedge_{k=1}^{K} M(i,k), \qquad \bar{S}(i) = \frac{1}{K}\sum_{k=1}^{K} S(i,k)
+```
 
 ## 7. Interactive UI Control Center & Callback Architecture
 
