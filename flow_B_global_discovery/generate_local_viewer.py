@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Team Perseus - Local Map Viewer Generator for NASA Space Apps 2026
+Team Perseus - Interactive Discovery Map Generator for NASA Space Apps 2026
 Generates an interactive standalone HTML map (results/perseus_local_viewer.html)
 showing Flow B new discoveries, Radar sub-scores, engineering flags, and Flow A 50km exclusion zones.
 """
@@ -39,7 +39,7 @@ def main() -> None:
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Team Perseus - NASA Space Apps 2026 | Local Discovery Viewer</title>
+    <title>Team Perseus - NASA Space Apps 2026 | Global Discovery Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -208,7 +208,7 @@ def main() -> None:
 
     output_html = results_dir / "perseus_local_viewer.html"
     output_html.write_text(html_content, encoding="utf-8")
-    print(f"Satellite local map successfully generated at: {output_html}")
+    print(f"Satellite discovery map successfully generated at: {output_html}")
 
 
 if __name__ == "__main__":

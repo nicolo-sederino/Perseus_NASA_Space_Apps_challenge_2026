@@ -2,16 +2,18 @@
   "project": "NASA Space Apps Challenge 2026 - Team Perseus",
   "module": "Flow B Global Abiotic Grid Extraction (Google Earth Engine)",
   "ai_assisted_development": "Developed with AI code-generation assistance and validated by Team Perseus",
-  "timestamp_utc": "2026-11-14T17:47:34.457741+00:00",
-  "grid_step_deg": 1.0,
+  "timestamp_utc": "2026-11-15T07:48:30.685267+00:00",
+  "grid_step_deg": 0.25,
   "years": [
     2021,
     2024
   ],
   "flow_a_exclusion_buffer_km": 50.0,
-  "grid_cells_total": 41020,
-  "candidate_cells_after_stage1": 1184,
-  "discovery_cells_kept": 1116,
+  "grid_cells_total": 656348,
+  "candidate_cells_after_stage1": 68707,
+  "discovery_cells_kept": 17839,
+  "polar_south_cells_kept": 0,
+  "polar_north_cells_kept": 0,
   "flow_a_calibration_anchors_kept": 26,
   "thermal_inertia_scale": 4806.2426473461655,
   "geotech_params": {
@@ -35,20 +37,5 @@
     "eolian_wind_hi": 10.0,
     "eolian_dry_ref_m3m3": 0.15
   },
-  "datasets": {
-    "elevation_slope": "NASA/NASADEM_HGT/001 (30 m) + COPERNICUS/DEM/GLO30 fallback",
-    "surface_reflectance": "LANDSAT/LC08/C02/T1_L2 + LANDSAT/LC09/C02/T1_L2 (cloud-masked median)",
-    "land_surface_temperature": "MODIS/061/MYD11A2 (day 13:30 / night 01:30)",
-    "reanalysis": "ECMWF/ERA5_LAND/MONTHLY_AGGR (wind, pressure, solar radiation, soil moisture)",
-    "soil": "OpenLandMap SOL sand / clay / bulk density (250 m, Antarctica not covered)",
-    "coarse_mask": "MODIS/061/MOD13A3 peak NDVI + MODIS/061/MCD12Q1 land cover"
-  },
-  "limitations": [
-    "Slope_1m / Slope_5m are not available globally and are intentionally not produced.",
-    "FeO / TiO2 / salts / water-ice columns are Landsat spectral-index proxies, not measured abundances.",
-    "UV_Flux_Index is a proxy from ERA5-Land downward shortwave radiation.",
-    "Geotechnical columns are texture-based pedotransfer estimates (see geotech_params).",
-    "Soil data is absent over Antarctica; those cells have Soil_Data_Available = 0."
-  ],
-  "execution_time_seconds": 814.0
+  "execution_time_seconds": 7448.0
 }
