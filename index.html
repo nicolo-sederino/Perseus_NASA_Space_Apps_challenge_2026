@@ -217,7 +217,7 @@
         }
 
         /* Sicurezza aggiuntiva: il viewer è visibile solo quando Flow B è attiva */
-        #section-flow-b:not(.active-section) .map-container {
+        #section-IRIS:not(.active-section) .map-container {
             display: none !important;
         }
 
@@ -473,25 +473,25 @@
                         </li>
                         <li>
                             <button onclick="switchSection('lunar')" id="drop-lunar">
-                                Lunar Module (Flow A)
+                                Lunar Module
                                 <span>5 Targets &bull; 24 Features &bull; Google Earth</span>
                             </button>
                         </li>
                         <li>
-                            <button onclick="switchSection('flow-b')" id="drop-flow-b">
-                                Global Discovery (Flow B)
+                            <button onclick="switchSection('IRIS')" id="drop-flow-b">
+                                IRIS- Global Discovery 
                                 <span>GEE Cloud-Native Pipeline &bull; Interactive Map</span>
                             </button>
                         </li>
                         <li>
                             <button onclick="switchSection('mars')" id="drop-mars">
-                                Mars Module (Flow C)
+                                Mars Module
                                 <span>10 Targets &bull; 15 Features &bull; Google Earth</span>
                             </button>
                         </li>
                         <li>
                             <button onclick="switchSection('ml')" id="drop-ml">
-                                ML &amp; MATLAB Architecture
+                                SYBIL &amp; MATLAB Architecture
                                 <span>SVD-PCA &bull; K-Means &bull; 3D Dashboard</span>
                             </button>
                         </li>
@@ -511,9 +511,9 @@
                 <!-- Tutti i pulsanti della Hero convertiti nella classe .btn luminosa -->
                 <div class="btn-group">
                     <button class="btn" onclick="switchSection('lunar')">Explore Lunar Module &rarr;</button>
-                    <button class="btn" onclick="switchSection('flow-b')">Explore Flow B: Global Discovery &rarr;</button>
+                    <button class="btn" onclick="switchSection('flow-b')">Explore IRIS: Global Discovery &rarr;</button>
                     <button class="btn" onclick="switchSection('mars')">Explore Mars Module &rarr;</button>
-                    <button class="btn" onclick="switchSection('ml')">ML &amp; Code Pipeline &rarr;</button>
+                    <button class="btn" onclick="switchSection('ml')">SYBIL- ML &amp; Code Pipeline &rarr;</button>
                 </div>
             </div>
 
@@ -563,7 +563,7 @@
                     <div class="card">
                         <div>
                             <span class="badge">Module 02 &bull; Flow B</span>
-                            <h3>Global Planetary Discovery</h3>
+                            <h3>IRIS- Global Planetary Discovery</h3>
                             <p>Cloud-native scale pipeline using Google Earth Engine to discover novel uncatalogued analogue sites with Haversine spatial exclusion filters.</p>
                         </div>
                         <button class="card-link" onclick="switchSection('flow-b')">Open Global Discovery &rarr;</button>
@@ -633,11 +633,11 @@
             </div>
         </section>
 
-        <!-- ==================== SEZIONE 3: FLOW B - GLOBAL DISCOVERY ==================== -->
+        <!-- ==================== SEZIONE 3: IRIS - GLOBAL DISCOVERY ==================== -->
         <section id="section-flow-b" class="page-section">
-            <span class="badge">Flow B &bull; Global Planetary Discovery Engine</span>
+            <span class="badge">IRIS &bull; Global Planetary Discovery Engine</span>
             <h1>Global Planetary Analog Discovery</h1>
-            <p><strong>Flow B (<code>flow_B_global_discovery</code>)</strong> extends Flow A&rsquo;s selection engine from a closed catalog of documented literature sites to an automated <strong>global planetary discovery system</strong>. Operating on <strong>Google Earth Engine (GEE)</strong> over a 4-year climatological window (<strong>2021&ndash;2024</strong>), the four-module Python pipeline (<code>perseus_common.py</code>, <code>gee_global_extract.py</code>, <code>run_flow_B_discovery.py</code>, and <code>generate_local_viewer.py</code>) scans Earth&rsquo;s emerged landmass, derives <strong>28 physical and geotechnical variables</strong> from NASA, ESA, and ECMWF missions (NASADEM, Copernicus GLO-30/CryoSat-2, Landsat 8 &amp; 9, MODIS Aqua, ERA5-Land, and OpenLandMap), and projects abiotic candidate cells into Flow A&rsquo;s calibrated latent space to uncover novel Lunar and Martian analogues.</p>
+            <p><strong>IRIS (<code>flow_B_global_discovery</code>)</strong> extends Flow A&rsquo;s selection engine from a closed catalog of documented literature sites to an automated <strong>global planetary discovery system</strong>. Operating on <strong>Google Earth Engine (GEE)</strong> over a 4-year climatological window (<strong>2021&ndash;2024</strong>), the four-module Python pipeline (<code>perseus_common.py</code>, <code>gee_global_extract.py</code>, <code>run_flow_B_discovery.py</code>, and <code>generate_local_viewer.py</code>) scans Earth&rsquo;s emerged landmass, derives <strong>28 physical and geotechnical variables</strong> from NASA, ESA, and ECMWF missions (NASADEM, Copernicus GLO-30/CryoSat-2, Landsat 8 &amp; 9, MODIS Aqua, ERA5-Land, and OpenLandMap), and projects abiotic candidate cells into Flow A&rsquo;s calibrated latent space to uncover novel Lunar and Martian analogues.</p>
 
             <div class="grid" style="margin-bottom: 2rem;">
                 <div class="card">
@@ -731,8 +731,8 @@
 
         <!-- ==================== SEZIONE 5: ML & ARCHITECTURE ==================== -->
         <section id="section-ml" class="page-section">
-            <span class="badge">MATLAB Engine &bull; Unsupervised ML &amp; Multi-Test Finder</span>
-            <h1>Planetary Analogue AI Discovery System</h1>
+            <span class="badge">SYBIL- MATLAB Engine &bull; Unsupervised ML &amp; Multi-Test Finder</span>
+            <h1>SYBIL- Planetary Analogue AI Discovery System</h1>
             <p>Our core computational engine (<code>analog_site_matcher.m</code>) is a 100% data-driven MATLAB environment engineered to ingest 4 agnostic CSV catalogs (Moon, Earth-Moon, Mars, Earth-Mars) with zero hardcoded feature matrices.</p>
 
             <div class="metrics-grid">
