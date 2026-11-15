@@ -229,6 +229,14 @@
             flex: 1;
         }
 
+        .sybil-wide-card {
+            width: 95vw;
+            max-width: 1480px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         .hero {
             background: linear-gradient(135deg, rgba(12, 36, 66, 0.84) 0%, rgba(7, 22, 46, 0.92) 100%);
             border: 1px solid rgba(56, 189, 248, 0.35);
@@ -378,6 +386,10 @@
         .card:hover {
             transform: translateY(-3px);
             border-color: #38bdf8;
+        }
+
+        .sybil-wide-card:hover {
+            transform: translateX(-50%);
         }
 
         .card-link {
@@ -598,7 +610,7 @@
                 <h1>Planetary Analogue Discovery System</h1>
                 <p>A 100% data-driven Machine Learning and Remote Sensing framework developed by <strong>Team Perseus</strong> combining two coupled engines—<strong>SYBIL</strong> (curated multi-domain calibration) and <strong>IRIS</strong> (cloud-native global planetary analog discovery)—to identify high-fidelity terrestrial testbeds for permanent Lunar and Martian surface bases.</p>
                 <div class="btn-group">
-                    <a href="sybil/sybil_web.html" class="btn">Explore SYBIL (Moon &amp; Mars Catalogs) &rarr;</a>
+                    <button class="btn" onclick="switchSection('sybil')">Explore SYBIL (Moon &amp; Mars Catalogs) &rarr;</button>
                     <button class="btn" onclick="switchSection('iris')">Explore IRIS (Global Discovery Map) &rarr;</button>
                     <button class="btn btn-outline" onclick="switchSection('ml')">ML &amp; MATLAB Architecture &rarr;</button>
                 </div>
@@ -700,7 +712,7 @@
                         <div>
                             <span class="badge">Engine 03 &bull; Computational Core</span>
                             <h3>MATLAB ML &amp; Multi-Test Architecture</h3>
-                            <p>Built in MATLAB (<code>SYBIL/ProvaHackaton7.m</code>) with automated CSV feature intersection, <strong>SVD-PCA</strong>, <strong>K-Means</strong>, Multi-Test engineering filtering, and fidelity warnings.</p>
+                            <p>Built in MATLAB (<code>core_matlab/ProvaHackaton7.m</code>) with automated CSV feature intersection, <strong>SVD-PCA</strong>, <strong>K-Means</strong>, Multi-Test engineering filtering, and fidelity warnings.</p>
                         </div>
                         <button class="card-link" onclick="switchSection('ml')">Open Technical Architecture &rarr;</button>
                     </div>
@@ -807,6 +819,31 @@
                 </div>
             </div>
 
+            <!-- PANNELLO INTERATTIVO SYBIL AI WEB APP -->
+            <div style="margin-top: 3.5rem;">
+                <h2>Interactive SYBIL AI Control Center (Live Web App)</h2>
+                <div class="card sybil-wide-card" style="margin-bottom: 2rem; border-color: #38bdf8; padding: 1.25rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <h3 style="margin-bottom: 0.25rem;">Planetary Analogue Control Center (Moon &amp; Mars)</h3>
+                            <p style="margin-bottom: 0; font-size: 0.94rem;">Interactive 3D SVD-PCA latent space, K-Means clusters, comparative geophysical radar charts, and Multi-Test mission planner.</p>
+                        </div>
+                        <a href="sybil/sybil_web.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Open Fullscreen App &nearr;</a>
+                    </div>
+
+                    <div style="width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.35); background: #171a21;">
+                        <iframe 
+                            src="sybil/sybil_web.html" 
+                            title="SYBIL AI - Planetary Analogue Control Center" 
+                            width="100%" 
+                            height="860px" 
+                            style="border: none; display: block;"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
             <div class="btn-group" style="margin-top: 2.5rem;">
                 <button class="btn" onclick="switchSection('home')">&larr; Back to Home</button>
                 <button class="btn" onclick="switchSection('iris')">Next: IRIS Global Discovery &rarr;</button>
@@ -817,7 +854,7 @@
         <section id="section-iris" class="page-section">
             <span class="badge badge-iris">IRIS &bull; Global Planetary Discovery Engine</span>
             <h1>IRIS: Global Planetary Analog Discovery</h1>
-            <p><strong>IRIS (<code>IRIS/</code>)</strong> extends <strong>SYBIL</strong>&rsquo;s selection engine from a closed catalog of documented literature sites to an automated <strong>global planetary discovery system</strong>. Operating on <strong>Google Earth Engine (GEE)</strong> over a 4-year climatological window (<strong>2021&ndash;2024</strong>), the four-module Python pipeline (<code>perseus_common.py</code>, <code>gee_global_extract.py</code>, <code>run_flow_B_discovery.py</code>, and <code>generate_local_viewer.py</code>) scans Earth&rsquo;s emerged landmass, derives <strong>28 physical and geotechnical variables</strong> from NASA, ESA, and ECMWF missions (NASADEM, Copernicus GLO-30/CryoSat-2, Landsat 8 &amp; 9, MODIS Aqua, ERA5-Land, and OpenLandMap), and projects abiotic candidate cells into SYBIL&rsquo;s calibrated latent space to uncover novel Lunar and Martian analogues.</p>
+            <p><strong>IRIS (<code>IRIS_Flow_B/</code>)</strong> extends <strong>SYBIL</strong>&rsquo;s selection engine from a closed catalog of documented literature sites to an automated <strong>global planetary discovery system</strong>. Operating on <strong>Google Earth Engine (GEE)</strong> over a 4-year climatological window (<strong>2021&ndash;2024</strong>), the four-module Python pipeline (<code>perseus_common.py</code>, <code>gee_global_extract.py</code>, <code>run_flow_B_discovery.py</code>, and <code>generate_local_viewer.py</code>) scans Earth&rsquo;s emerged landmass, derives <strong>28 physical and geotechnical variables</strong> from NASA, ESA, and ECMWF missions (NASADEM, Copernicus GLO-30/CryoSat-2, Landsat 8 &amp; 9, MODIS Aqua, ERA5-Land, and OpenLandMap), and projects abiotic candidate cells into SYBIL&rsquo;s calibrated latent space to uncover novel Lunar and Martian analogues.</p>
 
             <div class="grid" style="margin-bottom: 2rem;">
                 <div class="card">
@@ -870,7 +907,7 @@
         <section id="section-ml" class="page-section">
             <span class="badge">Computational Core &bull; SYBIL &amp; IRIS Mathematical Pipeline</span>
             <h1>ML &amp; MATLAB Architecture</h1>
-            <p>Our core computational engine (<code>SYBIL/ProvaHackaton7.m</code>) powers <strong>SYBIL</strong> and calibrates the latent space used by <strong>IRIS</strong>, ingesting 4 agnostic CSV catalogs (<code>Lunar_Targets_Catalog.csv</code>, <code>Earth_Lunar_Analogs_Catalog.csv</code>, <code>Mars_Targets_Catalog.csv</code>, <code>Earth_Mars_Analogs_Catalog.csv</code>) with zero hardcoded feature matrices.</p>
+            <p>Our core computational engine (<code>core_matlab/ProvaHackaton7.m</code>) powers <strong>SYBIL</strong> and calibrates the latent space used by <strong>IRIS</strong>, ingesting 4 agnostic CSV catalogs (<code>Lunar_Targets_Catalog.csv</code>, <code>Earth_Lunar_Analogs_Catalog.csv</code>, <code>Mars_Targets_Catalog.csv</code>, <code>Earth_Mars_Analogs_Catalog.csv</code>) with zero hardcoded feature matrices.</p>
 
             <div class="metrics-grid">
                 <div class="metric-box">
@@ -946,7 +983,7 @@
 
             <h2>Core MATLAB Implementation Snippet</h2>
             <div class="step-card" style="overflow-x: auto;">
-                <p style="margin-bottom: 0.6rem; font-size: 0.9rem; color: #7dd3fc;"><strong>Excerpt from <code>SYBIL/ProvaHackaton7.m</code> &mdash; SYBIL Feature Alignment &amp; SVD-PCA Calibration:</strong></p>
+                <p style="margin-bottom: 0.6rem; font-size: 0.9rem; color: #7dd3fc;"><strong>Excerpt from <code>core_matlab/ProvaHackaton7.m</code> &mdash; SYBIL Feature Alignment &amp; SVD-PCA Calibration:</strong></p>
 <pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; line-height: 1.5; color: #e0f2fe;"><code>% 1. Dynamic quantitative feature intersection (zero hardcoded matrices)
 lunar_feats = intersect(T_moon.Properties.VariableNames, T_earth.Properties.VariableNames, 'stable');
 lunar_feats = setdiff(lunar_feats, meta_cols, 'stable');
@@ -986,6 +1023,7 @@ score_all = all_data_norm * V;</code></pre>
 
             document.getElementById('section-' + sectionId).classList.add('active-section');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.dispatchEvent(new Event('resize'));
 
             if (updateHash && window.location.hash !== '#' + sectionId) {
                 history.pushState(null, '', '#' + sectionId);
