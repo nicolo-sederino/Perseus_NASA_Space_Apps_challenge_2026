@@ -10,7 +10,7 @@
 🎥 **Project Demo / Pitch Deck (`docs/`):** `[INSERT_PUBLIC_DEMO_LINK_HERE]`
 
 > **AI-Assistance Disclosure (NASA Space Apps Submission Guidelines):**  
-> Components of the `IRIS_Flow_B` orbital extraction pipeline, web interface, and technical documentation were developed with AI code-generation assistance and subsequently calibrated, audited, and scientifically validated by Team Perseus.
+> Components of the `IRIS` orbital extraction pipeline, web interface, and technical documentation were developed with AI code-generation assistance and subsequently calibrated, audited, and scientifically validated by Team Perseus.
 
 ---
 
@@ -21,8 +21,8 @@ Selecting future landing sites and permanent surface bases on the Moon and Mars 
 * A hyperarid cold desert (e.g., *McMurdo Dry Valleys* or *Atacama*) replicates extreme aridity, UV stress, and permafrost sublimation, yet lacks lunar anorthositic crust or volcanic skylights.
 
 **Perseus** solves this problem by transforming static, poorly characterized site lists into a **Dual-Engine, Quantitative Planetary Analogue Discovery System**:
-1. **SYBIL (`core_matlab/Sybil_Machine_Learning.m` — Flow A):** A high-resolution, unsupervised machine learning engine calibrated on **44 curated terrestrial analog sites** and **15 reference planetary targets** (5 Lunar, 10 Martian) across multi-domain SI parameters. It supports bidirectional matching (**Planet $\leftrightarrow$ Earth**) and a **Multi-Test Mission Planner** that filters terrestrial testbeds by concrete operational requirements (*Landing/Touchdown, Rover Mobility, Full Lunar Base, 2–4 Crew Habitat, Lava-Tube EVA, and Power/ISRU*).
-2. **IRIS (`IRIS_Flow_B/` — Flow B):** A planetary-scale remote sensing discovery pipeline powered by **Google Earth Engine (GEE)**. Enforcing a strict **$50\text{ km}$ Haversine exclusion buffer** around every known SYBIL site, IRIS screens **656,348 equal-area global grid cells** using 2021–2024 orbital telemetry ($30\text{ m}$ to $11\text{ km}$) and projects **17,969 newly characterized abiotic/cryogenic terrains** into SYBIL's calibrated latent space—uncovering previously uncatalogued terrestrial analogs that match or outperform existing reference sites.
+1. **SYBIL (`SYBIL/Sybil_Machine_Learning.m` — Flow A):** A high-resolution, unsupervised machine learning engine calibrated on **44 curated terrestrial analog sites** and **15 reference planetary targets** (5 Lunar, 10 Martian) across multi-domain SI parameters. It supports bidirectional matching (**Planet $\leftrightarrow$ Earth**) and a **Multi-Test Mission Planner** that filters terrestrial testbeds by concrete operational requirements (*Landing/Touchdown, Rover Mobility, Full Lunar Base, 2–4 Crew Habitat, Lava-Tube EVA, and Power/ISRU*).
+2. **IRIS (`IRIS/` — Flow B):** A planetary-scale remote sensing discovery pipeline powered by **Google Earth Engine (GEE)**. Enforcing a strict **$50\text{ km}$ Haversine exclusion buffer** around every known SYBIL site, IRIS screens **656,348 equal-area global grid cells** using 2021–2024 orbital telemetry ($30\text{ m}$ to $11\text{ km}$) and projects **17,969 newly characterized abiotic/cryogenic terrains** into SYBIL's calibrated latent space—uncovering previously uncatalogued terrestrial analogs that match or outperform existing reference sites.
 3. **Interactive Web, GIS & KML Visualization (`index.html`, `perseus_local_viewer.html`, `Earth Analogs Moon (4).kml`):** Browser-ready dashboards, interactive Leaflet discovery maps with 50 km exclusion rings and CSV/GeoJSON/JSON export, and Google Earth KML layers for immediate mission-team exploration.
 
 ---
@@ -41,14 +41,14 @@ flowchart TD
         D2["Mars Targets (10) & Earth Mars Analogs (25)<br/>15 SI Atmospheric, Cryospheric & Geochemical Features"]:::data
     end
 
-    subgraph FLOW_A ["2. SYBIL — CURATED ML & MULTI-TEST ENGINE (core_matlab/)"]
+    subgraph FLOW_A ["2. SYBIL — CURATED ML & MULTI-TEST ENGINE (SYBIL/)"]
         A1["Domain-Adapted Z-Score Standardization<br/>Moon: Pooled | Mars: Decoupled Barometric Baseline"]:::sybil
         A2["SVD / PCA Latent Space (3D Cube) & K-Means (K = 5)<br/>Bidirectional Euclidean + Cosine Similarity Matching"]:::sybil
         A3["Multi-Test Mission Requirement Filter<br/>Landing, Rover Mobility, Full Base, Habitat, Lava Tubes, ISRU"]:::sybil
         D1 & D2 --> A1 --> A2 --> A3
     end
 
-    subgraph FLOW_B ["3. IRIS — GLOBAL ORBITAL DISCOVERY PIPELINE (IRIS_Flow_B/)"]
+    subgraph FLOW_B ["3. IRIS — GLOBAL ORBITAL DISCOVERY PIPELINE (IRIS/)"]
         B1["Equal-Area Global Grid (656,348 cells, 0.25 deg)<br/>+ 50 km Haversine Exclusion Buffer (44 SYBIL Anchors)"]:::iris
         B2["GEE Stage 1 & 2 Multi-Sensor Telemetry (2021-2024)<br/>NASADEM, Copernicus GLO-30, CryoSat-2, Landsat 8/9,<br/>MODIS Aqua/Terra, ERA5-Land, OpenLandMap -> 17,969 Abiotic Cells"]:::iris
         B3["SVD / PCA Latent Projection (>=95% Var) & K-Means (K = 3)<br/>Hybrid Similarity Score (75% Latent + 25% 4-Axis Radar)"]:::iris
@@ -75,7 +75,7 @@ To ensure physical fidelity across planetary bodies, Perseus integrates open orb
 | **Moon Targets (`Lunar_Targets_Catalog.csv`)** | **NASA LRO** (*Diviner*, *LOLA*, *LROC NAC*, *Mini-RF*), **LCROSS**, **ISRO Chandrayaan-1** (*M³*), **JAXA Kaguya** (*TC/MI*) | Multiscale slopes ($1\text{ m} / 5\text{ m} / 25\text{ m}$), Hurst roughness, boulder height & area fraction, safe landing area ($\text{m}^2$), regolith bulk density ($0\text{--}15\text{ cm}$ & $0\text{--}60\text{ cm}$), cohesion ($\text{kPa}$), friction angle ($^\circ$), Terzaghi bearing capacity ($\text{kPa}$), $\text{FeO}$ & $\text{TiO}_2\text{ wt}\%$, $T_{\min}/T_{\max}\text{ (K)}$, thermal inertia, sun visibility ($\%$), Direct-to-Earth comms ($\%$), water-ice $\text{wt}\%$, skylight/pit geometry |
 | **Mars Targets (`Mars_Targets_Catalog.csv`)** | **NASA MRO** (*HiRISE*, *SHARAD*, *CRISM*), **MSL Curiosity** (*REMS/RAD*), **Phoenix**, **Mars Odyssey**, **NASA Mars Fact Sheet** | Elevation ($\text{m}$), mean & max slopes ($^\circ$), surface atmospheric pressure ($\text{mbar}$), diurnal temperature extremes ($T_{\min}, T_{\max}$), mean & gust wind speeds ($\text{m/s}$), buried/glacial water-ice $\text{wt}\%$, soil cohesion & friction angle, sulfate/perchlorate/evaporite $\text{wt}\%$, UV flux index, mafic basalt index, eolian deflation index |
 | **Earth Curated Analogs (`data/Earth_*_Catalog.csv` & `.kml`)** | **NASA** (*Landsat TIRS*, *ECOSTRESS*), **ESA** (*PANGAEA*, *LUNA*, *Etna*, *Lanzarote*, *Nusfjord*), **CSA** (*Haughton*, *Mistastin*), **JAXA** (*Miyake-jima*), **CONAE** (*Andean Salars*) | 44 calibrated terrestrial benchmarks spanning basaltic maria analogs (*Black Point*, *Etna*, *Harrat Khaybar*, *Payenia*), pure anorthosite massifs (*Nusfjord*, *Miyake-jima*), lava tubes (*Marius/Tranquillitatis analogs: Terceira, Jeju, Jingpo, Craters of the Moon*), impact craters (*Haughton*, *Nördlinger Ries*, *Lonar*), and hyperarid/periglacial Mars sites (*McMurdo*, *Salar de Arizaro*, *Qaidam Basin*, *Svalbard*, *Bardenas Reales*) |
-| **Earth Global Discovery (`IRIS_Flow_B/` via GEE, 2021–2024)** | **NASA NASADEM**, **ESA Copernicus GLO-30**, **CryoSat-2 Antarctica**, **NASA/USGS Landsat 8 & 9** (`C02/T1_L2` + `T2_L2`), **NASA MODIS** (`MCD12Q1`, `MOD13A3`, `MYD11A2`), **ECMWF ERA5-Land**, **OpenLandMap** | Server-side reductions over metric circular kernels & grid cells: slopes, safe landing fraction, RMS roughness, cloud-free spectral indices, broadband mineralogical proxies, day/night LST extremes, empirically calibrated thermal inertia, surface pressure, wind regime, UV flux, and geotechnical bearing capacity |
+| **Earth Global Discovery (`IRIS/` via GEE, 2021–2024)** | **NASA NASADEM**, **ESA Copernicus GLO-30**, **CryoSat-2 Antarctica**, **NASA/USGS Landsat 8 & 9** (`C02/T1_L2` + `T2_L2`), **NASA MODIS** (`MCD12Q1`, `MOD13A3`, `MYD11A2`), **ECMWF ERA5-Land**, **OpenLandMap** | Server-side reductions over metric circular kernels & grid cells: slopes, safe landing fraction, RMS roughness, cloud-free spectral indices, broadband mineralogical proxies, day/night LST extremes, empirically calibrated thermal inertia, surface pressure, wind regime, UV flux, and geotechnical bearing capacity |
 
 ---
 
@@ -114,9 +114,9 @@ Perseus_NASA_Space_Apps_challenge_2026/
 │   ├── Earth_Lunar_Analogs_Catalog.csv # 23 curated terrestrial lunar analogs
 │   ├── Mars_Targets_Catalog.csv      # 10 reference Martian targets (15 physical features)
 │   └── Earth_Mars_Analogs_Catalog.csv  # 25 curated terrestrial Martian analogs
-├── core_matlab/                      # Flow A: SYBIL analytical engine
+├── SYBIL/                      # Flow A: SYBIL analytical engine
 │   └── Sybil_Machine_Learning.m      # PCA/SVD 3D cubes, K-Means, Radar Charts & Multi-Test Site Finder
-├── IRIS_Flow_B/                      # Flow B: Global orbital discovery pipeline (Python + GEE)
+├── IRIS/                      # Flow B: Global orbital discovery pipeline (Python + GEE)
 │   ├── perseus_common.py             # Haversine great-circle helpers & SYBIL catalog loader
 │   ├── gee_global_extract.py         # 2-stage GEE multi-sensor extractor & physical derivations
 │   ├── run_flow_B_discovery.py       # SVD/PCA projection, K-Means, Radar scoring & GeoJSON export
@@ -139,23 +139,23 @@ Perseus_NASA_Space_Apps_challenge_2026/
 * Load **`Earth Analogs Moon (4).kml`** directly into **Google Earth Web / Pro** to inspect the 20 global lunar testbeds in 3D terrain view.
 
 ### B. Run SYBIL (Flow A — MATLAB)
-1. Open MATLAB and set the working directory to `core_matlab/` (ensuring the CSV files from `data/` are on the MATLAB path or copied locally).
+1. Open MATLAB and set the working directory to `SYBIL/` (ensuring the CSV files from `data/` are on the MATLAB path or copied locally).
 2. Run `Sybil_Machine_Learning.m` to generate the interactive 3D PCA cubes, comparative Radar Charts with SI unit tooltips, global analog maps, and the interactive **Multi-Test Earth Site Selection** CLI module.
 
 ### C. Run IRIS Global Discovery (Flow B — Python & Google Earth Engine)
 ```bash
 # 1. Install dependencies
-pip install -r IRIS_Flow_B/requirements.txt
+pip install -r IRIS/requirements.txt
 
 # 2. Extract global abiotic grid via Google Earth Engine (requires registered GCP project)
-python3 IRIS_Flow_B/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --mode full --batch-size 150 --workers 6
+python3 IRIS/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --mode full --batch-size 150 --workers 6
 
 # 3. Optional: Append high-latitude polar provinces (Antarctica + High Arctic)
-python3 IRIS_Flow_B/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --append-polar --polar-step-deg 0.25
+python3 IRIS/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --append-polar --polar-step-deg 0.25
 
 # 4. Run latent-space discovery scoring across all 5 Lunar & 10 Martian targets
-python3 IRIS_Flow_B/run_flow_B_discovery.py --all-targets
+python3 IRIS/run_flow_B_discovery.py --all-targets
 
 # 5. Rebuild the standalone interactive discovery viewer
-python3 IRIS_Flow_B/generate_local_viewer.py
+python3 IRIS/generate_local_viewer.py
 ```

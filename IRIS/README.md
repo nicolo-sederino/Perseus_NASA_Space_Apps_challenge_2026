@@ -1,7 +1,7 @@
 # IRIS — Planetary Analog Global Discovery Engine (Flow B)
 
 **NASA Space Apps Challenge 2026 — Team Perseus**  
-**Module:** `IRIS_Flow_B` (Global Orbital Telemetry & Planetary Analog Discovery Pipeline)
+**Module:** `IRIS` (Global Orbital Telemetry & Planetary Analog Discovery Pipeline)
 
 > **AI-Assistance Disclosure (NASA Space Apps Submission Guidelines):**  
 > This software module and its technical documentation were developed with AI code-generation assistance and subsequently reviewed, calibrated, and scientifically validated by Team Perseus.
@@ -74,7 +74,7 @@ flowchart TD
 ## 3. Directory Structure
 
 ```text
-IRIS_Flow_B/
+IRIS/
 ├── perseus_common.py             # Haversine great-circle distance helpers & SYBIL catalog loader
 ├── gee_global_extract.py         # 2-stage Google Earth Engine multi-sensor extractor & physical derivations
 ├── run_flow_B_discovery.py       # PCA/SVD projection, K-Means clustering, Radar scoring & GeoJSON/JSON export
@@ -136,16 +136,16 @@ The diagnostic ratio $`d / d_{\text{best,SYBIL}} < 1.0`$ directly identifies new
 source .venv/bin/activate
 
 # 2. Extract global abiotic grid from Google Earth Engine (requires registered GCP project)
-python3 IRIS_Flow_B/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --mode full --batch-size 150 --workers 6
+python3 IRIS/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --mode full --batch-size 150 --workers 6
 
 # 3. Optional: Append high-resolution polar analog provinces (Antarctica + High Arctic)
-python3 IRIS_Flow_B/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --append-polar --polar-step-deg 0.25
+python3 IRIS/gee_global_extract.py --project YOUR_GCP_PROJECT_ID --append-polar --polar-step-deg 0.25
 
 # 4. Run planetary analog scoring across all 5 Lunar & 10 Martian targets
-python3 IRIS_Flow_B/run_flow_B_discovery.py --all-targets
+python3 IRIS/run_flow_B_discovery.py --all-targets
 
 # 5. Generate standalone interactive discovery map (results/perseus_local_viewer.html)
-python3 IRIS_Flow_B/generate_local_viewer.py
+python3 IRIS/generate_local_viewer.py
 ```
 
 ---
